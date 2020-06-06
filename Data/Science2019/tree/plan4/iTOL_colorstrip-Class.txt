@@ -1,0 +1,112 @@
+DATASET_COLORSTRIP
+SEPARATOR TAB
+BORDER_WIDTH	0
+COLOR	#bebada
+DATASET_LABEL	Class
+LEGEND_COLORS	#e41a1c	#377eb8	#4daf4a	#984ea3	#ff7f00	#ffff33	#a65628	#f781bf	#999999
+LEGEND_LABELS	Actinobacteria	Alphaproteobacteria	Bacilli	Betaproteobacteria	Chloroflexia	Deltaproteobacteria	Flavobacteriia	Gammaproteobacteria	Unassigned
+LEGEND_SHAPES	1	1	1	1	1	1	1	1	1
+LEGEND_TITLE	Class
+MARGIN	5
+STRIP_WIDTH	25
+DATA
+ASV_657	#e41a1c	Actinobacteria
+ASV_2	#984ea3	Betaproteobacteria
+ASV_12	#a65628	Flavobacteriia
+ASV_3	#f781bf	Gammaproteobacteria
+ASV_4	#f781bf	Gammaproteobacteria
+ASV_8	#e41a1c	Actinobacteria
+ASV_6	#984ea3	Betaproteobacteria
+ASV_18	#e41a1c	Actinobacteria
+ASV_9	#e41a1c	Actinobacteria
+ASV_10	#377eb8	Alphaproteobacteria
+ASV_11	#984ea3	Betaproteobacteria
+ASV_13	#984ea3	Betaproteobacteria
+ASV_15	#377eb8	Alphaproteobacteria
+ASV_14	#999999	Unassigned
+ASV_16	#e41a1c	Actinobacteria
+ASV_17	#984ea3	Betaproteobacteria
+ASV_28	#e41a1c	Actinobacteria
+ASV_20	#e41a1c	Actinobacteria
+ASV_33	#999999	Unassigned
+ASV_21	#e41a1c	Actinobacteria
+ASV_25	#e41a1c	Actinobacteria
+ASV_22	#377eb8	Alphaproteobacteria
+ASV_31	#e41a1c	Actinobacteria
+ASV_26	#e41a1c	Actinobacteria
+ASV_24	#377eb8	Alphaproteobacteria
+ASV_23	#e41a1c	Actinobacteria
+ASV_27	#377eb8	Alphaproteobacteria
+ASV_29	#377eb8	Alphaproteobacteria
+ASV_30	#984ea3	Betaproteobacteria
+ASV_32	#984ea3	Betaproteobacteria
+ASV_34	#e41a1c	Actinobacteria
+ASV_36	#984ea3	Betaproteobacteria
+ASV_43	#4daf4a	Bacilli
+ASV_37	#999999	Unassigned
+ASV_47	#984ea3	Betaproteobacteria
+ASV_39	#984ea3	Betaproteobacteria
+ASV_38	#984ea3	Betaproteobacteria
+ASV_55	#984ea3	Betaproteobacteria
+ASV_41	#984ea3	Betaproteobacteria
+ASV_42	#e41a1c	Actinobacteria
+ASV_46	#f781bf	Gammaproteobacteria
+ASV_71	#377eb8	Alphaproteobacteria
+ASV_166	#984ea3	Betaproteobacteria
+ASV_378	#e41a1c	Actinobacteria
+ASV_45	#e41a1c	Actinobacteria
+ASV_44	#984ea3	Betaproteobacteria
+ASV_63	#377eb8	Alphaproteobacteria
+ASV_40	#ff7f00	Chloroflexia
+ASV_48	#377eb8	Alphaproteobacteria
+ASV_50	#984ea3	Betaproteobacteria
+ASV_49	#e41a1c	Actinobacteria
+ASV_57	#984ea3	Betaproteobacteria
+ASV_53	#e41a1c	Actinobacteria
+ASV_51	#a65628	Flavobacteriia
+ASV_54	#999999	Unassigned
+ASV_56	#377eb8	Alphaproteobacteria
+ASV_59	#e41a1c	Actinobacteria
+ASV_2105	#377eb8	Alphaproteobacteria
+ASV_62	#377eb8	Alphaproteobacteria
+ASV_67	#f781bf	Gammaproteobacteria
+ASV_60	#984ea3	Betaproteobacteria
+ASV_61	#984ea3	Betaproteobacteria
+ASV_77	#f781bf	Gammaproteobacteria
+ASV_66	#377eb8	Alphaproteobacteria
+ASV_64	#ffff33	Deltaproteobacteria
+ASV_69	#e41a1c	Actinobacteria
+ASV_68	#377eb8	Alphaproteobacteria
+ASV_72	#984ea3	Betaproteobacteria
+ASV_70	#f781bf	Gammaproteobacteria
+ASV_73	#984ea3	Betaproteobacteria
+ASV_2157	#f781bf	Gammaproteobacteria
+ASV_79	#984ea3	Betaproteobacteria
+ASV_74	#377eb8	Alphaproteobacteria
+ASV_81	#ffff33	Deltaproteobacteria
+ASV_427	#e41a1c	Actinobacteria
+ASV_75	#984ea3	Betaproteobacteria
+ASV_76	#f781bf	Gammaproteobacteria
+ASV_80	#f781bf	Gammaproteobacteria
+ASV_86	#e41a1c	Actinobacteria
+ASV_78	#ff7f00	Chloroflexia
+ASV_84	#999999	Unassigned
+ASV_87	#e41a1c	Actinobacteria
+ASV_83	#984ea3	Betaproteobacteria
+ASV_85	#984ea3	Betaproteobacteria
+ASV_91	#999999	Unassigned
+ASV_93	#f781bf	Gammaproteobacteria
+ASV_88	#ffff33	Deltaproteobacteria
+ASV_89	#f781bf	Gammaproteobacteria
+ASV_102	#f781bf	Gammaproteobacteria
+ASV_92	#e41a1c	Actinobacteria
+ASV_101	#ffff33	Deltaproteobacteria
+ASV_114	#ffff33	Deltaproteobacteria
+ASV_104	#984ea3	Betaproteobacteria
+ASV_100	#984ea3	Betaproteobacteria
+ASV_94	#984ea3	Betaproteobacteria
+ASV_97	#984ea3	Betaproteobacteria
+ASV_110	#999999	Unassigned
+ASV_106	#e41a1c	Actinobacteria
+ASV_109	#e41a1c	Actinobacteria
+ASV_96	#377eb8	Alphaproteobacteria
