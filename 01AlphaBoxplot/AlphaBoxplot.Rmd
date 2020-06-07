@@ -1,0 +1,136 @@
+---
+title: "Alpha多样性箱线图Boxplot"
+author: "Yong-Xin Liu(刘永鑫)"
+date: "2020/6/7"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#### 安装和加载R包：amplicon
+
+检查依赖关系是否安装，有则跳过，无则自动安装。
+
+```{r install}
+# 基于github安装包，需要devtools，检测是否存在，不存在则安装
+if (!requireNamespace("devtools", quietly = TRUE))
+    install.packages("devtools")
+# 注：提示安装源码包的最新版时，推荐选否，加速安装预编译的稳定版。原码包编译时间长且容易出错
+# 第一次运行，会自动在C:\Users\User\Documents\R\win-library\4.0目录中安装75个包
+# 加载github包安装工具
+library(devtools)
+
+# 检测amplicon包是否安装，没有从源码安装
+if (!requireNamespace("amplicon", quietly = TRUE))
+    install_github("microbiota/amplicon")
+# 提示升级，选择3 None不升级；升级会容易出现报错
+# library加载包，suppress不显示消息和警告信息
+suppressWarnings(suppressMessages(library(amplicon)))
+```
+
+本项目更新较快，建议使用中存在问题，运行install_github行安装最新版。
+
+#### alpha_boxplot函数
+
+在amplicon包中有alpha_boxplot函数可以一行命令快速绘制箱线图+统计标记的图
+
+本次绘制使用函数内置数据，进行快速演示；查找命令使用，可打问题(?)+命令名。
+
+```{r quick}
+# 查看函数帮助
+?alpha_boxplot
+# 使用内置数据，绘制以Group分组下的丰富度指数
+(p = alpha_boxplot(alpha_div, metadata, "richness", "Group"))
+ggsave(paste0("7.png"), p, width=89, height=56, units="mm")
+```
+
+图7. 箱线图展示Alpha多样性丰富度(richness)指数在三组内在分布和组间统计。不同字母代表组间存在显著差异(Adjust *P* < 0.05，ANOVA，Tukey HSD test)。
+
+从图中可以看到KO(基因敲除，knock-out)组与OE(过表达，over-expression)和WT(野生型，wild-type)组存在显著差异(字母不同)，即基因的有无可对微生物群落的丰富度引起显著变化。同时观察到丰富度在三组间 KO < WT < OE，根据背景知识这三组的基因表达量也是逐渐升高的，因此可以推断该基因的表达可能在促进菌群丰富度中起重要作用。而且很多研究报导疾病组一般多样性较低，因为可以考虑进一步研究该基因在维持宿主健康中的作用。
+
+#### 绘制精讲
+
+绘制主要分三步：
+
+1. 读取数据并预览格式;
+2. 参数调整和绘图;
+3. 保存图片。
+
+本次测试数据来自我们负责分析的一篇2019年发表于Science的文章(即上图展示的内置数据)，讨论了基因型对菌群的影响。详见 [Science：拟南芥三萜化合物特异调控根系微生物组](https://mp.weixin.qq.com/s/KmMDEmptBKz8Fv7VSdz2Jg)
+
+原文实验较复杂，这是只截取了3个实验组各6个样品的结果用于演示。数据位于`Data/Science2019`目录，本次需要元数据(metadata.txt)和Alpha多样性指数(alpha/vegan.txt)两个输入文件。
+
+```{r detail}
+# 读取元数据，参数指定包括标题行(TRUE)，列名为1列，制表符分隔，无注释行，不转换为因子类型
+metadata = read.table("../Data/Science2019/metadata.txt", header=T, row.names=1, sep="\t", comment.char="", stringsAsFactors = F)
+# 预览元数据前3行，注意分组列名
+head(metadata, n = 3)
+
+# 读取vegan计算6种alpha多样性指数，计算方法见"分析流程 - 扩增子"部分
+alpha_div = read.table("../Data/Science2019/alpha/vegan.txt", header=T, row.names=1, sep="\t", comment.char="")
+# 预览多样性指数前3行，注释各指数列名
+head(alpha_div, n = 3)
+
+# 绘制各组香农指数分布，外层()可对保存的图形同时预览
+(p = alpha_boxplot(alpha_div, index = "shannon", metadata, groupID = "Group"))
+
+# 保存图片，指定图片为pdf格式方便后期修改，图片宽89毫米，高56毫米
+ggsave(paste0("alpha_boxplot_shannon.pdf"), p, width=89, height=56, units="mm")
+ggsave(paste0("8.png"), p, width=89, height=56, units="mm")
+```
+
+图8. 箱线图展示Alpha多样性香农(shannon)指数在三组内在分布和组间统计。
+
+我们看到与丰富度相似，但又不完全相的结果。在Shannon指数角度，只有KO和WT组存在显著差异。
+
+#### 常用技巧
+
+**修改分组顺序**
+
+我们经常要按照一定的逻辑指定分组顺序。如图7中发列多样性分布存在一定规律，我们想按多样性由小至大顺序手动重排分组。在R语言中，可以通过设置level来指定顺序
+
+```{r}
+metadata$Group = factor(metadata$Group, levels = c("KO","WT","OE"))
+(p = alpha_boxplot(alpha_div, metadata, "richness", "Group"))
+ggsave(paste0("9.png"), p, width=89, height=56, units="mm")
+```
+图9. 手动指定分组顺序，表达观察到的规律。
+
+**讨论干扰因素是否显著影响多样性**
+
+实验中还可能涉及多时间、多地点、不同测序批次、序列标签、DNA提取方法不同等多种混淆因子。如果有分组内存在以上因素，判断它们是否引起群落多样性的变化是至关重要的。本研究中每个批次还涉及多个实验地点，以判断不同实验地点或批次是否会结果有影响。我们将分组列指定为地点(Site)
+
+```{r}
+(p = alpha_boxplot(alpha_div, metadata, "richness", "Site"))
+ggsave(paste0("10.png"), p, width=89, height=56, units="mm")
+```
+图10. 讨论不同地点是否对Alpha多样性存在影响，图中显示无显著影响。
+
+**查看函数原代码进一步修改**
+
+只输入函数名称，不加后面的括号和任何参数，即显示函数的全部代码。
+
+你可以复制输出的代码，在文档中修改更加个性化的分析结果。
+
+```{r}
+alpha_boxplot
+```
+
+#### 柱状图要误差棒
+
+大多数情况下还是推荐箱线图的，但有时觉得箱线图用的太多，审美疲劳。或是数据分布过散，规律不明显时，也可以尝试使用历史更加悠久的柱状图+误差棒
+
+```{r}
+(p = alpha_barplot(alpha_div, index = "richness", metadata, groupID = "Group"))
+ggsave(paste0("10.png"), p, width=89, height=56, units="mm")
+```
+
+图11. 误差柱状图展示Alpha多样性。
+
+
+如果你使用本教程的代码，请引用:
+
+- [Yong-Xin Liu, Yuan Qin, Tong Chen, et. al. A practical guide to amplicon and metagenomic analysis of microbiome data. Protein Cell 41, 1-16, doi:10.1007/s13238-020-00724-8 (2020)](https://doi.org/10.1007/s13238-020-00724-8)
+- [Jingying Zhang, Yong-Xin Liu, et. al. NRT1.1B is associated with root microbiota composition and nitrogen use in field-grown rice. Nature Biotechnology 37, 676-684, doi:10.1038/s41587-019-0104-4 (2019).](https://doi.org/10.1038/s41587-019-0104-4)
