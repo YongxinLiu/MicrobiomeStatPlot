@@ -6,8 +6,16 @@ output: word_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo=TRUE, warning=FALSE, message=FALSE,
-    fig.width=8, fig.height=5, fig.align="center")
+knitr::opts_chunk$set(
+	echo = TRUE,
+	comment=NA,
+	fig.align = "center",
+	fig.width = 5,
+	fig.height = 3,
+	dpi=300,
+	message = FALSE,
+	warning = FALSE
+)
 ```
 
 ```{css include=FALSE}
@@ -31,7 +39,7 @@ pre code,pre,code {
 
 非限制性排序和层次聚类并是不独立的，下面这张图表示的就是非约束排序和层次聚类的关系：
 
-![image](http://210.75.224.110/github/MicrobiomeStatPlot/221BetaPCoA/1.ordination_cluster.jpg)
+![](http://210.75.224.110/github/MicrobiomeStatPlot/221BetaPCoA/1.ordination_cluster.jpg)
 
 图1. 图形展示 a距离矩阵，b聚类结果，c排序结果，d聚类结果叠加排序结果。
 
@@ -65,7 +73,7 @@ pre code,pre,code {
 
 Jaccard相似性指数（Jaccard similarity index）将两个样方共享的物种数量（a）除以两个样方中出现的所有物种的总和（a + b + c，其中b和c是仅在第一个和第二个样方中出现的物种数量）。计算公式如下：
 
-![image](http://210.75.224.110/github/MicrobiomeStatPlot/221BetaPCoA/2.jaccard.png)
+![](http://210.75.224.110/github/MicrobiomeStatPlot/221BetaPCoA/2.jaccard.png)
 
 其中，y1<sub>j</sub>和y2<sub>j</sub>分别是对象1和2中元素j的数值。若是群落物种数据，那么y1<sub>j</sub>和y2<sub>j</sub>即分别是样方1和2中物种j的丰度。p是物种数（样方-物种矩阵中的物种数）。如下展示了仅包含两个物种的两个群落之间的欧几里得距离的计算过程。
 
@@ -79,7 +87,7 @@ Jaccard相似性指数（Jaccard similarity index）将两个样方共享的物�
 
 Bray-curtis距离或称Bray-curtis相异度（Bray-curtis dissimilarity）、相异百分率（Percentage difference）。其计算公式如下：
 
-![image](http://210.75.224.110/github/MicrobiomeStatPlot/221BetaPCoA/3.Bray-curtis.png)
+![](http://210.75.224.110/github/MicrobiomeStatPlot/221BetaPCoA/3.Bray-curtis.png)
 
 
 **欧几里得距离**(Euclidean distance):
@@ -88,7 +96,7 @@ Bray-curtis距离或称Bray-curtis相异度（Bray-curtis dissimilarity）、相
 
 欧几里得距离计算公式如下：
 
-![image](http://210.75.224.110/github/MicrobiomeStatPlot/221BetaPCoA/4.Eucliean.png)
+![](http://210.75.224.110/github/MicrobiomeStatPlot/221BetaPCoA/4.Eucliean.png)
 
 其中p是物种数（样方-物种矩阵中的物种数），y<sub>1j</sub>和y<sub>2j</sub>表示两个样方中对应的物种多度。
 
@@ -149,7 +157,7 @@ NMDS过程是迭代的，并且分几个步骤进行：
 
 本文于2019年6月5日发表在Nature Biotechnology 杂志(37卷第6期)，并当选为当期封面文章。[点击查看中文解读](https://mp.weixin.qq.com/s/YplXZjsOnadHkmyR9IlYAg)
 
-![image](http://210.75.224.110/github/MicrobiomeStatPlot/221BetaPCoA/e1.NBT2019.jpg)
+![](http://210.75.224.110/github/MicrobiomeStatPlot/221BetaPCoA/e1.NBT2019.jpg)
 
 两图并列展示两组间明显的微生物组差异且在不同地点可重复。不同组采用着色配置信椭圆突出组间差异。
 
@@ -169,7 +177,7 @@ c. 基于Bray-Cutis距离的主坐标轴分析(PCoA)表明籼粳稻的根系微�
 
 本文是刘永鑫博士负责分析，于2018年发表在中国科学的一篇文章封面文章，详细描述了水稻田间全生育期根系微生物组的变化规律，发表2年被引31次。详见：[手把手带你重现菌群封面文章图表](https://mp.weixin.qq.com/s/UNpXzOpknQcU_BN2hyEyGw)。本文对图1中的B/C子图为例进行说明和点评。
 
-![image](http://210.75.224.110/github/MicrobiomeStatPlot/221BetaPCoA/e2.SCLS2018.jpg)
+![](http://210.75.224.110/github/MicrobiomeStatPlot/221BetaPCoA/e2.SCLS2018.jpg)
 
 田间水稻微生物组随生育时间变化。以水稻日本晴和IR24为材料,并分别种植于昌平和上庄两地，CP代表北京昌平农场，SZ代表北京海淀上庄。B-C. 主坐标轴分析(PCoA)展示水稻微生物组随时间变化，其中微生物群落结构主要在第1/2轴上随时间变化(B)，而不同土壤类型主要在第3轴上明显分开(C)
 
@@ -190,7 +198,7 @@ c. 基于Bray-Cutis距离的主坐标轴分析(PCoA)表明籼粳稻的根系微�
 
 本文由荷兰皇家科学院生态研究所的S. Emilia Hannula和中科院遗传发育所朱峰研究员于2019年8月发表于Nature Communications (https://doi.org/10.1038/s41467-019-09284-w)。揭示了食叶昆虫微生物群落来源于土壤而不是取食植物。中文解读详见：[Nature子刊：植食昆虫微生物组来自土壤](https://mp.weixin.qq.com/s/uiXqcGZEt3QX-V49r88J2w)
 
-![image](http://210.75.224.110/github/MicrobiomeStatPlot/221BetaPCoA/e3.NC2019.jpg)
+![](http://210.75.224.110/github/MicrobiomeStatPlot/221BetaPCoA/e3.NC2019.jpg)
 
 图a-d 代表了植物群落对毛虫肠道、植物叶片、根系、土壤细菌群落的影响。图e-h代表了植物群落对毛虫肠道、植物叶片、根系、土壤真菌群落的影响。NMDS分析基于Bray-Curtis相似性，二维应力值介于0.11-0.18之间。草地植被相关的群落使用亮绿色表示。 非禾本草本植物/阔叶草(forb)植被群落使用青绿色点表示。草地和阔叶草植被混合群落使用深绿色表示。每幅图中小点代表样品，大点代表每组样品的中心点。图中的标识为置换检验结果。a，e代表土壤微生物群落。b，f代表食用离体叶片和植株的毛虫肠道微生物。c，g代表植物根系微生物群落，d，h代表叶微生物群落。
 
@@ -206,7 +214,7 @@ c. 基于Bray-Cutis距离的主坐标轴分析(PCoA)表明籼粳稻的根系微�
 
 瑞士EAWAG研究所，列西湖大学鞠峰教授于2019年发表于The ISME Journal的成果，发现污水厂抗性组受细菌组成和基因交换驱动且出水中抗性表达活跃(https://doi.org/10.1038/s41396-018-0277-8)。全文解读详见：[ISME：污水厂抗性组受细菌组成和基因交换驱动且出水中抗性表达活跃*](https://mp.weixin.qq.com/s/dN0_iQkDSFS42TcFOjKXIA)。
 
-![image](http://210.75.224.110/github/MicrobiomeStatPlot/221BetaPCoA/e4.ISME2019.jpg)
+![](http://210.75.224.110/github/MicrobiomeStatPlot/221BetaPCoA/e4.ISME2019.jpg)
 
 污水厂不同处理部位抗性基因组的组成与细菌群落组成相关。a-c NMDS分析描述了不同部位之间基于ARG（a）、BRG（b）、MRG（c）组成的Bary-curtis距离。
 
