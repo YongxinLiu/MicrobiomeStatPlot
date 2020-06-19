@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
 
 > 本节作者：刘华，中国科学技术大学
 >
-> 版本1.0.4，更新日期：2020年6月19日
+> 版本1.0.5，更新日期：2020年6月19日
 
 #### 什么是PCA(Principal Component Analysis)
 
@@ -131,7 +131,7 @@ epPCA() [ ExPosition包]。
 
 ```{r}
 # 安装CRAN来源R包，多个包使用循环检测和安装
-p_list = c("FactoMineR", "dplyr", "factoextra", "ggpubr", "pca3d")
+p_list = c("FactoMineR", "dplyr", "factoextra", "ggsignif", "pca3d", "cowplot")
 for(p in p_list){
   if (!requireNamespace(p, quietly = TRUE))
     install.packages(p)
@@ -159,7 +159,7 @@ names(iris.pca)
 summary(iris.pca,loadings = T)
 ```
 
-sdev是标准偏差; center是每列计算是减去的均值; scores即降维之后的结果，当然也可以使用predict函数，结果一样。
+sdev是标准偏差; center中心化，将数据减去均值; scores即降维之后的结果，当然也可以使用predict函数，结果一样。
 
 我们看Proportion of Variance，即为每一个成分方差所占比例，Cumulative Proportion代表是累计比例，为Proportion of Variance的累计值，一般达到90%左右就可以代表所有数据。
 
@@ -179,8 +179,8 @@ contrib表示包含变量对主成分的贡献(百分比)。
 # 对变量作图, col.var设定线条颜色
 (p <- fviz_pca_var(iris.pca, col.var = "black"))
 # 保存图片，指定图片为pdf格式方便后期修改，图片宽89毫米，高56毫米
-ggsave(paste0("p1.iris_pca.pdf"), p, width=89, height=56, units="mm")
-ggsave(paste0("p1.iris_pca.png"), p, width=89, height=56, units="mm")
+ggsave(paste0("p1.iris_pca.pdf"), p, width=120, height=100, units="mm")
+ggsave(paste0("p1.iris_pca.png"), p, width=120, height=100, units="mm")
 ```
 
 ![](http://210.75.224.110/github/MicrobiomeStatPlot/223PCA/p1.iris_pca.png)
@@ -225,8 +225,8 @@ get_eigenvalue(otu.pca)[1:3,]
 ```{r}
 # 绘制崖低碎石图(scree plot)即贡献率图，外层()可对保存的图形同时预览
 (p <- fviz_eig(otu.pca, addlabels = TRUE))
-ggsave(paste0("p2.pca_screen.pdf"), p, width=89, height=56, units="mm")
-ggsave(paste0("p2.pca_screen.png"), p, width=89, height=56, units="mm")
+ggsave(paste0("p2.pca_screen.pdf"), p, width=120, height=100, units="mm")
+ggsave(paste0("p2.pca_screen.png"), p, width=120, height=100, units="mm")
 ```
 
 ![](http://210.75.224.110/github/MicrobiomeStatPlot/223PCA/p2.pca_screen.png)
@@ -246,8 +246,8 @@ Quality of representation（对应var$cos2），用于展示每个变量在各�
 ```{r fig.width = 5, fig.height = 5}
 # 绘制变量PCA主成分分析图
 (p <- fviz_pca_var(otu.pca, col.var = "contrib", gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07")))
-ggsave(paste0("p3.pca_cos.pdf"), p, width=89, height=89, units="mm")
-ggsave(paste0("p3.pca_cos.png"), p, width=89, height=89, units="mm")
+ggsave(paste0("p3.pca_cos.pdf"), p, width=120, height=100, units="mm")
+ggsave(paste0("p3.pca_cos.png"), p, width=120, height=100, units="mm")
 ```
 
 ![](http://210.75.224.110/github/MicrobiomeStatPlot/223PCA/p3.pca_cos.png)
@@ -261,6 +261,7 @@ ggsave(paste0("p3.pca_cos.png"), p, width=89, height=89, units="mm")
 ```{r}
 (ind <- get_pca_ind(otu.pca))
 ```
+
 ##### 样本PCA图
 
 然后按照上面的模式来展示下individuals的点图，比如以cos2值来代表各个individuals点的圆圈大小
@@ -268,8 +269,8 @@ ggsave(paste0("p3.pca_cos.png"), p, width=89, height=89, units="mm")
 ```{r}
 # 样本PCA图，点大小为cos2，形状为21圆形，按组填充，repel避免标签重叠
 (p <- fviz_pca_ind(otu.pca, pointsize = "cos2", pointshape = 21, fill = metadata$Group, repel = TRUE)) 
-ggsave(paste0("p4.pca_individuals.pdf"), p, width=89, height=56, units="mm")
-ggsave(paste0("p4.pca_individuals.png"), p, width=89, height=56, units="mm")
+ggsave(paste0("p4.pca_individuals.pdf"), p, width=120, height=100, units="mm")
+ggsave(paste0("p4.pca_individuals.png"), p, width=120, height=100, units="mm")
 ```
 
 ![](http://210.75.224.110/github/MicrobiomeStatPlot/223PCA/p4.pca_individuals.png)
@@ -287,8 +288,8 @@ ggsave(paste0("p4.pca_individuals.png"), p, width=89, height=56, units="mm")
      addEllipses = TRUE, # Concentration ellipses
      legend.title = "Groups"))
 # 保存图片，指定图片为pdf格式方便后期修改，图片宽89毫米，高56毫米
-ggsave(paste0("p5.sample_group_ellipse.pdf"), p, width=89, height=56, units="mm")
-ggsave(paste0("p5.sample_group_ellipse.png"), p, width=89, height=56, units="mm")
+ggsave(paste0("p5.sample_group_ellipse.pdf"), p, width=120, height=100, units="mm")
+ggsave(paste0("p5.sample_group_ellipse.png"), p, width=120, height=100, units="mm")
 ```
 
 ![](http://210.75.224.110/github/MicrobiomeStatPlot/223PCA/p5.sample_group_ellipse.png)
@@ -314,8 +315,8 @@ otu.pca <- prcomp(t(mad.5))
 (p <- fviz_pca_biplot(otu.pca, col.ind = metadata$Group, palette = "jco", addEllipses = TRUE, label = "var",
         col.var = "black", repel = TRUE, legend.title = "Group"))
 # 保存图片，指定图片为pdf格式方便后期修改，图片宽89毫米，高56毫米
-ggsave(paste0("p6.sample_group_ellipse2.pdf"), p, width=89, height=56, units="mm")
-ggsave(paste0("p6.sample_group_ellipse2.png"), p, width=89, height=56, units="mm")
+ggsave(paste0("p6.sample_group_ellipse2.pdf"), p, width=120, height=100, units="mm")
+ggsave(paste0("p6.sample_group_ellipse2.png"), p, width=120, height=100, units="mm")
 ```
 
 ![](http://210.75.224.110/github/MicrobiomeStatPlot/223PCA/p6.sample_group_ellipse2.png)
@@ -332,10 +333,10 @@ ggsave(paste0("p6.sample_group_ellipse2.png"), p, width=89, height=56, units="mm
 # 加载ggbiplot并绘制观测值PCA主成分分析图
 suppressWarnings(suppressMessages(library("ggbiplot")))
 # 绘制观测值PCA图
-ggbiplot(otu.pca, obs.scale = 1, var.scale = 1, groups = metadata$Group, ellipse = TRUE,var.axes = T)
+(p <- ggbiplot(otu.pca, obs.scale = 1, var.scale = 1, groups = metadata$Group, ellipse = TRUE,var.axes = T))
 # 保存图片，指定图片为pdf格式方便后期修改，图片宽89毫米，高56毫米
-ggsave(paste0("p7.sample_group_ellipse3.pdf"), p, width=89, height=56, units="mm")
-ggsave(paste0("p7.sample_group_ellipse3.png"), p, width=89, height=56, units="mm")
+ggsave(paste0("p7.sample_group_ellipse3.pdf"), p, width=120, height=100, units="mm")
+ggsave(paste0("p7.sample_group_ellipse3.png"), p, width=120, height=100, units="mm")
 ```
 
 ![](http://210.75.224.110/github/MicrobiomeStatPlot/223PCA/p7.sample_group_ellipse3.png)
@@ -348,11 +349,9 @@ ggsave(paste0("p7.sample_group_ellipse3.png"), p, width=89, height=56, units="mm
 # 使用vegan包中的adonis函数进行PERMANOVA分析
 library("vegan")
 otu.adonis <- adonis(t(count) ~ Group, data = metadata, permutations = 999)
-# 之后在绘图代码中将PERMANVOA结果在PCA图中进行展示
-(p1 <- p + geom_text(aes(x = - 5 , y = 4, 
-                  label = paste("PERMANOVA:\n KO VS OE VS WT \n p-value = ", 
-                                otu.adonis$aov.tab$`Pr(>F)`[1], sep = "")),
-              size = 2, hjust = 0))
+# 之后在绘图代码中将PERMANVOA结果在PCA图中进行展示,同时修改图例
+(p1 <- p + geom_text(aes(x = - 5 , y = 3, label = paste("PERMANOVA:\n KO VS OE VS WT \n p-value = ", 
+                                otu.adonis$aov.tab$`Pr(>F)`[1], sep = "")), size = 2, hjust = 0))
 ggsave(paste0("p8.sample_group_ellipse4.pdf"), p1,  width=120, height=100, units="mm")
 ggsave(paste0("p8.sample_group_ellipse4.png"), p1,  width=120, height=100, units="mm")
 ```
@@ -371,40 +370,47 @@ PC1 <- otu.pca$x[,1]
 PC2 <- otu.pca$x[,2]
 otu.pca.data <- data.frame(rownames(otu.pca$x),PC1,PC2,metadata$Group)
 colnames(otu.pca.data) <- c("sample", "PC1", "PC2", "group")
-# 这里需要ggpubr包，对组间进行统计检验以及组合图的拼接
-library("ggpubr")
+# 绘制PCA主图,theme()函数调整主题样式与图例位置
+p1 <- ggbiplot(otu.pca, obs.scale = 1, var.scale = 1, groups = metadata$Group, var.axes = T) + 
+    theme(panel.background = element_rect(fill = "white",colour = "black"),
+          panel.grid = element_blank(), legend.title = element_blank(),
+          legend.key = element_blank(), legend.position = c(0.1,0.15),
+          legend.background = element_rect(size=0.5, linetype="solid",colour ="black"))
+p1
+# 加载ggsignif包对组间进行统计检验（ggsignif包主要函数为：geom_signif()和stat_signif()）
+library("ggsignif")
 # 设置比较组
 my_comparisons = list(c('KO','OE'),c('OE','WT'),c('KO','WT'))
-# 绘制y轴为PC1值的分组箱线图
-p2 <- ggplot(otu.pca.data, aes(x = group, y= PC1, colour = group)) +
-    geom_boxplot() +
+# 绘制y轴为PC1值的分组箱线图,组间比较使用ggsignif()
+p2 <- ggplot(otu.pca.data, aes(x = group, y= PC1, fill = group)) +
+    geom_boxplot() + coord_flip() +
     theme(panel.background = element_rect(fill = "white",colour = "white"),
+          panel.grid = element_blank(), axis.text.x = element_blank(),
+          legend.position="none") + 
+    geom_signif(comparisons = my_comparisons, step_increase = 0.2, 
+                map_signif_level = T, test = wilcox.test)# 添加显著性检验,
+p2
+# 绘制y轴为PC2值的分组箱线图
+p3 <- ggplot(otu.pca.data, aes(x = group, y= PC2, fill = group)) +
+    geom_boxplot() +theme(panel.background = element_rect(fill = "white",colour = "white"),
           panel.grid = element_blank(),
           axis.text.y = element_blank(),
           legend.position="none") + 
-    xlab("") + ylab("") +
-    stat_compare_means(comparisons = my_comparisons, label = "p.signif") # 添加显著性检验
-# 绘制y轴为PC2值的分组箱线图
-p3 <- ggplot(otu.pca.data, aes(x = group, y= PC2, colour = group)) +
-  geom_boxplot(aes()) +
-  theme(panel.background = element_rect(fill = "white",colour = "white"),
-        panel.grid = element_blank(),
-        axis.text.x = element_blank(),
-        legend.position="none") + 
-  xlab("") + ylab("") +
-  coord_flip() + # coord_flip()函数翻转坐标轴
-  stat_compare_means(comparisons = my_comparisons, label = "p.signif") 
-# ggpubr::ggarrange()函数对图进行拼接
-(p4 <- ggarrange(p3, NULL, p1, p2, widths = c(5,2), heights = c(2,4), align = "hv"))
-ggsave(paste0("p9.sample_group_ellipse_boxplot.pdf"), p4,  width=180, height=150, units="mm")
-ggsave(paste0("p9.sample_group_ellipse_boxplot.png"), p4,  width=180, height=150, units="mm")
+    geom_signif(comparisons = my_comparisons, step_increase = 0.2, 
+                map_signif_level = T, test = wilcox.test)
+p3
+# 加载cowplot()包添加副图
+library("cowplot")
+p4 <- insert_xaxis_grob(p1, p2, grid::unit(.2, "null"), position = "top")
+p5 <- insert_yaxis_grob(p4, p3, grid::unit(.2, "null"), position = "right")
+(p <- ggdraw(p5))
+ggsave(paste0("p9.sample_group_ellipse_boxplot.pdf"), p,  width=180, height=150, units="mm")
+ggsave(paste0("p9.sample_group_ellipse_boxplot.png"), p,  width=180, height=150, units="mm")
 ```
 
 ![](http://210.75.224.110/github/MicrobiomeStatPlot/223PCA/p9.sample_group_ellipse_boxplot.png)
 
 图9. PCA图添加箱线图副图
-
-还可以使用pca3d包对数据进行三维展示
 
 ##### pca3d包可视化PCA图
 
@@ -433,3 +439,5 @@ Alexandre Almeida, Alex L. Mitchell, Miguel Boland, Samuel C. Forster, Gregory B
 
 
 > 责编：刘永鑫，中科院遗传发育所
+
+> 版本1.0.5，PCA图x/y轴添加箱线图和统计及组合的方法由ggpubr替换为ggsignif+cowplot (旧版ggpubr绘制箱线图统计+组合图代码见bak目录)
