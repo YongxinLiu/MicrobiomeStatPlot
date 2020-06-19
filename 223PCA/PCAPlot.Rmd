@@ -1,6 +1,6 @@
 ---
 title: "主成分分析PCA"
-author: "刘华，中国科技大学"
+author: "刘华，中国科学技术大学"
 date: "2020/6/18"
 output:
   word_document: default
@@ -21,9 +21,9 @@ knitr::opts_chunk$set(
 
 ### 主成分分析 PCA
 
-> 本节作者：刘华，中国科技大学
+> 本节作者：刘华，中国科学技术大学
 >
-> 版本1.0.3，更新日期：2020年6月18日
+> 版本1.0.4，更新日期：2020年6月19日
 
 #### 什么是PCA(Principal Component Analysis)
 
