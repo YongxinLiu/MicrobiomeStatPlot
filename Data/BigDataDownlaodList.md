@@ -4,9 +4,9 @@
 
 - R 语言常用包合集Windows 10版:  
 
-3.6.x：https://pan.baidu.com/s/1l6DnD5zU_g3mxaPHwn91Zw  提取码：khi5
+3.6.x：链接：https://pan.baidu.com/s/1h-qR2lmlaMgR4M7VbgtAFg 提取码：s5fi
 
-4.0.x：https://pan.baidu.com/s/1PBwt3e_aMKaOmA_AtkzIHA  提取码：ajq1 
+4.0.x：链接：https://pan.baidu.com/s/1JFwLP2SonK1howD5MNgNYg 提取码：l08k
 
 下载后解压至当前目录，可获得3.6/4.0目录，剪切并替换文档 - R - win-library - 3.6/4.0 目录即可
 
