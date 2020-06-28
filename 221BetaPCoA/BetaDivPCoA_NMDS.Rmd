@@ -1,21 +1,17 @@
 ---
 title: "Beta多样性PCoA/NMDS排序分析"
 author: "文涛 南京农业大学"
-date: "2020/6/17"
-output: word_document
+date: "`r Sys.Date()`"
+output:
+  word_document:
+    toc: yes
+    toc_depth: 5
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=F, message=F}
 knitr::opts_chunk$set(
-	echo = TRUE,
-	comment=NA,
-	fig.align = "center",
-	fig.width = 5,
-	fig.height = 3,
-	dpi=300,
-	message = FALSE,
-	warning = FALSE
-)
+	echo=T, comment=NA, message=F, warning=F,
+	fig.align="center", fig.width=5, fig.height=3, dpi=300)
 ```
 
 ```{css include=FALSE}
@@ -27,35 +23,37 @@ pre code,pre,code {
 
 ### Beta多样性与PCoA和NMDS排序
 
-作为高通量测序的代表之一，扩增子目早已成为表征微生物群落的主流手段，在后续的数据处理，生物信息学分析中最基础也是最重要的分析就是群落多样性分析（alpha多样性和beta多样性）。今天我们来学习的就是群落bate多样性分析中最重要-非限制性排序。
+> 本节作者：文涛，刘永鑫
+>
+> 版本1.0.4，更新日期：2020年6月27日
+
+> 本项目永久地址： https://github.com/YongxinLiu/MicrobiomeStatPlot ，本节目录 221BetaPCoA，包含R markdown(\*.Rmd)、Word(\*.docx)文档、测试数据和结果图表，欢迎广大同行帮忙审核校对、并提修改意见。提交反馈的三种方式：1. 公众号文章下方留言；2. 下载Word文档使用审阅模式修改和批注后，发送至微信(meta-genomics)或邮件(metagenome@126.com)；3. 在Github中的Rmd文档直接修改并提交Issue。审稿人请在创作者登记表 https://www.kdocs.cn/l/c7CGfv9Xc 中记录个人信息、时间和贡献，以免专著发表时遗漏。
+
+作为高通量测序的代表之一，扩增子目早已成为表征微生物群落的最主流手段，在后续的数据处理，生物信息学分析中最基础也是最重要的分析就是群落多样性分析（alpha多样性和beta多样性）。今天我们来学习的就是群落bate多样性分析中最重要的-非限制性排序分析。
 
 #### 基本概念
 
 ##### β多样性(Beta diversity)
 
-β多样性又称生境间的多样性(between-habitat diversity)，是指沿环境梯度不同生境群落之间物种组成的相异性或物种沿环境梯度的更替速率，用于研究群落之间的种多度关系。Beta多样性本身代表了一个复杂的问题，可以被视为物种更替（物种沿空间、时间或环境梯度的定向过程）或物种组成的差异（数据集内物种组成的异质性的非定向过程）。
+β多样性又称生境间的多样性(between-habitat diversity)，是指沿环境梯度不同生境群落之间物种组成的相异性或物种沿环境梯度的更替速率，用于研究群落之间的种多度关系，例如：物种更替或物种组成的差异。
 
-群落的Beta多样性分析包括非约束排序（如PCA、PCoA等）、层次聚类等。但无论哪种形式的Beta多样性分析，均以群落相似（或距离）为基础。
+群落的Beta多样性分析包括非限制性排序（如PCoA，NMDS等）、层次聚类、限制性排序等，且均以群落相似或距离为基础计算。
 
-非限制性排序和层次聚类并是不独立的，下面这张图表示的就是非约束排序和层次聚类的关系：
+非限制性排序和层次聚类并是不独立的，下面这张图表示的就是非限制性排序和层次聚类的关系：
 
 ![](http://210.75.224.110/github/MicrobiomeStatPlot/221BetaPCoA/1.ordination_cluster.jpg)
 
-图1. 图形展示 a距离矩阵，b聚类结果，c排序结果，d聚类结果叠加排序结果。
+图1. 排序与聚类的关系。a. 距离矩阵，b. 聚类结果，c. 排序结果，d. 聚类结果叠加排序结果。图片来源 http://mb3is.megx.net/gustame/home
 
-将分层聚类分析的结果与诸如非度量多维尺度分析(Non-metric multidimensional scaling,NMDS)产生的排序之类的结果结合，在图中，聚类和NMDS结果叠加在左下方面板中。在此示例中，结果展现出现一致性：聚集在一起的对象也彼此接近。 
-
-> 备注：图片来源（http://mb3is.megx.net/gustame/home）
-
+将聚类分析的结果与诸如非度量多维尺度分析(Non-metric multidimensional scaling, NMDS)产生的排序之类的结果结合，在图中，聚类和NMDS结果叠加在左下方面板中。在此示例中，结果展现出现一致性：聚集在一起的对象也彼此接近。 
 
 ##### 相似性和距离
 
+**生态相似性**（Ecological resemblance）以计算不同样本群落组成相似程度或距离（相异程度）为基础，是处理多元生态数据的基本方法之一。在群落数据的分析中，常用其反映Beta多样性。
 
-**生态相似性**（Ecological resemblance）以计算样方之间的群落组成相似程度或距离（相异程度）为基础，是处理多元生态数据的基本方法之一。在群落数据的分析中，常用其反映Beta多样性。
+如在物种数据的分析中，对于两个群落，若它们共享相同的物种，并且所有物种的丰度也一致，那么这两个群落就具有最高的相似程度（或最低距离0）。**生态学数据分析中的很多统计方法都以样方之间的相似性或距离为基础**，例如上述提到的Beta多样性分析中的聚类、排序等，即使对于PCA实质上在计算时基于欧几里得（euclidean）距离考虑的。
 
-如在物种数据的分析中，对于两个群落，若它们共享相同的物种，并且所有物种的丰度也一致，那么这两个群落就具有最高的相似程度（或最低距离0）**。生态学数据分析中的很多统计方法都以样方之间的相似性或距离为基础**，例如上述提到的Beta多样性分析中的聚类、排序等，即使对于PCA和CA，实质上在计算时也分别基于欧几里得（euclidean）和卡方（chi-square）距离考虑的。
-
-若两个对象在各属性上越近似，那么它们的相似性就越高。对于群落数据，这些属性一般就是物种组成，或者环境属性等。通常使用物种组成数据，依据相似性指数（similarity indices）判断群落相似性，范围由0（两个群落不共享任何物种）到1（两个群落的物种类型和丰度完全一致）。所有相似性指数均可以转换为距离指数，转化公式大致就是“距离指数=1 – 相似性指数”的关系。
+若两个对象在各属性上越近似，那么它们的相似性就越高。对于群落数据，这些属性一般就是物种组成，或者环境属性等。通常使用物种组成数据，依据相似性指数（similarity indices）判断群落相似性，范围由0（两个群落不共享任何物种）到1（两个群落的物种类型和丰度完全一致）。所有相似性指数均可以转换为距离指数，转化公式为“距离指数 = 1 – 相似性指数”的关系。
 
 
 （1）可以转化为相似性指数的距离指数，例如定量数据的相异百分率（也称为Bray-Curtis距离）等。二者相互转换的公式通常表示为D=1-S或S=1-D，其中S是相似性指数，D为距离指数。
@@ -64,7 +62,7 @@ pre code,pre,code {
 
 距离指数（distance indices）或称距离测度（distance measures），与相似性指数相反，距离数值越大表明群落间差异越大。存在多种距离类型，例如欧几里得（Euclidean）距离、Bray-Curtis距离、UniFrac距离等。对于物种组成数据，距离指数的最小值为0（两个群落的物种类型和丰度完全一致），最大取值取决于距离类型和数据本身。
 
-相似性或距离的衡量标准有很多种，Legendre和Legendre（1998）列出大约30种方法，并对生态相似性作了更详细的介绍，有兴趣可自行参阅Legendre和Legendre（1998）“Numerical Ecology”第七章“Ecological resemblance”的内容。
+相似性或距离的衡量标准有很多种，Legendre于1998编写的“Numerical Ecology”一书中的“Ecological resemblance”章节内容列出大约30种方法，
 
 
 ##### 常见的相似性/距离指数
@@ -75,53 +73,60 @@ Jaccard相似性指数（Jaccard similarity index）将两个样方共享的物�
 
 ![](http://210.75.224.110/github/MicrobiomeStatPlot/221BetaPCoA/2.jaccard.png)
 
-其中，y1<sub>j</sub>和y2<sub>j</sub>分别是对象1和2中元素j的数值。若是群落物种数据，那么y1<sub>j</sub>和y2<sub>j</sub>即分别是样方1和2中物种j的丰度。p是物种数（样方-物种矩阵中的物种数）。如下展示了仅包含两个物种的两个群落之间的欧几里得距离的计算过程。
+其中，y1<sub>j</sub>和y2<sub>j</sub>分别是对象1和2中元素j的数值。若是群落物种数据，那么y1<sub>j</sub>和y2<sub>j</sub>即分别是样方1和2中物种j的丰度。p是物种数（样方-物种矩阵中的物种数）
 
-但是在物种数据的分析中，欧几里得距离却表现得不很理想。主要原因在于它是一个对称的指数，即它将“双零”现象视作相同存在的方式处理，因此会缩小两个共享很少物种的群落之间的距离（实际上，它们差异很大）。可参考上文“对称指数和非对称指数”所述。并且，他还有对“物种丰度的差异”比对“物种是否存在”更加敏感的这么一个特点，也会影响我们对群落相似程度的判断。本文的末尾，详细展示了一例在物种数据处理中使用欧几里得距离可能会带来的问题。
-
-如果仍要将欧几里得距离应用在物种数据的分析中，常见的解决方法是首先对原始物种数据执行预转化（常见的如弦转化、Hellinger转化等），然后再使用转化后的数据计算欧几里得距离（即对应于下文提到的弦距离、Hellinger距离，事实上，它们仍然属于欧氏距离）。尽管弦距离、Hellinger距离等然是对称指数的范畴，但是相较于使用原始物种丰度数据所得的欧几里得距离，弦距离、Hellinger距离的优势体现在存在距离的“上限”，降低了欧几里得距离对“物种丰度”的敏感性，有效减少了“双零”问题导致的误差。
-
-更多情况下，我们在处理物种数据时，会尽可能避开使用欧几里得距离这类的对称指数。例如，通常我们选择使用非对称的Bray-curtis距离等。除非特定需要，不得不使用欧氏距离的情况下，可再考虑先转化数据再求欧几里得距离的方法。
 
 **Bray-curtis距离**(Bray-curtis distance):
 
-Bray-curtis距离或称Bray-curtis相异度（Bray-curtis dissimilarity）、相异百分率（Percentage difference）。其计算公式如下：
+Bray-curtis距离（Bray-curtis dissimilarity）其计算公式如下：
 
 ![](http://210.75.224.110/github/MicrobiomeStatPlot/221BetaPCoA/3.Bray-curtis.png)
 
 
 **欧几里得距离**(Euclidean distance):
 
-欧几里得距离是多变量分析中经常使用的一种距离，如在线性排序方法PCA、RDA，以及某些层次聚类算法中。欧几里得距离没有上限，最大值取决于数据。
-
-欧几里得距离计算公式如下：
+欧几里得距离是多变量分析中经常使用的一种距离，如在线性排序方法PCoA、CCA。计算公式如下：
 
 ![](http://210.75.224.110/github/MicrobiomeStatPlot/221BetaPCoA/4.Eucliean.png)
 
 其中p是物种数（样方-物种矩阵中的物种数），y<sub>1j</sub>和y<sub>2j</sub>表示两个样方中对应的物种多度。
 
+但是在物种数据的分析中，欧几里得距离却表现不佳。因为它将“双零”现象视作相同存在的方式处理，会缩小两个共享很少物种的群落之间的距离。双零”是指在计算群落相似性（或距离）时，所比较的两个样方中缺失某些物种的情况。具体在群落中一个物种在两个样方内同时缺失，并不能成为这两个样方具有组成相似的依据，因为引起缺失的原因可能完全不同,其次在物种矩阵内，不可解释的双零的数量取决于物种的数量，因此也会随着检测到的稀有种数量的增加而显著增加。
+
+
+若在群落距离计算过程中使用欧几里得距离，可以先对原始物种数据进行数据转化（常见的如弦转化、Hellinger转化等），然后再使用转化后的数据计算欧几里得距离。尽管弦距离、Hellinger距离等然是对称指数的范畴，但是相较于使用原始物种丰度数据所得的欧几里得距离，弦距离、Hellinger距离的优势体现在存在距离的“上限”，降低了欧几里得距离对“物种丰度”的敏感性，有效减少了“双零”问题导致的误差。但是我们通常选择使用非对称的Bray-curtis距离等。
+
+
 Bray-curtis距离的取值范围范围由0（两个群落的物种类型和丰度完全一致）到1（两个群落不共享任何物种），因此它也可以直接通过“1 – 距离指数=相似性指数”转化为相似性指数（上文提到的“相似百分率”）。Bray-curtis距离适用于群落物种数据分析的原因在于它是一个非对称指数，可有效忽略双零。
 
 **Unifrac距离**(Unifrac distance):
 
-Unifrac距离，它常用于微生物群落的研究中（例如，16S扩增子测序）。上述距离的计算方法，仅考虑了物种的存在与否及其丰度，没有考虑物种之间的进化关系，距离0表示两个群落的物种组成结构完全一致。在Unifrac距离中，除了关注考虑了物种的存在与否及其丰度外，还将物种之间的进化关系考虑在内，距离0更侧重于表示两个群落的进化分类完全一致。
+Unifrac距离，它常用于微生物群落的数据中（例如，16S扩增子测序）。Bray-curtis距离仅考虑了物种的存在与否及其丰度，没有考虑物种之间的进化关系，距离0表示两个群落的物种组成结构完全一致。在Unifrac距离中，除了关注考虑了物种的存在与否及其丰度外，还将物种之间的进化关系考虑在内，距离0更侧重于表示两个群落的进化分类完全一致。
 
-例如在16S扩增子测序中，根据16S序列组成构建OTUs进化树，OTUs之间存在进化上的联系，因此不同OTUs之间的（系统发育）距离实际上有“远近”之分。将系统发育树和OTUs丰度数据一起添加至距离的计算中，计算Unifrac距离。而若使用上述提到的其它只基于OTUs丰度数据计算群落距离的方法，则忽略了OTUs之间的进化关系，认为OTUs间的关系平等。当然，并不是说Unifrac距离是最合适16S群落分析的，很多情况下它其实也并没有比只基于OTUs丰度数据计算群落距离的方法（如Bray-curtis距离）“更好”，总之具体问题具体分析吧，根据实际情况选择合适的距离测度。
+在16S扩增子测序中，根据16S序列组成构建OTUs进化树，OTUs之间存在进化上的联系，因此不同OTUs之间的（系统发育）距离实际上有“亲远”之分。将系统发育树和OTUs丰度数据共同考虑到距离计算就是Unifrac距离。而其它非进化距离，忽略了OTUs之间的进化关系，认为OTUs间的关系平等。
 
 Unifrac距离分为非加权Unifrac距离（Unweighted unifrac distance）和加权Unifrac距离（Weighted unifrac distance）。两种的主要区别是否考虑了物种的丰度。非加权Unifrac距离只考虑了物种有无的变化，不关注物种丰度，若两个微生物群落间存在的物种种类完全一致，则距离为0；加权Unifrac距离同时考虑物种有无和物种丰度的变化，若两个微生物群落间存在的物种种类及丰度完全一致，则距离为0。
 
-
-对于非加权和加权Unifrac距离的选择，看网上很多帖子给的经验性建议：在环境样本的检测中，由于影响因素复杂，群落间物种的组成差异更为剧烈，因此往往采用非加权方法进行分析。但如果要研究对照与实验处理组之间的关系，例如研究短期青霉素处理后，人肠道的菌落变化情况，由于处理后群落的组成一般不会发生大改变，但群落的丰度可能会发生大变化，因此更适合用加权方法去计算。
+关于Unifrac距离的计算方法，详见 http://scikit-bio.org/docs/latest/generated/skbio.diversity.beta.html。
 
 ##### 排序
 
-排序过程是将样品或物种排列在一定的空间，在一个低维空间中，使相似的样品或物种距离相近，相异的样品或物种距离较远。也就是说排序可以揭示微生物-环境间的生态关系，降低维数，减少坐标轴的数目，使排序轴能够反映一定的生态梯度。降维的过程就像投影，找到最好的角度使投影后的物种或者样品的位置关系尽量保持原始的位置关系。常见的方法有：PCA、PCoA、CA、DCA、NMDS、RDA、CCA等等。
+排序过程是将样品或物种排列在一定的空间，在一个低维空间中，使相似的样品或物种距离相近，相异的样品或物种距离较远。也就是说排序可以揭示微生物-环境间的生态关系，降低维数，减少坐标轴的数目，使排序轴能够反映一定的生态梯度。常见的方法有：PCA、PCoA、CA、DCA、NMDS、RDA、CCA等等。
 
 ##### PCoA排序
 
-PCoA(Principal Coordinate Analysis)即主坐标分析，可呈现研究数据相似性或差异性的可视化坐标，是一种非约束性的数据降维分析方法，可用来研究样本群落组成的相似性或相异性。它与PCA类似，通过一系列的特征值和特征向量进行排序后，选择主要排在前几位的特征值，找到距离矩阵中最主要的坐标，结果是数据矩阵的一个旋转，它没有改变样本点之间的相互位置关系，只是改变了坐标系统。两者的区别为PCA是基于样本的相似系数矩阵(如欧式距离)来寻找主成分，而PCoA是基于更多种类的距离矩阵(如常用Bray-Curtis、Unifrac距离)来寻找主坐标。
+主坐标分析（PCoA；也称为度量多维标度）展示在低维欧氏空间中的对象间（非）相似性。 PCoA不使用原始数据，而是使用（相异）相似度矩阵作为输入。
+从概念上讲，它与主成分分析（PCA）和对应分析（CA）相似，后者分别保留对象之间的欧几里得距离和χ<sup>2</sup>（卡方）距离。但是，PCoA可以保留任何（距离）度量产生的距离，从而可以更灵活地处理复杂的生态学数据。
 
-PCoA和PCA的不同之处是PCA是基于OTU table也就是基于欧式距离，而PCoA是基于两两样品之间的距离矩阵（可以是任何一种距离），如果PCoA 也使用欧式距离矩阵的话，那么PCA和PCoA的分析结果是一样的。
+如果对解析理解有困难，可以结合下图理解。假如你是一本养花工具宣传册的摄影师，你正在拍摄一个水壶。水壶是三维的，但是照片是二维的，为了更全面的把水壶展示给客户，你需要从不同角度拍几张图片。下图是你从水壶背面，正面，正上方，斜上方的照片。
+
+![](http://210.75.224.110/github/MicrobiomeStatPlot/221BetaPCoA/5PCA.png)
+
+图2. 主坐标分析的通俗解析。图片来源 https://blog.csdn.net/HLBoy_happy
+
+我们看到斜上方的照片能最好的展示我们观察的特征。我们的PCoA分析的第1/2主轴的结果就类似于此图。
+
+PCoA和PCA的不同之处：PCA是基于OTU 表两两样品间欧式距离计算，而PCoA是基于两两样品之间的任何一种距离距离计算，即有更多的选择，如果PCoA 也使用欧式距离，则PCA和PCoA的分析结果是一样的。
 
 另外，PCoA是基于距离矩阵，它的排序的目的是将N个样品排列在一定的空间，使得样品间的空间差异与原始距离矩阵保持一致，这类排序方法也称作多维标定排序（Multi—dimensional scaling）。**如果排序依赖于相异系数的数值，就叫有度量多维标定法（metric multi—dimensional scaling）所以说PCoA分析也叫有度量多维标定法；如果排序仅仅决定于相异系数的大小顺序（秩次排序），则称为无度量多维标定法（Non—Metric Multi—Dimensional Scaling；NMDS）**。
 
@@ -155,19 +160,20 @@ NMDS过程是迭代的，并且分几个步骤进行：
 
 ##### 例1.两地点重复的两组PCoA
 
-本文于2019年6月5日发表在Nature Biotechnology 杂志(37卷第6期)，并当选为当期封面文章。[点击查看中文解读](https://mp.weixin.qq.com/s/YplXZjsOnadHkmyR9IlYAg)
+本文于2019年6月5日发表在Nature Biotechnology 杂志(37卷第6期)，并选为当期封面文章。[点击查看中文解读](https://mp.weixin.qq.com/s/YplXZjsOnadHkmyR9IlYAg)
 
 ![](http://210.75.224.110/github/MicrobiomeStatPlot/221BetaPCoA/e1.NBT2019.jpg)
 
 两图并列展示两组间明显的微生物组差异且在不同地点可重复。不同组采用着色配置信椭圆突出组间差异。
 
-c. 基于Bray-Cutis距离的主坐标轴分析(PCoA)表明籼粳稻的根系微生物组在第一主轴分开(*P* < 0.001，PERMANOVA采用Adonis函数置换检验)。椭圆包括亚种68%的数据。d. 基于Bray-Cutis距离的PCoA在地块2中结果表明籼粳稻根系微生物组也在第一主轴分开。
+c.基于Bray-Cutis距离的主坐标轴分析(PCoA)表明籼粳稻的根系微生物组在第一主轴分开(*P* < 0.001，PERMANOVA采用Adonis函数置换检验)。椭圆包括亚种68%的数据。
+d. 基于Bray-Cutis距离的PCoA在地块2中结果表明籼粳稻根系微生物组也在第一主轴分开。
 
 
 > c, Unconstrained PCoA (for principal coordinates PCo1 and PCo2) with Bray–Curtis distance showing that the root microbiota of indica separate from those of japonica in field I in the first axis (*P* < 0.001, permutational multivariate analysis of variance (PERMANOVA) by Adonis). Ellipses cover 68% of the data for each rice subspecies. d, Unconstrained PCoA with Bray–Curtis distance showing that the root microbiota of indica separate from those of japonica in field II in the first axis (**P** < 0.001, PERMANOVA by Adonis).
 
 
-**结果部分描述**：
+**结果**：
 
 我们发现不同水稻亚种根系微生物组成存在差异。基于Bray-Curtis距离的非限制性主坐标轴分析(PCoA)表明籼粳稻在地块1的微生物组成明显形成两大类，且在第一主轴分开(图1c；附图2)，表明水稻亚种分化是微生物组变异的最主要影响因素。同时也观察到了由于地块2的土壤不同，在地块2存在微生物组的变化(附图3；附表1)。但在两块地块中，籼粳稻显著分开保持一致(图1d；附图3)
 
@@ -184,14 +190,14 @@ c. 基于Bray-Cutis距离的主坐标轴分析(PCoA)表明籼粳稻的根系微�
 > Figure 1 The rice root microbiota in fields shift over rice residence time in the field. B−C, Principle coordinate analysis showing that the rice microbiota shifts with rice residence time in the field and developmental stages in the first axis (B) and separated by geographical locations in the third axis (C).
 
 
-**结果**：在所有样品的Bray-Curtis距离的主坐标分析（PCoA）中，土体土壤样品聚集在一起，并且水稻根样品在田间和发育阶段的第一个坐标轴上沿着水稻的生长时间从土壤移动（图1B），表明 稻田在田间的停留时间和发育阶段是影响根系微生物组成的主要因素。 另外，尽管根微生物组在第三轴上被地理位置清楚地分开了，但水稻的生长时间和根系微生物组的动态变化在两个不同的地点显示出一致的趋势（图1C）。
+**结果**：在所有样品的Bray-Curtis距离的主坐标分析（PCoA）中，土体土壤样品聚集在一起，并且水稻根样品在田间和发育阶段的第一坐标轴上沿着水稻的生长时间从土壤开始移动（图1B），表明稻田在田间的停留时间和发育阶段是影响根系微生物组成的主要因素。另外，尽管根微生物组在第三轴上被地理位置清楚地分开了，但水稻的生长时间和根系微生物组的动态变化在两个不同的地点显示出一致的趋势（图1C）。
 
-> In Principle Coordinate Analysis (PCoA) of Bray-Curtis distance from all samples, bulk soilsamples clustered together, and rice root samples shifted farfrom the soil across rice residence time in the field and developmentalstages in the first coordinate axis (Figure 1B),indicating that rice residence time in the field and developmentalstage are main factors influencing the root microbiotacomposition. Additionally, although the root microbiotawere clearly separated by geographic location in the thirdaxis, the rice residence time and development dependent shift of the root microbiota showed consistent trends in the two separate fields (Figure 1C).
+> In Principle Coordinate Analysis (PCoA) of Bray-Curtis distance from all samples, bulk soil samples clustered together, and rice root samples shifted farfrom the soil across rice residence time in the field and developmental stages in the first coordinate axis (Figure 1B),indicating that rice residence time in the field and developmental stage are main factors influencing the root microbiota composition. Additionally, although the root microbiotawere clearly separated by geographic location in the third axis, the rice residence time and development dependent shift of the root microbiota showed consistent trends in the two separate fields (Figure 1C).
 
 - 总结
 
 1. 图1B/C是基于Bray-Curtis距离进行的PCoA分析，采用散点图展示，并**按时间顺序填充彩虹色(比单色过渡明显，但对色盲人群不友好，有些杂志不接受)，按不同生态位和地点设置形状**，信息较丰富；一般人类颜色区分明显，把颜色赋予想要表达的第一变量，如本文的时间变量，形态分配给次要因素；
-2. 图1B展示PCo1/2轴，组间最大差异为不同生态位与时间梯度上的变化，但不 **地点间是无法很好区分时，我们还需要继续探索其他主坐标轴**。本文在图1C展示PCo1/3轴，可进一步看到1轴的差异与时间变化一致，而**3轴可以很好分开不同地点**。
+2. 图1B展示PCo1/2轴，组间最大差异为不同生态位与时间梯度上的变化，但 **不同地点间是无法很好区分时，我们还需要继续探索其他主坐标轴**。本文在图1C展示PCo1/3轴，可进一步看到1轴的差异与时间变化一致，而**3轴可以很好分开不同地点**。
 
 
 ##### 例3.NMDS分析不同食物昆虫组肠道菌群
@@ -200,7 +206,7 @@ c. 基于Bray-Cutis距离的主坐标轴分析(PCoA)表明籼粳稻的根系微�
 
 ![](http://210.75.224.110/github/MicrobiomeStatPlot/221BetaPCoA/e3.NC2019.jpg)
 
-图a-d 代表了植物群落对毛虫肠道、植物叶片、根系、土壤细菌群落的影响。图e-h代表了植物群落对毛虫肠道、植物叶片、根系、土壤真菌群落的影响。NMDS分析基于Bray-Curtis相似性，二维应力值介于0.11-0.18之间。草地植被相关的群落使用亮绿色表示。 非禾本草本植物/阔叶草(forb)植被群落使用青绿色点表示。草地和阔叶草植被混合群落使用深绿色表示。每幅图中小点代表样品，大点代表每组样品的中心点。图中的标识为置换检验结果。a，e代表土壤微生物群落。b，f代表食用离体叶片和植株的毛虫肠道微生物。c，g代表植物根系微生物群落，d，h代表叶微生物群落。
+图a-d 代表了植物群落对土壤、毛虫肠道、根系、植物叶片细菌群落的影响。图e-h代表了植物群落对土壤、毛虫肠道、根系、植物叶片真菌群落的影响。NMDS分析基于Bray-Curtis相似性，二维应力值介于0.11-0.18之间。草地植被相关的群落使用亮绿色表示。非禾本草本植物/阔叶草(forb)植被群落使用青绿色点表示。草地和阔叶草植被混合群落使用深绿色表示。每幅图中小点代表样品，大点代表每组样品的中心点。图中的标识为置换检验结果。a，e代表土壤微生物群落。b，f代表食用离体叶片和植株的毛虫肠道微生物。c，g代表植物根系微生物群落，d，h代表叶微生物群落。
 
 > Plant community identity effects on bacterial a–d and fungal (e–h) communities in caterpillars, leaves, roots, and soil. NMDS plots are presented based on Bray–Curtis similarity. The 2D stress value for each panel ranges between 0.11–0.18. Soils originating from grass communities are presented with light green symbols, soils from forb communities with turquoise symbols and soils from mixed grass and forb communities with dark green symbols. In each panel, smaller symbols depict individual samples, centroids are depicted with larger markers. Signiﬁcance of the plant community treatment effect based on a PERMANOVA is also presented in each panel. a, e represent the composition of microbiomes in soils, b, f microbiomes in caterpillars both on intact plants and on detached leaves. c, g microbiomes in roots and d, h microbiomes in leaves. 
 
@@ -208,11 +214,11 @@ c. 基于Bray-Cutis距离的主坐标轴分析(PCoA)表明籼粳稻的根系微�
 
 我们通过两个独立的平行试验，研究了田间植物群落对土壤中微生物群落组成、蒲公英和在这些植物上放养的毛虫的影响。植被群落改变了土壤细菌和真菌群落，但是令人惊讶的是并没有改变蒲公英根系和叶片微生物组成 **(图3c, d, g, h)**。但是我们却检测到了不同植物群落对毛虫微生物群落的影响，但这只有在以完整植株为食的毛虫中检测到。
 
-> We investigated the legacy effects created by ﬁeld-grown plant communities, on the composition of microbial communities in soils, dandelions grown in those soils, and caterpillars reared on these plants, in two parallel assays. The composition of the plant community (fast- and slow-growing grasses or forbs) that conditioned the soils that were used, inﬂuenced the fungal and bacterial community structure in these soils (Fig. 3a, e). Surprisingly, this did not alter the root- or leaf -associated microbiomes in the dandelion plants that were growing in these soils (Fig. 3c, d, g, h). However, we did detect these soil-derived plant community effects in caterpillar microbiomes, but only when the caterpillars were fed on intact plants (Fig. 3b, f), sug-gesting that, even though they are plant feeders, the caterpillars had been in direct contact with the soil.
+> We investigated the legacy effects created by ﬁeld-grown plant communities, on the composition of microbial communities in soils, dandelions grown in those soils, and caterpillars reared on these plants, in two parallel assays. The composition of the plant community (fast- and slow-growing grasses or forbs) that conditioned the soils that were used, inﬂuenced the fungal and bacterial community structure in these soils (Fig. 3a, e). Surprisingly, this did not alter the root- or leaf -associated microbiomes in the dandelion plants that were growing in these soils (Fig. 3c, d, g, h). However, we did detect these soil-derived plant community effects in caterpillar microbiomes, but only when the caterpillars were fed on intact plants (Fig. 3b, f), suggesting that, even though they are plant feeders, the caterpillars had been in direct contact with the soil.
 
 ##### 例4.NMDS分析组间的功能基因类群
 
-瑞士EAWAG研究所，列西湖大学鞠峰教授于2019年发表于The ISME Journal的成果，发现污水厂抗性组受细菌组成和基因交换驱动且出水中抗性表达活跃(https://doi.org/10.1038/s41396-018-0277-8)。全文解读详见：[ISME：污水厂抗性组受细菌组成和基因交换驱动且出水中抗性表达活跃*](https://mp.weixin.qq.com/s/dN0_iQkDSFS42TcFOjKXIA)。
+瑞士EAWAG研究所，西湖大学鞠峰教授于2019年发表于The ISME Journal的成果，发现污水厂抗性组受细菌组成和基因交换驱动且出水中抗性表达活跃(https://doi.org/10.1038/s41396-018-0277-8)。全文解读详见：[ISME：污水中抗性基因在细菌群落和基因交换双重驱动下在出水中活跃表达](https://mp.weixin.qq.com/s/dN0_iQkDSFS42TcFOjKXIA)。
 
 ![](http://210.75.224.110/github/MicrobiomeStatPlot/221BetaPCoA/e4.ISME2019.jpg)
 
@@ -222,18 +228,18 @@ c. 基于Bray-Cutis距离的主坐标轴分析(PCoA)表明籼粳稻的根系微�
 
 **结果**：
 
-细菌抗性组系统发育结构。为了测试在我们的数据集中是否存在这种情况，我们使用排序方法来跟踪抗性组（图5）的结构变化。无论分析是基于看抗性组、杀菌剂和金属抗性基因的丰度指标（图5a–c），样品始终分为三个主要类别。
+细菌抗性组系统发育结构。为了测试在我们的数据集中是否存在这种情况，我们使用排序方法来跟踪抗性组（图5）的结构变化。无论分析是基于抗性组、杀菌剂和金属抗性基因的丰度指标（图5a–c），样品始终分为三个主要类别。
 
 > Bacterial phylogeny structures soil resistomes. To test if this was the case in our dataset, we used ordination to follow structural variations in the resistomes (Fig. 5) both between and within treatment compartments. The samples consistently clustered into three main groups by treatment compartment with bioreactor samples closely clustered together, whether the analysis was based on abundance metrics of antibiotic, biocide, and metal resistance genes (Fig. 5a–c). 
 
 #### PCoA/NMDS实战
 
-##### 安装和载入R包
-
 关于更多本项目中示例文件的下载，R包安装的内容，请参考之前的章节：
 
 - [211.Alpha多样性箱线图(样章，11图2视频)](https://mp.weixin.qq.com/s/cbeLDj4Q-Zsu7jjyn1iffQ)
 
+
+##### 安装和载入R包
 
 ```{R}
 if (!requireNamespace("devtools", quietly=TRUE))
@@ -259,6 +265,7 @@ suppressWarnings(suppressMessages(library(amplicon)))
 ggsave(paste0("p1.PCoA.bray.jpg"), p, width=89, height=56, units="mm")
 ggsave(paste0("p1.PCoA.bray.pdf"), p, width=89, height=56, units="mm")
 ```
+![](http://210.75.224.110/github/MicrobiomeStatPlot/221BetaPCoA/p1.PCoA.bray.jpg)
 
 图1. 散点图展示基于Bray-Curtis距离的Beta多样性PCoA。点代表样本，颜色代表分组，并按每组添加68%置信度的椭圆方便组间比较，图中展示主坐标分析的前两轴，解析率见坐标轴括号中。
 
@@ -281,6 +288,8 @@ ggsave(paste0("p2.PCoA.unifrac.jpg"), p, width=89, height=56, units="mm")
 ggsave(paste0("p2.PCoA.unifrac.pdf"), p, width=89, height=56, units="mm")
 ```
 
+![](http://210.75.224.110/github/MicrobiomeStatPlot/221BetaPCoA/p2.PCoA.unifrac.jpg)
+
 图2. 基于Unifrac距离的PCoA。看到PCo 1/2的解析率比前面Bray-Curtis距离结果有提高，表明在Unifrac距离前两主轴一般可以解析更高比例的差异。由于Unifrac考虑进化距离，一般样本/组间差异会进一步缩小。
 
 有时我们更想知识组间是否存在显著差异，使用?beta_pcoa_stat查看函数帮助，使用距离矩阵指定分组，对全部组别两两差异使用adonis函数进行检测。
@@ -292,6 +301,20 @@ beta_pcoa_stat(distance_mat, metadata, "Group", "beta_pcoa_stat.txt")
 beta_pcoa_stat(dis_mat=distance_mat, metadata=metadata, groupID="Group", pairwise=F, pairwise_list="../Data/Science2019/compare.txt")
 ```
 
+输入文件compare.txt，即两组比较列表，制表符分隔。
+
+```
+KO	WT
+OE	WT
+```
+
+结果文件beta_pcoa_stat.txt，计算时间和两组比较P值
+
+```
+Sat Jun 27 22:35:03 2020
+KO	WT	0.0174982501749825
+OE	WT	0.0096990300969903
+```
 
 ##### 非度量多维尺度NMDS
 
@@ -318,6 +341,8 @@ ggsave(paste0("p3.NMDS.bray.jpg"), p, width=89, height=56, units="mm")
 ggsave(paste0("p3.NMDS.bray.pdf"), p, width=89, height=56, units="mm")
 ```
 
+![](http://210.75.224.110/github/MicrobiomeStatPlot/221BetaPCoA/p3.NMDS.bray.jpg)
+
 图3. NMDS分析样本微生物群落结构，按组着色，stress值显示于左上角。
 
 ```{r}
@@ -330,6 +355,9 @@ plotdata[1:3,1:3]
 ggsave(paste0("p4.NMDS.bray.label.jpg"), p, width=89, height=56, units="mm")
 ggsave(paste0("p4.NMDS.bray.label.pdf"), p, width=89, height=56, units="mm")
 ```
+
+![](http://210.75.224.110/github/MicrobiomeStatPlot/221BetaPCoA/p4.NMDS.bray.label.jpg)
+
 图4. NMDS分析样本微生物群落结构，添加样本标签。
 
 
@@ -361,9 +389,13 @@ ps=phyloseq(otu_table(as.matrix(otutab),taxa_are_rows=TRUE),
 result=BetaDiv(ps=ps, dist="bray", method ="NMDS", Micromet ="anosim")
 result[[5]]
 ```
+
+
 #### 参考文献
 
-Beta多样性和生态相似性 http://blog.sciencenet.cn/blog-3406804-1195182.html
+刘尧，Beta多样性和生态相似性，科学网， http://wap.sciencenet.cn/home.php?mod=space&uid=3406804&do=blog&id=1195182
+
+HLBayes，通俗理解PCA降维作用，CSDN，https://blog.csdn.net/HLBoy_happy/article/details/77146012
 
 Xiao-Tao Jiang, Xin Peng, Guan-Hua Deng, Hua-Fang Sheng, Yu Wang, Hong-Wei Zhou & Nora Fung-Yee Tam. (2013). Illumina Sequencing of 16S rRNA Tag Revealed Spatial Variations of Bacterial Communities in a Mangrove Wetland. Microbial Ecology 66, 96-104, doi: https://doi.org/10.1007/s00248-013-0238-8
 
@@ -375,4 +407,18 @@ S. Emilia Hannula, Feng Zhu, Robin Heinen & T. Martijn Bezemer. (2019). Foliar-f
 
 Feng Ju, Karin Beck, Xiaole Yin, Andreas Maccagnan, Christa S. McArdell, Heinz P. Singer, David R. Johnson, Tong Zhang & Helmut Bürgmann. (2019). Wastewater treatment plant resistomes are shaped by bacterial composition, genetic exchange, and upregulated expression in the effluent microbiomes. The ISME Journal 13, 346-360, doi: https://doi.org/10.1038/s41396-018-0277-8
 
-> 责任编辑：刘永鑫(Yong-Xin Liu)
+> 责编：刘永鑫 中科院遗传发育所
+
+> 版本更新历史
+
+> 1.0.0，文涛，初稿
+
+> 1.0.1，刘永鑫，主题限定为非限制排序，添加实例和整理代码
+
+> 1.0.2，席娇，文字修改
+
+> 1.0.3，文涛，删减背景中非必需理论，校对全文
+
+> 1.0.4，刘永鑫，添加PCoA背景示意图，整理参考文献
+
+
