@@ -1,6 +1,6 @@
 ---
 title: "213维恩图和集合图"
-author: "徐俊 北京大学"
+author: "徐俊 北京大学人民医院"
 date: "`r Sys.Date()`"
 output:
   word_document:
@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 
 ### 维恩图和集合图
 
-> 本节作者：徐俊，北京大学
+> 本节作者：徐俊，北京大学人民医院
 >
 > 版本1.0.5，更新日期：2020年6月30日
 
@@ -31,7 +31,7 @@ knitr::opts_chunk$set(
 
 除了以上两个R包以外，还有ImageGP、yyplot、VennPainter、VennMaster以及TBtools的WonderfulVenn等软件或网站可供选择。详见：https://cloud.tencent.com/developer/article/1423035 
 
-此外，需要指出的是，本文撰写过程中涉及到的描述和代码参考了诸多生信和可视化方面专家的前期工作，不具备开创性特色，不过搜集整理并让代码适用于直接对微生物分析中的OTU表格的分析。可以说本文的撰写，确实是站在巨人的肩上。文尾将对参考内容进行整理，此处不一一致谢了。
+此外，需要指出的是，本文撰写过程中涉及到的描述和代码参考了诸多生信和可视化方面专家的前期工作，不具备开创性特色，不过是搜集整理并让代码适用于直接对微生物分析中的OTU表格的分析。可以说本文的撰写，确实是站在巨人的肩上。文尾将对参考内容进行整理，此处不一一致谢了。
 
 其他：本文所有示例数据和更新代码均已经上传Github：https://github.com/JerryHnuPKUPH/OTU2V-UpPlot 。
 
@@ -39,15 +39,7 @@ knitr::opts_chunk$set(
 
 维恩图（英语：Venn diagram），又称韦恩图。是十九世纪英国数学家约翰·维恩（John Venn）发明，用于展示集合之间大致关系的一类图形。其中圈或椭圆重合（overlap）的部分就是集合与集合间元素的交集，非重叠部分则为特定集合的特有元素。
 
-![](http://210.75.224.110/github/MicrobiomeStatPlot/213Venn/p1.GenusVenn.png)
-
-图1. 维恩图使用示例，展示A/B/C/D四组间共有和特有元素的数量。
-
 ##### 维恩图和集合图对比
-
-![](http://210.75.224.110/github/MicrobiomeStatPlot/213Venn/p2.Genus_Upsetplot.png)
-
-图2. 集合图使用示例，展示A/B/C/D四组间共有和特有元素的数量。
 
 维恩图和集合图均可用于对集合共有和特有元素信息进行可视化，但是当数据分组过多（>4）时，维恩图看起来会非常杂乱，而集合图可以展示≥5个分组的集合元素共有和特有信息。
 
@@ -60,38 +52,77 @@ knitr::opts_chunk$set(
 3）集合图展示方式更多元。
 
 
+![](http://210.75.224.110/github/MicrobiomeStatPlot/213Venn/b1.GenusVenn.png)
+
+图b1. 维恩图使用示例，展示A/B两组间共有和特有元素的数量
+
+![](http://210.75.224.110/github/MicrobiomeStatPlot/213Venn/b1.GenusUpset.png)
+
+图b2. 集合图使用示例，展示A/B两组间共有和特有元素的数量
+
+***集合较少时，集合图略显单调。***
+
+![](http://210.75.224.110/github/MicrobiomeStatPlot/213Venn/b2.GenusVenn.png)
+
+图b3. 维恩图使用示例，展示A/B/C三组间共有和特有元素的数量
+
+![](http://210.75.224.110/github/MicrobiomeStatPlot/213Venn/b2.GenusUpset.png)
+
+图b4. 集合图使用示例，展示A/B/C三组间共有和特有元素的数量
+
+![](http://210.75.224.110/github/MicrobiomeStatPlot/213Venn/b3.GenusVenn.png)
+
+图b5. 维恩图使用示例，展示A/B/C/D四组间共有和特有元素的数量
+
+![](http://210.75.224.110/github/MicrobiomeStatPlot/213Venn/b3.GenusUpset.png)
+
+图b6. 集合图使用示例，展示A/B/C/D四组间共有和特有元素的数量
+
+![](http://210.75.224.110/github/MicrobiomeStatPlot/213Venn/b4.GenusVenn.png)
+
+图b7. 维恩图使用示例，展示A/B/C/D/E五组间共有和特有元素的数量
+
+![](http://210.75.224.110/github/MicrobiomeStatPlot/213Venn/b4.GenusUpset.png)
+
+图b8. 集合图使用示例，展示A/B/C/D/E五组间共有和特有元素的数量
+
+***可以看出，当分组信息>5时，韦恩图的结果有些杂乱；而集合图的结果依然较为清晰。***
+
+
 #### 文献解读
 
 ##### 例1. 两组属水平多样性比较
 
-本文是浙江大学医学院附属儿童医院风湿免疫-变态反应科和中科院遗传发育所合作完成，于2020年4月7日发表在《BMC Genomics》上的论文。文章的主要内容为幼年特发性关节炎患儿肠道菌群的相关研究。文章的详细解读，详见《[BMC：幼儿关节炎患儿肠道菌群的特征](https://mp.weixin.qq.com/s/UunMxA8grkeQ8AMUTtMwRA)》。下面的示例来自图1B。
+本文是浙江大学医学院附属儿童医院风湿免疫-变态反应科和中科院遗传发育所合作完成，于2020年4月7日发表在《BMC Genomics》上的论文。文章的主要内容为幼年特发性关节炎患儿肠道菌群的相关研究。文章的详细解读，详见《[BMC：幼儿关节炎患儿肠道菌群的特征](https://mp.weixin.qq.com/s/UunMxA8grkeQ8AMUTtMwRA)》。示例如图1，（该示例来自原文图1B）。
 
 ![](http://210.75.224.110/github/MicrobiomeStatPlot/213Venn/e1.BMCfig1b.jpg)
 
-图1. 两组多样性比较。(B)是韦恩图，显示了两组有83个属是相同的，但是幼年特发性关节炎（juvenile idiopathic arthritis，JIA）组有3个属是独有的，对照组有8个属是独有的。
+图1. 两组多样性比较。韦恩图，显示了两组有83个属是相同的，但是幼年特发性关节炎（juvenile idiopathic arthritis，JIA）组有3个属是独有的，对照组有8个属是独有的。
 
 > Fig. 1 Diversity analyses show that the differences in the α- and β-diversities of the gut microbiota differ between the JIA and the control groups. 
 b Venn diagram based on genera. The two groups have 83 shared genera, with 3 unique genera in the JIA group and 8 unique genera in the control group.
 
 ##### 例2. 三组上下调OTUs分别比较
 
-本文是2019年5月由中科院遗传发育所白洋组与JIC的Anne Osbourn组合作在拟南芥代谢物调控根系微生物组领域取得重大突破，成果以Article形式在线发表于Science杂志，海南大学罗杰教授对本工作的意义进行点评。详细报导请点击下方链接：- [Science：拟南芥三萜化合物特异调控根系微生物组*](https://mp.weixin.qq.com/s/KmMDEmptBKz8Fv7VSdz2Jg) [专家点评](https://mp.weixin.qq.com/s/xlYx9Jb9cBVNs1QrW48RAg)。下面的示例来自文中的图4C/D。
+本文是2019年5月由中科院遗传发育所白洋组与JIC的Anne Osbourn组合作在拟南芥代谢物调控根系微生物组领域取得重大突破，成果以Article形式在线发表于Science杂志，海南大学罗杰教授对本工作的意义进行点评。详细报导请点击下方链接：- [Science：拟南芥三萜化合物特异调控根系微生物组*](https://mp.weixin.qq.com/s/KmMDEmptBKz8Fv7VSdz2Jg) [专家点评](https://mp.weixin.qq.com/s/xlYx9Jb9cBVNs1QrW48RAg)。示例如图2，（该示例来自原文图4C/D）。
 
 ![](http://210.75.224.110/github/MicrobiomeStatPlot/213Venn/e2.ScienceFig4CD.jpg)
 
-图4. 三萜通路的突变体特异调控的根系细菌类群。(C, D) 维恩图展示了的拟南芥三萜突变体中下调(C)或富集(D)的OTUs，与水稻和小麦与拟南芥野生型相比变化的OTUs大量重叠。
+图2. 三萜通路的突变体特异调控的根系细菌类群。 维恩图展示了的拟南芥三萜突变体中下调(左)或富集(右)的OTUs，与水稻和小麦与拟南芥野生型相比变化的OTUs大量重叠。
 
-> Fig. 4. Modulation of specific root bacterial taxa in triterpene pathway mutants.
-> (C and D) Venn diagrams showing substantial overlap of OTUs (C) depleted or (D) enriched in the root microbiota of A. thaliana triterpene mutant lines as compared with the wild type (Col-0) (pink circles), compared with those depleted in the root microbiota of rice (blue circles) and wheat (orange circles) versus the A. thaliana Col-0 wild type.The OTU numbers specifically enriched in the root microbiota of A. thaliana Col-0 compared with rice and wheat are highlighted in blue and bold in the Venn diagram overlaps.
+> Fig. 2. Modulation of specific root bacterial taxa in triterpene pathway mutants.
+> Venn diagrams showing substantial overlap of OTUs (left) depleted or (right) enriched in the root microbiota of A. thaliana triterpene mutant lines as compared with the wild type (Col-0) (pink circles), compared with those depleted in the root microbiota of rice (blue circles) and wheat (orange circles) versus the A. thaliana Col-0 wild type.The OTU numbers specifically enriched in the root microbiota of A. thaliana Col-0 compared with rice and wheat are highlighted in blue and bold in the Venn diagram overlaps.
 
 
-##### 例3. 四组样本
+##### 例3. 四组样本比较共有和特有
 
 本文是北京大学人民医院消化内科刘玉兰教授课题组于2020年2月发表在炎症性肠病研究的专业杂志《Inflammatory bowel disease》的文章。主要内容是关于溃疡性结肠炎患者使用5-氨基水杨酸（5-ASA）治疗后肠道真菌菌群的变化特点研究。
 
 ![](http://210.75.224.110/github/MicrobiomeStatPlot/213Venn/e3.IBDFig3.png)
 
-图3. 在验证性研究中组特异性真菌微生物群。A、集合图显示每组的OTU数量。B、各组的指示物种。利用indicspecies软件包对属级真菌丰度进行了分析。点的形状代表组内otu的富集（三角）或减少（圆点），点的大小代表真菌属的丰度。（C-E）组间OTU丰度差异分析：（C）治疗前的炎性粘膜（preI）与治疗前的非炎性粘膜（preN）；（D）5-ASA治疗后的炎性粘膜（postI）与治疗前的炎性粘膜（preI）；（E）5-ASA治疗后的炎性粘膜（postI）与5-ASA治疗后的非炎性粘膜（postN）。采用EdgeR包进行差异分析,两组之间的差异用曼哈顿图展示。点形状显示前一组的OTUs较后一组增加（Enriched）、降低(Depleted)或不显著(NotSig)。点大小表示otu的丰度。
+图3. 在验证性研究中组特异性的真菌微生物群。A、集合图显示每组的OTU数量。B、各组的指示物种。利用indicspecies软件包对属水平真菌丰度进行了分析。点的形状代表组内otu的富集（三角）或减少（圆点），点的大小代表真菌属水平的丰度。（C-E）组间OTU丰度差异分析：（C）治疗前的炎性粘膜（preI）与治疗前的非炎性粘膜（preN）；（D）5-ASA治疗后的炎性粘膜（postI）与治疗前的炎性粘膜（preI）；（E）5-ASA治疗后的炎性粘膜（postI）与5-ASA治疗后的非炎性粘膜（postN）。采用EdgeR包进行差异分析,两组之间的差异用曼哈顿图展示。点形状显示前一组的OTUs较后一组增加（Enriched）、降低(Depleted)或不显著(NotSig)。点大小表示OTU的丰度。
+
+> FIGURE 3. Group-specific fungal microbiota in the validation study. A, The upset plot shows the OTU count in each group. B, Indicator species in each group. Fungal abundances at the genus level were analyzed using the indicspecies package. The shape of the point represents OTUs enriched or depleted in the group, and point size represents the abundance of OTUs. Comparative analysis of OTU abundance between 2 groups ((C) preI vs preN; (D) postI vs preI; (E) postI vs postN). The EdgeR package was used for comparative analysis. The difference between the 2 groups is shown as a Manhattan diagram. Point shape indicates OTUs enriched, depleted, or not significant in the former group compared with the latter. Point size indicates the abundance of OTUs. 
 
 #### 绘图实战
 
@@ -99,17 +130,29 @@ b Venn diagram based on genera. The two groups have 83 shared genera, with 3 uni
 
 ##### VennDiagram和UpsetR的数据要求
 
-值得注意的是，VennDiagram和UpsetR的数据要求并不相同，前者要求适用`list`输入以各组为集合的元素变量名,有几个分组就输入几个集合；而后者以元素变量名为行名，用数字0和1代表元素在分组集合中存在与否，数据输入是以数据框的形式输入。
+值得注意的是，VennDiagram和UpsetR的数据要求并不相同，前者要求适用`list`输入以各组为集合的元素变量名,有几个分组就输入几个集合；而后者以元素变量名为行名，用数字0和1代表元素在分组集合中存在与否，数据输入是以数据框的形式输入。因此在数据准备和图形绘制过程中需要准备对应参数。
 
-  **VennDiagram的数据类型**   |  **UpsetR的数据类型** 
-| ID   | Set1 | Set2 | Set3 |      | Var. | Set1 | Set2 | Set3 |
-| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
-| 1    | A    | A    | A    |      | A    | 1    | 1    | 1    |
-| 2    | B    |      | B    |      | B    | 1    | 0    | 1    |
-| 3    | C    | C    | C    |      | C    | 1    | 1    | 1    |
-| 4    | D    | D    |      |      | D    | 1    | 1    | 0    |
-| 5    | E    |      | E    |      | E    | 1    | 0    | 1    |
-| 6    | F    |      |      |      | F    | 1    | 0    | 0    |
+  **VennDiagram的数据类型**  
+  
+| ID   | Set1 | Set2 | Set3 |     
+| ---- | ---- | ---- | ---- |
+| 1    | A    | A    | A    |      
+| 2    | B    |      | B    |      
+| 3    | C    | C    | C    |     
+| 4    | D    | D    |      |     
+| 5    | E    |      | E    |     
+| 6    | F    |      |      |     
+
+ **UpsetR的数据类型** 
+
+| Var. | Set1 | Set2 | Set3 |
+| ---- | ---- | ---- | ---- |
+| A    | 1    | 1    | 1    |
+| B    | 1    | 0    | 1    |
+| C    | 1    | 1    | 1    |
+| D    | 1    | 1    | 0    |
+| E    | 1    | 0    | 1    |
+| F    | 1    | 0    | 0    |
 
 
 ##### 软件安装
@@ -181,7 +224,7 @@ p1 <- venn.diagram(
   x=list(A=row.names(Data4Pic[Data4Pic$A==1,]),
     B=row.names(Data4Pic[Data4Pic$B==1,]),
     C=row.names(Data4Pic[Data4Pic$C==1,]),
-    D=row.names(Data4Pic[Data4Pic$D==1,])),
+    D=row.names(Data4Pic[Data4Pic$C==1,])),
  # 不指定保存的文件名，也不指定`imagetype`
  filename = NULL, lwd = 3, alpha = 0.6,
  #设置字体颜色
@@ -200,7 +243,9 @@ png(file="p1.GenusVenn.png", width=4, height=3, res=300, units="in")
 grid.draw(p1) 
 dev.off()
 ```
+
 ![](http://210.75.224.110/github/MicrobiomeStatPlot/213Venn/p1.GenusVenn.png)
+
 
 ##### 使用UpsetR绘制集合图
 
@@ -225,23 +270,24 @@ dev.off()
 ```
 
 ![](http://210.75.224.110/github/MicrobiomeStatPlot/213Venn/p2.GenusUpset.png)
+
 **Upset常用参数**
 
 - `example`：存放矩阵的变量名称；
 - `set`：所需要的集合名称；
-- `mb.ratio`：调整上下两部分的比例;
-- `order.by`：排序方式，`freq`为按频率排序;
-- `queries`：查询函数，用于对指定列添加颜色;
+- `mb.ratio`：调整上下两部分的比例；
+- `order.by`：排序方式，`freq`为按频率排序；
+- `queries`：查询函数，用于对指定列添加颜色；
   - `param: list`：query作用于哪个交集；
-  - `color`：每个query都是一个list，里面可以设置颜色,没设置的话将调用包里默认的调色板；
+  - `color`：每个query都是一个list，里面可以设置颜色，没设置的话将调用包里默认的调色板；
   - `active`：被指定的条形图：`TRUE`显示颜色，`FALSE`在条形图顶端显示三角形;
-- `nset`：集合数量，也可用set参数指定具体集合;
-- `number.angles`：上方条形图数字角度，0为横向，90为竖向，但90时不在正上方;
+- `nset`：集合数量，也可用set参数指定具体集合；
+- `number.angles`：上方条形图数字角度，0为横向，90为竖向，但90时不在正上方；
 - `point.size`：下方点阵中点的大小；
-- `line.size`：下方点阵中每个线的粗细;
-- `mainbar.y.label`：上方条形图Y轴名称;`sets.x.label`：左下方条形图X轴名称;
+- `line.size`：下方点阵中每个线的粗细；
+- `mainbar.y.label`：上方条形图Y轴名称;`sets.x.label`：左下方条形图X轴名称；
 - `text.scale`：六个数字控制关系见；
-- `query.legend`;指定query图例的位置…… 
+- `query.legend`：指定query图例的位置…… 
 
 使用Queries参数对集合图进行修饰
 
@@ -260,11 +306,12 @@ png(file="p3.GenusUpsetIndiv.png", width=6, height=4, res=300, units="in")
 p3
 dev.off()
 ```
+
 ![](http://210.75.224.110/github/MicrobiomeStatPlot/213Venn/p3.GenusUpsetIndiv.png)
  
 **更多参数信息**
 
-此外，UpsetR还提供了`attribute.plots`参数,可绘制`histogram`,`scatter_plot`,`boxplot.summary`等图形的绘制。可以根据自己数据的需要进行配置数据，详细可见：https://cran.r-project.org/web/packages/UpSetR/vignettes/
+此外，UpsetR还提供了`attribute.plots`参数，可绘制`histogram`，`scatter_plot`，`boxplot.summary`等图形的绘制。可以根据自己数据的需要进行配置数据，详细可见：https://cran.r-project.org/web/packages/UpSetR/vignettes/
 
 #### 参考文献
 
@@ -290,4 +337,5 @@ UpSetR官方帮助文档，https://cran.r-project.org/web/packages/UpSetR/vignet
 > - 1.0.2，2020/6/9，腾讯会议沟通统一思想和格式
 > - 1.0.3，2020/6/23，徐俊，大修，添加背景、实例和规范代码讲解
 > - 1.0.4，2020/7/2，刘永鑫，大修，整合背景、实例、实战为Rmd格式，全文修改
-> - 1.0.5，2020/7/x，徐俊，背景图添加2-5组样式展示，文章补充矢量图
+> - 1.0.5，2020/7/3，徐俊，背景图添加2-5组样式展示，文章补充矢量图
+> - 1.0.6，2020/7/7，席娇，内容修改，格式微调
