@@ -37,6 +37,18 @@ Windows 10版3.6.x：链接：https://pan.baidu.com/s/1h-qR2lmlaMgR4M7VbgtAFg �
 
 - metaphlan_databases (382.14MB) 链接：https://pan.baidu.com/s/1wCkALsoAzTsdJwUQbAcQIA 提取码：wdv9
 
+上传文件夹内容至当前环境库中python3.7包中metaphlan的数据库文件夹中，如~/miniconda2/envs/humann3/lib/python3.7/site-packages/metaphlan/metaphlan_databases
+
+### Kraken 2 数据库
+
+- 标准数据库 kraken2.tar.gz.0/1/2 (34.59GB) 链接：https://pan.baidu.com/s/16pXppGAizMKdU3z5Ji3dzA 
+提取码：0315
+
+分卷压缩，下载后需要cat合并再解压 
+
+	cat kraken2.tar.gz.* > merge.tar.gz
+	tar xvzf  merge.tar.gz
+
 
 ### EggNOG 5.0数据库
 
