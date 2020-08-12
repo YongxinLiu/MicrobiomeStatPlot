@@ -4,11 +4,14 @@
 
 ### R语言常用包合集
 
-Windows 10版4.0.x：链接：https://pan.baidu.com/s/1JFwLP2SonK1howD5MNgNYg 提取码：l08k
+Windows 10版4.0.x：链接：https://pan.baidu.com/s/1LxtBCLvd0-2XQGPctMC6dA 提取码：0315
 
-Windows 10版3.6.x：链接：https://pan.baidu.com/s/1h-qR2lmlaMgR4M7VbgtAFg 提取码：s5fi
+下载后解压至当前目录，可获得4.0目录，剪切并替换文档 - R - win-library - 4.0 目录即可
 
-下载后解压至当前目录，可获得3.6/4.0目录，剪切并替换文档 - R - win-library - 3.6/4.0 目录即可
+Mac OS版4.0.x：链接：链接：https://pan.baidu.com/s/1fh7I-HcqUoGYiu_3XVLIRg 提取码：0315
+
+下载后解压至当前目录，可获得library目录，复制到 /Library/Frameworks/R.framework/Versions/4.0/Resources/library/
+
 
 ## 扩增子数据库
 
