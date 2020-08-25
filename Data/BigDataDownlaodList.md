@@ -2,7 +2,7 @@
 
 ### R语言常用包合集
 
-Windows 10版4.0.x：链接：https://pan.baidu.com/s/1LxtBCLvd0-2XQGPctMC6dA 提取码：0315
+Windows 10版4.0.x：链接：链接：https://pan.baidu.com/s/1sSQEasVGH2lUkmI0mLq62w 提取码：vfa1 
 
 下载后解压至当前目录，可获得4.0目录，剪切并替换文档 - R - win-library - 4.0 目录即可
 
@@ -12,6 +12,10 @@ Mac OS版4.0.x：链接：链接：https://pan.baidu.com/s/1fh7I-HcqUoGYiu_3XVLI
 
 
 ## 扩增子数据库
+
+Windows系统下搭建扩增子分析平台所需软件合辑
+
+链接：https://pan.baidu.com/s/1hdu_umrScnV3DpwZtnwIDQ 提取码：yjk9 
 
 ## 宏基因组数据库
 
