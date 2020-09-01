@@ -1,0 +1,6 @@
+Gene_a	Gene_b	Gene_c	Gene_d	Gene_e	Gene_f	Group	Genotype
+A	-0.16	0.53	-0.72	-0.19	1.17	-0.33	Control	WT
+B	0.71	-0.79	0.17	-0.85	0.62	0.55	Control	WT
+C	-0.27	1.43	0.92	0.06	-0.11	-0.67	Treatment	Mutant
+D	-1.46	-1.47	-1.67	-0.82	0.92	0.21	Treatment	Mutant
+E	0.74	-0.24	0.45	-2.05	-0.22	0.31	Treatment	WT

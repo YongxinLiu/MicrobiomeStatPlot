@@ -1,0 +1,8 @@
+pwd	显示当前目录	cat	查看文件	head	筛选文件开头N行
+ls	列出目录内容	ping	测试网络连接	tail	筛选文件结尾N行
+ls -l	详细列出目录内容	less -S	上下翻页查看文件	grep	筛选特定关键词的行
+cd	切换当前目录	cp	复制文件	cut	列操作
+mkdir	创建目录	mv	移动文件	sed	文本替换
+chmod	修改文件权限	rm	删除文件	sort	排序
+gunzip	解压缩gz文件	awk	文本处理工具	uniq -c	去冗余并统计
+|	管道，命令串联	Ctrl+D	终止编辑	Ctrl+C	终止运行程序
