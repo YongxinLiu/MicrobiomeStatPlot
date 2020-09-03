@@ -4,6 +4,8 @@
 
 Windows 10版4.0.x：链接：链接：https://pan.baidu.com/s/1sSQEasVGH2lUkmI0mLq62w 提取码：vfa1 
 
+备用链接：http://210.75.224.110/db/R/4.0.zip
+
 下载后解压至当前目录，可获得4.0目录，剪切并替换文档 - R - win-library - 4.0 目录即可
 
 Mac OS版4.0.x：链接：链接：https://pan.baidu.com/s/1fh7I-HcqUoGYiu_3XVLIRg 提取码：0315

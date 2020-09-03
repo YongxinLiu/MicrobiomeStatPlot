@@ -1,0 +1,40 @@
+Sample Id	Enterotype	Nationality	Clinical Status	Gender	Project	Clinical Status [filtered]	Nationality [filtered]	Gender [filtered]
+AM-AD-1	Unclassified	american	healthy	F	gill06	na	na	na
+AM-AD-2	Unclassified	american	healthy	M	gill06	na	na	na
+AM-F10-T1	Enterotype 3 - twin	american	obese	F	turnbaugh09	na	na	na
+AM-F10-T2	Enterotype 3	american	obese	F	turnbaugh09	obese	na	F
+DA-AD-1	Enterotype 2	danish	healthy	F	MetaHIT	healthy	danish	F
+DA-AD-2	Enterotype 3	danish	healthy	M	MetaHIT	healthy	danish	M
+DA-AD-3	Enterotype 3	danish	obese	F	MetaHIT	obese	danish	F
+DA-AD-4	Enterotype 2	danish	obese	M	MetaHIT	obese	danish	M
+ES-AD-1	Enterotype 1	spanish	CD	F	MetaHIT	CD	spanish	F
+ES-AD-2	Enterotype 2	spanish	healthy	M	MetaHIT	healthy	spanish	M
+ES-AD-3	Enterotype 2	spanish	UC	F	MetaHIT	UC	spanish	F
+ES-AD-4	Enterotype 3	spanish	healthy	F	MetaHIT	healthy	spanish	F
+FR-AD-1	Enterotype 3	french	healthy	M	MicroObes	healthy	french	M
+FR-AD-2	Enterotype 3	french	healthy	M	MicroObes	healthy	french	M
+FR-AD-3	Enterotype 1	french	healthy	M	MicroObes	healthy	french	M
+FR-AD-4	Enterotype 3	french	healthy	M	MicroObes	healthy	french	M
+FR-AD-5	Enterotype 3	french	obese	M	MicroObes	obese	french	M
+FR-AD-6	Enterotype 2	french	obese	M	MicroObes	obese	french	M
+FR-AD-7	Enterotype 3	french	obese	M	MicroObes	obese	french	M
+FR-AD-8	Enterotype 3	french	obese	M	MicroObes	obese	french	M
+IT-AD-1	Enterotype 3	italian	elderly	F	MicroAge	elderly	italian	F
+IT-AD-2	Enterotype 3	italian	elderly	M	MicroAge	elderly	italian	M
+IT-AD-3	Enterotype 3	italian	elderly	F	MicroAge	elderly	italian	F
+IT-AD-4	Enterotype 2	italian	elderly	M	MicroAge	elderly	italian	M
+IT-AD-5	Enterotype 3	italian	elderly	M	MicroAge	elderly	italian	M
+IT-AD-6	Enterotype 3	italian	elderly	F	MicroAge	elderly	italian	F
+JP-AD-1	Enterotype 1	japanese	healthy	M	kurokawa07	healthy	japanese	M
+JP-AD-2	Enterotype 3	japanese	healthy	F	kurokawa07	healthy	japanese	F
+JP-AD-3	Enterotype 3	japanese	healthy	M	kurokawa07	healthy	japanese	M
+JP-AD-4	Enterotype 1	japanese	healthy	F	kurokawa07	healthy	japanese	F
+JP-AD-5	Enterotype 3	japanese	healthy	M	kurokawa07	healthy	japanese	M
+JP-AD-6	Enterotype 1	japanese	healthy	F	kurokawa07	healthy	japanese	F
+JP-AD-7	Enterotype 1	japanese	healthy	M	kurokawa07	healthy	japanese	M
+JP-AD-8	Enterotype 1	japanese	healthy	M	kurokawa07	healthy	japanese	M
+JP-AD-9	Enterotype 1	japanese	healthy	F	kurokawa07	healthy	japanese	F
+JP-IN-1	Infant	japanese	healthy	F	kurokawa07	na	na	na
+JP-IN-2	Infant	japanese	healthy	M	kurokawa07	na	na	na
+JP-IN-3	Infant	japanese	healthy	M	kurokawa07	na	na	na
+JP-IN-4	Infant	japanese	healthy	F	kurokawa07	na	na	na
