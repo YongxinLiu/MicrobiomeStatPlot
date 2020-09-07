@@ -1,5 +1,5 @@
 ---
-title: "菌群物种组成堆叠柱状图、弦图和词云"
+title: "231.菌群物种组成堆叠柱状图、弦图和词云"
 author: "文涛 南京农业大学"
 date: "`r Sys.Date()`"
 output:
@@ -15,11 +15,11 @@ knitr::opts_chunk$set(
 	fig.align="center", fig.width=5, fig.height=3, dpi=300)
 ```
 
-### 231菌群物种组成堆叠柱状图、弦图、词云
+### 231.菌群物种组成堆叠柱状图、弦图、词云
 
 > 本节作者：文涛，南京农业大学；刘永鑫，中科院遗传发育所
 >
-> 版本1.0.5，更新日期：2020年8月12日
+> 版本1.0.3，更新日期：2020年9月7日
 
 > 本项目永久地址： https://github.com/YongxinLiu/MicrobiomeStatPlot ，本节目录 222CPCoA，包含R markdown(\*.Rmd)、Word(\*.docx)文档、测试数据和结果图表，欢迎广大同行帮忙审核校对、并提修改意见。提交反馈的三种方式：1. 公众号文章下方留言；2. 下载Word文档使用审阅模式修改和批注后，发送至微信(meta-genomics)或邮件(metagenome@126.com)；3. 在Github中的Rmd文档直接修改并提交Issue。审稿人请在创作者登记表 https://www.kdocs.cn/l/c7CGfv9Xc 中记录个人信息、时间和贡献，以免专著发表时遗漏。
 
@@ -49,7 +49,7 @@ knitr::opts_chunk$set(
 
 > The differences in the root microbiota between indica and japonica were significant and detectable at the phylum level (**Fig. 1f**). In both fields, Deltaproteobacteria, Actinobacteria, Acidobacteria, Bacteroidetes, Spirochaetes, Chloroflexi, Ignavibacteriae, Nitrospirae, and Verrucomicrobia were present at higher relative abundance in indica compared with japonica, whereas the relative abundance of Alphaproteobacteria was higher in japonica (false discovery rate (FDR) adjusted P < 0.05, Wilcoxon rank sum test; Supplementary Table 4). These data show that the root microbiota were reproducibly different in these rice subspecies.
 
-在长期的种植历史过程中，亚洲两个主要水稻栽培亚种(籼稻和粳稻)拥有不同的基因型和表型。在这里，我们在田间条件对籼稻和粳稻多个代表品种的根系微生物组的差异进行研究，发现籼粳稻品种招募明显不同的根系微生物组(图1)。
+在长期的种植历史过程中，亚洲两个主要水稻栽培亚种(籼稻和粳稻)拥有不同的基因型和表型。在这里，我们在田间条件对籼稻和粳稻多个代表品种的根系微生物组的差异进行研究，发现籼稻、粳稻品种的根系微生物组明显不同(图1)。
 
 > During the long history of rice cultivation, two major types of Asian cultivated rice, indica and japonica, have emerged with dis-tinct genotypes and phenotypes. Here, we examined varia-tions in the root microbiota of multiple representative varieties of indica and japonica rice grown under field conditions, and showed that indica and japonica varieties recruit distinct root microbiota  (**Fig. 1**). 
 
@@ -383,6 +383,8 @@ Guangchuang Yu, David K. Smith, Huachen Zhu, Yi Guan & Tommy Tsan-Yuk Lam. (2017
 
 > 1.0.1，2020/9/3，刘永鑫，全文校对、代码检验
 
+> 1.0.2，2020/9/5，卢洪叶 北大口腔，全文校对、代码检验
 
+> 1.0.3，2020/9/7，刘永鑫，整合修改
 
 
