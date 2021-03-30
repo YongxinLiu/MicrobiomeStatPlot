@@ -19,9 +19,9 @@ knitr::opts_chunk$set(
 
 > 本节作者：文涛，南京农业大学；刘永鑫，中科院遗传发育所
 >
-> 版本1.0.3，更新日期：2020年9月7日
+> 版本1.0.4，更新日期：2020年9月22日
 
-> 本项目永久地址： https://github.com/YongxinLiu/MicrobiomeStatPlot ，本节目录 222CPCoA，包含R markdown(\*.Rmd)、Word(\*.docx)文档、测试数据和结果图表，欢迎广大同行帮忙审核校对、并提修改意见。提交反馈的三种方式：1. 公众号文章下方留言；2. 下载Word文档使用审阅模式修改和批注后，发送至微信(meta-genomics)或邮件(metagenome@126.com)；3. 在Github中的Rmd文档直接修改并提交Issue。审稿人请在创作者登记表 https://www.kdocs.cn/l/c7CGfv9Xc 中记录个人信息、时间和贡献，以免专著发表时遗漏。
+> 本项目永久地址： https://github.com/YongxinLiu/MicrobiomeStatPlot ，本节目录 231Taxonomy，包含R markdown(\*.Rmd)、Word(\*.docx)文档、测试数据和结果图表，欢迎广大同行帮忙审核校对、并提修改意见。提交反馈的三种方式：1. 公众号文章下方留言；2. 下载Word文档使用审阅模式修改和批注后，发送至微信(meta-genomics)或邮件(metagenome@126.com)；3. 在Github中的Rmd文档直接修改并提交Issue。审稿人请在创作者登记表 https://www.kdocs.cn/l/c7CGfv9Xc 中记录个人信息、时间和贡献，以免专著发表时遗漏。
 
 
 #### 背景介绍
