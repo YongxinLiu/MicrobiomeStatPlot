@@ -28,6 +28,7 @@ Windows系统下搭建扩增子分析平台所需软件合辑
 
 ### HUMAnN2物种和功能注释
 
+- metaphlan2数据库 链接：https://pan.baidu.com/s/1hIt-BQOg6J9AKyK14yHKVg 提取码：0315 
 - 微生物泛基因组数据库 full_chocophlan_plus_viral.v0.1.1.tar.gz (5.37GB) 链接：https://pan.baidu.com/s/1ANH6s3ULjVemomofv7RwZw 提取码：i8qv
 - 蛋白功能注释数据库 uniref90_annotated_1_1.tar.gz (5.87GB) 链接：https://pan.baidu.com/s/1dNKnVjBqPwYBYSC75AWJtQ 提取码：ospn
 
@@ -63,6 +64,29 @@ Windows系统下搭建扩增子分析平台所需软件合辑
 
 - EggNOG数据库 eggnog.db.gz (7.87GB) 链接：https://pan.baidu.com/s/1K8LNeHGW-voAGkozHWVrEQ 提取码：rcds
 - 蛋白序列的diamond索引 eggnog_proteins.dmnd.gz (4.85GB) 链接：https://pan.baidu.com/s/1WB0BOW08wtoPEYybHLAUUw 提取码：d2uk
+
+### Metawrap 1.3 依赖数据库
+
+#### NCBI_nt (2018/11/16)
+
+NCBI_nt核酸数据库的BLAST索引，此版本可以支持metawrap默认的Blast
+
+- NCBI_nt (41GB, 60个文件) 链接：https://pan.baidu.com/s/1tFpjzEORnV2qoCMY9pAcsA 提取码：0315 
+
+- NCBI_tax (44M，1个文件) 链接：https://pan.baidu.com/s/14ROMoKUX9Tsd_gVNNe_Stg 提取码：0315 
+
+
+    # 备用nt下载链接
+	mkdir -p NCBI_nt && cd NCBI_nt
+    wget -c http://210.75.224.110/db/metawrap/NCBI_nt_181116/filelist.txt
+    for a in `cat filelist.txt`; do \
+	  wget -c http://210.75.224.110/db/metawrap/NCBI_nt_181116/$a; done
+    for a in nt.*.tar.gz; do tar xzf $a; done
+    # 配套tax下载链接
+	mkdir -p NCBI_tax && cd NCBI_tax
+    wget -c http://210.75.224.110/db/metawrap/NCBI_tax_181116/taxdump.tar.gz
+	tar xzf taxdump.tar.gz
+
 
 ## 备份公网链接
 
