@@ -1,0 +1,158 @@
+---
+title: "Bubble Plot"
+author: "Defeng Bai Agricultural Genomics Institute at Shenzhen, Chinese Academy of Agricultural Sciences"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 5
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo=T, comment=NA, message=F, warning=F,
+	fig.align="center", fig.width=5, fig.height=3, dpi=300)
+```
+
+
+## 气泡图在微生物组数据分析中的应用
+The application of bubble chart in microbial data analysis
+
+什么是气泡图？
+What is a bubble chart?
+
+气泡图（Bubble Chart）用于呈现三维数据的关系。这种图通常使用气泡的位置、大小和颜色来表示变量之间的关系，使得观察者能够直观的理解复杂数据集。其基本组成由X, Y坐标的位置，气泡的大小和气泡的颜色构成。气泡图的基础是二维平面上的坐标系，其中每个气泡由其在X轴和Y轴上的位置决定。这些坐标可以表示两个变量或维度，例如时间、空间或不同的类别。每个气泡的大小代表了第三个维度的数值，通常气泡越大表示的数值越大。这个大小维度可以表示各种新信息，比如数据点的频率、重要性等。颜色是气泡图中的第三个可用于信息的维度。通过对气泡着色，可以进一步传达关于数据的分类、群组或其他属性的信息。颜色也可以用于强调特定的趋势或模式。
+A bubble chart is used to present the relationships of three-dimensional data. This type of graph typically uses the position, size, and color of bubbles to represent the relationships between variables, allowing observers to intuitively understand complex datasets. Its basic composition consists of the position of the X and Y coordinates, the size of the bubbles, and the color of the bubbles. The basis of a bubble chart is a coordinate system on a two-dimensional plane, where each bubble is determined by its position on the X and Y axes. These coordinates can represent two variables or dimensions, such as time, space, or different categories. The size of each bubble represents the numerical value of the third dimension, and usually the larger the bubble, the greater the numerical value. This size dimension can represent various new information, such as the frequency and importance of data points. Color is the third dimension in a bubble chart that can be used for information. By coloring bubbles, information about the classification, grouping, or other attributes of data can be further conveyed. Colors can also be used to emphasize specific trends or patterns.
+
+
+
+## 气泡图应用案例
+Bubble chart application cases
+
+这是Wang Shaopu课题组2024年发表于Nature Communications上的文章，第一作者为Zeng Shuqin，题目为：A metagenomic catalog of the early-life human gut virome
+
+This is an article published by Wang Shaopu's research group in Nature Communications in 2024. The first author is Zeng Shuqin, and the title is A metagenomic catalog of the early life human gut virus
+
+![](e1.BubblePlot.01.png)
+Fig. 2 d Dynamics of the relative abundance of viral families in the first two (VLPs, top) or three (bulk, bottom) years of life. Only the viral families with a prevalence >1% in VLPs-enrichedmetagenomes are plotted. For better visualization of the changes of each viral family, viral families are stratified into three groups basedon themean relative abundanceofVLPs-enrichedmetagenomes at each time point (i.e., maximal mean relative abundance ≤1% (left, n = 12, red), maximal mean relative abundance >1% and <40% (middle, n = 11, light green), maximal mean relative abundance ≥40% (right, n = 2, dark green)). The bar plot shows the proportion of relative abundance of all 25 viral families, which are indicated in the legend on the right side. The P values were obtained with linear mixed modeling with “study” as random factor. **** P<0.0001, *** P<0.001, ** P<0.01, * P<0.05.
+
+图2 d生命前两年（VLP，顶部）或三年（体积，底部）病毒家族相对丰度的动态。仅绘制了VLP富集型基因组中流行率>1%的病毒家族。为了更好地显示每个病毒家族的变化，根据每个时间点VLP富集物的平均相对丰度，将病毒家族分为三组（即最大平均相对丰度≤1%（左，n=12，红色），最大平均相对丰富度>1%和<40%（中，n=11，浅绿色），最大相对丰度≥40%（右，n=2，深绿色））。条形图显示了所有25个病毒家族的相对丰度比例，如右侧图例所示。P值是通过以“研究”为随机因素的线性混合模型获得的。***P<0.0001，***P<0.001，**P<0.01，*P<0.05。
+
+
+**结果**：
+Out of 42 viral families with a prevalence >1%, 25 families accounted for >99% ofviral abundance in 1608 VLPs-enriched metagenomes. Of these, five families with significant changes and only Microviridae increased in abundance as infants aged (Fig. 2d). When examining these 25 viral families in bulk metagenomes, 21 families were detected and accounted for >99% of viral abundance in 5990 bulk metagenomes. Of these, 14 families had a statistically significant difference (P< 0.05) in their abundance as infants aged, with half of the families increased, such as Adenoviridae, Duneviridae,and Forsetiviridae; and the other half decreased, such as Siphoviridae, Myoviridae, Microviridae,and Peduoviridae. Furthermore, the mean relative abundance ofForsetiviridae was sparse with <0.3% in the first 12 months, but steadily increased to 0.97 % and 1.24% at months 24 and 36, respectively. Of note, we also found that some families reached the peak in relative abundance at months 1 or 3 (i.e., Myoviridae, Peduoviridae, Rountreeviridae, Siphoviridae) and afterward decreased gradually, showing that certain viral taxa did not change uniformly early in life (Fig. 2d).
+
+在流行率>1%的42个病毒家族中，有25个家族占1608个富含VLP的宏基因组中病毒丰度的99%以上。其中，有五个家族发生了重大变化，只有微小病毒科的数量随着婴儿年龄的增长而增加（图2d）。当在大量宏基因组中检查这25个病毒家族时，检测到21个家族，占5990个大量宏基因组病毒丰度的99%以上。其中，14个家族在婴儿年龄增长时的丰度存在统计学显著差异（P<0.05），其中一半的家族数量增加，如腺病毒科、盾形病毒科和毛喉病毒科；另一半减少，如细胞病毒科、Myoviridae、Microviridae和Pedooviride。此外，前12个月，福氏病毒科的平均相对丰度较低，<0.3%，但在第24个月和第36个月分别稳步增加到0.97%和1.24%。值得注意的是，我们还发现，一些科的相对丰度在第1个月或第3个月达到峰值（即肌病毒科、Pedooviride、Rountreeviridae、Siphoviridae），然后逐渐减少，这表明某些病毒分类群在生命早期并没有发生一致的变化（图2d）。
+
+
+## 气泡图R语言实战
+Bubble Chart R Language Practice
+
+示例数据来自于：nature期刊Single-nucleus profiling of human dilated and hypertrophic cardiomyopathy
+Example data from: Nature journal Single nucleus profiling of human diluted and hypertrophic cardiopathy
+参考：https://mp.weixin.qq.com/s/ebnntaEIwZNuNKuBRpBPNw
+
+```{r bubble chart, include=TRUE}
+#load packages and data
+library(ggplot2)
+library(dplyr)
+sing.df <- readxl::read_xlsx("41586_2022_4817_MOESM18_ESM.xlsx")
+#head(sing.df)
+#str(sing.df)
+
+sing.df$Gene <- factor(sing.df$Gene, levels = sing.df$Gene %>% unique() %>% rev())
+sing.df$CellType <- factor(sing.df$CellType, levels = sing.df$CellType %>% unique())
+
+# 绘图
+p1 <- ggplot(sing.df, aes(CellType, Gene, fill = Avg_Expr, size = Pct_Expr0 )) + 
+  geom_point(shape = 21, color = "black") + 
+  theme_classic() +  
+  scale_y_discrete(breaks = levels(sing.df$Gene), 
+                   limits = c(levels(sing.df$Gene)[1:16], "skip", 
+                              levels(sing.df$Gene)[17:22], "skip", 
+                              levels(sing.df$Gene)[23:27])) + 
+  scale_size_continuous(breaks = seq(0.2, 1, 0.2), limits = c(0, 1),
+                        range = c(0, 5.5),
+                        labels = c("20%", "40%", "60%", "80%", "100%")) + 
+  scale_fill_distiller(palette = "Greens", direction = 1) + 
+  theme(axis.text.x = element_text(angle = 90, size = 12, hjust = 1), 
+        axis.text.y = element_text(size = 12, angle = -2, vjust = 1),
+        axis.line = element_line(size = 1),
+        axis.ticks = element_blank()) + 
+  guides(fill = guide_colorbar(ticks = FALSE, 
+                               barheight = 8, 
+                               frame.colour = "black")) + 
+  labs(x = "", y = "", 
+       fill = "Avg\nexpr", 
+       size = "Pct nuclei\nexpr > 0")
+#p1
+ggsave("Bubble_plot01.pdf", plot = p1, width = 6, height = 8)
+
+```
+
+![](Bubble_plot01.jpg)
+
+
+实战2
+Practice 2
+
+```{r practice2, include=TRUE}
+#load packages
+#install.packages("RColorBrewer")
+#install.packages("gapminder")
+#install.packages("ggplot2")
+library(RColorBrewer)
+library(ggplot2)
+library(gapminder)
+library(dplyr)
+# 载入viridis包使用scale_fill_viridis()函数设置配色方案
+# Load the viridis package and use the scale_fill_viridis() function to set the color scheme
+library(viridis)
+# 将gapminder数据集转换成数据框形式
+#Convert the gapfinder dataset to a data frame format
+gapminder <- data.frame(gapminder)
+# 查看数据结构
+#View data structure
+#View(gapminder)
+
+#提取数据
+#Extract data
+gapminder <- as.data.frame(gapminder)
+mydata <- subset(gapminder, year == "2002") #以2002年数据为例
+#head(mydata)
+#str(mydata)
+
+#图形绘制
+#Graphic drawing
+p1 <- ggplot(mydata, aes(x=gdpPercap, y=lifeExp, size = pop, fill = continent)) +
+  geom_point(shape = 21, color = "black") + 
+  theme_bw()
+
+#调整大小及颜色
+#Adjust size and color
+p2 <- ggplot(mydata, aes(x=gdpPercap, y=lifeExp, size = pop, fill = continent)) +
+  geom_point(shape = 21, color = "black") + 
+  scale_size(range = c(.1, 18)) + #调整size大小
+  scale_fill_brewer(palette = "Set3") + 
+  theme_bw()+ 
+  labs(x ="Per.GDP", y = "lifeExp", size = "Population", fill = "Continent")
+
+#移除图例
+#Remove Legend
+p3 <- ggplot(mydata, aes(x=gdpPercap, y=lifeExp, size = pop, fill = continent, color = continent)) +
+  geom_point(shape = 21, color = "black") + 
+  #scale_size_area() + 
+  scale_size(range = c(.1, 18)) + 
+  #ggrepel::geom_text_repel(aes(label = country, color = continent), show.legend = FALSE, color = "black") + 
+  #ggrepel::geom_text_repel(aes(label = country),color = "black",max.overlaps = 30) + #添加标签
+  scale_fill_brewer(palette = "Set3") + 
+  theme_bw()+ 
+  labs(x ="Per.GDP", y = "lifeExp", size = "Population", fill = "Continent") + 
+  theme(legend.position = "none")
+#p2
+ggsave("Bubble_plot02.pdf", plot = p3, width = 5, height = 4)
+
+```
+
+![](Bubble_plot02.jpg)
+
