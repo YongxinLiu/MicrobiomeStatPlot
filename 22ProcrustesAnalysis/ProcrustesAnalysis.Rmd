@@ -1,0 +1,174 @@
+---
+title: "Procrutest Analysis"
+author: "Defeng Bai Agricultural Genomics Institute at Shenzhen, Chinese Academy of Agricultural Sciences"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 5
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo=T, comment=NA, message=F, warning=F,
+	fig.align="center", fig.width=5, fig.height=3, dpi=300)
+```
+
+
+### Procrutest Analysis
+
+什么是普鲁克分析（Procrutest analysis）?
+What is Procurement analysis?
+参考：https://mp.weixin.qq.com/s/EXRo0VwPVhOX3biKBllS-g
+
+普鲁克分析（Procrustes analysis）是一种通过分析形状分布，比较两组数据一致性德方法。在数学上，就是不断迭代，寻找标准形状（canonical shape）,并利用最小二乘法寻找每个对象形状到这个标准形状的仿射变化方式。该过程也称为最小二乘正交映射（least-squares orthogona mapping）。
+
+Procrustes analysis is a method of comparing the consistency of two sets of data by analyzing shape distributions. In mathematics, it is to iteratively search for a canonical shape and use the least squares method to find the affine transformation of each object's shape to this standard shape. This process is also known as least squares orthogonal mapping.
+
+普鲁克分析的过程：普鲁克分析基于匹配两个数据集中的对应点（坐标），通过平移、旋转和缩放其中一个数据集中点的坐标以匹配另一个数据集中对应的坐标，并最小化点坐标之间的偏差平方和（表示为M2）。对应点坐标之间的偏差称为矢量残差，小的矢量残差代表了两数据集具有更高的一致性。
+
+The process of Procrutest analysis: Procrutest analysis is based on matching the corresponding points (coordinates) of two datasets, by translating, rotating, and scaling the coordinates of one dataset point to match the corresponding coordinates of the other dataset, and minimizing the sum of squared deviations between point coordinates (represented as M2). The deviation between the corresponding point coordinates is called vector residual, and a smaller vector residual represents higher consistency between the two datasets.
+
+![](01.procrutest.analysys.png)
+以此图为例，A图显示了投影到二维空间中的两数据集，两数据集中样本对应为A-a, B-b, C-c; B图表示平移坐标使质心对其，此时两数据集具有一个公共质心；C-D, 通过不断迭代旋转并缩放调整数据，使M2最小化。
+
+Taking this figure as an example, Figure A shows two datasets projected into two-dimensional space, with samples corresponding to A-a, B-b, and C-c; Figure B represents the translation coordinate with the center of mass relative to it, where the two datasets have a common center of mass; C-D,  Minimize M2 by iteratively rotating and scaling the adjusted data.
+
+普鲁克分析M2统计量的显著性检验（PROTEST）
+普鲁克分析对两个数据集中点的坐标进行描述性总结和图形化比较，尽管M2统计量提供了对一致性的度量（M2越小表示两数据集关联度越高），但是并未评估M2是否比预期的更高（M2是否显著，而不是由偶然导致）。可通过置换检验的原理实验对M2显著性的检验，称为PROTEST或者PROcrustean randomization test。如果计算得到的p值达到显著性水平（如p<0.05），则可以认为原始观测值的M2并非偶然因素所致，两个数据集的期望值比在随机情况下表现出更大的一致性。
+
+The Procrutest analysis provides a descriptive summary and graphical comparison of the coordinates of points in two datasets. Although the M2 statistic provides a measure of consistency (smaller M2 indicates higher correlation between the two datasets), it does not evaluate whether M2 is higher than expected (whether M2 is significant rather than accidental). The principle experiment of permutation test can be used to test the significance of M2, which is called the PROTEST or PROrustean randomization test. If the calculated p-value reaches a significance level (such as p<0.05), it can be considered that the M2 of the original observation value is not caused by accidental factors, and the expected values of the two datasets show greater consistency than in random situations.
+
+
+### 普鲁克分析应用案例
+Application Cases of Procrutest Analysis
+
+这是Jakob Stokholm课题组2023年发表于Nature Medicine上的文章，第一作者为Cristina Leal Rodríguez，题目为：The infant gut virome is associated with preschool asthma risk independently of bacteria
+
+This is an article published by the Jakob Stokholm research group in Nature Medicine in 2023. The first author is Cristina Leal Rodr í guez, and the title is: The incident gut virus is associated with pre-school astroma risk independently of bacteria
+
+![](02.procrutest.analysis.png)
+Fig. 4 c,d, Plot of residuals from a Procrustes analysis showing the overall association between variation in the temperate virome and the bacterial composition (16S) using a constrained ordination with regards to preschool asthma using vOTUs (a) and VFCs (b). We used the Aitchison distances for both the virome and bacteriome data. Each arrow connects the temperate virome and the gut microbiome from the same child. The arrows point in the direction of the bacterial ordination. Longer lines on the Procrustes plot indicate more within-subject discordance (that is, difference between both compositions). Orange lines are children with preschool asthma, and blue lines are children without preschool asthma (n = 133 out of 498). The Procrustes randomization tests showed a significant relationship between the datasets (r = 0.58; P = 0.001; and r = 0.55; P = 0.001, for a and b, respectively). Inset violin plots display the distribution with mean ± s.d. of Procrustes residuals between children with and without asthma for each plot, P values are from Wilcoxon tests. All P values were two-sided.
+
+图4c，d，Procrustes分析的残差图，显示了使用vOTU（a）和VFCs（b）对学龄前哮喘使用约束排序的温带病毒组变异和细菌组成（16S）之间的总体关联。我们对病毒组和细菌组数据都使用了Aitchison距离。每个箭头连接来自同一个孩子的温和病毒组和肠道微生物组。箭头指向细菌排序的方向。Procrustes图上较长的线表示受试者内部的不和谐（即两种构图之间的差异）更多。橙色线表示有学龄前哮喘的儿童，蓝色线表示没有学龄前哮喘（498人中有133人）。Procrustes随机化测试显示数据集之间存在显著关系（a和b分别为r=0.58；P=0.001；和r=0.55；P=0.001）。插入小提琴图显示了患有和不患有哮喘的儿童之间Procrustes残差的平均±s.d.分布，每个图的P值来自Wilcoxon检验。所有P值均为双侧。
+
+
+**结果**：
+Then, a Procrustes analysis, measuring how close the temperate virome and the bacteriome configurations are in relation to asthma, demonstrated a correlation between the two (species-level vOTUs, r = 0.58; P = 0.001; family-level VFCs, r = 0.55; P = 0.001). Furthermore, Procrustes residuals indicated that preschoolers with asthma consistently had the greatest discordance between the temperate virome and bacterial ordinations (Fig. 4c,d).
+
+然后，Procrustes分析，测量了温带病毒组和细菌组结构与哮喘的关系，证明了两者之间的相关性（物种水平的vOTU，r=0.58；P=0.001；家族水平的VFCs，r=0.55；P=0.001）。此外，Procrustes残差表明，患有哮喘的学龄前儿童在温和的病毒组和细菌排列之间始终存在最大的不一致性（图4c，d）。
+
+
+### 普鲁克分析实战
+Procrutest Analysis Using R Software
+参考：https://mp.weixin.qq.com/s/VB6qEVW9iKflHEsyTZL1IQ
+
+在微生态领域，该方法通常用于分析自相同样本不同数据集之间是否存在相似性关系。例如物种和环境、物种和功能基因等等，可以分析两个数据集之间的关联度或者是否存在潜在的一致性
+In the field of microecology, this method is commonly used to analyze whether there is a similarity relationship between different datasets from the same sample. For example, species and environment, species and functional genes, etc., can be analyzed to determine the correlation or potential consistency between two datasets.
+
+可以利用R语言vegan包中的procrustes和protest两个函数来实现普鲁克分析，并用ggplot2包完成对应分析的绘图。
+Pruke analysis can be implemented using the procrustes and test functions in the R language vegan package, and the corresponding analysis can be plotted using the ggplot2 package.
+
+
+```{r Procrustes analysis, include=TRUE}
+# 加载R包和自带数据集
+# Load R package and built-in dataset
+# 评估物种群落结构与环境因子之间是否存在显著的相关性
+# Assess whether there is a significant correlation between species community structure and environmental factors
+library(vegan)
+data(varespec)
+head(varespec)
+data(varechem)
+head(varechem)
+
+# 计算样本间的距离，一般物种群落实验bray-curtis距离，而环境因子使用欧式距离
+# Calculate the distance between samples, using Bray Curtis distance for general species community experiments, while Euclidean distance is used for environmental factors
+spe.dist <- vegdist(varespec) # 默认Bray-Curtis
+env.dist <- vegdist(scale(varechem), "euclid")
+
+# 由于两个数据集的属性不同，需要分别对两个数据集进行降维分析，并提取前两个坐标轴进行比较
+# Due to the different attributes of the two datasets, it is necessary to perform dimensionality reduction analysis on both datasets and extract the first two coordinate axes for comparison
+# 降维分析，这里使用NMDS，也可以使用PCA或者PCoA，然后进行普鲁克分析，计算显著性
+# Dimensionality reduction analysis, using NMDS here, can also use PCA or PCoA, and then perform Procrustes analysis to calculate significance
+mds.s <- monoMDS(spe.dist)
+mds.e <- monoMDS(env.dist)
+
+# 以对称模式为例进行普氏分析（symmetric = TRUE）
+# Using Symmetric Mode as an Example for Procrustes Analysis (symmetric = TRUE)
+pro.s.e <- procrustes(mds.s, mds.e, symmetric = TRUE)
+summary(pro.s.e)
+
+# 进一步通过各样本之间的残差来判断物种群落与环境因子的一致性
+# Further determine the consistency between species communities and environmental factors through residuals between samples
+plot(pro.s.e, kind = 2)
+residuals(pro.s.e)
+
+# 事后检验，对偏差平方和M2统计量进行置换999次的普氏检验。由于置换999次检验会存在细微的误差，我们设定了种子数，避免重复存在差异。
+# After the fact test, perform 999 permutations of the squared deviation and M2 statistic in the Procrustes test. Due to the slight error in 999 permutation tests, we have set the seed number to avoid duplicate differences.
+# 普氏分析中M2统计量的显著性检验
+# The significance test of M2 statistic in Procrustes analysis
+set.seed(1)
+pro.s.e_t <- protest(mds.s, mds.e, permutations = 999)
+pro.s.e_t
+# 偏差平方和（M2统计量）
+# Sum of squared deviations (M2 statistic)
+pro.s.e_t$ss
+# 对应p值结果
+# Corresponding p-value result
+pro.s.e_t$signif
+
+# 利用ggplot2包将结果绘制成图，首先提取降维后数据轴1和2的坐标，并且提取转换的坐标；然后进行绘制
+# Using the ggplot2 package to plot the results, first extract the coordinates of the reduced data axes 1 and 2, and then extract the transformed coordinates; Then proceed with drawing
+library(ggplot2)
+# 获得x和y轴的坐标及旋转过的坐标
+# Obtain the coordinates of the x and y axes and the rotated coordinates
+Pro_Y <- cbind(data.frame(pro.s.e$Yrot), data.frame(pro.s.e$X))
+Pro_X <- data.frame(pro.s.e$rotation)
+
+# 绘图
+# Drawing
+p1 <- ggplot(data = Pro_Y) +
+  geom_segment(aes(x = X1, y = X2,
+                   xend = (X1 + MDS1) / 2, yend = (X2 + MDS2) / 2),
+               # geom_segment 绘制两点间的直线
+               # geom_segment draws a line between two points
+               arrow = arrow(length = unit(0, 'cm')),
+               color = "#9BBB59", size = 1) +
+  geom_segment(aes(x = (X1 + MDS1) / 2, y = (X2 + MDS2) / 2,
+                   xend = MDS1, yend = MDS2),
+               arrow = arrow(length = unit(0.2, 'cm')),
+               color = "#957DB1", size = 1) +
+  geom_point(aes(X1, X2), color = "#9BBB59", size = 3, shape = 16) +
+  geom_point(aes(MDS1, MDS2), color = "#957DB1", size = 3, shape = 16) +
+  theme(panel.grid = element_blank(), # 绘制背景
+        # Draw background
+        panel.background = element_rect(color = 'black',
+                                        fill = 'transparent'),
+        legend.key = element_rect(fill = 'transparent'),
+        axis.ticks.length = unit(0.4, "lines"),
+        axis.ticks = element_line(color = 'black'),
+        axis.line = element_line(colour = "black"),
+        axis.title.x = element_text(colour = 'black', size = 14),
+        axis.title.y = element_text(colour = 'black', size = 14),
+        axis.text = element_text(colour = 'black', size = 12)) +
+  labs(x = 'Dimension 1', y = 'Dimension 2', color = '') +
+  labs(title = "Correlation between community and environment") +
+  geom_vline(xintercept = 0, color = 'gray', linetype = 2, size = 0.3) +
+  geom_hline(yintercept = 0, color = 'gray', linetype = 2, size = 0.3) +
+  geom_abline(intercept = 0, slope = Pro_X[1, 2] / Pro_X[1, 1], size = 0.3) +
+  geom_abline(intercept = 0, slope = Pro_X[2, 2] / Pro_X[2, 1], size = 0.3) +
+  annotate('text', label = 'Procrustes analysis:\n
+                    M2 = 0.6297, p-value = 0.001',
+           x = -0.3, y = 0.3, size = 4, hjust = 0) +
+  theme(plot.title = element_text(size = 14, colour = "black",
+                                  hjust = 0.5, face = "bold"))
+
+# 将结果保存为PPT
+# Save the results as a PPT
+library(export)
+graph2ppt(file = "Procrustes.ppt", append = TRUE, height = 5, width = 5)
+
+```
+
+![](Procrustes01.jpg)
+
