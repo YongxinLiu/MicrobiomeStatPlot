@@ -1,0 +1,14 @@
+Pathway	ko.id	change3	NO	change2	padjust	gFC	gene_num_min	gene_num_max	gene_num_rich	log10p
+Amyotrophic lateral sclerosis	Amyotrophic lateral sclerosis	UP	1	UP	8.06E-06	0.20063027	0	1000	1000	5.093664958
+Biosynthesis of siderophore group nonribosomal peptides	Biosynthesis of siderophore group nonribosomal peptides	UP	2	UP	2.57E-08	0.434472346	0	1000	1000	7.590066877
+Biosynthesis of various secondary metabolites - part 3	Biosynthesis of various secondary metabolites - part 3	UP	3	UP	8.06E-06	0.999881674	0	1000	1000	5.093664958
+Chemical carcinogenesis	Chemical carcinogenesis	UP	4	UP	7.09E-06	0.862348503	0	1000	1000	5.149353765
+Geraniol degradation	Geraniol degradation	UP	5	UP	1.03E-06	0.432702502	0	1000	1000	5.987162775
+Lipid metabolism	Lipid metabolism	UP	6	UP	8.06E-06	0.834879431	0	1000	1000	5.093664958
+NOD-like receptor signaling pathway	NOD-like receptor signaling pathway	DOWN	7	DOWN	7.30E-10	-0.257282582	0	1000	1000	9.13667714
+Parkinson disease	Parkinson disease	DOWN	8	DOWN	1.76E-11	-0.250933246	0	1000	1000	10.75448733
+Phosphonate and phosphinate metabolism	Phosphonate and phosphinate metabolism	UP	9	UP	1.15E-09	0.238035742	0	1000	1000	8.93930216
+Polyketide biosynthesis proteins	Polyketide biosynthesis proteins	UP	10	UP	3.85E-06	0.985070389	0	1000	1000	5.41453927
+Prion disease	Prion disease	UP	11	UP	6.24E-09	0.64563363	0	1000	1000	8.20481541
+Styrene degradation	Styrene degradation	DOWN	12	DOWN	5.95E-09	-0.208486704	0	1000	1000	8.225483034
+Ubiquinone and other terpenoid-quinone biosynthesis	Ubiquinone and other terpenoid-quinone biosynthesis	UP	13	UP	1.28E-12	0.206884429	0	1000	1000	11.89279003
