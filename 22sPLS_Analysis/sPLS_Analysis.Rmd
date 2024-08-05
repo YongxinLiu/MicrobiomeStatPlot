@@ -1,0 +1,197 @@
+---
+title: "Sparse partial least-squares regression analysis"
+author: "Defeng Bai Agricultural Genomics Institute at Shenzhen, Chinese Academy of Agricultural Sciences"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 5
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo=T, comment=NA, message=F, warning=F,
+	fig.align="center", fig.width=5, fig.height=3, dpi=300)
+```
+
+
+### sPLS analysis
+
+什么是sPLS？
+What is sPLS?
+sPLS, Sparse partial least-squares regression, 稀疏偏最小二乘回归
+
+最小二乘法，又称最小平方法，是一种数学优化建模方法。它通过最小化误差的平方和寻找数据的最佳函数匹配。利用最小二乘法可以简便的求得未知的数据，并使得求得的数据与实际数据之间误差的平方和为最小。偏最小二乘（PLS）最大化潜在变量之间的协方差，而不是相关性，它能够同时对多个响应变量进行建模，并处理嘈杂的相关变量，但在对高维数据进行操作时，其可解释性受到影响。sPLS(稀疏偏最小二乘法)在PLS的基础上，综合运用PCA,CCA和LASSO三种模型，将高维数据降维，提取主成分，开展相关性分析，使用LASSO罚分测虐挑选出核心元素，最终输出样本分布图和两组学强相关的元素集合，最后通过相关性散点图呈现关键物种和代谢物。稀疏偏最小二乘回归方法在PLS中内置了变量选择过程，并且在融合两组组学和对结果的生物学解释方面有良好的性能。也就是将lasso惩罚变量选择法加入了PLS。
+
+The least squares method, also known as the least squares method, is a mathematical optimization modeling method. It finds the best function match for the data by minimizing the sum of squared errors. The use of the least squares method can easily obtain unknown data and minimize the sum of squared errors between the obtained data and the actual data. Partial Least Squares (PLS) maximize the covariance between latent variables, rather than correlation. It can model multiple response variables simultaneously and handle noisy correlated variables, but its interpretability is affected when operating on high-dimensional data. SPLS (Sparse Partial Least Squares) combines PCA, CCA, and LASSO models on the basis of PLS to reduce the dimensionality of high-dimensional data, extract principal components, conduct correlation analysis, use LASSO penalty score to select core elements, and finally output a sample distribution map and a set of strongly correlated elements between two omics. Finally, key species and metabolites are presented through a correlation scatter plot. The sparse partial least squares regression method has a built-in variable selection process in PLS and performs well in integrating two omics and biological interpretation of the results. That is to say, the Lasso penalty variable selection method was added to PLS.
+
+
+### sPLS分析案例
+SPLS analysis case
+
+这是Jakob Stokholm课题组2023年发表于Nature Medicine上的文章，第一作者为Cristina Leal Rodríguez，题目为：The infant gut virome is associated with preschool asthma risk independently of bacteria
+
+This is an article published by the Jakob Stokholm research group in Nature Medicine in 2023. The first author is Cristina Leal Rodr í guez, and the title is: The incident gut virus is associated with pre-school astroma risk independently of bacteria
+
+![](01.sPLS.analysis.png)
+Fig. 3 a, AUC from repeated tenfold cross-validation (CV) of an sPLS model for core temperate VFCs at 1 year of age and preschool asthma (n = 133 out of 498). The box plots represent the class predictions for the median cross-validated model. The center of the boxes represents the median, their bounds represent the 25th and 75th percentiles and the lower and upper ends of whiskers represent the smallest and largest values, respectively, no further than 1.5 × IQR from the respective end of the box plot. b, Representation of the 19 signature VFCs (all caudoviruses) contributing to the optimal set of loadings for the ten-times repeated tenfold cross-validation sPLS model (n = 100) using the entire cohort (n = 631). Bars depict the median across repeats ± s.d. VFCs are sorted from top to bottom based on their mean relative abundance (higher to lower) and colored by their most frequent host (predicted by sequence similarity). All VFCs presented negative loadings, implying that they were present at lower abundances in the relative space of the core temperate virome in the infant gut of children later developing asthma compared to controls (n = 133 out of 498).
+
+图3 a，1岁时核心温带VFCs和学龄前哮喘的sPLS模型的重复十倍交叉验证（CV）的AUC（498个中n=133）。方框图表示中值交叉验证模型的类别预测。方框的中心表示中值，其边界表示第25个和第75个百分位数，胡须的下端和上端分别表示最小值和最大值，距离方框图的各个端部不超过1.5×IQR。b、使用整个队列（n=631），对十次重复十倍交叉验证的sPLS模型（n=100）的最佳载荷集做出贡献的19个特征VFC（所有caudoviruse）的表示。条形图描绘了重复±s.d.之间的中位数。VFC根据其平均相对丰度（从高到低）从上到下排序，并按其最频繁的宿主着色（通过序列相似性预测）。所有VFCs均呈负负荷，这意味着与对照组相比，它们在后来发展为哮喘的儿童的婴儿肠道中核心温带病毒组的相对空间中的丰度较低（498个中n=133）。
+
+**结果**：
+As the compositional differences were observed primarily in the temperate virome, we then aimed to identify the smallest possible set of covariant core temperate phage families that were associated with the development of asthma, and computed a virome asthma signature score for each child. This was achieved by a repeated tenfold cross-validated sparse partial least squares (sPLS) model, which accomplished adequate performance with a cross-validated median repeat area under the curve (AUC) of 0.59 (0.57–0.60) (Fig. 3a). The model selected a minimal set of 19 temperate VFCs that were jointly associated with later asthma (Fig. 3b). An increase of one standard deviation in the virome asthma score corresponded to a 34% increase in the odds of developing asthma by 5 years of age (OR = 1.34 (1.11–1.62); P = 0.002). 
+
+由于主要在温带病毒组中观察到成分差异，因此我们旨在确定与哮喘发展相关的尽可能小的协变核心温和噬菌体科，并计算每个儿童的病毒组哮喘特征得分。这是通过重复的十倍交叉验证的稀疏偏最小二乘（sPLS）模型实现的，该模型实现了足够的性能，交叉验证的曲线下重复面积中位数（AUC）为0.59（0.57–0.60）（图第3a段）。该模型选择了一组最小的19个与后期哮喘共同相关的温带VFC（图第3b段）。病毒性哮喘评分增加一个标准差，5岁时患哮喘的几率增加34%（OR=1.34（1.11-1.62）；P＝0.002）。
+
+
+### sPLS分析实战
+SPLS analysis in practice
+
+参考：https://cloud.tencent.com/developer/article/1652738
+
+```{r sPLS, include=TRUE}
+# BiocManager::install("mixOmics")
+library(mixOmics)
+
+# 1. PCA分析，主要是以线性方式结合多个独立变量进行降维分析
+# 1. PCA analysis, mainly combining multiple independent variables in a linear manner for dimensionality reduction analysis
+data(liver.toxicity)
+X <- liver.toxicity$gene
+MyResult.pca <- pca(X)  
+plotIndiv(MyResult.pca, group = liver.toxicity$treatment$Dose.Group, legend = TRUE)
+
+plotIndiv(MyResult.pca, ind.names = FALSE,
+          group = liver.toxicity$treatment$Dose.Group,
+          pch = as.factor(liver.toxicity$treatment$Time.Group),
+          legend = TRUE, title = 'Liver toxicity: genes, PCA comp 1 - 2',
+          legend.title = 'Dose', legend.title.pch = 'Exposure')
+
+plot(MyResult.pca)
+plotLoadings(MyResult.pca)
+# 从这个图可以看到每个变量对每个组间的贡献，将其展示在一个柱状图中，其中每个柱状图长度对应于样本对组间的装载量（重要性）。装载量可以是正的，也可以是负数。
+# From this graph, we can see the contribution of each variable to each group, which is displayed in a bar graph where the length of each bar corresponds to the loading (importance) of the sample between groups. The loading capacity can be either positive or negative.
+
+plotLoadings(MyResult.pca, ndisplay = 100, comp = 2,
+             name.var = liver.toxicity$gene.ID[, "geneBank"],
+             size.name = rel(0.3))
+
+# 从3D角度来看PCA的分析结果
+# From a 3D perspective, the analysis results of PCA
+MyResult.pca2 <- pca(X, ncomp = 3)
+plotIndiv(MyResult.pca2,
+          group = liver.toxicity$treatment$Dose.Group, style = "3d",
+          legend = TRUE, title = 'Liver toxicity: genes, PCA comp 1 - 2 - 3')
+
+# 2. 稀疏矩阵PCA分析，此函数相对于PCA多了keepX参数可以设置在每个组间起作用的前几个基因或者样本
+# 2. Sparse matrix PCA analysis, this function has an additional keepX parameter compared to PCA, which can be set to the top few genes or samples that work between each group
+MyResult.spca <- spca(X, ncomp = 3, keepX = c(15, 10, 5))
+plotIndiv(MyResult.spca, group = liver.toxicity$treatment$Dose.Group,
+          pch = as.factor(liver.toxicity$treatment$Time.Group),
+          legend = TRUE, title = 'Liver toxicity: genes, sPCA comp 1 - 2',
+          legend.title = 'Dose', legend.title.pch = 'Exposure')
+plotVar(MyResult.spca, cex = 1)
+# 这个图是极坐标图，主要体现各变量之间的相关性分布。
+# This graph is a polar coordinate graph, mainly reflecting the correlation distribution between variables.
+
+# 在PCA还可以直接看下explained variance score(主要体现自变量对因变量的贡献度，介于0-1之间，值越大代表贡献越大)，需要用到函数tune.pca(X)
+# In PCA, you can also directly look at the explained variance score (which mainly reflects the contribution of the independent variable to the dependent variable, ranging from 0 to 1, with larger values indicating greater contribution), which requires the use of the function tune.pca(X)
+
+# 3. PLS-DA分析，虽然偏最小二乘法最初没有应用于分类和辨别问题。后来经过改造还是被用来进行分类研究。
+# 3. PLS-DA analysis, although partial least squares method was not initially applied to classification and discrimination problems. Later, after renovation, it was still used for classification research.
+data(srbct)
+X <- srbct$gene
+Y <- srbct$class
+MyResult.splsda <- splsda(X, Y, keepX = c(50, 50))
+plotIndiv(MyResult.splsda)
+
+selectVar(MyResult.splsda, comp = 1)$value  # 查看组件1中涉及的变量名称值。
+# View the variable names involved in component 1.
+
+# 4. PLS分析，偏最小二乘回归是一种多元方法，它设计两个数据矩阵X和Y。通过对两个矩阵的结构建模，PLS超越了传统的多重回归。与传统的多元回归模型不同，它不局限于不相关的变量。PLS的优点之一是它可以处理许多有噪声的、共线性和缺失变量，还可以同时在Y中建模几个响应变量。
+# 4. PLS analysis, partial least squares regression is a multivariate method that designs two data matrices X and Y. By modeling the structure of two matrices, PLS goes beyond traditional multiple regression. Unlike traditional multiple regression models, it is not limited to unrelated variables. One of the advantages of PLS is that it can handle many noisy, collinear, and missing variables, and can also model several response variables simultaneously in Y.
+data(nutrimouse)
+X <- nutrimouse$gene 
+Y <- nutrimouse$lipid
+MyResult.spls <- spls(X, Y, keepX = c(25, 25), keepY = c(5, 5)) 
+plotIndiv(MyResult.spls)
+
+plotIndiv(MyResult.spls, group = nutrimouse$genotype,
+          rep.space = "XY-variate", legend = TRUE,
+          legend.title = 'Genotype',
+          ind.names = nutrimouse$diet,
+          title = 'Nutrimouse: sPLS')
+
+plotArrow(MyResult.spls, group = nutrimouse$diet, legend = TRUE,
+          X.label = 'PLS comp 1', Y.label = 'PLS comp 2')
+# 这个图主要是通过X，Y的组间将样本进行短箭头的连接。通过大量的短箭头可以看出样本在两个数据集之间良好的一致性。
+# This figure mainly connects the samples with short arrows between X and Y groups. Through a large number of short arrows, it can be seen that the samples have good consistency between the two datasets.
+
+# 各变量之间关系的可视化
+# Visualization of relationships between variables
+# X11()
+# cim(MyResult.spls, comp = 1)
+
+# network(MyResult.spls, comp = 1)
+# Error in plot.new() : figure margins too large
+# network(MyResult.spls, comp = 1, cutoff = 0.6, save = 'jpeg', name.save = 'PLSnetwork') 就可以进行对图像的保存。
+# The image can be saved with the command: network(MyResult.spls, comp = 1, cutoff = 0.6, save = 'jpeg', name.save = 'PLSnetwork').
+
+# 此外我们还能对模型的组件进行判别，最终确定需要多少个组间合适。判别用到了交叉验证的方法。
+# In addition, we can also distinguish the components of the model and ultimately determine how many groups are suitable. Cross-validation method was used for discrimination.
+# set.seed(30) # for reproducibility in this vignette, otherwise increase nrepeat
+# perf.pls <- perf(MyResult.spls, validation = "Mfold", folds = 5,
+#                  progressBar = FALSE, nrepeat = 10)
+# plot(perf.pls[["measures"]][["Q2.total"]])
+# plot(perf.pls)
+# 此处出现bug：Error in plot.window(...) : need finite 'xlim' values
+# abline(h = 0.0975)
+
+# 最后是最优变量数的获取，需要用到和PCA类似的函数tune.pls
+# Finally, obtaining the optimal number of variables requires the use of a function similar to PCA, tune.pls
+list.keepX <- c(2:10, 15, 20)
+# tuning based on MAE
+set.seed(30) # for reproducibility in this vignette, otherwise increase nrepeat
+tune.spls.MAE <- tune.spls(X, Y, ncomp = 3,
+                           test.keepX = list.keepX,
+                           validation = "Mfold", folds = 5,
+                           nrepeat = 10, progressBar = FALSE,
+                           measure = 'cor')
+plot(tune.spls.MAE, legend.position = 'topright')
+
+# 5. DIABLO分析，相当于是PLS的扩展，可以在X中引入多个矩阵。
+# 5. DIABLO analysis, equivalent to an extension of PLS, can introduce multiple matrices in X.
+data(breast.TCGA)
+# extract training data and name each dataframe
+X <- list(mRNA =breast.TCGA$data.train$mrna,
+         miRNA = breast.TCGA$data.train$mirna,
+         protein = breast.TCGA$data.train$protein)
+Y <- breast.TCGA$data.train$subtype
+list.keepX <- list(mRNA = c(16, 17),miRNA = c(18,5), protein = c(5, 5))
+MyResult.diablo <- block.splsda(X, Y,keepX=list.keepX)
+plotIndiv(MyResult.diablo,
+         ind.names = FALSE,
+         legend=TRUE, cex=c(1,2,3),
+         title = 'BRCA with DIABLO')
+
+plotVar(MyResult.diablo, var.names =c(FALSE, FALSE, TRUE),
+       legend=TRUE, pch=c(16,16,1))
+
+plotDiablo(MyResult.diablo, ncomp = 1)
+#从图中可以看出DIABLO在mRNA和蛋白质数据集之间提取了很强的相关性。
+#From the graph, it can be seen that DIABLO extracts a strong correlation between the mRNA and protein datasets.
+
+#变量之间的相关性
+#The correlation between variables
+circosPlot(MyResult.diablo, cutoff=0.7)
+#circos图基于相似矩阵构建的，表示不同类型变量之间的相关性图
+#Circos diagram is constructed based on similarity matrix, representing the correlation between different types of variables
+
+#ROC曲线的绘制
+#Drawing of ROC curve
+Myauc.diablo <- auroc(MyResult.diablo,roc.block = "miRNA", roc.comp = 2)
+
+#还可以利用caret软件包实现
+#You can also use the caret package in R software to achieve
+
+```
+
