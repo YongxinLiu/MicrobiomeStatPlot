@@ -1,0 +1,124 @@
+---
+title: "Generalized estimating equation analysis"
+author: "Defeng Bai Agricultural Genomics Institute at Shenzhen, Chinese Academy of Agricultural Sciences"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 5
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo=T, comment=NA, message=F, warning=F,
+	fig.align="center", fig.width=5, fig.height=3, dpi=300)
+```
+
+
+### Generalized estimating equation analysis (GEE)
+
+什么是广义估计方程分析（Generalized estimating equation analysis）？
+What is Generalized Estimating Equation Analysis?
+参考：https://mp.weixin.qq.com/s/nJb94D61Tb7Cc6jGzPrlxw
+
+临床研究中经常遇到重复测量数据或相关数据的问题，如研究一种药物时，需要观察患者在治疗前后的指标变化。这些数据之间存在相关性和依赖结构，传统的分析方法可能无法很好的处理这些问题。广义估计方程是一种基于广义线性模型的非参数估计方法，可以有效处理这类数据分析问题。GEE是一种灵活的方法，对于不同类型的数据都可以适用。它可以通过考虑观测之间的相关性来提高参数估计的准确度，并且不需要对数据的概率分析进行过多的假设。在临床医学领域，广义估计方程的应用得到了广泛关注，并且已经在很多研究中证明了它的有效性。
+In clinical research, repeated measurement data or related data are often encountered, such as when studying a drug, it is necessary to observe changes in the patient's indicators before and after treatment. There are correlations and dependency structures between these data, and traditional analysis methods may not be able to handle these issues well. Generalized estimation equation is a non parametric estimation method based on generalized linear models, which can effectively handle such data analysis problems. GEE is a flexible method that can be applied to different types of data. It can improve the accuracy of parameter estimation by considering the correlation between observations, without making too many assumptions about the probability analysis of the data. In the field of clinical medicine, the application of generalized estimation equations has received widespread attention and its effectiveness has been proven in many studies.
+
+原理和概念：
+Principles and Concepts:
+广义估计方程设计两部分内容，一是模型的选择，二是矩阵结构。在模型的选择方面，可以根据具体的问题选择适当的广义线性模型，如logit，probit或正态等函数。在建立模型时，需要考虑自变量和因变量之间的函数关系，并通过最大似然估计方法对模型参数进行估计。
+The design of generalized estimation equations consists of two parts: model selection and matrix structure. In terms of model selection, appropriate generalized linear models can be selected based on specific problems, such as logit, probit, or normal functions. When establishing a model, it is necessary to consider the functional relationship between the independent and dependent variables, and estimate the model parameters through the maximum likelihood estimation method.
+在矩阵结构方法，GEE需要考虑观测之间的相关性和依赖结构，即协方差结构。常见的协方差结构包括独立、交叉、自相关等形式。通过选择适当的协方差结构，可以更好的描述数据之间的相关性，从而提高参数估计的准确性。
+In the matrix structure method, GEE needs to consider the correlation and dependency structure between observations, namely the covariance structure. Common covariance structures include independence, crossover, autocorrelation, and other forms. By selecting appropriate covariance structures, the correlation between data can be better described, thereby improving the accuracy of parameter estimation.
+GEE的核心思想是建立一组广义估计方程，利用加权修正对参数进行估计，从而得到更文件的结果。在这个过程中，GEE采用了类似于迭代夹权最小二乘法的方法，以最小化误差函数。
+The core idea of GEE is to establish a set of generalized estimation equations, use weighted correction to estimate parameters, and obtain more accurate results. In this process, GEE adopted a method similar to the iterative clamp weight least squares method to minimize the error function.
+GEE概念主要包括以下几个要素：1.依赖结构，指的是观测数据之间的相关性和依赖关系，常见的依赖结构包括自相关结构、交叉分类结构等。2.线性预测模型，使用广义线性模型作为GEE的基础模型，其中自变量可以是连续变量，分类变量或其他形式的数据。3.广义估计方程，通过建立一组方程，利用加权修正对参数进行估计，从而得到更可靠的结果。
+The concept of GEE mainly includes the following elements: 1. Dependency structure, which refers to the correlation and dependency relationship between observed data. Common dependency structures include autocorrelation structure, cross classification structure, etc. 2. Linear prediction model, using generalized linear model as the basic model of GEE, where the independent variables can be continuous variables, categorical variables, or other forms of data. 3. Generalized estimation equation, by establishing a set of equations and using weighted correction to estimate parameters, more reliable results can be obtained.
+
+
+### 广义估计方程分析示例
+Example of generalized estimation equation analysis
+
+这是Jakob Stokholm课题组2023年发表于Nature Medicine上的文章，第一作者为Cristina Leal Rodríguez，题目为：The infant gut virome is associated with preschool asthma risk independently of bacteria
+
+This is an article published by the Jakob Stokholm research group in Nature Medicine in 2023. The first author is Cristina Leal Rodr í guez, and the title is: The incident gut virus is associated with pre-school astroma risk independently of bacteria
+
+![](01.GEE.01.png)
+Fig. 5 b, Risk analysis of asthma trajectory over the first 5 years of life using generalized estimating equation analysis (GEE) according to virome and bacterial (16S) asthma signature scores (left, virome; right, 16S) with corresponding overall two-sided P values. Children were grouped into high (orange solid line, above median) and low (yellow dotted line, below median) score groups. Associations with ongoing asthma diagnosis are shown for each year. ***P < 0.001, **P < 0.01, *P < 0.05. NS, not significant (P > 0.05). P values obtained from two-sided logistic regressions.
+
+图5 b，根据病毒组和细菌（16S）哮喘特征评分（左，病毒组；右，16S）和相应的双侧P值，使用广义估计方程分析（GEE）对生命前5年的哮喘轨迹进行风险分析。儿童被分为高分组（橙色实线，高于中位数）和低分组（黄色虚线，低于中位数）。显示了每年与正在进行的哮喘诊断的相关性***P＜0.001，**P＜0.01，*P＜0.05。NS无显著性差异（P>0.05）。通过双侧逻辑回归获得的P值。
+
+**结果**：
+
+Given that preschool asthma often has a transient course, the virome and bacteriome scores were also used to investigate the asthma persistence–by time interaction during the first 5 years of life. The prevalence of asthma from baseline to each time point was compared between children with high (above median) and low (below median) signature scores from the temperate virome (OR = 1.87 (1.24–2.83); P = 0.003) and bacteriome (OR = 1.71 (1.13–2.58); P = 0.01) (Fig. 5b). In addition, the association between virome scores and ongoing asthma diagnosis, tested yearly, highlighted that the virome score was indicative of a more transient phenotype of asthma, whereas the bacteriome indicated a more persistent phenotype.
+
+鉴于学龄前哮喘通常有一个短暂的过程，病毒组和细菌组评分也被用于研究哮喘在生命的前5年的持续性——通过时间相互作用。从基线到每个时间点，在温带病毒组特征得分高（高于中位数）和低（低于中位数）的儿童之间比较哮喘的患病率（OR=1.87（1.24–2.83）；P=0.003）和菌群（OR=1.71（1.13-2.58）；P=0.01）（图5b）。此外，每年测试的病毒组评分与正在进行的哮喘诊断之间的相关性突出表明，病毒组评分表明哮喘的表型更为短暂，而细菌组则表明表型更为持久。
+
+
+### 广义估计方程分析实战
+Generalized Estimating Equation Analysis using R software.
+
+参考：https://mp.weixin.qq.com/s/1TCxQ2sQ9DvtlEP2N4Jnqg
+
+对于纵向研究的数据或者重复测量数据，不能简单的使用方差分析、广义线性回归等方法，因为数据之间极可能存在一定程度的相关性，比如说同一动物连续一周观测提问，前一天的体温与后一天的体温之间是存在关联的，而不是独立的。广义估计方程可以简单理解为广义线性混合模型的拓展，是一种半参数化方法，相较之下所受的条件限制较少，同时结果更加稳健。
+For longitudinal research data or repeated measurement data, simple methods such as analysis of variance and generalized linear regression cannot be used, as there may be a certain degree of correlation between the data. For example, if the same animal is observed continuously for a week, there is a correlation between the temperature of the previous day and the temperature of the following day, rather than independence. The generalized estimation equation can be simply understood as an extension of the generalized linear mixed model, which is a semi parametric method that is less constrained by conditions and results are more robust.
+
+
+```{r GEE, include=TRUE}
+# 加载R包
+# Load packages
+library(geepack)
+library(tidyverse)
+
+# 加载数据
+# Load data
+data(dietox)
+
+# 数据因子化
+# Factorize data
+dietox$Cu <- as.factor(dietox$Cu)
+dietox$Evit <- as.factor(dietox$Evit)
+mf <- formula(Weight ~ Time + Evit + Cu)
+head(dietox)
+
+# 独立无相关性
+# Independence covariance
+# 独立无相关性的结果与GLM相似，假设重复测量之间没有相关性
+# The independent and uncorrelated results are similar to GLM, assuming that there is no correlation between repeated measurements
+geeInd <- geeglm(mf, id=Pig, data=dietox, family=gaussian, corstr="ind")
+summary(geeInd)
+anova(geeInd)
+# 仅time与体重相关
+# Only time is related to weight
+
+# 交互相关，也称为对称相关
+# Exchangeable correlation
+# 同一指标，不同批次的测量之间的相关性相同，比如说第一次测量与第2次和第3次之间的相关性相同
+# The correlation between measurements of the same indicator and different batches is the same, for example, the correlation between the first measurement and the second and third measurements is the same
+geeEx <- geeglm(mf, id=Pig, data=dietox, family=gaussian, corstr="ex")
+summary(geeEx)
+anova(geeEx)
+# 同样的结果，仅time显著相关，系数和标准误几乎是相同的，差异非常小
+# The same results only show a significant correlation with time, with coefficients and standard errors almost identical and differences very small
+
+# 自回归相关，相关性随两个观测值相隔多少个时间点的幂而减小
+# AR(1) autoregressive correlation
+# 相邻观测之间的相关性最大，随着观测时间点的推移，相关性逐渐减小
+# The correlation between adjacent observations is the greatest, and with time, the correlation gradually decreases
+geeAr1 <- geeglm(mf, id=Pig, data=dietox, family=gaussian, corstr="ar1")
+summary(geeAr1)
+anova(geeAr1)
+# 同样的结果，仅time显著相关，系数和标准误几乎是相同的，差异非常小
+# The same results only show a significant correlation with time, with coefficients and standard errors almost identical and differences very small
+
+# 非结构化
+# Unstructured correlation
+geeUns <- geeglm(mf, id=Pig, data=dietox, family=gaussian, corstr="unstructured")
+summary(geeUns)
+anova(geeUns)
+# 此时Evit成为了一个掺杂因素，系数和标准误出现了一定程度的变化
+# At this point, Evit becomes a confounding factor, and there is a certain degree of variation in the coefficient and standard error
+
+```
+
+
