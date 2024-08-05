@@ -11,7 +11,7 @@
 
 <meta name="author" content="Defeng Bai Agricultural Genomics Institute at Shenzhen, Chinese Academy of Agricultural Sciences" />
 
-<meta name="date" content="2024-06-17" />
+<meta name="date" content="2024-08-05" />
 
 <title>Causal Mediation Analysis</title>
 
@@ -353,7 +353,7 @@ display: none;
 <h1 class="title toc-ignore">Causal Mediation Analysis</h1>
 <h4 class="author">Defeng Bai Agricultural Genomics Institute at
 Shenzhen, Chinese Academy of Agricultural Sciences</h4>
-<h4 class="date">2024-06-17</h4>
+<h4 class="date">2024-08-05</h4>
 
 </div>
 
@@ -473,24 +473,20 @@ mediator revealed some things about processes. Therefore, mediators help
 us find out how the independent variable affects the dependent variable.
 By running mediation analysis, we are testing hypotheses about how the
 independent variable affects the process of the dependent variable.</p>
-<pre class="r"><code>#模拟一个中介效应
-#Simulate a mediating effect
-df=iris
+<pre class="r"><code># Simulate a mediating effect
+df &lt;- iris
 set.seed(2344)
-df$random1 &lt;- runif(nrow(df),min = min(df$Sepal.Length),max = max(df$Sepal.Length))
-df$mediator &lt;- df$Sepal.Length*0.35 + df$random1*0.65
+df$random1 &lt;- runif(nrow(df), min = min(df$Sepal.Length), max = max(df$Sepal.Length))
+df$mediator &lt;- df$Sepal.Length * 0.35 + df$random1 * 0.65
 
-#模拟一个因变量
-#Simulate a dependent variable
-df$random2 &lt;- runif(nrow(df),min = min(df$mediator),max = max(df$mediator))
-df$dv &lt;- df$mediator*0.35 + df$random2*0.65
+# Simulate a dependent variable
+df$random2 &lt;- runif(nrow(df), min = min(df$mediator), max = max(df$mediator))
+df$dv &lt;- df$mediator * 0.35 + df$random2 * 0.65
 
-#统计分析(Statistic analysis)
-#1.总效应(Total effect)
-#总效应描述的是自变量对因变量的总影响。
-#The total effect describes the total impact of the independent variable on the dependent variable
-fit.totaleffect &lt;- lm(dv ~ Sepal.Length,df)
-summary(fit.totaleffect)</code></pre>
+# Statistical analysis
+# 1. Total effect: The total impact of the independent variable on the dependent variable
+fit_total_effect &lt;- lm(dv ~ Sepal.Length, df)
+summary(fit_total_effect)</code></pre>
 <pre><code>
 Call:
 lm(formula = dv ~ Sepal.Length, data = df)
@@ -509,12 +505,10 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 Residual standard error: 0.5991 on 148 degrees of freedom
 Multiple R-squared:  0.02086,   Adjusted R-squared:  0.01424 
 F-statistic: 3.153 on 1 and 148 DF,  p-value: 0.07786</code></pre>
-<pre class="r"><code>#2.自变量对mediator的影响
-#2. The impact of independent variables on mediators
-#为了建议任何mediation，自变量必须显著影响mediator，因此，再做一次简单的线性回归，将自变量与mediator变量加上这次可能有的任何协变量进行回归
-#In order to suggest any mediation, the independent variable must significantly influence the mediator. Therefore, a simple linear regression is performed by adding any possible covariates to the independent variable and mediator variable for regression
-fit.mediator &lt;- lm(mediator~Sepal.Length,df)
-summary(fit.mediator)</code></pre>
+<pre class="r"><code># 2. Impact of independent variable on mediator
+# The independent variable must significantly influence the mediator
+fit_mediator &lt;- lm(mediator ~ Sepal.Length, df)
+summary(fit_mediator)</code></pre>
 <pre><code>
 Call:
 lm(formula = mediator ~ Sepal.Length, data = df)
@@ -533,12 +527,10 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 Residual standard error: 0.634 on 148 degrees of freedom
 Multiple R-squared:  0.1843,    Adjusted R-squared:  0.1788 
 F-statistic: 33.45 on 1 and 148 DF,  p-value: 4.194e-08</code></pre>
-<pre class="r"><code>#3.mediator对因变量的影响
-#3. The influence of the mediator on the dependent variable
-#确认再控制自变量的情况下，mediator影响因变量。这意味着，要发生mediation，mediator必须比自变量更能解释因变量的方差或其他部分。因此，自变量和mediator对因变量做一个简单的线性回归，再加上可能有的任何协变量。
-#Under the condition of confirming and controlling the independent variable, the mediator affects the dependent variable. This means that in order for mediation to occur, the mediator must be able to better explain the variance or other parts of the dependent variable than the independent variable. Therefore, a simple linear regression is performed between the independent variable and the mediator on the dependent variable, along with any possible covariates.
-fit.dv=lm(dv~Sepal.Length+mediator,df)
-summary(fit.dv)</code></pre>
+<pre class="r"><code># 3. Influence of mediator on dependent variable
+# The mediator must better explain the variance of the dependent variable than the independent variable
+fit_dv &lt;- lm(dv ~ Sepal.Length + mediator, df)
+summary(fit_dv)</code></pre>
 <pre><code>
 Call:
 lm(formula = dv ~ Sepal.Length + mediator, data = df)
@@ -558,15 +550,11 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 Residual standard error: 0.5431 on 147 degrees of freedom
 Multiple R-squared:  0.2007,    Adjusted R-squared:  0.1898 
 F-statistic: 18.45 on 2 and 147 DF,  p-value: 7.093e-08</code></pre>
-<pre class="r"><code>#中介效应是一个小型结构方程模型
-#The mediating effect is a small-scale structural equation model
-
-#4.因果中介分析（causal mediation analysis）
-#通过R包mediation来完成。它将我们刚刚估计的回归模型，结合起来并估计整个mediation
-#Complete through R package mediation. It combines the regression model we just estimated and estimates the entire mediation
-#install.packages(&quot;mediation&quot;)
+<pre class="r"><code># 4. Causal mediation analysis
+# Using the mediation package to estimate the entire mediation
+# install.packages(&quot;mediation&quot;)
 library(mediation)
-results &lt;- mediate(fit.mediator, fit.dv, treat=&#39;Sepal.Length&#39;, mediator=&#39;mediator&#39;, boot=T)
+results &lt;- mediate(fit_mediator, fit_dv, treat = &#39;Sepal.Length&#39;, mediator = &#39;mediator&#39;, boot = TRUE)
 summary(results)</code></pre>
 <pre><code>
 Causal Mediation Analysis 
@@ -599,17 +587,12 @@ Simulations: 1000 </code></pre>
 # 
 # Sample Size Used: 150 
 # 
-# 
 # Simulations: 1000 
 
-#ACME代表平均因果中介效应
-#ACME represents the average causal mediating effect
-#ADE是平均直接效应的意思
-#ADE means average direct effect
-#Total effect是指IV对DV的总效应（直接+间接）
-#Total effect refers to the total effect of IV on DV (direct+indirect)
-#Prop. Mediated描述的是IV对DV的影响通过mediator的比例
-#Prop Mediated describes the impact of IV on DV through the proportion of mediators</code></pre>
+# ACME: Average causal mediating effect
+# ADE: Average direct effect
+# Total Effect: Total effect of IV on DV (direct + indirect)
+# Prop. Mediated: Proportion of the total effect of IV on DV mediated by the mediator</code></pre>
 </div>
 
 

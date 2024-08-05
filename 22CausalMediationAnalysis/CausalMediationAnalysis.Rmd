@@ -66,48 +66,38 @@ When considering mediation analysis, some important considerations include: 1. M
 
 
 ```{r CMA, include=TRUE}
-#模拟一个中介效应
-#Simulate a mediating effect
-df=iris
+# Simulate a mediating effect
+df <- iris
 set.seed(2344)
-df$random1 <- runif(nrow(df),min = min(df$Sepal.Length),max = max(df$Sepal.Length))
-df$mediator <- df$Sepal.Length*0.35 + df$random1*0.65
+df$random1 <- runif(nrow(df), min = min(df$Sepal.Length), max = max(df$Sepal.Length))
+df$mediator <- df$Sepal.Length * 0.35 + df$random1 * 0.65
 
-#模拟一个因变量
-#Simulate a dependent variable
-df$random2 <- runif(nrow(df),min = min(df$mediator),max = max(df$mediator))
-df$dv <- df$mediator*0.35 + df$random2*0.65
+# Simulate a dependent variable
+df$random2 <- runif(nrow(df), min = min(df$mediator), max = max(df$mediator))
+df$dv <- df$mediator * 0.35 + df$random2 * 0.65
 
-#统计分析(Statistic analysis)
-#1.总效应(Total effect)
-#总效应描述的是自变量对因变量的总影响。
-#The total effect describes the total impact of the independent variable on the dependent variable
-fit.totaleffect <- lm(dv ~ Sepal.Length,df)
-summary(fit.totaleffect)
+# Statistical analysis
+# 1. Total effect: The total impact of the independent variable on the dependent variable
+fit_total_effect <- lm(dv ~ Sepal.Length, df)
+summary(fit_total_effect)
 
-#2.自变量对mediator的影响
-#2. The impact of independent variables on mediators
-#为了建议任何mediation，自变量必须显著影响mediator，因此，再做一次简单的线性回归，将自变量与mediator变量加上这次可能有的任何协变量进行回归
-#In order to suggest any mediation, the independent variable must significantly influence the mediator. Therefore, a simple linear regression is performed by adding any possible covariates to the independent variable and mediator variable for regression
-fit.mediator <- lm(mediator~Sepal.Length,df)
-summary(fit.mediator)
+# 2. Impact of independent variable on mediator
+# The independent variable must significantly influence the mediator
+fit_mediator <- lm(mediator ~ Sepal.Length, df)
+summary(fit_mediator)
 
-#3.mediator对因变量的影响
-#3. The influence of the mediator on the dependent variable
-#确认再控制自变量的情况下，mediator影响因变量。这意味着，要发生mediation，mediator必须比自变量更能解释因变量的方差或其他部分。因此，自变量和mediator对因变量做一个简单的线性回归，再加上可能有的任何协变量。
-#Under the condition of confirming and controlling the independent variable, the mediator affects the dependent variable. This means that in order for mediation to occur, the mediator must be able to better explain the variance or other parts of the dependent variable than the independent variable. Therefore, a simple linear regression is performed between the independent variable and the mediator on the dependent variable, along with any possible covariates.
-fit.dv=lm(dv~Sepal.Length+mediator,df)
-summary(fit.dv)
-#中介效应是一个小型结构方程模型
-#The mediating effect is a small-scale structural equation model
+# 3. Influence of mediator on dependent variable
+# The mediator must better explain the variance of the dependent variable than the independent variable
+fit_dv <- lm(dv ~ Sepal.Length + mediator, df)
+summary(fit_dv)
 
-#4.因果中介分析（causal mediation analysis）
-#通过R包mediation来完成。它将我们刚刚估计的回归模型，结合起来并估计整个mediation
-#Complete through R package mediation. It combines the regression model we just estimated and estimates the entire mediation
-#install.packages("mediation")
+# 4. Causal mediation analysis
+# Using the mediation package to estimate the entire mediation
+# install.packages("mediation")
 library(mediation)
-results <- mediate(fit.mediator, fit.dv, treat='Sepal.Length', mediator='mediator', boot=T)
+results <- mediate(fit_mediator, fit_dv, treat = 'Sepal.Length', mediator = 'mediator', boot = TRUE)
 summary(results)
+
 # Causal Mediation Analysis 
 # 
 # Nonparametric Bootstrap Confidence Intervals with the Percentile Method
@@ -122,17 +112,12 @@ summary(results)
 # 
 # Sample Size Used: 150 
 # 
-# 
 # Simulations: 1000 
 
-#ACME代表平均因果中介效应
-#ACME represents the average causal mediating effect
-#ADE是平均直接效应的意思
-#ADE means average direct effect
-#Total effect是指IV对DV的总效应（直接+间接）
-#Total effect refers to the total effect of IV on DV (direct+indirect)
-#Prop. Mediated描述的是IV对DV的影响通过mediator的比例
-#Prop Mediated describes the impact of IV on DV through the proportion of mediators
+# ACME: Average causal mediating effect
+# ADE: Average direct effect
+# Total Effect: Total effect of IV on DV (direct + indirect)
+# Prop. Mediated: Proportion of the total effect of IV on DV mediated by the mediator
 
 ```
 
