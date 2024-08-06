@@ -1,0 +1,347 @@
+---
+title: "Association rule minning"
+author: "Defeng Bai Agricultural Genomics Institute at Shenzhen, Chinese Academy of Agricultural Sciences"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 5
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo=T, comment=NA, message=F, warning=F,
+	fig.align="center", fig.width=5, fig.height=3, dpi=300)
+```
+
+
+## 关联规则挖掘
+Association rule mining
+
+参考：https://mp.weixin.qq.com/s/ysC0I3eFSM0rHE9z1YrdpQ
+
+什么是关联规则？
+What are association rules?
+
+关联规则是数据挖掘领域的一种常见算法，用于寻找数据集中的有趣关系。这种算法可以帮助我们发现数据集中的频繁项集，然后将这些频繁项集转化为关联规则。这些规则可以帮助我们理解数据集中的特定模式，并用于预测未来的行为或事件。两种主要的关联规则算法包括Apriori算法和FP-growth算法。
+
+Association rules are a common algorithm in the field of data mining that is used to find interesting relationships in a data set. This algorithm can help us discover frequent item sets in a data set and then convert these frequent item sets into association rules. These rules can help us understand specific patterns in a data set and be used to predict future behaviors or events. The two main association rule algorithms include the Apriori algorithm and the FP-growth algorithm.
+
+关联规则的基本思想是发现数据集中的频繁项集，并转换为关联规则，这些规则可以用于预测未来的行为或事件。
+
+The basic idea of association rules is to discover frequent item sets in a data set and convert them into association rules, which can be used to predict future behaviors or events.
+
+寻找关联规则是一个需要大量计算的任务，特别是当数据集很大时。因此，我们通常使用机器学习算法来帮助我们快速有效地寻找关联规则。
+
+Finding association rules is a computationally intensive task, especially when the dataset is large. Therefore, we often use machine learning algorithms to help us find association rules quickly and efficiently.
+
+常用关联规则算法
+Common association rule algorithms
+
+1.Apriori算法(Apriori algorithm)
+-算法原理(Algorithm principle)
+Apriori算法是一种常用的关联规则算法，它通过扫描数据集多次，从而找到频繁项集。Apriori算法使用一种称为“先验”的概念，它假设如果一个项集是频繁的，那么它的所有子集也必须是频繁的。
+The Apriori algorithm is a commonly used association rule algorithm that finds frequent item sets by scanning the data set multiple times. The Apriori algorithm uses a concept called "prior", which assumes that if an item set is frequent, then all its subsets must also be frequent.
+
+2.FP-growth算法(FP-growth algorithm)
+-算法原理(Algorithm principle)
+FP-growth算法是一种基于树的算法，与Apriori算法不同。它使用一种称为“FP树”的数据结构来查找频繁项集。FP-growth算法通过一遍扫描来构建FP树，并使用它来查找频繁项集。相比之下，Apriori算法需要多次扫描数据集，因此效率较低。
+The FP-growth algorithm is a tree-based algorithm, which is different from the Apriori algorithm. It uses a data structure called "FP tree" to find frequent itemsets. The FP-growth algorithm builds the FP tree by scanning once and uses it to find frequent itemsets. In contrast, the Apriori algorithm needs to scan the data set multiple times, so it is less efficient.
+
+FP-growth算法在处理大型数据集时表现良好。
+FP-growth algorithms perform well when dealing with large datasets.
+
+参考：https://mp.weixin.qq.com/s/Rjuc7OFlljMtEA9-RcRtmA
+
+关联规则分析对于挖掘事件之间的联系具有重要作用，尤其是在海量的数据中。中医用药的辨证论治，个性化治疗所产生的海量的方剂，是医生数十年的经验总结，其中包含着众多尚未发现的潜在用药规律，反映了方药配伍的特殊规律与内在联系，应用关联规则方法，对大量验方进行药对挖掘研究，证实类方中一些已知药对的常用性以及发现未知药对，这对于揭示药对配伍的科学内涵，挖掘和提高中医方药理论，以及拓展临床用药思路，都具有十分重要的意义。
+
+Association rule analysis plays an important role in mining the connections between events, especially in massive data. The vast amount of prescriptions produced by the dialectical treatment of TCM and personalized treatment are the summary of doctors' decades of experience, which contain many potential medication rules that have not yet been discovered, reflecting the special rules and internal connections of prescription-drug compatibility. Applying the association rule method, a large number of prescriptions are mined for drug pairs, confirming the commonness of some known drug pairs in similar prescriptions and discovering unknown drug pairs. This is of great significance for revealing the scientific connotation of drug pair compatibility, mining and improving TCM prescription-drug theory, and expanding clinical medication ideas.
+
+规则关联分析常用算法主要有Apriori、FP-Tree、Eclat和灰色关联法；其中Apriori是关联规则分析中最常用、最经典的挖掘频繁项集的算法，核心思想是通过连接产生候选项及其支持度，然后通过剪枝生成频繁项集，无法处理连续型数值变量，往往分析之前需要对数据进行离散化。
+
+Common algorithms for rule association analysis include Apriori, FP-Tree, Eclat and grey association method; Apriori is the most commonly used and classic algorithm for mining frequent item sets in association rule analysis. The core idea is to generate candidate items and their support through connection, and then generate frequent item sets through pruning. It cannot handle continuous numerical variables, and often needs to discretize data before analysis.
+
+相关概念
+Related concepts
+项集：项的集合。包含k个项的项集成为k项集，如集合{牛奶、麦片、糖}是一个3项集。
+Itemset: A collection of items. An item set containing k items is called a k-item set, such as the set {milk, cereal, sugar} is a 3-item set.
+频繁项集：如果项集I的相对支持度满足预定义的最小支持度阈值，则I是频繁项集。
+Frequent itemsets: If the relative support of itemset I satisfies a predefined minimum support threshold, then I is a frequent itemset.
+支持度（相对支持度）：项集A、B同时发生的概率。
+Support (relative support): the probability that item sets A and B occur simultaneously.
+置信度：项集A发生，则项集B发生的概率。
+Confidence: The probability that item set B will occur if item set A occurs.
+最小支持度：用户或专家定义的衡量支持度的一个阈值，表示项集在统计意义上的最低重要性。
+Minimum support: A threshold for measuring support defined by users or experts, indicating the minimum statistical importance of an item set.
+最小置信度：用户或专家定义的衡量置信度的一个阈值，表示关联规则的最低可靠性。同时满足最小支持度阈值和最小置信度阈值的规则成为强规则。
+Minimum confidence: A threshold for measuring confidence defined by users or experts, indicating the minimum reliability of association rules. Rules that meet both the minimum support threshold and the minimum confidence threshold are considered strong rules.
+
+
+## 关联规则挖掘案例
+Association rule mining case
+
+这是来来自于布鲁塞尔自由大学的Karoline Faust和Jeroen Raes在2012年发表于Nature Reviews上的论文用到的一个例子。论文题目为：Microbial interactions: from networks 
+to models
+
+This is an example from a paper published in Nature Reviews in 2012 by Karoline Faust and Jeroen Raes from the Free University of Brussels. The title of the paper is: Microbial interactions: from networks to models
+
+![](e1.arm.01.jpg)
+
+Figure 3 | Examples for the prediction of pairwise versus complex relationships. Pairwise (a) and complex relationships (b) were inferred from a global microbial operational taxonomic unit (OTU) presence–absence data set22. a | Each node represents an OTU, and each edge represents a significant pairwise association between them. Significant relationships were detected with the hypergeometric distribution (the P values of which were adjusted for multiple testing). The edge thickness increases with significance. b | This network summarizes association rules mined with the a priori algorithm21,109 and filtered with the multiple testing correction suggested in REF. 110. The text box provides an example for such a rule. As the data set is extremely sparse, rules are restricted to positive associations involving up to three OTUs. Each node in network b represents an OTU, whereas each edge corresponds to a rule. In contrast to network a, an edge can connect three OTUs if they are all involved in the same rule. For ease of interpretation, the same OTU (with the same node fill and border colour) may occur  multiple times in network b.
+
+图 3 | 预测成对关系与复杂关系的示例。成对关系 (a) 和复杂关系 (b) 是从全球微生物操作分类单元 (OTU) 存在-不存在数据集 22 推断出来的。a | 每个节点代表一个 OTU，每条边代表它们之间的显著成对关联。使用超几何分布 (其 P 值经过多重检验调整) 检测到显著关系。边的厚度随显著性而增加。b | 该网络总结了使用先验算法 21,109 挖掘的关联规则，并使用 REF. 110 中建议的多重测试校正进行过滤。文本框提供了此类规则的一个示例。由于数据集非常稀疏，规则仅限于涉及最多三个 OTU 的正关联。网络 b 中的每个节点代表一个 OTU，而每条边对应一条规则。与网络 a 相比，如果三个 OTU 都涉及同一条规则，一条边可以连接它们。为了便于解释，相同的 OTU（具有相同的节点填充和边框颜色）可能在网络 b 中出现多次。
+
+**结果**
+A complex relationship that is inferred through multiple regression or association rule mining can be represented in the resulting network as an edge that connects more than two nodes in a directed way to point from the independent taxa to the dependent taxon. Networks with such edges are formally known as directed hypergraphs. FIGURE 3a displays a network inferred from a similarity-based approach, in which pairwise relationships are represented by edges connecting two nodes, whereas FIG. 3b gives an example of a directed hypergraph that results from association rule mining in a global microbial presence–absence data set and that visualizes complex relationships with hyper-edges connecting up to three nodes. This said, more developments will be needed to design and to apply targeted multivariate approaches truly to disentangle complex relationships as well as to visualize them.
+
+通过多元回归或关联规则挖掘推断出的复杂关系可以在生成的网络中表示为一条有向边，该边以有向方式连接两个以上的节点，从独立分类单元指向从属分类单元。具有此类边的网络正式称为有向超图。图 3a 显示了从基于相似性的方法推断出的网络，其中成对关系由连接两个节点的边表示，而图 3b 给出了一个有向超图的示例，该超图是从全局微生物存在-不存在数据集中的关联规则挖掘中得出的，它可视化了复杂关系，超边连接多达三个节点。话虽如此，仍需要更多的发展来设计和应用有针对性的多元方法，真正解开复杂关系并将其可视化。
+
+
+## 关联规则分析R语言实战
+
+参考：https://mp.weixin.qq.com/s/Rjuc7OFlljMtEA9-RcRtmA
+
+```{r, include=TRUE}
+# load packages
+library(readr)
+library(ggplot2)
+library(dplyr)
+library(arules)
+library(arulesViz)
+
+# load data
+# 读取数据fangji.csv
+# 读取文件内容
+file_content <- readLines("fangji.csv", encoding = "GB2312")
+# 转换编码为UTF-8
+# Convert encoding to UTF-8
+file_content_utf8 <- iconv(file_content, from = "GB2312", to = "UTF-8")
+# 将转换后的内容写入新的文件
+# Write the converted content to a new file
+writeLines(file_content_utf8, "fangji_utf8.csv")
+# 读取转换后的文件
+# Read the converted file
+data <- read.csv("fangji_utf8.csv", fileEncoding = "UTF-8")
+# 查看数据
+#print(data)
+mydata <- data
+
+# 创建空的dataframe
+# Create an empty dataframe
+df<- data.frame()
+# 判断数据行数
+# Determine the number of data rows
+nrow<-nrow(mydata)
+# 将处方组成改为多个单味药
+# Change the prescription composition to multiple single medicines
+for(i in 1:nrow){
+# strsplit将处方组成字符串按“、”分割开，并形成新的数据集
+# strsplit splits the prescription string by "," and forms a new data set
+d<-data.frame(mydata[[1]][i],strsplit(mydata[[2]][i],"、"))
+# 新的数据集第一列名为ID，第二列为ZY
+# The first column of the new data set is named ID, and the second column is ZY
+ID<-d[,1]
+ZY<-d[,2]
+# 合并数据集
+# Merge datasets
+d<-data.frame(ID,ZY)
+df<-rbind (df, d)
+}
+# 导出新的数据集
+# Export a new dataset
+write.csv(df,"df.csv")
+
+#查看数据结果，所有处方中不重复的中药数
+# View the data results, the number of unique Chinese medicines in all prescriptions
+head(df)
+length(unique(df$ZY))
+# ZY列的不重复项数
+# The number of unique items in column ZY
+length(unique(df$ID))
+# ZY列的不重复项数
+# The number of unique items in ZY column
+
+# 按ID分类，计算各类ID中ZY的数量
+# Classify by ID and calculate the number of ZY in each type of ID
+# 计算各处方中的药味数
+# Calculate the number of medicinal flavors in each prescription
+ID_zy <- df %>%group_by(ID)%>%summarise(num=n())
+# 统计处方组成数量的最小值、最大值、均值、中值、各分位值
+# Statistical prescription composition quantity minimum, maximum, mean, median, and quantile values
+summary(ID_zy)
+# 导出结果
+# Export results
+write.csv(ID_zy,file="ID_zy.csv")
+
+# 绘制处方—药物数量柱形图
+# Draw a prescription-drug quantity bar chart
+# 若x=ID,则按原本的额处方顺序排序，若代码为x = reorder(ID,-num)，则按处方中药物数量降序绘图，x = reorder(ID,num)，为升序绘图。
+# If x=ID, then the original prescription order is used for sorting. If the code is x = reorder(ID,-num), then the number of drugs in the prescription is plotted in descending order. If x = reorder(ID,num), then the number of drugs in the prescription is plotted in ascending order.
+ggplot(ID_zy,aes(x = reorder(ID,-num),y = num)) +
+  theme_bw(base_family = "STKaiti",base_size = 10) +
+  geom_bar(stat = "identity",fill = "lightblue") +
+  labs(x = "处方",y = "中药数量")
+
+# 添加字体
+# Add fonts
+windowsFonts(Times=windowsFont("Times New Roman"))
+ggplot(ID_zy, aes(x = reorder(ID,-num),y = num,fill=factor(num)))+
+geom_bar(stat="identity",width=0.9)+
+scale_fill_hue()+
+ylim(0,max(ID_zy$num))+
+#geom_text(aes(label =num, vjust = -0.8, hjust = 0.5,family="Times"),size=2,show.legend = F)+#设置数据标签的字体、大小、位置等,由于此次数据较多，不予显示
+theme(panel.background=element_rect(fill="white"))+
+theme(axis.text.x=element_text(angle=30,hjust = 1,colour="white",family="Times",size=rel(1)))+
+theme(axis.text.y=element_text(color="black",family="Times",size=rel(1.5)))+
+xlab("处方")+ 
+ylab("中药数量")+
+#labs(title = "处方组成数量分布图")+ 
+theme(plot.title=element_text(color="red",face="bold",size=rel(1.5),hjust=0.5))+
+theme(axis.title.x=element_text(color="blue",family="Times",size=rel(1)))+
+theme(axis.title.y=element_text(color="blue",family="Times",size=rel(1)))+
+theme(axis.line=element_line(colour="black",size=0.8))+
+theme(panel.grid.major.x=element_blank(),panel.grid.minor.x=element_blank())+
+theme(panel.grid.major.y=element_line(colour="white",linetype="dashed",size=0.2),panel.grid.minor.y=element_line(colour="white",linetype="dashed",size=0.2))+
+theme(legend.text=element_text(face="italic", family="Times", colour="black",size=16))+
+theme(legend.title=element_text(face="italic", family="Times", colour="black", size=18))+ 
+theme(legend.position="none")
+ggsave('ID_zy.pdf', width = 6, height = 4)#保存图片(save plot)
+
+# 绘制中药频数图
+# Draw a frequency chart of traditional Chinese medicine
+# 按ZY分类，计算各中药在处方中出现次数
+# According to ZY classification, calculate the number of times each Chinese medicine appears in the prescription
+ZY_id <- df %>%
+  group_by(ZY)%>%
+  summarise(num = n())
+# 统计处方组成数量的最小值、最大值、均值、中值、各分位值
+# Count the minimum, maximum, mean, median, and quantile values ​​of the number of prescription components
+summary(ZY_id)
+
+# 根据次数进行降序排列
+# Sort in descending order by number of times
+ZY_id<-ZY_id[order(ZY_id$num,decreasing =T),]
+
+# 绘制前30的数据,删除[1:30,]可显示全部，0.1*num使y轴的坐标轴值增大10%
+# Draw the first 30 data, delete [1:30,] to display all, 0.1*num increases the y-axis value by 10%
+ggplot(ZY_id[1:30,],aes(x = reorder(ZY,-num),y = num)) +
+  theme_bw(base_family = "STKaiti",base_size = 10) +
+  geom_bar(stat = "identity",fill = "lightblue") +
+  labs(x = "中药",y = "频率") + 
+  #coord_flip() +#可使柱形图变条形图
+  geom_text(aes(x = reorder(ZY,-num),y = num+0.1*num,label = num),size = 3)
+
+# 图片美化及保存
+# Image beautification and preservation
+windowsFonts(Times=windowsFont("Times New Roman"))
+ggplot(ZY_id[1:30,], aes(x = reorder(ZY,-num),y = num,fill=factor(num)))+
+geom_bar(stat="identity",width=0.9)+
+scale_fill_hue()+
+ylim(0,max(ZY_id$num))+
+geom_text(aes(label =num, vjust = -0.8, hjust = 0.5,family="Times"),size=rel(2),show.legend = F)+
+theme(panel.background=element_rect(fill="white"))+
+theme(axis.text.x=element_text(angle=30,hjust = 1,colour="black",family="Times",size=rel(1)))+
+theme(axis.text.y=element_text(color="black",family="Times",size=rel(1.5)))+
+xlab("中药")+
+ylab("频数")+
+#labs(title = "中药频次数量分布图")+ 
+theme(plot.title=element_text(color="red",face="bold",size=rel(1.5),hjust=0.5))+
+theme(axis.title.x=element_text(color="blue",family="Times",size=rel(1)))+
+theme(axis.title.y=element_text(color="blue",family="Times",size=rel(1)))+
+theme(axis.line=element_line(colour="black",size=0.8))+
+theme(panel.grid.major.x=element_blank(),panel.grid.minor.x=element_blank())+
+theme(panel.grid.major.y=element_line(colour="white",linetype="dashed",size=0.2),panel.grid.minor.y=element_line(colour="white",linetype="dashed",size=0.2))+
+theme(legend.text=element_text(face="italic", family="Times", colour="black",size=16))+
+theme(legend.title=element_text(face="italic", family="Times", colour="black", size=18))+
+theme(legend.position="none")
+ggsave('ZY_id_top30.pdf', width = 6, height = 4)#保存图片(save plot)
+
+# 加载arules包
+# Load the arules package
+library(arules)
+# 对数据进一步规则关联分析
+# Further rule association analysis of data
+# 加载导出的df.csv
+# Load the exported df.csv
+mydata <- read.csv("df.csv",header=T)
+# 数据表转化为list
+# Convert the data table to a list
+gzgldata<- split(x=mydata$ZY,f=mydata$ID)
+# 查看一共有多少组数据
+# Check how many groups of data there are
+sum(sapply(gzgldata,length))
+# 过滤掉相同的数据
+# Filter out the same data
+gzgldata <- lapply(gzgldata,unique)
+sum(sapply(gzgldata,length))
+# 转换数据形势，用于关联规则分析
+# Convert data to association rule analysis
+gzgldata <- as(gzgldata, "transactions")
+
+# 绘制频率大于0.1，排名前20的中药，类似上面的频数图
+# Draw the top 20 Chinese medicines with a frequency greater than 0.1, similar to the frequency graph above
+# 对转化后的数据集查看频繁项集
+# View frequent itemsets for the converted dataset
+# 出现的频率大于等于0.1的项目
+# Items with a frequency greater than or equal to 0.1
+itemFrequencyPlot(gzgldata, topN=20,support = 0.1,col = "lightblue",
+                  xlab = "横坐标轴名称：中药",ylab = "纵坐标名称：频率",
+                  main = "标题：各中药频率")
+
+# 利用apriori算法挖掘关联规则
+# Use apriori algorithm to mine association rules
+# 设置支持度0.1，置信度0.7以上
+# Set support to 0.1 and confidence to 0.7 or above
+# 对于minlen，maxlen指规则的LHS+RHS的并集的元素个数
+# For minlen, maxlen refers to the number of elements in the union of the LHS+RHS of the rule
+
+# apriori算法挖掘关联规则
+# apriori algorithm to mine association rules
+myrule <- apriori(data = gzgldata,
+         parameter = list(support = 0.1,
+                          confidence = 0.7,
+                          minlen =2))
+
+# 查看规则绘图
+# View the rule drawing
+library(arulesViz)
+# 将规则按照提升度lift排序
+# Sort the rules by lift
+sortlift <- arules::sort(myrule,decreasing = TRUE,by = "lift")
+# 显示排名前20的规则
+# Display the top 20 rules
+inspect(sortlift[1:20])
+
+# 规则校验（类似测试集）
+# Rule verification (similar to test set)
+qualityMeasures<-interestMeasure(myrule,c("coverage","fishersExactTest","conviction","chiSquared"), transactions=gzgldata)
+
+# 将结果保存为数据表的形式并导出
+# Save the results as a data table and export
+ruledf <- as(myrule,"data.frame")
+write.csv(ruledf,file="ruledf.csv")
+
+# 排名前20规则可视化为网络图的结构
+# Visualize the top 20 rules as a network graph structure
+plot(sortlift[1:20], method="graph")
+
+# 可视化所有的规则
+# Visualize all rules
+plot(sortlift, method="graph")
+
+library(colorspace)
+library(scales)
+library(RColorBrewer)
+
+# 所有规则的气泡图1
+# Bubble chart of all rules 1
+plot(myrule, method="scatterplot",control=list(jitter=2, col = rev(brewer.pal(3, "Blues"))), shading = "lift")
+# 所有规则的气泡图2
+# Bubble chart of all rules 2
+plot(myrule, control=list(jitter=2, col = rev(brewer.pal(3, "Blues"))), shading = "lift",method = "grouped")
+
+# 将规则可视化为grouped matrix的形式
+# Visualize the rules as a grouped matrix
+plot(sortlift[1:20], method = "grouped matrix")
+
+```
