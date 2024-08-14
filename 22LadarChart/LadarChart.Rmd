@@ -1,0 +1,132 @@
+---
+title: "Ladar Chart"
+author: "Defeng Bai Agricultural Genomics Institute at Shenzhen, Chinese Academy of Agricultural Sciences"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 5
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo=T, comment=NA, message=F, warning=F,
+	fig.align="center", fig.width=5, fig.height=3, dpi=300)
+```
+
+
+# 雷达图(Ladar Chart)
+
+参考：https://mp.weixin.qq.com/s/KYOqAPbSpYL66fuoPvUOQw
+
+雷达图又称为蜘蛛图，非常适合展示对象在多个维度的属性值或得分，又或是用于展示不同样本、细胞亚群中目标基因的表达水平、微生物在不同环境中的丰度变化等等。
+
+Radar charts, also known as spider charts, are very suitable for displaying the attribute values or scores of objects in multiple dimensions, or for displaying the expression levels of target genes in different samples and cell subpopulations, the abundance changes of microorganisms in different environments, etc.
+
+
+
+### 雷达图案例
+Ladar Chart Example
+
+这是中国农业大学Yantai Gan课题组2024年发表于Nature Communications上的一篇文章，题目为：Diversifying crop rotation increases food production, reduces net greenhouse gas emissions and improves soil health
+
+This is an article published in Nature Communications by Yantai Gan's research group at China Agricultural University in 2024. The title is: Diversifying crop rotation increases food production, reduces net greenhouse gas emissions and improves soil health
+
+
+![](e1.LadarChart.01.jpg)
+Fig. 6 a radar map of multiple objective analysis to assess the various functions of the rotations
+图6多目标分析的雷达图，用于评估旋转的各种功能
+
+
+**结果**：
+We used the comprehensive evaluation index concept (CEI) to assess the synergies and trade-offs of the different crop rotations related to yield, nutritional value, soil-related indicators (health, C sequestration, microbial biodiversity), net GHG emissions, and economic benefit (Eqs. 11–20 in Methods) (Fig. 6a, d).
+
+我们使用综合评价指数概念（CEI）来评估不同作物轮作在产量、营养价值、土壤相关指标（健康、碳封存、微生物生物多样性）、温室气体净排放和经济效益方面的协同作用和权衡（方法中的等式11–20）（图6a，d）。
+
+
+### 雷达图R语言实战
+Ladar Chart Using R Software
+
+```{r Ladar Chart}
+#devtools::install_github('ricardo-bion/ggradar')
+# Load necessary libraries
+library(ggradar)
+library(ggplot2)
+library(ggthemes)
+
+# Load data
+dt <- read.csv('LadarData.csv', header = TRUE, check.names = FALSE)
+
+# View data range
+range(dt[,-1])
+
+# Define custom color palette
+mycol <- c('#cd4a33', '#eaa822', '#4ca7bd', '#88bd6d', '#354d7d', '#14927c')
+
+# Convert 'group' column to factor for consistent ordering
+dt$group <- factor(dt$group, levels = unique(dt$group))
+
+# Single group radar chart
+single_radar <- ggradar(dt[1,],
+                        grid.min = 11,
+                        grid.mid = 23.75,
+                        grid.max = 36.5,
+                        values.radar = NA,  # Hide values on the radar chart
+                        gridline.mid.colour = 'grey',  # Mid grid line color
+                        axis.label.size = 12,  # Axis label size
+                        group.colours = mycol[1],
+                        group.point.size = 4,  # Point size
+                        group.line.width = 1,  # Line width
+                        background.circle.colour = '#D7D6D1',  # Background circle color
+                        background.circle.transparency = 0.3,  # Background circle transparency
+                        legend.position = 'none',  # No legend for single group
+                        plot.title = "Single Group Radar Chart",  # Plot title
+                        fill = TRUE,  # Fill areas under the curves
+                        fill.alpha = 0.3)  # Fill transparency
+
+# Multiple groups radar chart
+multiple_radar <- ggradar(dt,
+                          grid.min = 5,
+                          grid.mid = 20.75,
+                          grid.max = 36.5,
+                          values.radar = NA,  # Hide values on the radar chart
+                          gridline.mid.colour = 'grey',  # Mid grid line color
+                          axis.label.size = 12,  # Axis label size
+                          group.colours = mycol,
+                          group.point.size = 4,  # Point size
+                          group.line.width = 1,  # Line width
+                          background.circle.colour = '#D7D6D1',  # Background circle color
+                          background.circle.transparency = 0.3,  # Background circle transparency
+                          legend.position = 'bottom',  # Legend position
+                          legend.text.size = 12,  # Legend text size
+                          plot.title = "Multiple Groups Radar Chart",  # Plot title
+                          fill = TRUE,  # Fill areas under the curves
+                          fill.alpha = 0.3)  # Fill transparency
+
+# Theme customization for publication quality
+single_radar <- single_radar +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(size = 16, face = "bold"),
+    axis.text = element_text(size = 12),
+    axis.title = element_blank(),
+    panel.grid.major = element_line(color = "grey80"),
+    panel.grid.minor = element_line(color = "grey90")
+  )
+
+multiple_radar <- multiple_radar +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(size = 16, face = "bold"),
+    axis.text = element_text(size = 12),
+    axis.title = element_blank(),
+    panel.grid.major = element_line(color = "grey80"),
+    panel.grid.minor = element_line(color = "grey90")
+  )
+
+# Display the radar charts
+print(single_radar)
+print(multiple_radar)
+```
+
+
