@@ -1,0 +1,269 @@
+---
+title: "Violin Diagram"
+author: "Defeng Bai Agricultural Genomics Institute at Shenzhen, Chinese Academy of Agricultural Sciences"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 5
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo=T, comment=NA, message=F, warning=F,
+	fig.align="center", fig.width=5, fig.height=3, dpi=300)
+```
+
+
+### 小提琴图
+Violin diagram
+
+小提琴图（Violon plot）是一种用于可视化数据分布的统计图表。它结合了箱线图和核密度估计图，能够同时展示数据的中位数、四分位数、分布形状以及数据的密度情况，用于显示数据的分布情况。它由一个箱体和两条线段组成，箱体代表数据的中位数，四分位数以及上下界，线段则表示数据的最小值和最大值。在小提琴图中，箱体表示了数据的中间50%范围，其中间的线代表中位数。箱体周围的线段则延申至数据的最小值和最大值。触须以外的区域被视为异常值或离群点。
+A violin plot is a statistical chart used to visualize the distribution of data. It combines boxplot and kernel density estimation chart, which can simultaneously display the median, quartile, distribution shape, and density of data, used to display the distribution of data. It consists of a box and two line segments, where the box represents the median, quartile, and upper and lower bounds of the data, while the line segments represent the minimum and maximum values of the data. In the violin chart, the box represents the middle 50% range of the data, with the lines between representing the median. The line segments around the box are extended to the minimum and maximum values of the data. Areas outside the tentacles are considered outliers or outliers.
+
+小提琴的密度反映了相应数据的密度情况，密度越大表示在该区域内的数据点越密集，宽度越小则表示密度越小。因此，可以从小提琴的宽度上初步判断出数据是否集中在某个区间内或是具有多个峰值。
+The density of the violin reflects the density of the corresponding data. The higher the density, the denser the data points in the area, and the smaller the width, the lower the density. Therefore, it can be preliminarily determined from the width of the violin whether the data is concentrated within a certain interval or has multiple peaks.
+
+
+### 小提琴图应用实例
+Violin diagram case
+
+这是Jakob Stokholm课题组2023年发表于Nature Medicine上的文章，第一作者为Cristina Leal Rodríguez，题目为：The infant gut virome is associated with preschool asthma risk independently of bacteria
+
+This is an article published by the Jakob Stokholm research group in Nature Medicine in 2023. The first author is Cristina Leal Rodr í guez, and the title is: The incident gut virus is associated with pre-school astroma risk independently of bacteria
+
+![](01.ViolinPlot.01.png)
+
+Fig. 2 a a Longitudinal changes of richness (number of observed vOTUs, left for VLPs and right for bulk) with the age of infants for viral species. The boxes indicate the interquartile range (IQR), with the horizontal line as the median, the whiskers for the range of the data (up to 1.5 × IQR), and points beyond the whiskers as outliers. The P values were obtained with linear mixed modeling with “study” as random factor. 
+
+图2 a a病毒物种丰富度（观察到的vOTU数量，左为VLP，右为体积）随婴儿年龄的纵向变化。方框表示四分位间距（IQR），以水平线为中值，数据范围的须状物（高达1.5×IQR）以及须状物之外的点作为异常值。P值是通过以“研究”为随机因素的线性混合模型获得的。
+
+**结果**：
+We next examined the dynamics of the virome diversity by stratifying the metagenomes into discrete time points (months 0, 1, 3, 6,12, 24 for VLPs and bulk, and month 36 additionally for bulk) early in life. The overall richness of the early-life gut virome dynamically increased (linear mixed modeling with “study” as random factor, P=0.003 for VLPs and P< 2e-16 for bulk) as infants aged (Fig. 2a). 
+
+接下来，我们通过将宏基因组划分为生命早期的离散时间点（VLP和大块的时间点分别为0、1、3、6、12、24个月和36个月）来研究病毒组多样性的动力学。随着婴儿年龄的增长，早期肠道病毒组的总体丰富度动态增加（以“研究”为随机因素的线性混合建模，VLP为P=0.003，体积为P<2e-16）（图2a）。
+
+
+### 小提琴图R语言实战
+Violin diagram using R software
+
+```{r viollin plot, include=TRUE}
+#相关R包载入：
+#load package
+library(ggplot2)
+library(cols4all)
+
+#使用鸢尾数据集测试：
+#Testing using the Iris dataset
+dt <- iris
+head(dt)
+
+#1.底层-散点图添加
+#散点图绘制
+#1. Bottom layer - scatter plot addition
+#Scatter plot drawing
+set.seed(233)
+p <- ggplot(
+  data = dt,
+  aes(x = Species, y = Sepal.Length)) +
+  geom_point(position = 'jitter',
+             color = 'grey',
+             size = 2,
+             alpha = 0.8) +
+  theme_classic()
+p
+
+#2.中间层-小提琴图叠加
+#小提琴图绘制
+#2. Middle layer - violin diagram overlay
+#Violin drawing
+p1 <- p +
+  geom_violin(aes(fill = Species),
+              color = 'grey',
+              scale = 'width',
+              linewidth = 0.8, 
+              trim = TRUE,
+              alpha = 0.8)
+p1
+
+#3.顶层-箱线图叠加
+#箱线图绘制：
+#3. Top layer box plot overlay
+#Boxplot drawing:
+p2 <- p1 +
+  geom_boxplot(color = 'white',
+               width = 0.15, 
+               size = 0.8, 
+               fill = NA)
+p2
+
+#半小提琴图
+#Half violin diagram
+library(gghalves)
+p3 <- ggplot(dt,aes(x=Species,y=Sepal.Length,fill=Species))+
+  geom_half_violin(data=subset(dt, Species=='setosa'),
+                   position = position_nudge(x = 0),side="l",color=NA)+
+  geom_half_boxplot(data=subset(dt, Species=='setosa'),
+                    position = position_nudge(x = 0),side='l', width=0.2)+
+  geom_half_violin(data=subset(dt, Species=='versicolor'),
+                   position = position_nudge(x = 0),side="r",color=NA)+
+  geom_half_boxplot(data=subset(dt, Species=='versicolor'),
+                    position = position_nudge(x = 0),side='r', width=0.2)+
+  geom_half_violin(data=subset(dt, Species=='virginica'),
+                   position = position_nudge(x = 0),side="r",color=NA)+
+  geom_half_boxplot(data=subset(dt, Species=='virginica'),
+                    position = position_nudge(x = 0),side='r', width=0.2)+
+  geom_jitter(aes(group=Species,color=Species),
+              size = 2,
+              shape=16,
+              stroke = 0.15, 
+              show.legend = FALSE, 
+              position = position_dodge(0.05))+
+  geom_line(aes(group = Species),
+            color = 'grey40',
+            lwd = 0.5,
+            position = position_dodge(0.05))+
+  theme_bw() + 
+  theme(text = element_text(size=10, colour = "black")) + 
+  theme(panel.grid =element_blank(),
+        axis.text.x = element_text(colour = "black", size = 14),
+        axis.text.y = element_text(colour = "black", size = 14),
+        axis.title.y = element_text(color = 'black', size = 14),
+        axis.title.x = element_blank(),
+        legend.position = 'none')+
+  labs(title = "", y = "Sepal.Length", x=" ")+
+  scale_fill_manual(values = c("#E4D1DA","#3B995A","#FCBD6F"))
+p3
+
+
+library(ggplot2)
+library(ggpubr)
+library(tidyr)
+#加显著性标记
+#Add significance markers
+p4 <- ggviolin(dt, "Species", "Sepal.Length" , 
+  fill = "Species", 
+  color = "Species",
+  trim = T, 
+  palette = c("#2b81b8","#33a02c","#fb9a99","#e31a1c","#fdbf6f","#b2df8a","#a6cee3"), 
+  legend = "right", 
+  legend.title = " ",
+  font.legend = c(20, "plain", "black"),
+  font.y = 30,
+  font.tickslab = c(30,"plain","black"), 
+  add = "boxplot", 
+  add.params = list(   
+    fill = "white", 
+    color = "black",
+    width = 0.2,  
+    linetype = 1)) +
+  labs(x = NULL, 
+    y = "Shannon index", 
+    title = NULL) + 
+  annotate("text",x = 1, y =11, label = "a", size = 12, col="#2b81b8") +  
+  annotate("text",x = 2, y =10, label = "b", size = 12, col="#33a02c") +
+  annotate("text",x = 3, y =8,  label = "c", size = 12, col="#fb9a99")# +
+  #annotate("text",x = 4, y =8.5,  label = "g", size = 12, col="#e31a1c") +
+  #annotate("text",x = 5, y =7,  label = "f", size = 12, col="#fdbf6f") +
+  #annotate("text",x = 6, y =5,  label = "e", size = 12, col="#b2df8a") +
+  #annotate("text",x = 7, y =6,  label = "d", size = 12, col="#a6cee3") 
+p4
+#ggsave("test.pdf", plot = p, width = 10, height = 8)
+
+#另一种显著性标记方式
+#Another significance marking method
+library(ggsignif)
+df1_cmp <- list(c("setosa", "versicolor"),c("versicolor", "virginica"), c("setosa", "virginica"))
+p5 <- ggviolin(dt, "Species", "Sepal.Length" , fill = "Species", 
+    palette = c("#E4D1DA","#3B995A","#FCBD6F"),
+    legend = "none",
+    font.x = 15,font.y = 15,
+    x.text.angle = 45, y.text.angle = 90,
+    font.tickslab = c(15,"plain","black"),
+    add = "boxplot", add.params = list(width = 0.1,linetype = 1)) +  
+  labs(x = NULL,y = NULL,title="Violin_plot") +  
+  theme(plot.title=element_text(hjust=0.5, 
+    size=25)) + 
+  geom_signif(  
+    comparisons = df1_cmp ,
+    map_signif_level = F ,  #"***"=0.001, "**"=0.01, "*"=0.05
+    textsize = 3 , 
+    test = t.test,
+    step_increase = 0.2 ,
+    size = 1 ,
+    tip_length = 0.02#, 
+    #y_position = max_#
+  )
+p5
+#ggsave("test.pdf",plot=p1, width = 6, height = 8)
+
+#另一种形式
+df1_cmp <- list(c("setosa", "versicolor"),c("versicolor", "virginica"), c("setosa", "virginica"))
+p6 <- ggplot(dt,aes(x=Species,y=Sepal.Length,fill=Species))+
+  geom_violin(width =0.8,color='black',size=1)+
+  theme_classic() + 
+  theme(text = element_text(size=10, colour = "black")) + 
+  theme(plot.title = element_text(hjust = 0.5, size = 15),
+        axis.text.x = element_text(colour = "black", size = 12),
+        axis.text.y = element_text(colour = "black", size = 10),
+        axis.title.y = element_text(color = 'black', size = 12),
+        axis.line = element_line(size = 1))+ 
+  labs(title = "", y = "Sepal.Length", x=" ") + 
+  theme(legend.position="none") + 
+  stat_summary(fun.data = "mean_sdl",fun.args = list(mult = 1), 
+               geom = "pointrange", color = "black", size=1)+
+  #scale_fill_manual(values = colorder)+
+  #scale_x_discrete(labels=c(expression(TLS^"low"),
+  #                          bquote(TLS^"high")))
+  scale_x_discrete(labels=c("setosa", "versicolor", "virginica"))+
+  geom_signif(  
+    comparisons = df1_cmp ,
+    map_signif_level = F ,  #"***"=0.001, "**"=0.01, "*"=0.05
+    textsize = 3 , 
+    test = t.test, 
+    step_increase = 0.2 , 
+    size = 1 , 
+    tip_length = 0.02#,   
+    #y_position = max_
+  )
+p6
+
+#连线小提琴图
+#Connecting violin diagram
+data <- read.table(paste("gene_data.txt",sep=""), header=T, row.names=1, sep="\t", comment.char="")
+library(gghalves)
+p7 <- ggplot(data,aes(x=Group,y=Abundance,fill=Group))+
+  geom_half_violin(data=subset(data, Group=='KO'),
+                   position = position_nudge(x = 0),side="l",color=NA)+
+  geom_half_boxplot(data=subset(data, Group=='KO'),
+                    position = position_nudge(x = 0),side='l', width=0.2)+
+  geom_half_violin(data=subset(data, Group=='WT'),
+                   position = position_nudge(x = 0),side="r",color=NA)+
+  geom_half_boxplot(data=subset(data, Group=='WT'),
+                    position = position_nudge(x = 0),side='r', width=0.2)+
+  geom_jitter(aes(group=Gene,color=Group),
+              size = 2,
+              shape=16,
+              stroke = 0.15, 
+              show.legend = FALSE, 
+              position = position_dodge(0.05))+
+  geom_line(aes(group = Gene), 
+            color = 'grey40', 
+            lwd = 0.5,
+            position = position_dodge(0.05))+
+  theme_bw() + 
+  theme(text = element_text(size=10, colour = "black")) + 
+  theme(panel.grid =element_blank(),
+        axis.text.x = element_text(colour = "black", size = 14),
+        axis.text.y = element_text(colour = "black", size = 14),
+        axis.title.y = element_text(color = 'black', size = 14),
+        axis.title.x = element_blank(),
+        legend.position = 'none')+
+  labs(title = "", y = "Abundance", x=" ")+
+  scale_fill_manual(values = c('#E69F00', "#009E73"))
+p7
+
+```
+
+
+

@@ -1,0 +1,143 @@
+---
+title: "Hierarchical All-against-All association(Halla)"
+author: "Defeng Bai Agricultural Genomics Institute at Shenzhen, Chinese Academy of Agricultural Sciences"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 5
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo=T, comment=NA, message=F, warning=F,
+	fig.align="center", fig.width=5, fig.height=3, dpi=300)
+```
+
+
+### Halla (Hierarchical All-against-All association) 
+Halla（分层关联分析）
+
+什么是Halla分析？
+What is Halla analysis?
+HAllA（Hierarchical All-against-All association）是一种在高维、异构数据集中寻找多分辨率关联的计算方法。用于以高功率发现数据特征之间的显著关系。对数据类型具有很强的鲁棒性，可以对连续值和分类值进行操作，并且在同质数据集（所有测量值都属于同一类型，例如基因表达微阵列）和异构数据（包含具有不同单位或类型的测量值，例如患者临床数据）上都能很好地工作。HAllA是探索代谢组学、转录组学、微生物组学、蛋白质组学等多个组学之间相关性的有力工具。
+HallA (Hierarchical All against All Association) is a computational method for finding multi-resolution associations in high-dimensional and heterogeneous datasets. Used to discover significant relationships between data features at high power. Has strong robustness to data types, can operate on continuous and categorical values, and works well on homogeneous datasets (all measurements belong to the same type, such as gene expression microarrays) and heterogeneous datasets (including measurements with different units or types, such as patient clinical data). HallA is a powerful tool for exploring the correlation between multiple omics such as metabolomics, transcriptomics, microbiome, and proteomics.
+
+参考：https://github.com/biobakery/halla
+Andrew R. Ghazi, Kathleen Sucipto, Ali Rahnavard, Eric A. Franzosa, Lauren J. McIver, Jason Lloyd-Price, Emma Schwager, George Weingart, Yo Sup Moon, Xochitl C. Morgan, Levi Waldron and Curtis Huttenhower, “High-sensitivity pattern discovery in large, paired multi-omic datasets”.
+
+
+#### Halla案例
+Halla Case
+
+本文是Hui Wang团队2022年发表于Nature Microbiology(Liu et al., 2022)的文章。题目为：Multi-kingdom microbiota analyses identify bacterial–fungal interactions and biomarkers of colorectal cancer across cohorts
+This article is published by Hui Wang's team in Nature Microbiology (Liu et al., 2022) in 2022. Title: Multi kingdom microbiota analyses identify bacterial functional interactions and biomarkers of colorectal cancer across cohorts
+
+![](e1.nature.micro.01.jpg)
+Extended Data Fig. 8 | Associations between differential species from four-kingdom and differential functional pathways. Heatmap shows Spearman correlations between bacterial or fungal species and different metabolic pathways as identified with HAlla.
+
+扩展数据 图 8 | 四界不同物种与不同功能途径之间的关联。热图显示了用 HAlla 确定的细菌或真菌物种与不同代谢途径之间的斯皮尔曼相关性。
+
+
+![](e1.nature.micro.02.jpg)
+Extended Data Fig. 9 | Associations between multi-kingdom markers and differential functional pathways. Heatmap shows Spearman correlations between bacterial or fungal species and different metabolic pathways as identified via HAlla with default parameters. The p value was estimated from two-sided Benjamini-Hochberg-Yekutieli and exact p-value was shown in cells.
+
+扩展数据 图 9 | 多王国标记与不同功能途径之间的关联。热图显示了细菌或真菌物种与不同代谢途径之间的斯皮尔曼相关性，这些代谢途径是通过使用默认参数的 HAlla 确定的。P值由双侧Benjamini-Hochberg-Yekutieli估计，精确P值显示在单元格中。
+
+
+**结果**：
+Associations between species and function. Spearman associations between microbial species and their functions were performed using the Hierarchical All-against-All method v.0.8.17 (http://huttenhower.sph.harvard.edu/ halla), a computational method used to find multi-resolution associations in high-dimensional, heterogeneous datasets. Associations with an FDR < 0.01 were included in the downstream analysis.
+物种与功能之间的关联。微生物物种与其功能之间的斯皮尔曼关联是使用层次全反方法 v.0.8.17 (http://huttenhower.sph.harvard.edu/ halla)进行的，该方法是一种用于在高维异构数据集中发现多分辨率关联的计算方法。FDR<0.01的关联被纳入下游分析。
+
+
+#### Halla分析实现
+Halla Analysis Implementation
+
+通过在线网站http://galaxy.biobakery.org/中的HALLA模块实现
+Implementation of HALLA module through online websites http://galaxy.biobakery.org/
+
+```{r halla, include=TRUE}
+# 输入
+# Inputs
+# HAllA 需要两个制表符分隔的文本文件作为输入，表示两个配对的数据集（特征集），描述同一组样本。
+# HAllA requires two tab-delimited text files representing two paired datasets (sets of features) describing the same set of samples.
+# 示例数据输入可以在 "example_data" 文件夹或 http://galaxy.biobakery.org/ 找到。
+# The example data inputs can be found in the "example_data" folder or http://galaxy.biobakery.org/
+
+# 输出
+# Outputs
+# 一个 PDF 文件 - "halagram.pdf"
+# A pdf - the "halagram.pdf"
+# 一个包含所有生成输出目录中的文件的压缩文件
+# A zip file containing all the files in the generated output directory
+
+# 加载R包
+# Load packages
+library(pheatmap)
+library(tidyr)
+library(vegan)
+library(ComplexHeatmap)
+
+# 图形美化，绘制热图
+# Graphic beautification and drawing of heat maps
+data <- read.table("all_associations.txt", header=TRUE, sep="\t")
+
+# 转换为宽数据
+# Convert to wide data
+data2 <- pivot_wider(data, names_from = "Y_features", values_from = "association")
+data2 <- as.data.frame(data2)
+rownames(data2) <- data2$X_features
+data2 <- data2[, -1]
+
+# 绘制热图
+# Draw a heat map
+p <- Heatmap(data2, 
+             name = "Association",
+             row_names_gp = gpar(fontsize = 8),
+             cluster_rows = TRUE, cluster_columns = TRUE,
+             col = colorRampPalette(colors = c("#87CEFF", "white", "#FF7256"))(50)
+             )
+
+# 打开一个新的PDF设备
+# Open a new PDF device
+pdf("halla_association01.pdf", width = 10, height = 8)
+# 绘制热图
+# Draw the heat map
+draw(p)
+# 关闭PDF并保存图像
+# Close PDF and save image
+dev.off()
+
+# 绘制带有p值的热图
+# Draw a heat map with p-values
+data_km_q <- read.table("all_q_value.txt", header=TRUE, sep="\t")
+data_km_q2 <- pivot_wider(data_km_q, names_from = "Y_features", values_from = "q.values")
+data_km_q2 <- as.data.frame(data_km_q2)
+rownames(data_km_q2) <- data_km_q2$X_features
+data_km_q2 <- data_km_q2[, -1]
+
+p2 <- Heatmap(data2, 
+              name = "Association",
+              cell_fun = function(j, i, x, y, width, height, fill) {
+                if (data_km_q2[i, j] < 0.05) {
+                  grid.text(sprintf("%.3f", data_km_q2[i, j]), x, y, gp = gpar(fontsize = 6))
+                } else {
+                  grid.text("", x, y)
+                }
+              }
+              )
+
+# 打开一个新的PDF设备
+# Open a new PDF device
+pdf("halla_association2.pdf", width = 10, height = 8)
+# 绘制热图
+# Draw the heat map
+draw(p2)
+# 关闭PDF并保存图像
+# Close PDF and save image
+dev.off()
+
+```
+
+
+
