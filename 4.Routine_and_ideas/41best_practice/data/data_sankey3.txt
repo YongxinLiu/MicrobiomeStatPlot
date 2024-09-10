@@ -1,0 +1,40 @@
+H2	H3	KO
+Energy metabolism	Methane metabolism 	K00123
+Energy metabolism	Methane metabolism 	K00124
+Carbohydrate metabolism	Butanoate metabolism 	K00172
+Carbohydrate metabolism	Butanoate metabolism 	K00209
+Carbohydrate metabolism	Butanoate metabolism 	K00248
+Amino acid metabolism	Tryptophan metabolism 	K00252
+Energy metabolism	Oxidative phosphorylation 	K00334
+Carbohydrate metabolism	Starch and sucrose metabolism 	K00694
+Xenobiotics biodegradation and metabolism	Drug metabolism - other enzymes	K00799
+Amino acid metabolism	"Alanine, aspartate and glutamate metabolism"	K00823
+Carbohydrate metabolism	Pentose and glucuronate interconversions 	K00853
+Carbohydrate metabolism	Amino sugar and nucleotide sugar metabolism	K00885
+Energy metabolism	Carbon fixation pathways in prokaryotes 	K01006
+Amino acid metabolism	Cysteine and methionine metabolism 	K01011
+Energy metabolism	Methane metabolism 	K01070
+Carbohydrate metabolism	Starch and sucrose metabolism 	K01194
+Carbohydrate metabolism	Amino sugar and nucleotide sugar metabolism	K01198
+Metabolism of cofactors and vitamins	Riboflavin metabolism 	K01497
+Carbohydrate metabolism	Galactose metabolism 	K01631
+Energy metabolism	Carbon fixation pathways in prokaryotes 	K01676
+Carbohydrate metabolism	Butanoate metabolism 	K01715
+Carbohydrate metabolism	Amino sugar and nucleotide sugar metabolism	K01854
+Carbohydrate metabolism	Galactose metabolism 	K02079
+Amino acid metabolism	"Glycine, serine and threonine metabolism"	K02203
+Carbohydrate metabolism	Pentose and glucuronate interconversions 	K03078
+Metabolism of cofactors and vitamins	Thiamine metabolism 	K03148
+Energy metabolism	Methane metabolism 	K03533
+Xenobiotics biodegradation and metabolism	Drug metabolism - other enzymes	K03782
+Nucleotide metabolism	Purine metabolism 	K06928
+Nucleotide metabolism	Purine metabolism 	K07816
+Nucleotide metabolism	Pyrimidine metabolism 	K09023
+Amino acid metabolism	"Phenylalanine, tyrosine and tryptophan biosynthesis"	K11358
+Amino acid metabolism	Cysteine and methionine metabolism 	K12339
+Amino acid metabolism	"Glycine, serine and threonine metabolism"	K12525
+Glycan biosynthesis and metabolism	Lipopolysaccharide biosynthesis	K12976
+Metabolism of other amino acids	Taurine and hypotaurine metabolism 	K15372
+Amino acid metabolism	"Glycine, serine and threonine metabolism"	K15635
+Carbohydrate metabolism	Amino sugar and nucleotide sugar metabolism	K20118
+Metabolism of cofactors and vitamins	Riboflavin metabolism 	K20862
