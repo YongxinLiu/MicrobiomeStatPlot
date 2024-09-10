@@ -1,0 +1,11 @@
+SampleID	Env	SourceSink
+ERR525698	infant gut 1	Sink
+ERR525693	infant gut 2	Source
+ERR525688	Adult gut 1	Source
+ERR525699	Adult gut 2	Source
+ERR525910	Adult gut 3	Source
+ERR525909	Adult skin 1	Source
+ERR525908	Adult skin 2	Source
+ERR525911	Adult skin 3	Source
+ERR525954	Soil 1	Source
+ERR525949	Soil 2	Source
