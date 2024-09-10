@@ -1,0 +1,818 @@
+# R基础 {#Rbasic}
+
+
+R语言是比较常用的统计分析和绘图语言，拥有强大的统计库、绘图库和生信分析的Bioconductor库，是学习生物信息分析的必备语言之一。
+
+## R安装
+
+**Linux下安装**
+
+如果使用的是新版的操作系统。直接可以用`sudo apt-get install r-base` 或者`yum install r-base`来安装。
+
+若系统版本老，或没有根用户权限，则需要下载编译源码安装，最新地址为<https://cran.r-project.org/src/base/R-latest.tar.gz>。
+
+具体编译方式为 (Linux下软件安装见 <http://blog.genesino.com/2016/06/bash1>):
+
+```
+# configure是收集系统信息，生成Makefile的过程
+# --enable-R-shlib 需要设置，使得其他程序包括Rstudio可以使用R的动态库
+# --prefix指定软件安装目录，需使用绝对路径
+./configure --prefix=/home/ehbio/R/3.4.0 --enable-R-shlib
+
+# 也可以使用这个命令，共享系统的blas库，提高运输速度
+#./configure --prefix=/home/ehbio/R/3.4.0 --enable-R-shlib --with-blas --with-lapack
+
+# make是编译的过程
+make
+
+# 安装到指定目录的过程
+make install
+```
+
+安装完成之后，在Linux终端输入`R`即可启动交互式运行界面，`ctrl+d`退出`R`运行界面。若提示`找不到命令`，需要判断有没有加入进环境变量。
+
+**Windows下安装**
+
+下载 <https://cran.r-project.org/bin/windows/>双击就可以了。
+
+两者都需要考虑环境变量，若有问题，见文后的参考。
+
+## Rstudio基础
+
+Rstudio是编辑、运行R语言的最为理想的工具之一，支持纯R脚本、Rmarkdown (脚本文档混排)、Bookdown (脚本文档混排成书)、Shiny (交互式网络应用)等。
+
+### Rstudio版本
+
+Rsdutio分为桌面版和服务器版，桌面版可以在单机使用，服务器版可以从浏览器访问供多人使用。
+
+服务器版安装好之后，访问地址为<服务器IP:8787> (8787为默认端口号)，用户名和密码为Linux用户的用户名和密码。
+
+
+### Rstudio安装
+
+**Linux下安装服务器版**
+
+安装参考 <https://www.rstudio.com/products/rstudio/download-server/>
+  
+```
+wget https://download2.rstudio.org/rstudio-server-rhel-1.0.136-x86_64.rpm
+sudo yum install --nogpgcheck rstudio-server-rhel-1.0.136-x86_64.rpm
+```
+
+安装完之后的检测、启动和配置
+  
+```
+sudo rstudio-server verify-installation #查看是否安装正确
+sudo rstudio-server start ## 启动
+sudo rstudio-server status ## 查看状态
+sudo rstudio-server stop ## 停止
+ifconfig | grep 'inet addr' ## 查看服务端ip地址
+```
+
+
+**Windows下安装桌面版**
+
+下载之后 (<https://www.rstudio.com/products/rstudio/download2/>)双击安装，需要使用**管理员权限**，其它无需要注意的。
+
+
+## R基本语法
+
+### 获取帮助文档，查看命令或函数的使用方法、事例或适用范围
+
+```r
+>>> ?command
+>>> ??command #深度搜索或模糊搜索此命令
+
+>>> example(command) #得到命令的例子
+
+>>> example(plot)
+```
+
+### R中的变量及其初始化
+
+```{r, echo=T,run="OnlyInWindows"}
+# Windows下运行，如果出现
+# Warning message:
+# In strsplit(code, "\n", fixed = TRUE) :
+#  input string 1 is invalid in this locale
+# 则运行此句。
+# Linux下不需要。
+Sys.setlocale('LC_ALL','C')
+```
+
+```{r, echo=T}
+# 数字变量
+a <- 10
+a
+```
+
+```{r, echo=T}
+# 字符串变量
+# 必须用引号括起来
+a <- "abc"
+a
+```
+
+
+```{r, echo=T}
+# 逻辑变量
+a <- TRUE
+a
+```
+
+```{r, echo=T}
+# 也表示TRUE
+b <- T
+b
+```
+
+
+```{r, echo=T}
+# FALSE，同F
+d <- FALSE
+d
+```
+
+向量，vector，存储相同的数据类型。如果有字符型元素，所有元素都转换为字符型。
+
+
+```{r, echo=T}
+# 向量
+a <- vector(mode="logical", length=5)
+a
+```
+
+
+```{r, echo=T}
+a <- c(1,2,3,4)
+# 判断一个变量是不是vector
+is.vector(a)
+is.atomic(a)
+```
+
+因子，factor，节省存储空间的特殊类型，适用于重复值特别多时。每个原值只存储一份，在原数据中用数字表示。
+去重后的原值被称为水平 (level)，可以修改顺序。绘图时调整顺序就是使用的这个。
+
+```{r, echo=T}
+a <- c('y','i','s','h','e','n','g','x','i','n')
+b <- as.factor(a)
+# 注意levels默认是字母顺序
+b
+```
+
+更改因子的顺序
+
+```{r, echo=T}
+# 设置levels
+b <- factor(a, 
+        levels=c("y","x","s","e","g","i","h","n"),
+        ordered=T)
+b
+```
+
+列表，list，不同类型的变量组合在一起，常用于存储各种复杂类型函数或绘图的输出。
+
+```{r, echo=T}
+ysx_list <- list(web="www.ehbio.com/Training", 
+        staff=c("LYX","CL","ZX","CT"),
+        contentL=list(R=c("basic","plot"),
+                      Linux=c("basic","windows")))
+ysx_list
+```
+
+* str(list_name) 可以查看列表的结构，方便索引获得对应的元素。
+* list_name$list_subname提取对应子元素。
+* 注意单方括号和双方括号的区别，一个取出子列表，一个取出子列表的元素。
+
+
+```{r, echo=T}
+str(ysx_list)
+```
+
+```{r, echo=T}
+ysx_list$web
+ysx_list$contentL$R
+ysx_list[1]
+ysx_list[[1]]
+```
+
+矩阵，matrix，二维的array，所有元素都是相同类型。可以按照[row,  col]索引。
+
+```{r, echo=T}
+# 矩阵
+a <- matrix(1:20,nrow=5,ncol=4,byrow=T)
+a
+```
+
+```{r, echo=T}
+is.matrix(a)
+```
+
+
+```{r, echo=T}
+dim(a) #查看或设置数组的维度向量
+```
+
+
+```{r, echo=T}
+print(paste("矩阵a的行数", nrow(a)))
+```
+
+```{r, echo=T}
+print(paste("矩阵a的列数", ncol(a)))
+```
+
+```{r, echo=T}
+#查看或设置行列名
+rownames(a)
+```
+
+
+```{r, echo=T}
+rownames(a) <- c('a','b','c','d','e')
+a
+```
+
+```{r, echo=T}
+# R中获取一系列的字母
+letters[1:4]
+```
+
+```{r, echo=T}
+colnames(a) <- letters[1:4]
+a
+```
+
+### 变量类型和转换
+
+不同的变量类型有不同的操作方式，`is`系列和`as`系列函数用来判断变量的属性和转换变量的属性
+
+```{r, echo=T}
+is.character(a)
+```
+
+```{r, echo=T}
+is.numeric(a)
+```
+
+```{r, echo=T}
+is.matrix(a)
+```
+
+```{r, echo=T}
+is.data.frame(a)
+```
+
+```{r, echo=T}
+is.data.frame(as.data.frame(a))
+```
+
+### R中矩阵运算
+
+
+```{r, echo=T}
+set.seed(101)
+a <- round(rnorm(40),2)
+a
+```
+
+
+```{r, echo=T}
+# ncol=5 5列
+# byrow=T: 先填充行
+a <- matrix(a, ncol=5, byrow=T)
+a
+```
+
+
+```{r, echo=T}
+# 按行加和
+rowSums(a)
+```
+
+
+```{r, echo=T}
+# 注意检查括号的配对
+#a <- a[rowSums(abs(a)!=0,]
+#错误: 意外的']' in "a <- a[rowSums(abs(a)!=0,]"
+
+# 去除全部为0的行
+a <- a[rowSums(a)!=0,]
+
+# 另外一种方式去除全部为0的行
+#a[rowSums(a==0)<ncol(a),]
+
+a
+```
+
+矩阵运算，R默认针对整个数据进行常见运算
+
+```{r, echo=T}
+#所有值都乘以2
+a * 2
+```
+
+```{r, echo=T}
+# 所有值取绝对值，再取对数 （取对数前一般加一个数避免对0或负值取对数）
+log2(abs(a)+1)
+```
+
+
+
+```{r, echo=T}
+# 取出最大值、最小值、行数、列数
+max(a)
+```
+
+```{r, echo=T}
+min(a)
+```
+
+```{r, echo=T}
+nrow(a)
+```
+
+```{r, echo=T}
+ncol(a)
+```
+
+
+```{r, echo=T}
+# 计算每一行的var (方差)
+# apply表示对数据（第一个参数）的每一行 (第二个参数赋值为1) 或每一列 (2)操作
+#      最后返回一个列表
+apply(a,1,var)
+```
+
+
+```{r, echo=T}
+# 计算每一行的mad (中值绝对偏差)
+# 一般认为比方差的鲁棒性更强，更少受异常值的影响，更能反映数据间的差异)
+# 函数中的第二个参数 1 表示安行操作
+apply(a,1,mad)
+```
+
+```{r, echo=T}
+# 计算每一列的平均值
+apply(a,2,mean)
+```
+
+
+```{r, echo=T}
+# 取出中值绝对偏差大于0.5的行
+b = a[apply(a,1,mad)>0.5,]
+b
+```
+
+```{r,echo=T}
+# 输出 1 4 2 3 5
+# 解释：原列表第一个元素显示在第一位
+#       原列表第四个元素显示在第二位
+#       原列表第二个元素显示在第三位
+order(c(1,3,4,2,5))
+```
+
+```{r, echo=T}
+# 产生新的顺序
+# 
+order(apply(b,1,mad), decreasing=T)
+```
+
+```{r, echo=T}
+# 矩阵按照mad的大小降序排列
+c = b[order(apply(b,1,mad), decreasing=T),]
+c
+```
+
+```{r, echo=T}
+rownames(c) <- paste('Gene', letters[1:nrow(c)], sep="_")
+colnames(c) <- toupper(letters[1:ncol(c)])
+c
+```
+
+```{r, echo=T}
+# 矩阵转置
+expr = t(c)
+expr
+```
+
+
+```{r, echo=T}
+# 矩阵值的替换
+expr2 = expr
+expr2[expr2<0] = 0
+expr2
+```
+
+
+```{r, echo=T}
+# 矩阵中只针对某一列替换
+# expr2是个矩阵不是数据框，不能使用列名字索引
+# expr2[expr2$Gene_b<1, "Gene_b"] <- 1
+```
+
+
+```{r, echo=T}
+# str是一个最为常用、好用的查看变量信息的工具，尤其是对特别复杂的变量，
+#    可以看清其层级结构，便于提取数据
+str(expr2)
+```
+
+数据框，dataframe，子列表长度一致的特殊list，具有list和matrix的双重特性，通常与matrix可互换。
+若在程序运行时碰到”’x’ must be matrix”，需要做下as.matrix转换；若是”’x’ must be data.frame”，需要做下as.data.frame转换。这里的x是你提供的数据变量。
+
+
+```{r, echo=T}
+# 转换为数据框，再进行相应的操作
+expr2 <- as.data.frame(expr2)
+str(expr2)
+```
+
+```{r, echo=T}
+expr2[expr2$Gene_b<1, "Gene_b"] <- 1
+expr2
+```
+
+
+### R中矩阵筛选合并
+
+```{r, echo=T}
+# 读入样品信息
+sampleInfo = "Samp;Group;Genotype
+A;Control;WT
+B;Control;WT
+D;Treatment;Mutant
+C;Treatment;Mutant
+E;Treatment;WT
+F;Treatment;WT"
+
+phenoData = read.table(text=sampleInfo,sep=";", header=T, row.names=1, quote="")
+phenoData
+```
+
+
+```{r, echo=T}
+# 把样品信息按照基因表达矩阵中的样品信息排序，并只保留有基因表达信息的样品
+# ‘%in%’ is a more intuitive interface as a binary operator, which
+#     returns a logical vector indicating if there is a match or not for
+#     its left operand.
+	 
+phenoData = phenoData[rownames(phenoData) %in% rownames(expr),]
+phenoData
+```
+
+```{r, echo=T}
+# 合并矩阵
+# by=0 表示按照行的名字排序
+# by=columnname 表示按照共有的某一列合并
+# 合并后多出了新的一列Row.names
+merge_data = merge(expr, phenoData, by=0, all.x=T)
+merge_data
+```
+
+```{r, echo=T}
+rownames(merge_data) <- merge_data$Row.names
+merge_data
+```
+
+```{r, echo=T}
+# 去除一列；-1表示去除第一列
+merge_data = merge_data[,-1]
+merge_data
+```
+
+```{r, echo=T}
+write.table(merge_data, file="mergedata.txt", sep="\t", quote = F, col.names=T, row.names=T)
+```
+
+```{r, echo=T}
+# 提取出所有的数值列
+merge_data[sapply(merge_data, is.numeric)]
+```
+
+
+
+### `str`的应用
+
+`str`:  Compactly display the internal *str*ucture of an R object, a
+     diagnostic function and an alternative to 'summary (and to some
+     extent, 'dput').  Ideally, only one line for each 'basic'
+     structure is displayed.  It is especially well suited to compactly
+     display the (abbreviated) contents of (possibly nested) lists.
+     The idea is to give reasonable output for *any* R object.  It
+     calls ‘args’ for (non-primitive) function objects.
+
+`str`用来告诉结果的构成方式，对于不少Bioconductor的包，或者复杂的R函数的输出，都是一堆列表的嵌套，`str(complex_result)`会输出每个列表的名字，方便提取对应的信息。
+	 
+```{r, echo=T}
+# str的一个应用例子
+str(list(a = "A", L = as.list(1:100)), list.len = 9)
+```
+
+
+
+利用`str`查看`pca`的结果，具体的`PCA`应用查看 <http://mp.weixin.qq.com/s/sRElBMkyR9rGa4TQp9KjNQ>。
+
+```{r, echo=T}
+pca_result <- prcomp(expr)
+pca_result
+```
+
+```{r, echo=T}
+str(pca_result)
+```
+
+```{r, echo=T}
+# 取出每个主成分解释的差异
+pca_result$sdev
+
+```
+
+### R的包管理
+
+
+什么时候需要安装包
+
+```r
+library('unExistedPackage')
+Error in library("unExistedPackage") : 
+  不存在叫‘unExistedPackage’这个名字的程辑包
+```
+
+如何安装R包
+
+```
+install.packages("package_name")
+# 指定安装来源
+install.packages("package_name", repo="https://mirrors.tuna.tsinghua.edu.cn/CRAN")
+
+# 安装Bioconductor的包
+source('https://bioconductor.org/biocLite.R')
+options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
+biocLite(c("RUVSeq","pcaMethods"))
+
+# 安装Github的R包
+install.packages("devtools")
+devtools::install_github("JustinaZ/pcaReduce")
+
+# 手动安装, 首先下载包的源文件（压缩版就可），然后在终端运行下面的命令。
+ct@ehbio:~$ R CMD INSTALL package.tar.gz
+
+# 移除包
+remove.packages("package_name")
+
+# 查看所有安装的包
+library()
+
+# 查看特定安装包的版本
+installed.packages()[c("ggplot2"), c("Package", "Version")]
+
+#  Package  Version 
+# "DESeq2" "1.14.1" 
+
+# 查看默认安装包的位置
+.libPaths()
+
+# 查看已加载的包
+.packages()
+
+# 调用安装的包
+library(package_name)
+```
+
+自动安装CRAN包
+
+```r
+usePackage <- function(p) {
+	if (!is.element(p, installed.packages()[,1])) {
+		install.packages(p, dep = TRUE)
+	}
+	require(p, character.only = TRUE)
+}
+```
+
+查看数据类型
+
+```{r, echo=T}
+mode(a)
+class(a)
+typeof(a)
+storage.mode(a)
+mode(ysx_list)
+class(ysx_list)
+class(ysx_list$web)
+storage.mode(class(ysx_list$web))
+class(ysx_list$staff)
+storage.mode(ysx_list$staff)
+typeof(2)
+typeof(as.integer(2))
+```
+
+## ggplot2绘图
+
+```{r, echo=T}
+data <- "OTU;Sample;Group;Abundance
+OTU1;KO1;KO;1.2
+OTU2;KO1;KO;1.4
+OTU3;KO1;KO;16
+OTU4;KO1;KO;10
+OTU5;KO1;KO;25
+OTU6;KO1;KO;30
+OTU7;KO1;KO;2
+OTU8;KO1;KO;3
+OTU1;KO2;KO;1.2
+OTU2;KO2;KO;1.4
+OTU3;KO2;KO;16
+OTU4;KO2;KO;10
+OTU5;KO2;KO;25
+OTU6;KO2;KO;30
+OTU7;KO2;KO;2
+OTU8;KO2;KO;3
+OTU1;KO3;KO;1.2
+OTU2;KO3;KO;1.4
+OTU3;KO3;KO;16
+OTU4;KO3;KO;10
+OTU5;KO3;KO;25
+OTU6;KO3;KO;30
+OTU7;KO3;KO;2
+OTU8;KO3;KO;3
+OTU8;WT1;WT;1.2
+OTU7;WT1;WT;1.4
+OTU6;WT1;WT;16
+OTU5;WT1;WT;10
+OTU4;WT1;WT;25
+OTU3;WT1;WT;30
+OTU2;WT1;WT;2
+OTU1;WT1;WT;3
+OTU8;WT2;WT;1.2
+OTU7;WT2;WT;1.4
+OTU6;WT2;WT;16
+OTU5;WT2;WT;10
+OTU4;WT2;WT;25
+OTU3;WT2;WT;30
+OTU2;WT2;WT;2
+OTU1;WT2;WT;3
+OTU8;WT3;WT;1.2
+OTU7;WT3;WT;1.4
+OTU6;WT3;WT;16
+OTU5;WT3;WT;10
+OTU4;WT3;WT;25
+OTU3;WT3;WT;30
+OTU2;WT3;WT;2
+OTU1;WT3;WT;3"
+
+data <- read.table(text=data, header=T, row.names=NULL, sep=";")
+
+data[sample(1:nrow(data),6),]
+```
+
+```{r, echo=T}
+# 加载包
+library(ggplot2)
+```
+
+初始化ggplot，建立坐标系
+
+```{r, echo=T}
+p <- ggplot(data, aes(x=Sample, y=OTU))
+p
+```
+绘制几何属性
+
+```{r, echo=T}
+p + geom_point()
+```
+映射数据到几何形状的属性，如颜色
+
+```{r, echo=T}
+p + geom_point(aes(color=Abundance))
+```
+
+映射数据到几何形状的属性，如大小
+
+```{r, echo=T}
+p + geom_point(aes(size=Abundance))
+```
+
+自定义颜色
+
+```{r, echo=T}
+p + geom_point(aes(color=Abundance)) + scale_color_continuous(low="green", high="red")
+```
+
+设置主题属性
+
+```{r, echo=T}
+p + geom_point(aes(color=Abundance)) + scale_color_continuous(low="green", high="red") + theme_classic()
+```
+
+放大点，并添加文字作为label
+
+```{r, echo=T}
+p + geom_point(aes(color=Abundance), size=10) + 
+                 scale_color_continuous(low="green", high="red") + 
+                 geom_text(aes(label=Abundance)) +
+                 theme_classic()
+```
+
+自定义注释
+
+```{r, echo=T}
+p + geom_point(aes(color=Abundance), size=10) + 
+  scale_color_continuous(low="green", high="red") + 
+  geom_text(aes(label=Abundance)) +
+  annotate("rect",xmin=0.5, xmax=3.5, ymin=5.5,ymax=6.5,alpha=0.2) + 
+  theme_classic()
+```
+
+绘制热图
+
+```{r, echo=T}
+p + geom_tile(aes(fill=Abundance)) + 
+  scale_fill_continuous(low="green", high="red") + 
+  geom_text(aes(label=Abundance)) +
+  theme_classic()
+```
+
+更改横轴的顺序
+
+```{r, echo=T}
+# paste0(rep(c("WT","KO"),each=3), rep(1:3))
+data$Sample <- factor(data$Sample,levels=c("WT1","WT2","WT3","KO1","KO2","KO3"), ordered=T)
+p <- ggplot(data, aes(x=Sample, y=OTU)) + 
+  geom_tile(aes(fill=Abundance)) + 
+  scale_fill_continuous(low="green", high="red") + 
+  geom_text(aes(label=Abundance)) +
+  theme_classic()
+p
+```
+箱线图展示
+
+```{r, echo=T}
+p <- ggplot(data, aes(x=Sample, y=Abundance)) + 
+  geom_boxplot(aes(fill=Group))
+p
+```
+
+小提琴图加点的连线
+
+```{r, echo=T}
+# geom_line把同一个OTU的数据作为一组
+p <- ggplot(data, aes(x=Group, y=Abundance)) + 
+  geom_violin(aes(fill=Group), alpha=0.5) +
+  geom_line(aes(group=OTU), alpha=0.5)
+p
+```
+
+### pheatmap绘制热图
+
+
+```{r, echo=T}
+data_matrix = "KO1;KO2;KO3;WT1;WT2;WT3
+OTU1;1.2;1.2;1.2;3.0;3.0;3.0
+OTU2;1.4;1.4;1.4;2.0;2.0;2.0
+OTU3;16.0;16.0;16.0;30.0;30.0;30.0
+OTU4;10.0;10.0;10.0;25.0;25.0;25.0
+OTU5;25.0;25.0;25.0;10.0;10.0;10.0
+OTU6;30.0;30.0;30.0;16.0;16.0;16.0
+OTU7;2.0;2.0;2.0;1.4;1.4;1.4
+OTU8;3.0;3.0;3.0;1.2;1.2;1.2"
+
+data_matrix <- read.table(text=data_matrix, header=T, row.names=1, sep=";")
+
+head(data_matrix)
+```
+
+```{r, echo=T}
+library(pheatmap)
+pheatmap(data_matrix)
+```
+```{r, echo=T}
+metadata <- "samp;Grp
+WT1;WT
+WT2;WT
+WT3;WT
+KO1;KO
+KO2;KO
+KO3;KO"
+
+metadata <- read.table(text=metadata, header=T, row.names=1, sep=";")
+
+pheatmap(data_matrix, annotation_col = metadata)
+```
+```{r, echo=T}
+colorL = colorRampPalette(c("green","red"))(30)
+
+pheatmap(data_matrix, annotation_col = metadata, color = colorL)
+```
+
+
+## CheetSheets
+
+<https://www.rstudio.com/resources/cheatsheets/>
+
+## 参考
+
+* [生信宝典Linux系列](http://mp.weixin.qq.com/s/hEYU80fPf1eD5OWL3fO4Bg)
+* [生信宝典R系列](https://mp.weixin.qq.com/s/bsvB1k17Izom2ldgdwXrdg)
+
