@@ -1,0 +1,33 @@
+
+
+Anaerobic
+Number of samples in each treatment group:
+
+KO OE WT 
+ 6  6  6 
+
+Proportion with phenotype (mean):
+         KO          OE          WT 
+0.008019168 0.020757655 0.014664157 
+
+Proportion with phenotype (median):
+         KO          OE          WT 
+0.007787841 0.018972545 0.014160445 
+
+Standard deviation:
+         KO          OE          WT 
+0.002204458 0.005140913 0.005919461 
+
+Pairwise Mann-Whitney-Wilcoxon Tests were performed.
+Pairwise p-values are:
+ KO_vs_OE  KO_vs_WT  OE_vs_WT 
+0.0021645 0.0151515 0.0649351 
+
+FDR-corrected pairwise p-values are:
+   KO_vs_OE    KO_vs_WT    OE_vs_WT 
+0.006493506 0.022727273 0.064935065 
+
+Kruskal-Wallis Test was performed.
+
+Group p-value is:
+0.002902725 
