@@ -1,0 +1,12 @@
+"","var","estimate","statistic","p.value","conf.low","conf.high","method","alternative","padjust"
+"1","Firmicutes",-0.528220819981868,35,0.279861005867198,-1.56506289908513,0.464167886221564,"Wilcoxon rank sum exact test","two.sided",0.513078510756529
+"2","Bacteroidetes",0.654181657334414,77,0.0432570525449782,0.0193982156759688,1.74845312247662,"Wilcoxon rank sum exact test","two.sided",0.11895689449869
+"3","Proteobacteria",-1.0415258408457,23,0.0432570525449782,-1.68242116109139,-0.0532911126230158,"Wilcoxon rank sum exact test","two.sided",0.11895689449869
+"4","Actinobacteria",-1.03720740474532,11,0.00208924202732252,-1.81062822880984,-0.393636014509952,"Wilcoxon rank sum exact test","two.sided",0.0229816623005477
+"5","Verrucomicrobia",4.24877815510054e-05,54,0.670405295509648,-4.58682346979619e-06,3.59996791208945e-05,"Wilcoxon rank sum test with continuity correction","two.sided",0.921807281325765
+"6","Fusobacteria",0.675594031382966,71,0.0802766809045487,-4.81310650381906e-05,1.82441740935166,"Wilcoxon rank sum test with continuity correction","two.sided",0.176608697990007
+"7","Candidatus_Saccharibacteria",-0.345245579514473,27.5,0.0403314635870622,-1.53441128756851,4.09409101524059e-05,"Wilcoxon rank sum test with continuity correction","two.sided",0.11895689449869
+"8","Euryarchaeota",3.16798952732372e-05,53.5,0.779790899369572,-1.58559538540323e-06,1.19605700177162,"Wilcoxon rank sum test with continuity correction","two.sided",0.953077765896143
+"9","Synergistetes",6.289785405862e-06,51,0.966998666506684,-0.678973364838293,0.7200322950559,"Wilcoxon rank sum test with continuity correction","two.sided",1
+"10","Lentisphaerae",0,55,0.368120250693519,0,9.14414459874559e-05,"Wilcoxon rank sum test with continuity correction","two.sided",0.578474679661244
+"11","Ascomycota",-2.8789421328563e-05,49.5,1,-4.09970589269459e-05,1.34203909001003e-06,"Wilcoxon rank sum test with continuity correction","two.sided",1

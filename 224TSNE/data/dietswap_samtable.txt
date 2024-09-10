@@ -1,1 +1,0 @@
-"","subject","sex","nationality","group","sample","timepoint","timepoint.within.group","bmi_group"

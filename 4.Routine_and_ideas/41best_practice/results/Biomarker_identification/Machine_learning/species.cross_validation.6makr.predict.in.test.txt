@@ -1,0 +1,19 @@
+x
+Healthy04	0.054
+Healthy07	0.006
+Healthy08	0.084
+Healthy09	0.026
+Patients02	0.956
+Patients03	0.886
+Healthy19	0.026
+Patients11	0.626
+Patients15	1
+Patients19	1
+Healthy23	0.064
+Healthy24	0.054
+Healthy25	0.008
+Healthy30	0.056
+Patients21	0.626
+Patients25	1
+Patients26	0.98
+Patients28	0.97

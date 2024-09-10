@@ -1,0 +1,116 @@
+DATASET_DOMAINS
+SEPARATOR TAB
+BACKBONE_COLOR	#FFFFFF
+BACKBONE_HEIGHT	0
+BORDER_WIDTH	0.5
+COLOR	#bebada
+DATASET_LABEL	Species
+HEIGHT_FACTOR	1
+LEGEND_COLORS	#a6cee3	#1f78b4	#b2df8a	#33a02c	#fb9a99	#e31a1c	#a6cee3	#1f78b4	#b2df8a	#33a02c	#fb9a99	#e31a1c	#a6cee3	#1f78b4	#b2df8a	#33a02c	#fb9a99	#e31a1c	#a6cee3	#1f78b4	#b2df8a	#33a02c	#fb9a99	#e31a1c	#a6cee3	#1f78b4	#b2df8a	#33a02c	#fb9a99	#e31a1c	#a6cee3	#1f78b4
+LEGEND_LABELS	Actinocorallia_herbida	Actinophytocola_burenkhanensis	Amycolatopsis_keratiniphila_subsp._keratiniphila	Bacillus_megaterium	Bradyrhizobium_neotropicale	Devosia_insulae	Dongia_mobilis	Flavobacterium_terrae	Hydrogenophaga_intermedia	Kibdelosporangium_phytohabitans	Kineosporia_rhamnosa	Kinneretia_asaccharophila	Kribbella_catacumbae	Lentzea_albida	Lentzea_flaviverrucosa	Lysobacter_brunescens	Noviherbaspirillum_suwonense	Pelomonas_puraquae	Phenylobacterium_composti	Piscinibacter_aquaticus	Polaromonas_aquatica	Pseudoduganella_violaceinigra	Pseudomonas_chlororaphis_subsp._piscium	Pseudoxanthomonas_gei	Pseudoxanthomonas_wuyuanensis	Rhizobacter_bergeniae	Sandaracinus_amylolyticus	Sphingopyxis_soli	Steroidobacter_agariperforans	Steroidobacter_denitrificans	Streptomyces_ederensis	Unassigned
+LEGEND_SHAPES	EL	EL	EL	EL	EL	EL	RE	RE	RE	RE	RE	RE	TL	TL	TL	TL	TL	TL	TR	TR	TR	TR	TR	TR	DI	DI	DI	DI	DI	DI	HH	HH
+LEGEND_TITLE	Species
+MARGIN	5
+SHOW_DOMAIN_LABELS	0
+WIDTH	25
+DATA
+ASV_657	10	HH|0|10|#1f78b4|Unassigned
+ASV_2	10	TL|0|10|#e31a1c|Pelomonas_puraquae
+ASV_12	10	RE|0|10|#1f78b4|Flavobacterium_terrae
+ASV_3	10	DI|0|10|#1f78b4|Rhizobacter_bergeniae
+ASV_4	10	HH|0|10|#1f78b4|Unassigned
+ASV_8	10	HH|0|10|#1f78b4|Unassigned
+ASV_6	10	HH|0|10|#1f78b4|Unassigned
+ASV_18	10	TL|0|10|#b2df8a|Lentzea_flaviverrucosa
+ASV_9	10	HH|0|10|#1f78b4|Unassigned
+ASV_10	10	HH|0|10|#1f78b4|Unassigned
+ASV_11	10	HH|0|10|#1f78b4|Unassigned
+ASV_13	10	HH|0|10|#1f78b4|Unassigned
+ASV_15	10	EL|0|10|#fb9a99|Bradyrhizobium_neotropicale
+ASV_14	10	HH|0|10|#1f78b4|Unassigned
+ASV_16	10	HH|0|10|#a6cee3|Streptomyces_ederensis
+ASV_17	10	HH|0|10|#1f78b4|Unassigned
+ASV_28	10	EL|0|10|#a6cee3|Actinocorallia_herbida
+ASV_20	10	HH|0|10|#1f78b4|Unassigned
+ASV_33	10	HH|0|10|#1f78b4|Unassigned
+ASV_21	10	TL|0|10|#a6cee3|Kribbella_catacumbae
+ASV_25	10	EL|0|10|#1f78b4|Actinophytocola_burenkhanensis
+ASV_22	10	HH|0|10|#1f78b4|Unassigned
+ASV_31	10	HH|0|10|#1f78b4|Unassigned
+ASV_26	10	EL|0|10|#1f78b4|Actinophytocola_burenkhanensis
+ASV_24	10	HH|0|10|#1f78b4|Unassigned
+ASV_23	10	EL|0|10|#b2df8a|Amycolatopsis_keratiniphila_subsp._keratiniphila
+ASV_27	10	EL|0|10|#fb9a99|Bradyrhizobium_neotropicale
+ASV_29	10	HH|0|10|#1f78b4|Unassigned
+ASV_30	10	HH|0|10|#1f78b4|Unassigned
+ASV_32	10	HH|0|10|#1f78b4|Unassigned
+ASV_34	10	RE|0|10|#fb9a99|Kineosporia_rhamnosa
+ASV_36	10	TR|0|10|#33a02c|Pseudoduganella_violaceinigra
+ASV_43	10	EL|0|10|#33a02c|Bacillus_megaterium
+ASV_37	10	HH|0|10|#1f78b4|Unassigned
+ASV_47	10	HH|0|10|#1f78b4|Unassigned
+ASV_39	10	HH|0|10|#1f78b4|Unassigned
+ASV_38	10	TR|0|10|#33a02c|Pseudoduganella_violaceinigra
+ASV_55	10	TR|0|10|#1f78b4|Piscinibacter_aquaticus
+ASV_41	10	HH|0|10|#1f78b4|Unassigned
+ASV_42	10	HH|0|10|#1f78b4|Unassigned
+ASV_46	10	HH|0|10|#1f78b4|Unassigned
+ASV_71	10	DI|0|10|#33a02c|Sphingopyxis_soli
+ASV_166	10	HH|0|10|#1f78b4|Unassigned
+ASV_378	10	HH|0|10|#1f78b4|Unassigned
+ASV_45	10	HH|0|10|#1f78b4|Unassigned
+ASV_44	10	RE|0|10|#e31a1c|Kinneretia_asaccharophila
+ASV_63	10	TR|0|10|#a6cee3|Phenylobacterium_composti
+ASV_40	10	HH|0|10|#1f78b4|Unassigned
+ASV_48	10	HH|0|10|#1f78b4|Unassigned
+ASV_50	10	TR|0|10|#33a02c|Pseudoduganella_violaceinigra
+ASV_49	10	TL|0|10|#1f78b4|Lentzea_albida
+ASV_57	10	HH|0|10|#1f78b4|Unassigned
+ASV_53	10	HH|0|10|#1f78b4|Unassigned
+ASV_51	10	HH|0|10|#1f78b4|Unassigned
+ASV_54	10	HH|0|10|#1f78b4|Unassigned
+ASV_56	10	HH|0|10|#1f78b4|Unassigned
+ASV_59	10	HH|0|10|#1f78b4|Unassigned
+ASV_2105	10	HH|0|10|#1f78b4|Unassigned
+ASV_62	10	HH|0|10|#1f78b4|Unassigned
+ASV_67	10	TR|0|10|#fb9a99|Pseudomonas_chlororaphis_subsp._piscium
+ASV_60	10	HH|0|10|#1f78b4|Unassigned
+ASV_61	10	TL|0|10|#fb9a99|Noviherbaspirillum_suwonense
+ASV_77	10	DI|0|10|#e31a1c|Steroidobacter_denitrificans
+ASV_66	10	RE|0|10|#a6cee3|Dongia_mobilis
+ASV_64	10	HH|0|10|#1f78b4|Unassigned
+ASV_69	10	RE|0|10|#33a02c|Kibdelosporangium_phytohabitans
+ASV_68	10	HH|0|10|#1f78b4|Unassigned
+ASV_72	10	HH|0|10|#1f78b4|Unassigned
+ASV_70	10	TR|0|10|#e31a1c|Pseudoxanthomonas_gei
+ASV_73	10	HH|0|10|#1f78b4|Unassigned
+ASV_2157	10	HH|0|10|#1f78b4|Unassigned
+ASV_79	10	HH|0|10|#1f78b4|Unassigned
+ASV_74	10	EL|0|10|#fb9a99|Bradyrhizobium_neotropicale
+ASV_81	10	HH|0|10|#1f78b4|Unassigned
+ASV_427	10	HH|0|10|#1f78b4|Unassigned
+ASV_75	10	HH|0|10|#1f78b4|Unassigned
+ASV_76	10	HH|0|10|#1f78b4|Unassigned
+ASV_80	10	DI|0|10|#a6cee3|Pseudoxanthomonas_wuyuanensis
+ASV_86	10	HH|0|10|#1f78b4|Unassigned
+ASV_78	10	HH|0|10|#1f78b4|Unassigned
+ASV_84	10	HH|0|10|#1f78b4|Unassigned
+ASV_87	10	HH|0|10|#1f78b4|Unassigned
+ASV_83	10	TR|0|10|#33a02c|Pseudoduganella_violaceinigra
+ASV_85	10	HH|0|10|#1f78b4|Unassigned
+ASV_91	10	HH|0|10|#1f78b4|Unassigned
+ASV_93	10	TL|0|10|#33a02c|Lysobacter_brunescens
+ASV_88	10	HH|0|10|#1f78b4|Unassigned
+ASV_89	10	DI|0|10|#fb9a99|Steroidobacter_agariperforans
+ASV_102	10	HH|0|10|#1f78b4|Unassigned
+ASV_92	10	HH|0|10|#1f78b4|Unassigned
+ASV_101	10	HH|0|10|#1f78b4|Unassigned
+ASV_114	10	DI|0|10|#b2df8a|Sandaracinus_amylolyticus
+ASV_104	10	TR|0|10|#b2df8a|Polaromonas_aquatica
+ASV_100	10	RE|0|10|#b2df8a|Hydrogenophaga_intermedia
+ASV_94	10	HH|0|10|#1f78b4|Unassigned
+ASV_97	10	HH|0|10|#1f78b4|Unassigned
+ASV_110	10	HH|0|10|#1f78b4|Unassigned
+ASV_106	10	HH|0|10|#1f78b4|Unassigned
+ASV_109	10	HH|0|10|#1f78b4|Unassigned
+ASV_96	10	EL|0|10|#e31a1c|Devosia_insulae
