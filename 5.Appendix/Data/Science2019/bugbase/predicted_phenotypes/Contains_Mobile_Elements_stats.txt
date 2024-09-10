@@ -1,0 +1,33 @@
+
+
+Contains_Mobile_Elements
+Number of samples in each treatment group:
+
+KO OE WT 
+ 6  6  6 
+
+Proportion with phenotype (mean):
+       KO        OE        WT 
+0.2209484 0.1810562 0.1765501 
+
+Proportion with phenotype (median):
+       KO        OE        WT 
+0.2208723 0.1810895 0.1789088 
+
+Standard deviation:
+        KO         OE         WT 
+0.03021126 0.01258305 0.01182932 
+
+Pairwise Mann-Whitney-Wilcoxon Tests were performed.
+Pairwise p-values are:
+KO_vs_OE KO_vs_WT OE_vs_WT 
+0.025974 0.015152 0.588745 
+
+FDR-corrected pairwise p-values are:
+  KO_vs_OE   KO_vs_WT   OE_vs_WT 
+0.03896104 0.03896104 0.58874459 
+
+Kruskal-Wallis Test was performed.
+
+Group p-value is:
+0.02221433 
