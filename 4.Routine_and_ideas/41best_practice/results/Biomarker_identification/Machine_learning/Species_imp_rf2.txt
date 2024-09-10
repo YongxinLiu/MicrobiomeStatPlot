@@ -1,0 +1,7 @@
+0	1	MeanDecreaseAccuracy	MeanDecreaseGini
+Species985	10.4	9.3	12.3	2.01
+Species918	13.34	10.56	14.5	2.99
+Species1822	11.55	13.23	14.51	2.86
+Species138	13.23	12.35	14.9	3.14
+Species749	13.99	14.04	16.78	4.16
+Species1820	16.98	17.21	19.41	5.32
