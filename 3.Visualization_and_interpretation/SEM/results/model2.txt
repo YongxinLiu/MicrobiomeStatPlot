@@ -1,0 +1,17 @@
+Response	Predictor	Estimate	Std.Error	DF	Crit.Value	P.Value	Std.Estimate	
+Bacteria_richness	OM	-10.6511	2.4597	52	-4.3303	1e-04	-1.817	***
+Bacteria_richness	AN	2.1013	0.5909	52	3.5561	8e-04	1.4922	***
+Fungi_richness	OM	-0.993	0.773	52	-1.2845	0.2047	-0.5655	
+Fungi_richness	AN	0.4299	0.1857	52	2.3151	0.0246	1.0191	*
+FAPROTAX	Bacteria_richness	0.0078	0.0098	53	0.7965	0.4293	0.0959	
+FunGuild	OM	-0.0027	0.0011	51	-2.4755	0.0167	-1.1334	*
+FunGuild	Fungi_richness	-4e-04	2e-04	51	-1.9195	0.0605	-0.2721	
+FunGuild	AN	6e-04	3e-04	51	2.0993	0.0408	0.9937	*
+Withered	OM	-0.0109	0.0145	51	-0.7511	0.456	-0.4119	
+Withered	Bacteria_richness	0.0015	7e-04	51	2.1628	0.0353	0.3319	*
+Withered	AN	0.0032	0.0033	51	0.9541	0.3445	0.5007	
+Normal	Bacteria_richness	-8e-04	4e-04	50	-2.3611	0.0222	-0.3653	*
+Normal	AN	-0.0019	0.0017	50	-1.1183	0.2688	-0.5881	
+Normal	OM	0.0061	0.0072	50	0.847	0.401	0.4628	
+Normal	FAPROTAX	0.0048	0.0037	50	1.285	0.2047	0.1708	
+~~Normal	~~Withered	-0.9842	-	56	-40.4586	0	-0.9842	***

@@ -1,0 +1,91 @@
+lavaan 0.6.17 ended normally after 36 iterations
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                        18
+
+  Number of observations                            56
+
+Model Test User Model:
+                                                      
+  Test statistic                                 0.000
+  Degrees of freedom                                 0
+
+Parameter Estimates:
+
+  Standard errors                             Standard
+  Information                                 Expected
+  Information saturated (h1) model          Structured
+
+Latent Variables:
+                    Estimate  Std.Err  z-value  P(>|z|)
+  latentBact =~                                        
+    Bacteri_rchnss     1.000                           
+  latentFung =~                                        
+    Fungi_richness     1.000                           
+  latentFAPROTAX =~                                    
+    FAPROTAX           1.000                           
+  latentFunGuild =~                                    
+    FunGuild           1.000                           
+
+Regressions:
+                   Estimate  Std.Err  z-value  P(>|z|)
+  latentBact ~                                        
+    OM               -0.361    0.115   -3.138    0.002
+    status_dummy      0.673    0.228    2.949    0.003
+  latentFung ~                                        
+    OM                0.421    0.121    3.483    0.000
+    status_dummy      0.201    0.240    0.838    0.402
+  latentFAPROTAX ~                                    
+    OM                0.118    0.133    0.887    0.375
+    status_dummy     -0.104    0.263   -0.395    0.693
+  latentFunGuild ~                                    
+    OM               -0.287    0.128   -2.242    0.025
+    status_dummy      0.109    0.253    0.430    0.667
+
+Covariances:
+                    Estimate  Std.Err  z-value  P(>|z|)
+ .latentBact ~~                                        
+   .latentFung         0.315    0.110    2.857    0.004
+   .latentFAPROTAX     0.236    0.116    2.033    0.042
+   .latentFunGuild     0.196    0.111    1.765    0.078
+ .latentFung ~~                                        
+   .latentFAPROTAX     0.092    0.118    0.780    0.435
+   .latentFunGuild    -0.127    0.115   -1.108    0.268
+ .latentFAPROTAX ~~                                    
+   .latentFunGuild     0.096    0.125    0.771    0.441
+
+Variances:
+                   Estimate  Std.Err  z-value  P(>|z|)
+   .Bacteri_rchnss    0.000                           
+   .Fungi_richness    0.000                           
+   .FAPROTAX          0.000                           
+   .FunGuild          0.000                           
+   .latentBact        0.727    0.137    5.292    0.000
+   .latentFung        0.802    0.152    5.292    0.000
+   .latentFAPROTAX    0.965    0.182    5.292    0.000
+   .latentFunGuild    0.897    0.169    5.292    0.000
+
+                 latentBact~OM        latentBact~status_dummy 
+                        -0.361                          0.673 
+                 latentFung~OM        latentFung~status_dummy 
+                         0.421                          0.201 
+             latentFAPROTAX~OM    latentFAPROTAX~status_dummy 
+                         0.118                         -0.104 
+             latentFunGuild~OM    latentFunGuild~status_dummy 
+                        -0.287                          0.109 
+        latentBact~~latentFung         latentBact~~latentBact 
+                         0.315                          0.727 
+        latentFung~~latentFung latentFAPROTAX~~latentFAPROTAX 
+                         0.802                          0.965 
+latentFunGuild~~latentFunGuild     latentBact~~latentFAPROTAX 
+                         0.897                          0.236 
+    latentBact~~latentFunGuild     latentFung~~latentFAPROTAX 
+                         0.196                          0.092 
+    latentFung~~latentFunGuild latentFAPROTAX~~latentFunGuild 
+                        -0.127                          0.096 
+Chi-Squared Test Statistic (unscaled)
+
+          Df    AIC    BIC Chisq Chisq diff Df diff Pr(>Chisq)
+Saturated  0                   0                              
+Model      0 610.14 646.59     0          0       0           

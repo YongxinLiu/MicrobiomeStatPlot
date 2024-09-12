@@ -1,0 +1,88 @@
+  |                                                                              |                                                                      |   0%  |                                                                              |======                                                                |   9%  |                                                                              |=============                                                         |  18%  |                                                                              |===================                                                   |  27%  |                                                                              |=========================                                             |  36%  |                                                                              |================================                                      |  45%  |                                                                              |======================================                                |  55%  |                                                                              |=============================================                         |  64%  |                                                                              |===================================================                   |  73%  |                                                                              |=========================================================             |  82%  |                                                                              |================================================================      |  91%  |                                                                              |======================================================================| 100%
+
+Structural Equation Model of psem_cat 
+
+Call:
+  Bacteria_richness ~ OM + AN
+  Fungi_richness ~ OM + AN
+  FAPROTAX ~ Bacteria_richness
+  FunGuild ~ OM + Fungi_richness + AN
+  Withered ~ OM + Bacteria_richness + AN
+  Normal ~ Bacteria_richness + AN + OM + FAPROTAX
+  Normal ~~ Withered
+
+    AIC
+ 1988.196
+
+---
+Tests of directed separation:
+
+                            Independ.Claim Test.Type DF Crit.Value P.Value  
+                       FAPROTAX ~ OM + ...      coef 52     1.4517  0.1526  
+                       FAPROTAX ~ AN + ...      coef 52     1.7788  0.0811  
+  Fungi_richness ~ Bacteria_richness + ...      coef 51     2.5959  0.0123 *
+        FunGuild ~ Bacteria_richness + ...      coef 50     1.8384  0.0719  
+           Withered ~ Fungi_richness + ...      coef 50    -0.5177  0.6070  
+             Normal ~ Fungi_richness + ...      coef 49     0.5524  0.5832  
+           FAPROTAX ~ Fungi_richness + ...      coef 50    -0.4963  0.6219  
+                 Withered ~ FunGuild + ...      coef 49    -0.5469  0.5869  
+                   Normal ~ FunGuild + ...      coef 48     0.5209  0.6049  
+                 FAPROTAX ~ FunGuild + ...      coef 49    -0.9906  0.3267  
+                 FAPROTAX ~ Withered + ...      coef 50    -1.2091  0.2323  
+
+--
+Global goodness-of-fit:
+
+Chi-Squared = 19.246 with P-value = 0.057 and on 11 degrees of freedom
+Fisher's C = 33.1 with P-value = 0.06 and on 22 degrees of freedom
+
+---
+Coefficients:
+
+           Response         Predictor Estimate Std.Error DF Crit.Value P.Value
+  Bacteria_richness                OM -10.6511    2.4597 52    -4.3303  0.0001
+  Bacteria_richness                AN   2.1013    0.5909 52     3.5561  0.0008
+     Fungi_richness                OM  -0.9930     0.773 52    -1.2845  0.2047
+     Fungi_richness                AN   0.4299    0.1857 52     2.3151  0.0246
+           FAPROTAX Bacteria_richness   0.0078    0.0098 53     0.7965  0.4293
+           FunGuild                OM  -0.0027    0.0011 51    -2.4755  0.0167
+           FunGuild    Fungi_richness  -0.0004     2e-04 51    -1.9195  0.0605
+           FunGuild                AN   0.0006     3e-04 51     2.0993  0.0408
+           Withered                OM  -0.0109    0.0145 51    -0.7511  0.4560
+           Withered Bacteria_richness   0.0015     7e-04 51     2.1628  0.0353
+           Withered                AN   0.0032    0.0033 51     0.9541  0.3445
+             Normal Bacteria_richness  -0.0008     4e-04 50    -2.3611  0.0222
+             Normal                AN  -0.0019    0.0017 50    -1.1183  0.2688
+             Normal                OM   0.0061    0.0072 50     0.8470  0.4010
+             Normal          FAPROTAX   0.0048    0.0037 50     1.2850  0.2047
+           ~~Normal        ~~Withered  -0.9842         - 56   -40.4586  0.0000
+  Std.Estimate    
+       -1.8170 ***
+        1.4922 ***
+       -0.5655    
+        1.0191   *
+        0.0959    
+       -1.1334   *
+       -0.2721    
+        0.9937   *
+       -0.4119    
+        0.3319   *
+        0.5007    
+       -0.3653   *
+       -0.5881    
+        0.4628    
+        0.1708    
+       -0.9842 ***
+
+  Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05
+
+---
+Individual R-squared:
+
+           Response method Marginal Conditional
+  Bacteria_richness   none     0.31        0.32
+     Fungi_richness   none     0.25        0.25
+           FAPROTAX   none     0.01        0.23
+           FunGuild   none     0.18        0.24
+           Withered   none     0.15        0.15
+             Normal   none     0.18        0.18
