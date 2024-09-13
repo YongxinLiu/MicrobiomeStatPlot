@@ -1,0 +1,37 @@
+X1	X2	X3	X4	X5
+leaf	1	genes with DEL	0.057076446	ratio of up-relulated genes
+leaf	2	genes with INS	0.056524354	ratio of up-relulated genes
+leaf	3	genes without SV	0.048515023	ratio of up-relulated genes
+leaf	1	genes with DEL	0.076446281	ratio of down-relulated genes
+leaf	2	genes with INS	0.075766687	ratio of down-relulated genes
+leaf	3	genes without SV	0.068546286	ratio of down-relulated genes
+leaf	1	genes with DEL	0.866477273	ratio of None-differentially expressed genes
+leaf	2	genes with INS	0.86770896	ratio of None-differentially expressed genes
+leaf	3	genes without SV	0.88293869	ratio of None-differentially expressed genes
+fruit	5	genes with DEL	0.18052686	ratio of up-relulated genes
+fruit	6	genes with INS	0.184004811	ratio of up-relulated genes
+fruit	7	genes without SV	0.148381868	ratio of up-relulated genes
+fruit	5	genes with DEL	0.213842975	ratio of down-relulated genes
+fruit	6	genes with INS	0.219182201	ratio of down-relulated genes
+fruit	7	genes without SV	0.172002547	ratio of down-relulated genes
+fruit	5	genes with DEL	0.605630165	ratio of None-differentially expressed genes
+fruit	6	genes with INS	0.596812989	ratio of None-differentially expressed genes
+fruit	7	genes without SV	0.679615585	ratio of None-differentially expressed genes
+seed	9	genes with DEL	0.185950413	ratio of up-relulated genes
+seed	10	genes with INS	0.200841852	ratio of up-relulated genes
+seed	11	genes without SV	0.150581833	ratio of up-relulated genes
+seed	9	genes with DEL	0.180785124	ratio of down-relulated genes
+seed	10	genes with INS	0.193926639	ratio of down-relulated genes
+seed	11	genes without SV	0.152260754	ratio of down-relulated genes
+seed	9	genes with DEL	0.633264463	ratio of None-differentially expressed genes
+seed	10	genes with INS	0.605231509	ratio of None-differentially expressed genes
+seed	11	genes without SV	0.697157413	ratio of None-differentially expressed genes
+embryo	13	genes with DEL	0.200671488	ratio of up-relulated genes
+embryo	14	genes with INS	0.20444979	ratio of up-relulated genes
+embryo	15	genes without SV	0.1659912	ratio of up-relulated genes
+embryo	13	genes with DEL	0.229855372	ratio of down-relulated genes
+embryo	14	genes with INS	0.25616356	ratio of down-relulated genes
+embryo	15	genes without SV	0.201308476	ratio of down-relulated genes
+embryo	13	genes with DEL	0.56947314	ratio of None-differentially expressed genes
+embryo	14	genes with INS	0.539386651	ratio of None-differentially expressed genes
+embryo	15	genes without SV	0.632758221	ratio of None-differentially expressed genes
