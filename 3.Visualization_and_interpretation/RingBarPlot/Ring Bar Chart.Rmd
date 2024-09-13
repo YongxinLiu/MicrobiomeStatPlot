@@ -84,7 +84,7 @@ Unbiased analysis of the dataset using robust rank aggregation and enrichment ov
 ```{r}
 # 基于CRAN安装R包，检测没有则安装 Installing R packages based on CRAN and installing them if they are not detected
 p_list = c("ggplot2", "reshape2",  "dplyr", "cowplot", "likert", "tidyverse", 
-           "export", "RColorBrewer")
+           "export", "RColorBrewer", "readxl")
 for(p in p_list){if (!requireNamespace(p)){install.packages(p)}
     library(p, character.only = TRUE, quietly = TRUE, warn.conflicts = FALSE)}
 
@@ -96,6 +96,7 @@ suppressWarnings(suppressMessages(library(likert)))
 suppressWarnings(suppressMessages(library(tidyverse)))
 suppressWarnings(suppressMessages(library(export)))
 suppressWarnings(suppressMessages(library(RColorBrewer)))
+suppressWarnings(suppressMessages(library(readxl)))
 ```
 
 
@@ -190,6 +191,7 @@ ggsave(filename = "results/Circle_bar_plot.pdf", plot = p, width = 14, height = 
 The second type
 
 https://mp.weixin.qq.com/s/9W-wd1LB1XI3EDFqiFlddw
+数据来源：https://www.nature.com/articles/s41561-023-01293-1#Sec22
 
 ```{r Ring Bar Chart2, fig.show='asis', fig.width=4, fig.height=2.5}
 # Load data
@@ -477,6 +479,95 @@ ggsave(filename = "results/Circle_bar_plot3.pdf", plot = p4, width = 14, height 
 
 
 ![](Circle_bar_plot3_00.png)
+
+
+### Practice4 实战4
+
+环状堆叠柱状图
+Circle stacked bar plot
+
+```{r Ring Bar Chart4, fig.show='asis', fig.width=4, fig.height=2.5}
+# 载入数据
+# Load data
+dat01<-read_excel("data/41586_2022_4664_MOESM3_ESM.xlsx",
+                  sheet = "Fig 1b",na="NA")
+
+# 给数据集增加一列用来做x
+# Add a column for x-axis
+dat01 %>% 
+  ggpubr::mutate(new_x = rep(paste0('X',formatC(1:31,width = 2,flag = 0)),each=8)) -> dat01
+
+# 最基本的堆积柱形图
+# Basic stack bar plot
+p51 <- ggplot(data = dat01,aes(x=new_x,y=n,fill=rlCodes))+
+  geom_bar(stat = "identity",position = "fill")
+
+# 变成环状
+# Circilize
+p52 <- ggplot(data = dat01,aes(x=new_x,y=n,fill=rlCodes))+
+  geom_bar(stat = "identity",position = "fill")+
+  coord_polar()+
+  ylim(-1,NA)
+
+# 修改细节
+# Change details
+p53 <- ggplot(data = dat01,aes(x=new_x,y=n,fill=rlCodes))+
+  geom_bar(stat = "identity",position = "fill")+
+  coord_polar()+
+  scale_x_discrete(expand = expansion(add = 0),
+                   labels=coalesce(dat01$orderName[seq(1,248,8)],""))+
+  scale_y_continuous(limits = c(-1,NA))+
+  theme(axis.text.x = element_text(angle = cumsum(c(90,-rep(12,15))),
+                                   vjust=0,hjust = 1),
+        panel.background = element_blank(),
+        axis.text.y = element_blank(),
+        axis.title = element_blank(),
+        axis.ticks = element_blank())
+#p53
+
+# 修改颜色，添加标签
+# Change color and add labels
+p54 <- p53 + 
+  annotate(geom = "text",x=2,y=-0.1,label="Birds",angle=-15)+
+  annotate(geom = "text",x=8,y=-0.1,label="Amphibians",angle=-90)+
+  annotate(geom = "text",x=14,y=-0.1,label="Mammals",angle=15)+
+  annotate(geom = "text",x=24,y=-0.1,label="Reptiles",angle=90)+
+  scale_fill_manual(values = c("LC"="#00c9a7","NT"="#c4fcef",
+                               "DD"="#b0a8b9","VU"="#fefedf",
+                               "EN"="#ff8066","CR"="#e77381",
+                               "EW"="#4b4453","EX"="#8f888b"),
+                    limits=c("EX","EW","CR","EN","VU","DD","NT","LC"),
+                    name="")
+# p54
+
+# 添加坐标轴
+# Add axis lables
+new_dat01<-data.frame(
+  x=0.5,xend=0.3,
+  y=c(0,0.25,0.5,0.75,1),
+  yend=c(0,0.25,0.5,0.75,1)
+)
+new_dat02<-data.frame(x=0.3,
+                      y=c(0,0.25,0.5,0.75,1),
+                      label=c(0,0.25,0.5,0.75,1)*100)
+p55 <- p54 + annotate(geom = "segment",
+           x=0.5,xend=0.5,y=0,yend=1)+
+  geom_segment(data=new_dat01,
+               aes(x=x,xend=xend,y=y,yend=yend),
+               inherit.aes = FALSE)+
+  geom_text(data=new_dat02,aes(x=x,y=y,label=label),
+            inherit.aes = FALSE,hjust=1)+
+  annotate(geom = "text",x=30,y=0.5,label="Species\nthreatened (%)",
+           angle=90,vjust=-0.1)
+
+# 保存最终图形
+# Save plots
+ggsave(filename = "results/Circle_bar_plot4.pdf", plot = p55, width = 14, height = 10)
+```
+
+
+![](Circle_bar_plot4_00.png)
+
 
 
 If used this script, please cited:
