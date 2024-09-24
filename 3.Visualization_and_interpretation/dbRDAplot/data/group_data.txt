@@ -1,21 +1,21 @@
-ID	sample	Group	Group2	group	Case_status	Sex	Age
-Healthy01	Healthy01	Control	Control	H	Control	F	young
-Healthy02	Healthy02	Control	Control	H	Control	F	young
-Healthy03	Healthy03	Control	Control	H	Control	M	young
-Healthy04	Healthy04	Control	Control	H	Control	M	young
-Healthy05	Healthy05	Control	Control	H	Control	F	old
-Healthy06	Healthy06	Control	Control	H	Control	M	young
-Healthy07	Healthy07	Control	Control	H	Control	M	young
-Healthy08	Healthy08	Control	Control	H	Control	F	young
-Healthy09	Healthy09	Control	Control	H	Control	F	old
-Healthy10	Healthy10	Control	Control	H	Control	F	old
-Patients01	Patients01	Patients	Patients	P	NPC	M	old
-Patients02	Patients02	Patients	Patients	P	NPC	M	old
-Patients03	Patients03	Patients	Patients	P	NPC	M	old
-Patients04	Patients04	Patients	Patients	P	NPC	M	old
-Patients05	Patients05	Patients	Patients	P	NPC	M	old
-Patients06	Patients06	Patients	Patients	P	NPC	M	young
-Patients07	Patients07	Patients	Patients	P	NPC	M	young
-Patients08	Patients08	Patients	Patients	P	NPC	M	old
-Patients09	Patients09	Patients	Patients	P	NPC	M	young
-Patients10	Patients10	Patients	Patients	P	NPC	M	old
+ID	sample	Group	Group2	group	Sex	Age
+Healthy01	Healthy01	Control	Control	H	F	old
+Healthy02	Healthy02	Control	Control	H	F	old
+Healthy03	Healthy03	Control	Control	H	F	young
+Healthy04	Healthy04	Control	Control	H	M	young
+Healthy05	Healthy05	Control	Control	H	F	young
+Healthy06	Healthy06	Control	Control	H	M	young
+Healthy07	Healthy07	Control	Control	H	M	old
+Healthy08	Healthy08	Control	Control	H	F	young
+Healthy09	Healthy09	Control	Control	H	M	old
+Healthy10	Healthy10	Control	Control	H	M	old
+Patients01	Patients01	Patients	Patients	P	M	young
+Patients02	Patients02	Patients	Patients	P	M	young
+Patients03	Patients03	Patients	Patients	P	M	old
+Patients04	Patients04	Patients	Patients	P	F	old
+Patients05	Patients05	Patients	Patients	P	F	old
+Patients06	Patients06	Patients	Patients	P	M	young
+Patients07	Patients07	Patients	Patients	P	F	young
+Patients08	Patients08	Patients	Patients	P	M	old
+Patients09	Patients09	Patients	Patients	P	F	young
+Patients10	Patients10	Patients	Patients	P	M	old

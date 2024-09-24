@@ -1,0 +1,185 @@
+Places	NumberOfPublication	Regions
+United States	26616	North America
+China	11782	Asia
+Germany	4618	Europe
+United Kingdom	4190	Europe
+Canada	3649	North America
+Australia	3213	Oceania
+Italy	3067	Europe
+Netherlands	2511	Europe
+France	2430	Europe
+Spain	2346	Europe
+Japan	1888	Asia
+India	1831	Asia
+Others	1755	Others
+South Korea	1699	Asia
+Brazil	1405	South America
+Denmark	1310	Europe
+Switzerland	1298	Europe
+Sweden	1292	Europe
+Belgium	1269	Europe
+Ireland	1100	Europe
+Austria	1011	Europe
+Israel	989	Asia
+Poland	989	Europe
+Scotland	808	Europe
+Russia	698	Europe
+Finland	665	Europe
+South Africa	588	Africa
+Norway	580	Europe
+Portugal	575	Europe
+Mexico	561	North America
+Singapore	540	Asia
+Saudi Arabia	531	Asia
+New Zealand	489	Oceania
+Czech Republic	479	Europe
+Iran	454	Asia
+Greece	432	Europe
+Egypt	424	Africa
+Thailand	342	Asia
+Chile	334	South America
+Malaysia	320	Asia
+Turkey	309	Asia
+Wales	309	Europe
+Pakistan	271	Asia
+Argentina	236	South America
+Hungary	223	Europe
+Colombia	221	South America
+Romania	199	Europe
+North Ireland	186	Europe
+Indonesia	166	Asia
+Kenya	156	Africa
+U Arab Emirates	150	Asia
+Bangladesh	136	Asia
+Estonia	124	Europe
+Qatar	124	Asia
+Nigeria	123	Africa
+Slovakia	119	Europe
+Vietnam	109	Asia
+Luxembourg	108	Europe
+Ukraine	108	Europe
+Croatia	85	Europe
+Lithuania	85	Europe
+Slovenia	80	Europe
+Bulgaria	75	Europe
+Morocco	73	Africa
+Panama	72	North America
+Peru	70	South America
+Serbia	68	Europe
+Philippines	64	Asia
+Ecuador	63	South America
+Tanzania	61	Africa
+Ghana	60	Africa
+Cyprus	58	Europe
+Uganda	58	Africa
+Tunisia	56	Africa
+Costa Rica	49	North America
+Ethiopia	45	Africa
+Latvia	42	Europe
+Kazakhstan	41	Asia
+Lebanon	39	Asia
+Malawi	37	Africa
+Cameroon	36	Africa
+Uruguay	36	South America
+Venezuela	36	South America
+Gambia	35	Africa
+Iraq	35	Asia
+Jordan	34	Asia
+Sri Lanka	31	Asia
+Iceland	29	Europe
+Oman	26	Asia
+Zimbabwe	25	Africa
+Burkina Faso	23	Africa
+Rwanda	23	Africa
+Algeria	22	Africa
+Kuwait	21	Asia
+Madagascar	21	Africa
+Senegal	21	Africa
+Georgia	19	Asia
+Cent Afr Republ	18	Africa
+Guatemala	17	North America
+Malta	17	Europe
+Sudan	17	Africa
+Zambia	17	Africa
+Monaco	16	Europe
+Cote Ivoire	15	Africa
+Nepal	15	Asia
+Papua N Guinea	14	Oceania
+Mozambique	13	Africa
+Bahrain	12	Asia
+Mali	12	Africa
+Nicaragua	12	North America
+Bosnia Herceg	11	Europe
+Botswana	11	Africa
+Curacao	11	North America
+Fiji	11	Oceania
+St Kitts Nevi	11	North America
+Albania	10	Europe
+Barbados	10	North America
+Dem Rep Congo	10	Africa
+New Caledonia	10	Oceania
+Niger	10	Africa
+Palestine	10	Asia
+Turkiye	10	Asia
+Yemen	10	Asia
+Cambodia	9	Asia
+Mongolia	9	Asia
+Uzbekistan	8	Asia
+Azerbaijan	7	Asia
+Belarus	7	Europe
+Greenland	7	North America
+Mauritius	7	Africa
+Namibia	7	Africa
+North Macedonia	7	Europe
+Cuba	6	North America
+Gabon	6	Africa
+Guinea	6	Africa
+Laos	6	Asia
+Myanmar	6	Asia
+Syria	6	Asia
+Trinidad Tobago	6	North America
+Benin	5	Africa
+French Guiana	5	South America
+Haiti	5	North America
+Honduras	5	North America
+Libya	5	Africa
+Republic of the Congo	5	Africa
+Seychelles	5	Africa
+Afghanistan	4	Asia
+Armenia	4	Asia
+Dominican Republic	4	North America
+Jamaica	4	North America
+Angola	3	Africa
+Antigua Barbu	3	North America
+Bermuda	3	North America
+Bolivia	3	South America
+Brunei	3	Asia
+Faroe Islands	3	Europe
+Grenada	3	North America
+Moldova	3	Europe
+Sierra Leone	3	Africa
+Southern Ethiopia	3	Africa
+Guinea-Bissau	2	Africa
+Lesotho	2	Africa
+Liberia	2	Africa
+Montenegro	2	Europe
+Paraguay	2	South America
+San Marino	2	Europe
+Andorra	1	Europe
+Aruba	1	North America
+Bahamas	1	North America
+Belize	1	North America
+Bhutan	1	Asia
+Burundi	1	Africa
+Cayman Islands	1	North America
+Chad	1	Africa
+Comoros	1	Africa
+Eswatini	1	Africa
+Kyrgyzstan	1	Asia
+North Korea	1	Asia
+Sint Maarten	1	North America
+Solomon Islands	1	Oceania
+St. Lucia	1	North America
+Suriname	1	South America
+Togo	1	Africa
+Vatican	1	Europe

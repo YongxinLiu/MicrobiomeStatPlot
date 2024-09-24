@@ -1,0 +1,42 @@
+	group	pheno	est	se
+1	Intellectual disabilities	LD	0.863704731	0.438780491
+2	Communication disorders	Language ability	0.650307691	0.204802666
+3	Communication disorders	SLI	0.868654013	0.60312253
+4	Communication disorders	Speech	0.799211264	0.166681317
+5	Communication disorders	Stuttering	0.580573257	0.167848365
+6	Communication disorders	Syntax	0.648968623	0.369238501
+7	ADHD	ADHD	0.702311266	0.047861471
+8	ADHD	Hyperactivity	0.655242261	0.164539562
+9	ADHD	Impulsivity	0.756101177	0.070593062
+10	ADHD	Hyperactivity/Impulsivity	0.685044195	0.059941698
+11	ADHD	Inattention	0.649577562	0.052140407
+12	ASD	ASD	0.789674338	0.135712621
+13	ASD	CIs	0.763044905	0.089512119
+14	ASD	RRBIs	0.83431613	0.494442729
+15	ASD	SIs	0.665106911	0.049124892
+16	ASD	Strict autism	0.509867824	0.284682343
+17	Specific learning disorders	Dyslexia	0.621781428	0.036464516
+18	Specific learning disorders	Dysgraphia	0.556386839	0.175326086
+19	Specific learning disorders	Dyscalculia	0.547499986	0.038644244
+20	Dyslexia-related phenotypes	Dyslexia	0.553235204	0.157618797
+21	Dyslexia-related phenotypes	Decoding	0.690921415	0.136150697
+22	Dyslexia-related phenotypes	Grammar	0.549705708	0.098807577
+23	Dyslexia-related phenotypes	Nonword reading	0.666618146	0.12817131
+24	Dyslexia-related phenotypes	Orthographic skills	0.488633274	0.146348353
+25	Dyslexia-related phenotypes	Phonological skills	0.588593211	0.086471252
+26	Dyslexia-related phenotypes	Rapid naming	0.603752068	0.122152397
+27	Dyslexia-related phenotypes	Reading ability	0.624025277	0.04053953
+28	Dyslexia-related phenotypes	Reading comprehension	0.562060762	0.067134144
+29	Dyslexia-related phenotypes	Reading fluency	0.643458219	0.133680452
+30	Dyslexia-related phenotypes	Spelling	0.620961132	0.114532884
+31	Dyslexia-related phenotypes	Vocabulary	0.254450763	0.138343065
+32	Dyslexia-related phenotypes	Word reading	0.647955583	0.075741045
+33	Dysgraphia-related phenotypes	Writing	0.556386839	0.175326086
+34	Dyscalculia-related phenotypes	Calculations	0.389034649	0.134982248
+35	Dyscalculia-related phenotypes	Maths ability	0.571242372	0.035231628
+36	Dyscalculia-related phenotypes	Maths fluency	0.524742422	0.142544388
+37	Dyscalculia-related phenotypes	Problem solving	0.358918771	0.185380683
+38	Motor disorders	Coordination	0.818674821	0.074692106
+39	Motor disorders	DCD	0.691445059	0.130187654
+40	Motor disorders	Motor control	0.682691092	0.120784221
+41	Motor disorders	Tics	0.563161369	0.170662873

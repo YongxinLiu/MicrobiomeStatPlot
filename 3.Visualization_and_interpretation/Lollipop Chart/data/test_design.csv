@@ -1,0 +1,25 @@
+Sample,Group,Treatment,N fixation,AP,SOC,TN,pH,TP,TK,NO3-,NH4+
+Sample1,Control,AA,0.6,14,6,6,10,10,10,9,6
+Sample2,Control,AA,1,8,13,12,10,11,10,12,10
+Sample3,Control,AA,0.6,18,16,10,10,10,10,10,6
+Sample4,Control,AA,0.6,12,7,9,10,12,11,13,6
+Sample5,Control,AA,0.4,2,7,1,10,9,10,3,4
+Sample6,Control,BB,0.9,18,4,11,10,12,12,10,9
+Sample7,Control,BB,0.6,12,6,10,10,10,9,9,6
+Sample8,Control,BB,0.1,18,5,12,10,15,12,3,1
+Sample9,Control,BB,0.9,4,11,9,10,10,10,9,9
+Sample10,Control,BB,0.6,12,7,12,10,10,15,4,6
+Sample11,Control,BB,0.9,6,6,10,10,10,10,12,9
+Sample12,Fertilization,CC,0.2,4,10,15,10,0,10,3,2
+Sample13,Fertilization,CC,0.6,9,10,12,10,0,10,12,6
+Sample14,Fertilization,CC,0.3,6,10,46,10,10,22,5,3
+Sample15,Fertilization,CC,1.2,1,22,47,22,22,20,18,12
+Sample16,Fertilization,CC,1,24,20,48,20,20,16,24,20
+Sample17,Fertilization,CC,1.6,24,16,10,16,16,22,20,12
+Sample18,Fertilization,DD,2.2,24,22,10,22,22,20,26,12
+Sample19,Fertilization,DD,2,12,20,10,20,20,24,6,8
+Sample20,Fertilization,DD,2.4,24,24,51,24,24,18,20,18
+Sample21,Fertilization,DD,1.8,32,18,52,18,18,24,18,12
+Sample22,Fertilization,DD,2.4,24,24,53,24,24,20,6,2
+Sample23,Fertilization,DD,2,24,20,10,20,20,30,18,18
+Sample24,Fertilization,DD,3,22,30,10,30,30,10,8,12

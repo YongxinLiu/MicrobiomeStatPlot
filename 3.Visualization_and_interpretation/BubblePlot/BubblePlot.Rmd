@@ -35,6 +35,8 @@ If you use this script, please cited 如果你使用本代码，请引用：
 
 **Yong-Xin Liu**, Lei Chen, Tengfei Ma, Xiaofang Li, Maosheng Zheng, Xin Zhou, Liang Chen, Xubo Qian, Jiao Xi, Hongye Lu, Huiluo Cao, Xiaoya Ma, Bian Bian, Pengfan Zhang, Jiqiu Wu, Ren-You Gan, Baolei Jia, Linyang Sun, Zhicheng Ju, Yunyun Gao, **Tao Wen**, **Tong Chen**. 2023. EasyAmplicon: An easy-to-use, open-source, reproducible, and community-based pipeline for amplicon data analysis in microbiome research. **iMeta** 2(1): e83. https://doi.org/10.1002/imt2.83
 
+**Yunyun Gao**, Danyi Li, **Yong-Xin Liu**, Microbiome research outlook: past, present, and future, Protein & Cell, 2023, pwad031, https://doi.org/10.1093/procel/pwad031. 
+
 The online version of this tuturial can be found in https://github.com/YongxinLiu/MicrobiomeStatPlot
 
 
@@ -159,7 +161,7 @@ ggsave("results/Optimized_Bubble_Plot_01.pdf", plot = p1, width = 7, height = 10
 
 ### Practice2实战2
 
-横纵坐标为连续变量
+横纵坐标为连续变量,分组着色
 The horizontal and vertical axes are continuous variables
 
 
@@ -201,8 +203,69 @@ ggsave("results/Optimized_Bubble_Plot_021.pdf", plot = p2, width = 7, height = 5
 
 ![](e1.bubble.plot02.jpg)
 
-
 ### Practice3实战3
+
+横纵坐标为连续变量，分组渐变色
+The horizontal and vertical axes are continuous variables
+
+此处参考Yunyun Gao, Danyi Li, Yong-Xin Liu, Microbiome research outlook: past, present, and future, Protein & Cell, 2023, pwad031, https://doi.org/10.1093/procel/pwad031. 绘制矩形树图用到数据和代码来自于该文献。
+
+```{r bubble_plot3, fig.show='asis', fig.width=4, fig.height=2.5}
+# Load data
+# 载入数据
+mydata <- read.table("data/Figure1dBubbleplot.txt", header = TRUE, sep = "\t")
+
+# Create a color palette for the data types
+# 为数据类型创建调色板
+mycolors <- c("<3" = "#ffffbf", ">3"="#d9f0a3",">5" = "#addd8e", ">10" = "#78c679", ">30" = "#31a354", ">60" = "#006837")
+
+# Plot
+# 绘图
+p3 = ggplot(mydata, aes(x = IF, y = index, size = index, color = type)) +
+  geom_point(alpha = 0.8) +
+  scale_color_manual(values = mycolors, 
+                     limits = c("<3",">3", ">5", ">10", ">30", ">60")) + # specify the legend order
+  scale_size(range = c(2, 15), breaks = c(30, 50, 100, 200, 300), 
+             labels = c(30, 50, 100, 200, 300)) +
+  xlab("Journal IF") +
+  ylab("Citation index") +
+  guides(
+    color = guide_legend(
+      title = "IF in 2021", 
+      override.aes = list(size=5),
+      direction = "vertical",    # change the direction of color legend to horizontal
+      label.position = "right", # place the labels on the right
+      title.position = "top"
+    ),
+    size = guide_legend(
+      title = "Citation index", 
+      override.aes = list(color = "grey50"),
+      direction = "vertical",      # change the direction of size legend to vertical
+      label.position = "right",     # place the labels on the right
+      title.position = "top"
+    )
+  )
+
+p4 <- p3+theme_classic() +
+  theme(
+    panel.background = element_rect(fill="white", colour="white", size=0.25),
+    axis.line = element_line(colour="black", size=0.5),
+    axis.title = element_text(size=13, color="black"),
+    axis.text = element_text(size=12, color="black"),
+    aspect.ratio = 0.8,
+    legend.position = c(0.95, 0.65), # set position of color legend
+  )
+
+# 保存文件
+# Save plot
+ggsave("results/Optimized_Bubble_Plot3.pdf", plot = p4, width = 7, height = 5)
+```
+
+
+![](Figure1dBubbleplot.jpg)
+
+
+### Practice4实战4
 
 分类变量气泡图、柱状图和箱线图组合
 Combination of bubble chart, bar chart and box plot for categorical variables
@@ -210,7 +273,7 @@ Combination of bubble chart, bar chart and box plot for categorical variables
 这里参考Mei et al., 2024论文的图5a的代码进行整理，具体内容请阅读原文。参考文献：Mei et al., 2024. Strain-specific gut microbial signatures in type 2 diabetes identified in a cross-cohort analysis of 8,117 metagenomes. Nature Medicine. https://doi.org/10.1038/s41591-024-03067-7. 
 
 
-```{r bubble_plot3, fig.show='asis', fig.width=4, fig.height=2.5}
+```{r bubble_plot4, fig.show='asis', fig.width=4, fig.height=2.5}
 
 # 加载数据 (Load data)
 dat_gene_num <- read.csv("data/barplot_data.csv", header = TRUE, sep = ",")  # 条形图数据 (Barplot data)
@@ -437,6 +500,8 @@ If used this script, please cited:
 使用此脚本，请引用下文：
 
 **Yong-Xin Liu**, Lei Chen, Tengfei Ma, Xiaofang Li, Maosheng Zheng, Xin Zhou, Liang Chen, Xubo Qian, Jiao Xi, Hongye Lu, Huiluo Cao, Xiaoya Ma, Bian Bian, Pengfan Zhang, Jiqiu Wu, Ren-You Gan, Baolei Jia, Linyang Sun, Zhicheng Ju, Yunyun Gao, **Tao Wen**, **Tong Chen**. 2023. EasyAmplicon: An easy-to-use, open-source, reproducible, and community-based pipeline for amplicon data analysis in microbiome research. **iMeta** 2: e83. https://doi.org/10.1002/imt2.83
+
+**Yunyun Gao**, Danyi Li, **Yong-Xin Liu**, Microbiome research outlook: past, present, and future, Protein & Cell, 2023, pwad031, https://doi.org/10.1093/procel/pwad031. 
 
 Copyright 2016-2024 Defeng Bai <baidefeng@caas.cn>, Chuang Ma <22720765@stu.ahau.edu.cn>, Jiani Xun <15231572937@163.com>, Yong-Xin Liu <liuyongxin@caas.cn>
 

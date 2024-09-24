@@ -169,7 +169,8 @@ fit <- survfit(Surv(time, status) ~ sex, data = mydata)
 
 # 生存曲线图
 # Survival curve
-surv_plot <- ggsurvplot(
+pdf("results/survival_plot.pdf",width = 8,height = 7)
+ggsurvplot(
   fit, 
   data = mydata, 
   conf.int = TRUE, 
@@ -191,14 +192,7 @@ surv_plot <- ggsurvplot(
       axis.text = element_text(size = 10)
     )
 )
-surv_plot
-
-# 保存完整图形
-# Save plot
-ggsave("results/survival_plot.pdf", 
-       plot = surv_plot, 
-       device = "pdf", 
-       width = 8, height = 10)  # 根据需要调整宽度和高度
+dev.off()
 
 
 # Cox 回归模型
@@ -206,10 +200,6 @@ ggsave("results/survival_plot.pdf",
 cox_fit <- coxph(Surv(time, status) ~ age + sex + ph.ecog + ph.karno + pat.karno + meal.cal + wt.loss, 
                  data = mydata)
 cox_result <- autoReg(cox_fit, uni = TRUE) %>% myft()
-
-# 导出Cox回归结果为PPTX
-# Export Cox results as PPTX file
-table2pptx(cox_result) 
 
 # Cox模型结果的森林图
 # Forest plot from Cox model results
@@ -222,7 +212,7 @@ forest_plot <- ggforest(
   refLabel = "Reference",
   noDigits = 2
 )
-forest_plot
+#forest_plot
 # 保存图
 # Save plot
 ggsave("results/cox_forest_plot.pdf", plot = forest_plot, device = "pdf", width = 8, height = 6)
@@ -256,6 +246,7 @@ write.csv(subgroup_res, "results/subgroup_analysis_results.csv")
 ![](survival_plot_00.png)
 
 
+![](cox_forest_plot_00.png)
 
 
 

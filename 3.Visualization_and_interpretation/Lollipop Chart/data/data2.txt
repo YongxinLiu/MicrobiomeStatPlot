@@ -1,0 +1,15 @@
+protein	level_in_tissueA	level_in_tissueB
+ProteinA	30	90
+ProteinB	40	52
+ProteinC	80	36
+ProteinD	10	99
+ProteinE	60	11
+ProteinF	40	45
+ProteinG	63	14
+ProteinH	25	85
+ProteinI	45	48
+ProteinJ	75	33
+ProteinK	15	92
+ProteinL	55	15
+ProteinM	35	42
+ProteinN	68	17

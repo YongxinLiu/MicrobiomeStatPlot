@@ -1,0 +1,27 @@
+H2	H3	KO
+Energy metabolism	Methane metabolism 	K00001
+Energy metabolism	Methane metabolism 	K00002
+Carbohydrate metabolism	Butanoate metabolism 	K00003
+Carbohydrate metabolism	Butanoate metabolism 	K00004
+Carbohydrate metabolism	Butanoate metabolism 	K00005
+Amino acid metabolism	Tryptophan metabolism 	K00006
+Energy metabolism	Oxidative phosphorylation 	K00007
+Carbohydrate metabolism	Starch and sucrose metabolism 	K00008
+Xenobiotics biodegradation and metabolism	Drug metabolism - other enzymes	K00009
+Amino acid metabolism	"Alanine, aspartate and glutamate metabolism"	K00010
+Carbohydrate metabolism	Pentose and glucuronate interconversions 	K00011
+Carbohydrate metabolism	Amino sugar and nucleotide sugar metabolism	K00012
+Energy metabolism	Carbon fixation pathways in prokaryotes 	K00013
+Amino acid metabolism	Cysteine and methionine metabolism 	K00014
+Energy metabolism	Methane metabolism 	K00015
+Carbohydrate metabolism	Starch and sucrose metabolism 	K00016
+Carbohydrate metabolism	Amino sugar and nucleotide sugar metabolism	K00017
+Metabolism of cofactors and vitamins	Riboflavin metabolism 	K00018
+Carbohydrate metabolism	Galactose metabolism 	K00019
+Energy metabolism	Carbon fixation pathways in prokaryotes 	K00020
+Carbohydrate metabolism	Butanoate metabolism 	K00021
+Carbohydrate metabolism	Amino sugar and nucleotide sugar metabolism	K00022
+Carbohydrate metabolism	Galactose metabolism 	K00023
+Amino acid metabolism	"Glycine, serine and threonine metabolism"	K00024
+Carbohydrate metabolism	Pentose and glucuronate interconversions 	K00025
+Metabolism of cofactors and vitamins	Thiamine metabolism 	K00026
