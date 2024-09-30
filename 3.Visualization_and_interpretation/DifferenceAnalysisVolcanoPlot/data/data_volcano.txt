@@ -1,0 +1,16 @@
+ID	row	padj	log2FC	association
+Proteobacteria	Proteobacteria	3.08E-05	-1.03552188	Depleted
+Planctomycetes	Planctomycetes	6.60E-05	1.434602692	Enriched
+Actinobacteria	Actinobacteria	0.002358425	-0.591404333	Depleted
+Verrucomicrobia	Verrucomicrobia	0.003132826	0.851992468	Enriched
+Acidobacteria	Acidobacteria	0.10593574	0.606023674	Not significant
+Armatimonadetes	Armatimonadetes	0.193184887	0.845738067	Not significant
+Candidatus_Saccharibacteria	Candidatus_Saccharibacteria	0.232258418	-0.944874332	Not significant
+Chloroflexi	Chloroflexi	0.273493257	-0.449620366	Not significant
+Unassigned	Unassigned	0.35446995	-0.251749356	Not significant
+Bacteroidetes	Bacteroidetes	0.645427665	-0.24274773	Not significant
+Chlamydiae	Chlamydiae	0.799469591	0.271602161	Not significant
+Firmicutes	Firmicutes	0.802385743	0.139706859	Not significant
+Spirochaetes	Spirochaetes	0.899237548	-0.101563217	Not significant
+Ignavibacteriae	Ignavibacteriae	0.987118841	0.086236271	Not significant
+Nitrospirae	Nitrospirae	0.990001556	-0.004965678	Not significant
