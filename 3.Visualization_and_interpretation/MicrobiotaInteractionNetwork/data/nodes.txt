@@ -1,0 +1,23 @@
+node	Group	Size	Name
+Agathobacter	Lachnospiraceae	10	Agathobacter
+Anaerostipes	Lachnospiraceae	20	Anaerostipes
+Bifidobacterium	Bifidobacteriaceae	700	Bifidobacterium
+Blautia	Lachnospiraceae	200	Blautia
+Clostridium_IV	Ruminococcaceae	110	Clostridium IV
+Clostridium_XlVa	Lachnospiraceae	10	Clostridium XlVa
+Collinsella	Coriobacteriaceae	240	Collinsella
+Coprococcus	Lachnospiraceae	100	Coprococcus
+Dorea	Lachnospiraceae	40	Dorea
+Eggerthella	Eggerthellaceae	66	Eggerthella
+Escherichia	Enterobacteriaceae	810	Escherichia
+Faecalibacterium	Ruminococcaceae	410	Faecalibacterium
+Gordonibacter	Eggerthellaceae	310	Gordonibacter
+Mediterraneibacter	Lachnospiraceae	25	Mediterraneibacter
+Odoribacter	Odoribacteraceae	220	Odoribacter
+Parabacteroides	Tannerellaceae	710	Parabacteroides
+Pelomonas	Comamonadaceae	100	Pelomonas
+Phocaeicola	Tannerellaceae	510	Phocaeicola
+Roseburia	Lachnospiraceae	22	Roseburia
+Ruminococcus	Ruminococcaceae	110	Ruminococcus
+Slackia	Eggerthellaceae	46	Slackia
+Staphylococcus	Staphylococcaceae	45	Staphylococcus
