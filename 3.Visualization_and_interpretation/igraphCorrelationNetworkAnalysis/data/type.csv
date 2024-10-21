@@ -1,0 +1,29 @@
+node,type
+pH,Soil physi-chemical factors
+AK,Soil physi-chemical factors
+AP,Soil physi-chemical factors
+OM,Soil physi-chemical factors
+NH4,Soil physi-chemical factors
+NO3,Soil physi-chemical factors
+Wc,Soil physi-chemical factors
+Pb,Soil physi-chemical factors
+Salt,Soil physi-chemical factors
+Bacillus firmus,bacteria
+Bacillus megaterium,bacteria
+Bacillus thuringiensis,bacteria
+Bacillus subtilis,bacteria
+Bacillus subterraneus,bacteria
+Bacillus asahii,bacteria
+Bacillus pumilus,bacteria
+Candidimonas bauzanensis,bacteria
+Fictibacillus phosphorivorans,bacteria
+Aspergillus niger,Fungus
+Fusarium oxysporum,Fungus
+Chaetomium globosum,Fungus
+Gymnascella hyalinospora,Fungus
+Penicillium chrysogenum,Fungus
+Fusarium solani,Fungus
+Trichocladium asperum,Fungus
+Aspergillus ustus,Fungus
+Aspergillus terreus,Fungus
+Pseudallescheria boydii,Fungus
