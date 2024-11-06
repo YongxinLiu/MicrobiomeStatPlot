@@ -80,7 +80,7 @@ Extended Data Fig. 8 | Associations between differential species from four-kingd
 ![](e1.nature.micro.02.jpg)
 Extended Data Fig. 9 | Associations between multi-kingdom markers and differential functional pathways. Heatmap shows Spearman correlations between bacterial or fungal species and different metabolic pathways as identified via HAlla with default parameters. The p value was estimated from two-sided Benjamini-Hochberg-Yekutieli and exact p-value was shown in cells.
 
-扩展数据 图 9 | 多王国标记与不同功能途径之间的关联。热图显示了细菌或真菌物种与不同代谢途径之间的斯皮尔曼相关性，这些代谢途径是通过使用默认参数的 HAlla 确定的。P值由双侧Benjamini-Hochberg-Yekutieli估计，精确P值显示在单元格中。
+扩展数据 图 9 | 多界标记与不同功能途径之间的关联。热图显示了细菌或真菌物种与不同代谢途径之间的斯皮尔曼相关性，这些代谢途径是通过使用默认参数的 HAlla 确定的。P值由双侧Benjamini-Hochberg-Yekutieli估计，精确P值显示在单元格中。
 
 
 **结果**：
