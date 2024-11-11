@@ -124,7 +124,7 @@ With a baseline AUPRC value of 0.015 for LD, the species-level augmented model a
 # 基于CRAN安装R包，检测没有则安装
 p_list = c("xgboost", "tidyverse", "data.table", "Matrix", "skimr",
            "DataExplorer", "GGally", "caret", "pROC", "dplyr", "ggplot2",
-           "ggpubr", "ggprism", "rms", "vip")
+           "ggpubr", "ggprism", "rms", "vip", "plyr")
 for(p in p_list){if (!requireNamespace(p)){install.packages(p)}
     library(p, character.only = TRUE, quietly = TRUE, warn.conflicts = FALSE)}
 
@@ -144,6 +144,7 @@ suppressWarnings(suppressMessages(library(ggpubr)))
 suppressWarnings(suppressMessages(library(ggprism)))
 suppressWarnings(suppressMessages(library(rms)))
 suppressWarnings(suppressMessages(library(vip)))
+suppressWarnings(suppressMessages(library(plyr)))
 ```
 
 
@@ -157,7 +158,6 @@ suppressWarnings(suppressMessages(library(vip)))
 ```{r XGBoost Classifier, echo=TRUE}
 # 加载数据 Load data
 library(survival)
-#data(package="survival")
 data1 <- colon
 
 # 变量筛选
@@ -173,24 +173,22 @@ for (i in c(2,4:6,9:12)) {
 data_d$status <- as.factor(data_d$status)
 data <- data_d
 
-# 构建XGBoost模型
-set.seed(123)
-# 按照7：3分成训练集和验证集
+# 构建XGBoost模型，按照7/3划分训练集和验证集
+set.seed(666)
 train_index <- createDataPartition(y=data$status,p=0.7,list=F)
-# 训练集
 train_data <- data[train_index, ]
-# 验证集
 val_data <- data[-train_index,]
 
-# 定义训练集特征，分类变量转换为哑变量，构建稀疏矩阵
+# 分类变量转换为0/1，xgboost默认类别标签从0开始，减去1
 train_x <-  sparse.model.matrix(status ~ ., data = train_data)[,-8]
-# 定义训练集因变量，标签转换为数值向量，xgboost默认类别标签从0开始，减去1
 train_y <-  as.numeric(train_data$status)-1
-# 使用xgb.DMatrix函数将特征和目标变量转换为DMatrix矩阵格式
-# dtrain 包含了训练集的特征矩阵和对应的标签，是xgboost 训练过程中所需的输入数据结构
+# xgboost训练所需的输入数据结构DMatrix矩阵
 dtrain <- xgb.DMatrix(data = train_x, label = train_y)
 
-# 训练集构建XGBoost初始模型
+
+# 1.测试模型
+################################################################################
+# 训练集构建测试模型
 params0 <- list(objective = "binary:logistic",                 
                 booster="gbtree",                
                 eval_metric = "logloss",                 
@@ -205,29 +203,26 @@ params0 <- list(objective = "binary:logistic",
 set.seed(123)
 xgb_model0 <- xgb.train(data=dtrain,                        
                         params = params0,                        
-                        nrounds = 100,#迭代轮数（树的数量）                        
+                        nrounds = 100,                    
                         verbose = 1)
-# 查看模型
-# xgb_model0 
 
-# 训练集初始模型评估
-# 训练集预测概率
+# 训练集模型评估
 predict_initial <- predict(xgb_model0,newdata =dtrain)
 range(predict_initial)
-# XGBoost使用label向量构建回归模型，预测结果是概率。
-# 果特定数据的概率 > 0.5，则观察被分类为 1，否则为 0，也可以当作超参数调整
+# XGBoost概率大于0.5，则被分类为 1，否则为 0
 predict_initial <- ifelse(predict_initial > 0.5,1,0)
-# 快速计算准确率
+# 计算准确率
 acc_initial <- mean(predict_initial == train_y)
-#acc_initial 
-#print(paste("训练集准确率:", acc_initial ))
-# 输出初始模型整体评价指标：混淆矩阵
+# 评价指标混淆矩阵
 train_matrix0 <- confusionMatrix(as.factor(predict_initial),                
                                  train_data$status)
-#train_matrix0 
+################################################################################
 
-# 调整参数
-set.seed(123)
+
+# 2.调整参数
+################################################################################
+set.seed(666)
+# 确定最佳迭代次数
 xgb_model_cv <- xgb.cv(data=dtrain,                       
                        objective="binary:logistic",                       
                        booster="gbtree",                      
@@ -238,15 +233,15 @@ xgb_model_cv <- xgb.cv(data=dtrain,
                        gamma=0,                       
                        subsample=1,                       
                        colsample_bytree=1,                       
-                       scale_pos_weight=1,#阴性样本总数/阳性样本总数                       
-                       nrounds=500,                       
+                       scale_pos_weight=1,                  
+                       nrounds=300,                       
                        nfold=5,                       
                        metrics=list("error","auc"),                       
-                       early_stopping_rounds=50)
-# 确定最佳迭代次数
+                       early_stopping_rounds=30)
 
-# 拟合模型
-set.seed(123)
+
+# 运行模型
+set.seed(666)
 xgb_model_cv.bst <- xgb.train(data=dtrain,                              
                               objective="binary:logistic",                              
                               booster="gbtree",                              
@@ -257,23 +252,19 @@ xgb_model_cv.bst <- xgb.train(data=dtrain,
                               gamma=0,                              
                               subsample=1,                              
                               colsample_bytree=1,                              
-                              scale_pos_weight=1,#阴性样本总数/阳性样本总数                              
+                              scale_pos_weight=1,                          
                               nrounds=238)
-#输出最终模型
+# 最佳模型
 print(xgb_model_cv.bst)
 
-#模型准确率快速计算
+# 计算准确率
 predict_cv.bst <- predict(xgb_model_cv.bst,,newdata =dtrain)
 cv.fit <- ifelse(predict_cv.bst > 0.5,1,0)
 acc_cv <- mean(cv.fit == train_y)
-#acc_cv
 
-# 使用caret包调整参数
-# 设定trainControl参数，该对象能保存使用方法以训练调优参数
-caret.Control <- trainControl(method = "adaptive_cv",   
-                              # 交叉验证                             
-                              number = 4,     
-                              # 10折交叉验证                             
+# 使用caret包调整参数,采用自适应重采样"adaptive_cv"缩短计算时间
+caret.Control <- trainControl(method = "adaptive_cv",                
+                              number = 4,                             
                               repeats=4,                             
                               verboseIter = FALSE,                             
                               returnData = FALSE,                             
@@ -281,22 +272,18 @@ caret.Control <- trainControl(method = "adaptive_cv",
                               returnResamp = "final",                             
                               search = "grid",                             
                               seeds=set.seed(123))
-# 缩短计算时间采用自适应重采样（Adaptive Resampling）
 
 # 设置参数
-# 创建需要考察的参数
-caret.grid <- expand.grid(nrounds = c(200,300), # 迭代轮数（nrounds）                          
-                          max_depth = c(5,6), # 最大树深度（max_depth）                          
-                          eta = c(0.1, 0.3), # 学习率（eta）                          
+caret.grid <- expand.grid(nrounds = c(200,300), # 迭代轮数                         
+                          max_depth = c(5,6), # 最大树深度                   
+                          eta = c(0.1, 0.3), # 学习率                  
                           gamma = c(0.1,0.5), # 树分裂所需的最小损失减少值                          
-                          colsample_bytree = c(0.8,1), # 特征子采样比例（colsample_bytree）                          
-                          min_child_weight = c(1,3), # 叶子节点的最小权重和（min_child_weight）                          
-                          subsample = c(0.8,1)) # 和样本子采样比例（subsample）
+                          colsample_bytree = c(0.8,1), # 特征子采样比例                     
+                          min_child_weight = c(1,3), # 叶子节点的最小权重                       
+                          subsample = c(0.8,1)) # 和样本子采样比例
 
-# 使用train()函数进行参数调优
-library(plyr)
-library(dplyr)
-set.seed(123)
+# 参数调优
+set.seed(666)
 xgb_model_caret <- train(status~.,data = train_data,                    
                          method = "xgbTree",                    
                          trControl = caret.Control,                    
@@ -304,11 +291,13 @@ xgb_model_caret <- train(status~.,data = train_data,
                          verbose=FALSE,                    
                          verbosity=0#消除xgboost警告                    
                          )
-# 耗时较长
 # 输出最优超参数
-print(xgb_model_caret$bestTune)
+# print(xgb_model_caret$bestTune)
+################################################################################
 
-# 设置最佳XGBoost参数
+
+# 3. 设置最佳参数运行模型
+################################################################################
 params.caret.bst <- list(objective = "binary:logistic",                
                          booster = "gbtree",                
                          eval_metric = "logloss",                
@@ -319,66 +308,42 @@ params.caret.bst <- list(objective = "binary:logistic",
                          min_child_weight = 1,                
                          subsample = 0.8)
 
-# 拟合模型
-set.seed(123)
+# 运行模型
+set.seed(666)
 xgb_model_caret.bst <- xgb.train(data=dtrain,                        
                                  params = params.caret.bst,                         
                                  nrounds = 500)
-# 输出最终模型
-# print(xgb_model_caret.bst)
 
-# 模型准确率快速计算
+# 计算模型准确率
 predict_caret <- predict(xgb_model_caret.bst,,newdata =dtrain)
 caret.fit <- ifelse(predict_caret > 0.5,1,0)
 acc_caret <- mean(caret.fit == train_y)
-acc_caret
 
-# 特征重要性排序/变量重要性
+# 特征重要性
 importance <- xgb.importance(feature_names = colnames(dtrain),                              
                              model = xgb_model_caret.bst)
-# head(importance)
 
-# 普通可视化
-xgb.plot.importance(importance_matrix = importance,measure = "Cover")
-
-# ggplot可视化排名前10变量
+# 前10变量
 xgb.ggplot.importance(importance_matrix = importance,                      
                       top_n = 10)
+################################################################################
 
-# 查看模型中树的信息
-xgb.plot.tree(model = xgb_model_caret.bst,              
-              trees = 0
-              # 显示模型中的第1棵              
-              )
 
-# 多棵树展示在一起
-xgb.plot.multi.trees(model =  xgb_model_caret.bst,                     
-                     features_keep = 2,                     
-                     fill=TRUE)
-# 这幅图就是把上面那张图的信息整合到了一起
-
-# 查看树的深度来检查树的结构
-xgb.plot.deepness(model = xgb_model_caret.bst)
-
-# 训练集模型预测：混淆矩阵和ROC曲线
-# 训练集预测概率
+# 4. 训练集预测及ROC曲线
+################################################################################
+## 训练集模型预测
 predict_train <- predict(xgb_model_caret.bst, newdata = dtrain)
 predict_train <- as.factor(ifelse(predict_train >0.5,1,0))
-
-#训练集预测结果
 matrix_train <- table(train_data$status,predict_train)
-
-#训练集混淆矩阵
 confusionMatrix_train <- confusionMatrix(data = predict_train,                                         
                                          reference = train_data$status,                                         
                                          positive = "1",  
                                          mode="everything")
 
-#输出训练集模型评价指标：准确率(accuracy),精确率(precision),召回率(recall),F1值
-print(confusionMatrix_train)
+## 训练集模型评价指标
+#print(confusionMatrix_train)
 
-# 绘制混淆矩阵
-# 混淆矩阵转换为数据框
+## 绘制混淆矩阵
 confusion_matrix_df2 <- as.data.frame.matrix(confusionMatrix_train$table)
 colnames(confusion_matrix_df2) <- c("sensoring","terminal event")
 rownames(confusion_matrix_df2) <- c("sensoring","terminal event")
@@ -386,227 +351,40 @@ draw_data2 <- round(confusion_matrix_df2 / rowSums(confusion_matrix_df2),2)
 draw_data2$real <- rownames(draw_data2)
 draw_data2 <- melt(draw_data2)
 
-#绘制训练集混淆矩阵热图
-ggplot(draw_data2, aes(real,variable, fill = value)) +  
+## 训练集混淆矩阵热图
+p_confusion_train <- ggplot(draw_data2, aes(real,variable, fill = value)) +  
   geom_tile() +  
   geom_text(aes(label = scales::percent(value))) +  
-  scale_fill_gradient(low = "#ECA9B0", high = "#81D8D0") +  
+  scale_fill_gradient(low = "#94b0b2", high = "#ff8a44") +  
   labs(x = "True", y = "Predicted", title = "Confusion matrix of train set") +  
   theme_prism(border = T)+  theme(panel.border = element_blank(),        
                                   axis.ticks.y = element_blank(),        
                                   axis.ticks.x = element_blank(),        
                                   legend.position="none")
+ggsave(paste("results/p_confusion_train",".pdf", sep=""), p_confusion_train, width=69 * 1.5, height=50 * 1.5, unit='mm')
 
-
-# 绘制训练集ROC曲线
-# 训练集预测概率
+## 训练集ROC曲线
 train_predprob <- predict(xgb_model_caret.bst,newdata = dtrain,type="prob")
-# AUC
 train_roc <- roc(response = train_data$status, predictor = train_predprob)
 train_roc
-# 截断值
 train_roc_best=coords(train_roc, "best",best.method = c("youden"),                       
                       ret=c("threshold","sensitivity", "specificity"))
-train_roc_best
-# 计算训练集ROC曲线的参数
 train_roc_obj <- train_roc 
 train_roc_auc <- auc(train_roc_obj)
-# 将ROC对象转换为数据框
 train_roc_data <- data.frame(1-train_roc_obj$specificities, train_roc_obj$sensitivities)
-# 绘制ROC曲线
-plot(train_roc,     
-     print.auc=TRUE,     
-     auc.polygon=TRUE,     
-     grid=T,     
-     max.auc.polygon=T,     
-     auc.polygon.col="skyblue",     
-     print.thres=T,     
-     legacy.axes=T,     
-     bty="l")
 
-# ggplot2包美化ROC
-ggplot(train_roc_data, aes(x = 1-train_roc_obj$specificities, 
-                           y = train_roc_obj$sensitivities)) +  
-  geom_line(color = "#2089CB", size = 1) +  
-  geom_text(aes(x = 0.75, y = 0.25, label = paste("AUC =", round(train_roc_auc, 2))), size = 8, color = "#345D82") +  
-  geom_text(aes(x = 0.35, y = 0.85, label = paste("Cutoff =", round(train_roc_best[,1], 2))), size = 6, color = "#D2431C") +  
-  coord_cartesian(xlim = c(0, 1), ylim = c(0, 1)) +  
-  theme_pubr() +  
-  labs(x = "1-Specificity", y = "Sensitivity") +  
-  ggtitle("ROC Curve of train set") +  
-  theme(plot.title = element_text(hjust = 0.5, face = "bold"))+  
-  geom_segment(aes(x = 0, y = 0, xend = 1, yend = 1),color="#5d6174",linetype="dashed") +  
-  theme_prism(border = T)+  
-  geom_point(x= 1-train_roc_best$specificity ,y=train_roc_best$sensitivity,color="#D2431C",size=3)+  
-  theme(axis.text = element_text (size = 10))+  
-  theme(axis.title.x=element_text(vjust=2, size=15,face = "plain"))+  
-  theme(axis.title.y=element_text(vjust=2, size=15,face = "plain"))
-
-
-# 绘制训练集校准曲线
-# 使用rms包中的val.prob()函数
-train_cv <- val.prob(train_predprob,                     
-                     as.numeric(train_data$status)-1,                               
-                     logistic.cal = FALSE,                               
-                     statloc = F,                               
-                     riskdist = c("predicted","calibrated"),                     
-                     legendloc = c(0.8,0.25))
-title(main = "calibration curve of train")
-
-# 使用predtools包
-# install.packages("predtools")
-library(predtools)
-
-# 模型对训练集的预测概率写入训练集
-train_data$P.pred<-train_predprob 
-# 因变量需要是0/1型的数值型
-train_data$obs<- as.numeric(train_data$status)-1
-calibration_plot(data=train_data,                 
-                 obs="obs",                 
-                 pred="P.pred",                 
-                 title="Calibration Curves for Trainset",                 
-                 x_lim=c(0,1),                 
-                 y_lim=c(0,1),                 
-                 xlab="Prediction Probability",                 
-                 ylab="Observation Probability") 
-
-# 使用probably包
-library(probably)
-library(dplyr)
-train_data2<-mutate(train_data,.pred_1=P.pred) 
-cal_plot_breaks(train_data2,                
-                truth=obs,                
-                estimate=.pred_1,                
-                num_breaks=10,conf_level=0.95,event_level="auto") #训练集校准曲线
-
-
-# 决策曲线
-# 使用rmda包
-library(rmda)
-DCA_train<-decision_curve(obs~P.pred,                           
-                          data=train_data,                          
-                          policy='opt-in',                           
-                          fitted.risk=TRUE,                           
-                          thresholds=seq(0,1,by= 0.01))
-
-plot_decision_curve(DCA_train,                    
-                    curve.names='DCA.trainset',                    
-                    standardize=FALSE,                    
-                    confidence.intervals=FALSE,                    
-                    col='blue')
-
-# 使用dcruves包
-library(dcurves)
-dca(obs~P.pred, data=train_data,thresholds=seq(0,1,by= 0.1))%>% 
-  plot(smooth = TRUE,loess.span=0.1)
-
-
-# 应用于验证集
-val_x <-  sparse.model.matrix(status ~ ., data = val_data)[,-8]
-val_y <-  as.numeric(val_data$status)-1
-dval <- xgb.DMatrix(data = val_x, label = val_y)
-
-# 使用最终模型预测验证集
-# 验证集预测概率
-predict_val <- predict(xgb_model_caret.bst,newdata = dval)
-predict_val <- as.factor(ifelse(predict_val >0.5,1,0))
-
-# 验证集预测结果
-matrix_val <- table(val_data$status,predict_val)
-
-# 验证集混淆矩阵
-confusionMatrix_val <- confusionMatrix(data = predict_val,                                       
-                                       reference = val_data$status,                                       
-                                       positive = "1",                                       
-                                       mode = "everything")
-print(confusionMatrix_val)
-
-# 绘制验证集混淆矩阵
-# 混淆矩阵转换为数据框
-confusion_matrix_df3 <- as.data.frame.matrix(confusionMatrix_val$table)
-colnames(confusion_matrix_df3) <- c("sensoring","terminal event")
-rownames(confusion_matrix_df3) <- c("sensoring","terminal event")
-draw_data3 <- round(confusion_matrix_df3 / rowSums(confusion_matrix_df3),2)
-draw_data3$real <- rownames(draw_data3)
-draw_data3 <- melt(draw_data3)
-
-# 绘制验证集混淆矩阵热图
-ggplot(draw_data3, aes(real,variable, fill = value)) +  
-  geom_tile() +  
-  geom_text(aes(label = scales::percent(value))) +  
-  scale_fill_gradient(low = "#ECA9B0", high = "#81D8D0") +  
-  labs(x = "True", y = "Predicted", title = "Confusion matrix of valid set") +  
-  theme_prism(border = T)+  theme(panel.border = element_blank(),        
-                                  axis.ticks.y = element_blank(),        
-                                  axis.ticks.x = element_blank(),        
-                                  legend.position="none")
-
-# 绘制验证集ROC曲线
-# 验证集预测概率
-val_predprob <- predict(xgb_model_caret.bst,newdata = dval,type="prob")
-
-# AUC
-val_roc <- roc(response = val_data$status, predictor = val_predprob)
-val_roc
-
-# 截断值
-val_roc_best=coords(val_roc, "best",best.method = c("youden"),                     
-                    ret=c("threshold","sensitivity", "specificity"))
-val_roc_best
-
-# 计算验证集ROC曲线的参数
-val_roc_obj <- val_roc 
-val_roc_auc <- auc(val_roc_obj)
-
-#将ROC对象转换为数据框
-val_roc_data <- data.frame(1-val_roc_obj$specificities, val_roc_obj$sensitivities)
-
-# 绘制验证集ROC曲线#基本ROC曲线
-plot(val_roc,     
-     print.auc=TRUE,     
-     auc.polygon=TRUE,     
-     grid=T,#grid=c(0.1, 0.2)     
-     max.auc.polygon=T,     
-     auc.polygon.col="skyblue",     
-     print.thres=T,     
-     legacy.axes=T,     
-     bty="l",     
-     main='ROC curve of valset')
-
-# ggplot2包美化ROC
-ggplot(val_roc_data, aes(x = 1-val_roc_obj$specificities, y = val_roc_obj$sensitivities)) +  
-  geom_line(color = "#2089CB", size = 1) +  
-  geom_text(aes(x = 0.75, y = 0.25, label = paste("AUC =", round(val_roc_auc, 2))), size = 8, color = "#345D82") +  
-  geom_text(aes(x = 0.1, y = 0.6, label = paste("Cutoff =", round(val_roc_best[,1], 2))), size = 6, color = "#D2431C") +  
-  coord_cartesian(xlim = c(0, 1), ylim = c(0, 1)) +  
-  theme_pubr() +  labs(x = "1-Specificity", y = "Sensitivity") +  
-  ggtitle("ROC Curve of val set") +  
-  theme(plot.title = element_text(hjust = 0.5, face = "bold"))+  
-  geom_segment(aes(x = 0, y = 0, xend = 1, yend = 1),color="#5d6174",linetype="dashed") +  
-  theme_prism(border = T)+  
-  geom_point(x=1-val_roc_best$specificity,y=val_roc_best$sensitivity,color="#D2431C",size=3)+  
-  theme(axis.text = element_text (size = 10))+  
-  theme(axis.title.x=element_text(vjust=2, size=15,face = "plain"))+  
-  theme(axis.title.y=element_text(vjust=2, size=15,face = "plain"))
-
-
-# AUROC
-#roc_species_test2 = roc(outcome_species_test, test_species[,2])
-# AUC
-val_roc <- roc(response = val_data$status, predictor = val_predprob)
-val_roc
-#roc_species_test2
 # get average value of AUROC and confidence intervals
-auc_test = round(val_roc$auc,3)
-val_roc_2 <- plot.roc(val_data$status, val_predprob,
+auc_train = round(train_roc$auc,3)
+train_roc_2 <- plot.roc(train_data$status, train_predprob,
                    ci=TRUE, print.auc=TRUE)
-ci_low_test = round(val_roc_2$ci[1], 3)
-ci_high_test = round(val_roc_2$ci[3], 3)
+ci_low_train = round(train_roc_2$ci[1], 3)
+ci_high_train = round(train_roc_2$ci[3], 3)
+
 
 # calculate 95% confidence intervals
-roc.list <- list(roc_species_test2)
+roc.list <- list(train_roc_2)
 ci.list <- lapply(roc.list, ci.se, specificities = seq(0, 1, l = 25))
-ciobj02 <- ci.se(roc_species_test2, 
+ciobj02 <- ci.se(train_roc_2, 
                specificities=seq(0, 1, 0.01)) 
 
 # confidence intervals
@@ -617,6 +395,114 @@ dat.ci.list <- lapply(ci.list, function(ciobj3)
              upper = ciobj3[, 3]))
 
 # plot
+p1_species_train <- ggroc(roc.list, legacy.axes = TRUE) + 
+  theme_bw()+
+  theme(panel.background = element_blank(),
+        panel.grid.major =element_blank(),
+        panel.grid.minor = element_blank(),
+        legend.position = "none") + coord_equal() + coord_fixed(ratio = 0.9)+
+  geom_abline(slope=1, intercept = 0, linetype = "dashed", alpha=0.5, color = "grey") +
+  geom_line(size = 0.8)+labs(x = "1 - Specificity", y = "Sensitivity")+
+  annotate("text", x = 0.77, y = 0.18, label = paste0("AUC = ", auc_train), size = 3)+
+  annotate("text", x = 0.77, y = 0.08, label = paste0("CI = ",  ci_low_train, "-", ci_high_train), size = 3)+
+  scale_color_manual(values=c("#46a9cb"))
+
+col.list = list("#46a9cb")
+# add confidence intervals
+for(i in 1:1) {
+  p1_species_train <- p1_species_train + geom_ribbon(
+    data = dat.ci.list[[i]],
+    aes(x = 1-x, ymin = lower, ymax = upper),
+    #fill = i + 1,
+    fill = col.list[[i]],
+    alpha = 0.3,
+    inherit.aes = F)
+}
+ggsave(paste("results/train_model_auroc",".pdf", sep=""), p1_species_train, width=109 * 1.5, height=60 * 1.5, unit='mm')
+#p1_species_train
+################################################################################
+
+
+# 5. 验证集预测及ROC曲线
+################################################################################
+## 应用于验证集
+val_x <-  sparse.model.matrix(status ~ ., data = val_data)[,-8]
+val_y <-  as.numeric(val_data$status)-1
+dval <- xgb.DMatrix(data = val_x, label = val_y)
+
+## 验证集预测概率
+predict_val <- predict(xgb_model_caret.bst,newdata = dval)
+predict_val <- as.factor(ifelse(predict_val >0.5,1,0))
+
+# #验证集预测结果
+matrix_val <- table(val_data$status,predict_val)
+
+## 验证集混淆矩阵
+confusionMatrix_val <- confusionMatrix(data = predict_val,                                       
+                                       reference = val_data$status,                                       
+                                       positive = "1",                                       
+                                       mode = "everything")
+#print(confusionMatrix_val)
+
+## 绘制验证集混淆矩阵
+confusion_matrix_df3 <- as.data.frame.matrix(confusionMatrix_val$table)
+colnames(confusion_matrix_df3) <- c("sensoring","terminal event")
+rownames(confusion_matrix_df3) <- c("sensoring","terminal event")
+draw_data3 <- round(confusion_matrix_df3 / rowSums(confusion_matrix_df3),2)
+draw_data3$real <- rownames(draw_data3)
+draw_data3 <- melt(draw_data3)
+
+## 绘制验证集混淆矩阵热图
+p_confuction_val <- ggplot(draw_data3, aes(real,variable, fill = value)) +  
+  geom_tile() +  
+  geom_text(aes(label = scales::percent(value))) +  
+  scale_fill_gradient(low = "#94b0b2", high = "#ff8a44") +  
+  labs(x = "True", y = "Predicted", title = "Confusion matrix of valid set") +  
+  theme_prism(border = T)+  theme(panel.border = element_blank(),        
+                                  axis.ticks.y = element_blank(),        
+                                  axis.ticks.x = element_blank(),        
+                                  legend.position="none")
+ggsave(paste("results/p_confuction_val",".pdf", sep=""), p_confuction_val, width=69 * 1.5, height=50 * 1.5, unit='mm')
+
+## 绘制验证集ROC曲线
+val_predprob <- predict(xgb_model_caret.bst,newdata = dval,type="prob")
+# AUC
+val_roc <- roc(response = val_data$status, predictor = val_predprob)
+#val_roc
+
+## 截断值
+val_roc_best=coords(val_roc, "best",best.method = c("youden"),                     
+                    ret=c("threshold","sensitivity", "specificity"))
+#val_roc_best
+
+## 计算验证集ROC曲线的参数
+val_roc_obj <- val_roc 
+val_roc_auc <- auc(val_roc_obj)
+
+## 将ROC对象转换为数据框
+val_roc_data <- data.frame(1-val_roc_obj$specificities, val_roc_obj$sensitivities)
+
+# get average value of AUROC and confidence intervals
+auc_test = round(val_roc$auc,3)
+val_roc_2 <- plot.roc(val_data$status, val_predprob,
+                   ci=TRUE, print.auc=TRUE)
+ci_low_test = round(val_roc_2$ci[1], 3)
+ci_high_test = round(val_roc_2$ci[3], 3)
+
+# calculate 95% confidence intervals
+roc.list <- list(val_roc_2)
+ci.list <- lapply(roc.list, ci.se, specificities = seq(0, 1, l = 25))
+ciobj02 <- ci.se(val_roc_2, 
+               specificities=seq(0, 1, 0.01)) 
+
+## confidence intervals
+ciobj3 <- as.data.frame(ciobj02)
+dat.ci.list <- lapply(ci.list, function(ciobj3)
+  data.frame(x = as.numeric(rownames(ciobj3)),
+             lower = ciobj3[, 1],
+             upper = ciobj3[, 3]))
+
+## plot
 p1_species_test <- ggroc(roc.list, legacy.axes = TRUE) + 
   theme_bw()+
   theme(panel.background = element_blank(),
@@ -624,16 +510,13 @@ p1_species_test <- ggroc(roc.list, legacy.axes = TRUE) +
         panel.grid.minor = element_blank(),
         legend.position = "none") + coord_equal() + coord_fixed(ratio = 0.9)+
   geom_abline(slope=1, intercept = 0, linetype = "dashed", alpha=0.5, color = "grey") + 
-  #ggtitle("Testing set (n = 234)")+
-  #ggtitle("Testing set (n = 158)")+
-  ggtitle("Testing set (n = 144)")+
   geom_line(size = 0.8)+labs(x = "1 - Specificity", y = "Sensitivity")+
-  annotate("text", x = 0.77, y = 0.18, label = paste0("AUC = ", auc_species_test), size = 3)+
-  annotate("text", x = 0.77, y = 0.08, label = paste0("CI = ",  ci_low_species_test, "-", ci_high_sepcies_test), size = 3)+
-  scale_color_manual(values=c("#CD3278"))
+  annotate("text", x = 0.77, y = 0.18, label = paste0("AUC = ", auc_test), size = 3)+
+  annotate("text", x = 0.77, y = 0.08, label = paste0("CI = ",  ci_low_test, "-", ci_high_test), size = 3)+
+  scale_color_manual(values=c("#46a9cb"))
 
-col.list = list("#CD3278")
-# add confidence intervals
+col.list = list("#46a9cb")
+## add confidence intervals
 for(i in 1:1) {
   p1_species_test <- p1_species_test + geom_ribbon(
     data = dat.ci.list[[i]],
@@ -643,31 +526,72 @@ for(i in 1:1) {
     alpha = 0.3,
     inherit.aes = F)
 }
-#ggsave(paste("results/model_RF/all_selected_32_species_model_auroc_test_set_new",".pdf", sep=""), p3_32_test, width=109 * 1.5, height=60 * 1.5, unit='mm')
-p1_species_test
+ggsave(paste("results/validation_model_auroc",".pdf", sep=""), p1_species_test, width=109 * 1.5, height=60 * 1.5, unit='mm')
+#p1_species_test
+################################################################################
 
-# 训练集与验证集ROC曲线叠加
-plot(train_roc,     
-     print.auc=TRUE,     
-     grid=c(0.1,0.2),     
-     print.thres=T,     
-     legacy.axes=T,     
-     print.auc.y=0.3,     
-     main="ROC of XGBoost")
 
-plot(val_roc,     
-     print.auc=TRUE,     
-     print.auc.y=0.2,     
-     print.thres=T,     
-     add=T,     
-     col="red")
+# 6. 训练集与验证集ROC曲线叠加
+################################################################################
+roc.list01 <- list(train_roc_2, val_roc_2)
+ci.list01 <- lapply(roc.list01, ci.se, specificities = seq(0, 1, l = 25))
+ciobj01 <- ci.se(train_roc_2, 
+               specificities=seq(0, 1, 0.01))
+ciobj02 <- ci.se(val_roc_2,
+               specificities=seq(0, 1, 0.01))
+## confidence intervals
+ciobj3 <- as.data.frame(ciobj01, ciobj02)
+dat.ci.list <- lapply(ci.list01, function(ciobj3)
+  data.frame(x = as.numeric(rownames(ciobj3)),
+             lower = ciobj3[, 1],
+             upper = ciobj3[, 3]))
+## plot
+p_all_train_test <- ggroc(roc.list01, legacy.axes = TRUE) + 
+  theme_bw()+
+  theme(panel.background = element_blank(),
+        panel.grid.major =element_blank(),
+        panel.grid.minor = element_blank())+
+  geom_abline(slope=1, intercept = 0, linetype = "dashed", alpha=0.5, color = "grey") + coord_equal()+
+  theme(legend.position = c(0.70, 0.17))+coord_fixed(ratio = 0.9)+
+  geom_line(size = 0.6)+labs(x = "1 - Specificity", y = "Sensitivity")+
+  scale_color_manual(values=c("#d472b0","#5ebcc2","#879b56"),
+                     name= "",
+                      labels = c("Training set (AUC = 0.994 (CI = 0.991-0.996))", "Testing set (AUC = 0.908 (CI = 0.856-0.961))")
+                      )
 
-legend("bottomright",       
-       legend=c("train","val"),       
-       col = c(par("fg"),"red"),       
-       lwd=2,       
-       cex=0.9)
+col.list = list("#d472b0","#5ebcc2","#879b56")
+# add confidence intervals
+for(i in 1:2) {
+  p_all_train_test <- p_all_train_test + geom_ribbon(
+    data = dat.ci.list[[i]],
+    aes(x = 1-x, ymin = lower, ymax = upper),
+    fill = col.list[[i]],
+    alpha = 0.2,
+    inherit.aes = F)
+}
+ggsave(paste("results/train_validation_model_auroc",".pdf", sep=""), p_all_train_test, width=75 * 1.5, height=60 * 1.5, unit='mm')
+#p_all_train_test
 ```
+
+# Combo plots排版
+
+Combo plots to published-ready figure
+
+组合多个子图为发表格式
+
+```{r div_combo, fig.show='asis', fig.width=8, fig.height=7.5, dpi=72}
+library(cowplot)
+width = 89
+height = 59
+p0 = plot_grid(p_confusion_train, p_confuction_val, labels = c("A", "B"), ncol = 2)
+ggsave("results/XGBoost_model_results_combined.pdf", p0, width = width * 3, height = height * 2, units = "mm")
+```
+
+
+![](e1.Confusion.Matrix.01.jpg)
+
+
+![](e1.ROC.01.jpg)
 
 
 If used this script, please cited:
