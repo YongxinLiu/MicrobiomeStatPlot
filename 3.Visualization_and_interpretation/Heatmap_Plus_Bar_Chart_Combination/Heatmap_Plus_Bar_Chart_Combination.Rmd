@@ -63,9 +63,9 @@ Keywords: Microbiome analysis, MicrobiomeStatPlot, Heatmap plus bar chart , R vi
 
 ## Heatmap plus Bar chart combination Case 热图加柱状图组合图案例
 
-这是Jakob Stokholm课题组2024年6月21日发表于Nature microbiology上的文章，第一作者为Liansha Huang，题目为：A multi-kingdom collection of 33,804 reference genomes for the human vaginal microbiome
+这是深圳市宝安区中医院转化医学中心孙文、大连医科大学鄢秋龙及武汉倍森基因研究所的李胜辉2024年6月21日发表于Nature microbiology上的文章，第一作者为Liansha Huang，题目为：A multi-kingdom collection of 33,804 reference genomes for the human vaginal microbiome
 
-This is an article by Jakob Stokholm's group published in Nature microbiology on June 21, 2024, with Liansha Huang as the first author, and the title is: A multi-kingdom collection of 33,804 reference genomes for the human vaginal microbiome   https://www.nature.com/articles/s41564-024-01751-5
+This is an article published in Nature microbiology by Wen Sun, Center for Translational Medicine, Bao'an District Hospital of Traditional Chinese Medicine, Shenzhen, China; Qiulong Yan, Dalian Medical University; and Shenghui Li, Wuhan Bison Genetic Research Institute on June 21, 2024, with Liansha Huang as the first author, and the title is: A multi-kingdom collection of 33,804 reference genomes for the human vaginal microbiome   https://www.nature.com/articles/s41564-024-01751-5
 
 ![](fig1.png)
 Fig. 2: The 786 prokaryotic species in the VMGC.e, The weighted abundances of different functional modules for each order in vaginal samples. The upper bar plot shows the average relative abundance of each order across vaginal samples. The weighted abundances in the heat map are standardized as row Z-scores. The order with the highest weighted abundance of each functional module is indicated by a dotted box. SCFAs, short-chain fatty acids.
