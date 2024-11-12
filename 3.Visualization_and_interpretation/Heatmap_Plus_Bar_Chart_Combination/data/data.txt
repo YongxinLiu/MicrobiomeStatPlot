@@ -1,0 +1,1463 @@
+ID	Order	Standardized_abundance	
+acetate: acetyl-CoA to acetate	Absconditabacterales	9.73E-05	
+aminoglycosides	Absconditabacterales	NA	
+beta_lactamases	Absconditabacterales	NA	
+Biofilm	Absconditabacterales	6.05E-05	
+butyrate production I	Absconditabacterales	NA	
+butyrate production II	Absconditabacterales	NA	
+butyrate: acetyl-CoA to crotonyl-CoA	Absconditabacterales	NA	
+Cadaverine	Absconditabacterales	NA	
+Cytolysin	Absconditabacterales	NA	
+fosfomycins	Absconditabacterales	NA	
+glycopeptides	Absconditabacterales	NA	
+Hemolysin	Absconditabacterales	NA	
+Inerolysin	Absconditabacterales	NA	
+lactate production	Absconditabacterales	NA	
+macrolide_lincosamide_streptogramin	Absconditabacterales	NA	
+multiple_drug_resistance	Absconditabacterales	NA	
+N-Acetylputrescine	Absconditabacterales	NA	
+peptide_antibiotic	Absconditabacterales	NA	
+phenicols	Absconditabacterales	NA	
+Phospholipase C	Absconditabacterales	NA	
+polymyxin	Absconditabacterales	NA	
+propionate production I	Absconditabacterales	NA	
+propionate production II	Absconditabacterales	NA	
+propionate production III	Absconditabacterales	NA	
+quinolone_antibacterials	Absconditabacterales	NA	
+rifampicin	Absconditabacterales	NA	
+Sialidase	Absconditabacterales	NA	
+succinate production	Absconditabacterales	NA	
+sulfonamides	Absconditabacterales	NA	
+tetracyclines	Absconditabacterales	NA	
+trimethoprim	Absconditabacterales	NA	
+Trimethylamine	Absconditabacterales	NA	
+Urease	Absconditabacterales	NA	
+Vaginolysin	Absconditabacterales	NA	
+acetate: acetyl-CoA to acetate	Acetobacterales	0.000286551	
+aminoglycosides	Acetobacterales	NA	
+beta_lactamases	Acetobacterales	NA	
+Biofilm	Acetobacterales	0.00385104	
+butyrate production I	Acetobacterales	0.002997072	
+butyrate production II	Acetobacterales	0.00231414	
+butyrate: acetyl-CoA to crotonyl-CoA	Acetobacterales	0.003556758	
+Cadaverine	Acetobacterales	NA	
+Cytolysin	Acetobacterales	NA	
+fosfomycins	Acetobacterales	NA	
+glycopeptides	Acetobacterales	NA	
+Hemolysin	Acetobacterales	NA	
+Inerolysin	Acetobacterales	NA	
+lactate production	Acetobacterales	0.00012681	
+macrolide_lincosamide_streptogramin	Acetobacterales	NA	
+multiple_drug_resistance	Acetobacterales	0.000149896	
+N-Acetylputrescine	Acetobacterales	0.002601074	
+peptide_antibiotic	Acetobacterales	NA	
+phenicols	Acetobacterales	NA	
+Phospholipase C	Acetobacterales	NA	
+polymyxin	Acetobacterales	NA	
+propionate production I	Acetobacterales	NA	
+propionate production II	Acetobacterales	NA	
+propionate production III	Acetobacterales	NA	
+quinolone_antibacterials	Acetobacterales	NA	
+rifampicin	Acetobacterales	NA	
+Sialidase	Acetobacterales	NA	
+succinate production	Acetobacterales	0.00227289	
+sulfonamides	Acetobacterales	NA	
+tetracyclines	Acetobacterales	NA	
+trimethoprim	Acetobacterales	NA	
+Trimethylamine	Acetobacterales	NA	
+Urease	Acetobacterales	0.014895126	
+Vaginolysin	Acetobacterales	NA	
+acetate: acetyl-CoA to acetate	Actinomycetales	1.47196129	
+aminoglycosides	Actinomycetales	3.145553371	
+beta_lactamases	Actinomycetales	0.009212383	
+Biofilm	Actinomycetales	2.016043861	
+butyrate production I	Actinomycetales	0.144887637	
+butyrate production II	Actinomycetales	0.111872622	
+butyrate: acetyl-CoA to crotonyl-CoA	Actinomycetales	1.455930532	
+Cadaverine	Actinomycetales	NA	
+Cytolysin	Actinomycetales	1.351875211	
+fosfomycins	Actinomycetales	NA	
+glycopeptides	Actinomycetales	NA	
+Hemolysin	Actinomycetales	1.459909765	
+Inerolysin	Actinomycetales	1.351875211	
+lactate production	Actinomycetales	0.911729137	
+macrolide_lincosamide_streptogramin	Actinomycetales	1.003054812	
+multiple_drug_resistance	Actinomycetales	0.011191556	
+N-Acetylputrescine	Actinomycetales	0.709214586	
+peptide_antibiotic	Actinomycetales	NA	
+phenicols	Actinomycetales	0.030241267	
+Phospholipase C	Actinomycetales	NA	
+polymyxin	Actinomycetales	NA	
+propionate production I	Actinomycetales	NA	
+propionate production II	Actinomycetales	0.009757391	
+propionate production III	Actinomycetales	0.095066141	
+quinolone_antibacterials	Actinomycetales	0.004423833	
+rifampicin	Actinomycetales	3.270748157	
+Sialidase	Actinomycetales	3.59286764	
+succinate production	Actinomycetales	4.244917474	
+sulfonamides	Actinomycetales	0.020871717	
+tetracyclines	Actinomycetales	0.145924041	
+trimethoprim	Actinomycetales	NA	
+Trimethylamine	Actinomycetales	NA	
+Urease	Actinomycetales	0.936952505	
+Vaginolysin	Actinomycetales	1.351875211	
+acetate: acetyl-CoA to acetate	Bacillales	0.000308561	
+aminoglycosides	Bacillales	NA	
+beta_lactamases	Bacillales	NA	
+Biofilm	Bacillales	0.000937521	
+butyrate production I	Bacillales	0.006454558	
+butyrate production II	Bacillales	0.004983782	
+butyrate: acetyl-CoA to crotonyl-CoA	Bacillales	0.001284611	
+Cadaverine	Bacillales	NA	
+Cytolysin	Bacillales	NA	
+fosfomycins	Bacillales	NA	
+glycopeptides	Bacillales	NA	
+Hemolysin	Bacillales	NA	
+Inerolysin	Bacillales	NA	
+lactate production	Bacillales	0.000182068	
+macrolide_lincosamide_streptogramin	Bacillales	NA	
+multiple_drug_resistance	Bacillales	NA	
+N-Acetylputrescine	Bacillales	NA	
+peptide_antibiotic	Bacillales	NA	
+phenicols	Bacillales	NA	
+Phospholipase C	Bacillales	NA	
+polymyxin	Bacillales	NA	
+propionate production I	Bacillales	NA	
+propionate production II	Bacillales	0.006895662	
+propionate production III	Bacillales	0.001556735	
+quinolone_antibacterials	Bacillales	NA	
+rifampicin	Bacillales	0.000519494	
+Sialidase	Bacillales	NA	
+succinate production	Bacillales	0.001059812	
+sulfonamides	Bacillales	NA	
+tetracyclines	Bacillales	NA	
+trimethoprim	Bacillales	NA	
+Trimethylamine	Bacillales	NA	
+Urease	Bacillales	NA	
+Vaginolysin	Bacillales	NA	
+acetate: acetyl-CoA to acetate	Bacteroidales	0.559961102	
+aminoglycosides	Bacteroidales	0.005349559	
+beta_lactamases	Bacteroidales	0.881278885	
+Biofilm	Bacteroidales	1.913757472	
+butyrate production I	Bacteroidales	NA	
+butyrate production II	Bacteroidales	NA	
+butyrate: acetyl-CoA to crotonyl-CoA	Bacteroidales	NA	
+Cadaverine	Bacteroidales	NA	
+Cytolysin	Bacteroidales	0.565938143	
+fosfomycins	Bacteroidales	NA	
+glycopeptides	Bacteroidales	NA	
+Hemolysin	Bacteroidales	0.611164858	
+Inerolysin	Bacteroidales	0.565938143	
+lactate production	Bacteroidales	0.046245558	
+macrolide_lincosamide_streptogramin	Bacteroidales	0.078769308	
+multiple_drug_resistance	Bacteroidales	0.010662923	
+N-Acetylputrescine	Bacteroidales	3.292917358	
+peptide_antibiotic	Bacteroidales	0.000371347	
+phenicols	Bacteroidales	NA	
+Phospholipase C	Bacteroidales	NA	
+polymyxin	Bacteroidales	NA	
+propionate production I	Bacteroidales	NA	
+propionate production II	Bacteroidales	NA	
+propionate production III	Bacteroidales	2.318044818	
+quinolone_antibacterials	Bacteroidales	NA	
+rifampicin	Bacteroidales	NA	
+Sialidase	Bacteroidales	1.665602127	
+succinate production	Bacteroidales	2.212312293	
+sulfonamides	Bacteroidales	NA	
+tetracyclines	Bacteroidales	0.79980628	
+trimethoprim	Bacteroidales	NA	
+Trimethylamine	Bacteroidales	NA	
+Urease	Bacteroidales	0.041618063	
+Vaginolysin	Bacteroidales	0.565938143	
+acetate: acetyl-CoA to acetate	BD1-5	NA	
+aminoglycosides	BD1-5	NA	
+beta_lactamases	BD1-5	NA	
+Biofilm	BD1-5	9.81E-06	
+butyrate production I	BD1-5	NA	
+butyrate production II	BD1-5	NA	
+butyrate: acetyl-CoA to crotonyl-CoA	BD1-5	NA	
+Cadaverine	BD1-5	NA	
+Cytolysin	BD1-5	NA	
+fosfomycins	BD1-5	NA	
+glycopeptides	BD1-5	NA	
+Hemolysin	BD1-5	NA	
+Inerolysin	BD1-5	NA	
+lactate production	BD1-5	NA	
+macrolide_lincosamide_streptogramin	BD1-5	NA	
+multiple_drug_resistance	BD1-5	NA	
+N-Acetylputrescine	BD1-5	NA	
+peptide_antibiotic	BD1-5	NA	
+phenicols	BD1-5	NA	
+Phospholipase C	BD1-5	NA	
+polymyxin	BD1-5	NA	
+propionate production I	BD1-5	NA	
+propionate production II	BD1-5	NA	
+propionate production III	BD1-5	NA	
+quinolone_antibacterials	BD1-5	NA	
+rifampicin	BD1-5	NA	
+Sialidase	BD1-5	NA	
+succinate production	BD1-5	NA	
+sulfonamides	BD1-5	NA	
+tetracyclines	BD1-5	NA	
+trimethoprim	BD1-5	NA	
+Trimethylamine	BD1-5	NA	
+Urease	BD1-5	NA	
+Vaginolysin	BD1-5	NA	
+acetate: acetyl-CoA to acetate	Burkholderiales	0.020168627	
+aminoglycosides	Burkholderiales	NA	
+beta_lactamases	Burkholderiales	0.086868696	
+Biofilm	Burkholderiales	0.267244142	
+butyrate production I	Burkholderiales	0.589324393	
+butyrate production II	Burkholderiales	0.530070688	
+butyrate: acetyl-CoA to crotonyl-CoA	Burkholderiales	0.205404377	
+Cadaverine	Burkholderiales	NA	
+Cytolysin	Burkholderiales	NA	
+fosfomycins	Burkholderiales	NA	
+glycopeptides	Burkholderiales	NA	
+Hemolysin	Burkholderiales	NA	
+Inerolysin	Burkholderiales	NA	
+lactate production	Burkholderiales	0.00761575	
+macrolide_lincosamide_streptogramin	Burkholderiales	NA	
+multiple_drug_resistance	Burkholderiales	0.028362919	
+N-Acetylputrescine	Burkholderiales	0.226013741	
+peptide_antibiotic	Burkholderiales	NA	
+phenicols	Burkholderiales	NA	
+Phospholipase C	Burkholderiales	0.956013175	
+polymyxin	Burkholderiales	NA	
+propionate production I	Burkholderiales	NA	
+propionate production II	Burkholderiales	0.179407393	
+propionate production III	Burkholderiales	0.081004462	
+quinolone_antibacterials	Burkholderiales	0.085691223	
+rifampicin	Burkholderiales	0.034296565	
+Sialidase	Burkholderiales	NA	
+succinate production	Burkholderiales	0.105916669	
+sulfonamides	Burkholderiales	0.027826652	
+tetracyclines	Burkholderiales	0.033324437	
+trimethoprim	Burkholderiales	NA	
+Trimethylamine	Burkholderiales	NA	
+Urease	Burkholderiales	0.485946716	
+Vaginolysin	Burkholderiales	NA	
+acetate: acetyl-CoA to acetate	Campylobacterales	0.004908111	
+aminoglycosides	Campylobacterales	NA	
+beta_lactamases	Campylobacterales	NA	
+Biofilm	Campylobacterales	0.012630194	
+butyrate production I	Campylobacterales	NA	
+butyrate production II	Campylobacterales	NA	
+butyrate: acetyl-CoA to crotonyl-CoA	Campylobacterales	NA	
+Cadaverine	Campylobacterales	NA	
+Cytolysin	Campylobacterales	NA	
+fosfomycins	Campylobacterales	NA	
+glycopeptides	Campylobacterales	NA	
+Hemolysin	Campylobacterales	NA	
+Inerolysin	Campylobacterales	NA	
+lactate production	Campylobacterales	NA	
+macrolide_lincosamide_streptogramin	Campylobacterales	NA	
+multiple_drug_resistance	Campylobacterales	0.00049801	
+N-Acetylputrescine	Campylobacterales	0.004454456	
+peptide_antibiotic	Campylobacterales	NA	
+phenicols	Campylobacterales	NA	
+Phospholipase C	Campylobacterales	NA	
+polymyxin	Campylobacterales	NA	
+propionate production I	Campylobacterales	NA	
+propionate production II	Campylobacterales	NA	
+propionate production III	Campylobacterales	NA	
+quinolone_antibacterials	Campylobacterales	0.000904588	
+rifampicin	Campylobacterales	0.001251528	
+Sialidase	Campylobacterales	NA	
+succinate production	Campylobacterales	0.011176163	
+sulfonamides	Campylobacterales	NA	
+tetracyclines	Campylobacterales	NA	
+trimethoprim	Campylobacterales	NA	
+Trimethylamine	Campylobacterales	NA	
+Urease	Campylobacterales	0.107404202	
+Vaginolysin	Campylobacterales	NA	
+acetate: acetyl-CoA to acetate	Chlamydiales	NA	
+aminoglycosides	Chlamydiales	NA	
+beta_lactamases	Chlamydiales	NA	
+Biofilm	Chlamydiales	0.016274177	
+butyrate production I	Chlamydiales	NA	
+butyrate production II	Chlamydiales	NA	
+butyrate: acetyl-CoA to crotonyl-CoA	Chlamydiales	NA	
+Cadaverine	Chlamydiales	NA	
+Cytolysin	Chlamydiales	NA	
+fosfomycins	Chlamydiales	0.228119883	
+glycopeptides	Chlamydiales	NA	
+Hemolysin	Chlamydiales	NA	
+Inerolysin	Chlamydiales	NA	
+lactate production	Chlamydiales	NA	
+macrolide_lincosamide_streptogramin	Chlamydiales	NA	
+multiple_drug_resistance	Chlamydiales	NA	
+N-Acetylputrescine	Chlamydiales	NA	
+peptide_antibiotic	Chlamydiales	NA	
+phenicols	Chlamydiales	NA	
+Phospholipase C	Chlamydiales	NA	
+polymyxin	Chlamydiales	NA	
+propionate production I	Chlamydiales	NA	
+propionate production II	Chlamydiales	NA	
+propionate production III	Chlamydiales	NA	
+quinolone_antibacterials	Chlamydiales	NA	
+rifampicin	Chlamydiales	NA	
+Sialidase	Chlamydiales	NA	
+succinate production	Chlamydiales	0.028909571	
+sulfonamides	Chlamydiales	NA	
+tetracyclines	Chlamydiales	NA	
+trimethoprim	Chlamydiales	NA	
+Trimethylamine	Chlamydiales	NA	
+Urease	Chlamydiales	NA	
+Vaginolysin	Chlamydiales	NA	
+acetate: acetyl-CoA to acetate	Christensenellales	0.000762315	
+aminoglycosides	Christensenellales	NA	
+beta_lactamases	Christensenellales	NA	
+Biofilm	Christensenellales	0.001463295	
+butyrate production I	Christensenellales	NA	
+butyrate production II	Christensenellales	NA	
+butyrate: acetyl-CoA to crotonyl-CoA	Christensenellales	NA	
+Cadaverine	Christensenellales	NA	
+Cytolysin	Christensenellales	NA	
+fosfomycins	Christensenellales	NA	
+glycopeptides	Christensenellales	NA	
+Hemolysin	Christensenellales	NA	
+Inerolysin	Christensenellales	NA	
+lactate production	Christensenellales	NA	
+macrolide_lincosamide_streptogramin	Christensenellales	NA	
+multiple_drug_resistance	Christensenellales	NA	
+N-Acetylputrescine	Christensenellales	0.009205132	
+peptide_antibiotic	Christensenellales	NA	
+phenicols	Christensenellales	NA	
+Phospholipase C	Christensenellales	NA	
+polymyxin	Christensenellales	NA	
+propionate production I	Christensenellales	NA	
+propionate production II	Christensenellales	NA	
+propionate production III	Christensenellales	0.002532273	
+quinolone_antibacterials	Christensenellales	0.000194189	
+rifampicin	Christensenellales	NA	
+Sialidase	Christensenellales	NA	
+succinate production	Christensenellales	0.000875857	
+sulfonamides	Christensenellales	NA	
+tetracyclines	Christensenellales	NA	
+trimethoprim	Christensenellales	NA	
+Trimethylamine	Christensenellales	NA	
+Urease	Christensenellales	NA	
+Vaginolysin	Christensenellales	NA	
+acetate: acetyl-CoA to acetate	Clostridiales	0.001563301	
+aminoglycosides	Clostridiales	NA	
+beta_lactamases	Clostridiales	NA	
+Biofilm	Clostridiales	0.002914698	
+butyrate production I	Clostridiales	0.032701522	
+butyrate production II	Clostridiales	0.012624973	
+butyrate: acetyl-CoA to crotonyl-CoA	Clostridiales	0.002440644	
+Cadaverine	Clostridiales	NA	
+Cytolysin	Clostridiales	0.001038215	
+fosfomycins	Clostridiales	NA	
+glycopeptides	Clostridiales	NA	
+Hemolysin	Clostridiales	0.001121183	
+Inerolysin	Clostridiales	0.001038215	
+lactate production	Clostridiales	0.000691824	
+macrolide_lincosamide_streptogramin	Clostridiales	NA	
+multiple_drug_resistance	Clostridiales	NA	
+N-Acetylputrescine	Clostridiales	NA	
+peptide_antibiotic	Clostridiales	0.002562583	
+phenicols	Clostridiales	NA	
+Phospholipase C	Clostridiales	0.013962469	
+polymyxin	Clostridiales	NA	
+propionate production I	Clostridiales	NA	
+propionate production II	Clostridiales	0.013101128	
+propionate production III	Clostridiales	NA	
+quinolone_antibacterials	Clostridiales	NA	
+rifampicin	Clostridiales	0.001973981	
+Sialidase	Clostridiales	0.007489788	
+succinate production	Clostridiales	0.000575299	
+sulfonamides	Clostridiales	NA	
+tetracyclines	Clostridiales	0.001786891	
+trimethoprim	Clostridiales	NA	
+Trimethylamine	Clostridiales	NA	
+Urease	Clostridiales	NA	
+Vaginolysin	Clostridiales	0.001038215	
+acetate: acetyl-CoA to acetate	Coriobacteriales	0.233940334	
+aminoglycosides	Coriobacteriales	NA	
+beta_lactamases	Coriobacteriales	NA	
+Biofilm	Coriobacteriales	0.411184671	
+butyrate production I	Coriobacteriales	0.085492339	
+butyrate production II	Coriobacteriales	NA	
+butyrate: acetyl-CoA to crotonyl-CoA	Coriobacteriales	0.00450747	
+Cadaverine	Coriobacteriales	NA	
+Cytolysin	Coriobacteriales	NA	
+fosfomycins	Coriobacteriales	NA	
+glycopeptides	Coriobacteriales	NA	
+Hemolysin	Coriobacteriales	NA	
+Inerolysin	Coriobacteriales	NA	
+lactate production	Coriobacteriales	0.125327039	
+macrolide_lincosamide_streptogramin	Coriobacteriales	0.039228984	
+multiple_drug_resistance	Coriobacteriales	7.77E-05	
+N-Acetylputrescine	Coriobacteriales	0.010830898	
+peptide_antibiotic	Coriobacteriales	NA	
+phenicols	Coriobacteriales	NA	
+Phospholipase C	Coriobacteriales	NA	
+polymyxin	Coriobacteriales	NA	
+propionate production I	Coriobacteriales	NA	
+propionate production II	Coriobacteriales	0.004085757	
+propionate production III	Coriobacteriales	0.006689171	
+quinolone_antibacterials	Coriobacteriales	0.044721513	
+rifampicin	Coriobacteriales	NA	
+Sialidase	Coriobacteriales	NA	
+succinate production	Coriobacteriales	0.354787724	
+sulfonamides	Coriobacteriales	NA	
+tetracyclines	Coriobacteriales	0.141562026	
+trimethoprim	Coriobacteriales	NA	
+Trimethylamine	Coriobacteriales	0.841391971	
+Urease	Coriobacteriales	0.005251179	
+Vaginolysin	Coriobacteriales	NA	
+acetate: acetyl-CoA to acetate	Desulfovibrionales	0.000527234	
+aminoglycosides	Desulfovibrionales	NA	
+beta_lactamases	Desulfovibrionales	NA	
+Biofilm	Desulfovibrionales	0.005570341	
+butyrate production I	Desulfovibrionales	0.016543209	
+butyrate production II	Desulfovibrionales	0.004257856	
+butyrate: acetyl-CoA to crotonyl-CoA	Desulfovibrionales	0.001646247	
+Cadaverine	Desulfovibrionales	NA	
+Cytolysin	Desulfovibrionales	NA	
+fosfomycins	Desulfovibrionales	NA	
+glycopeptides	Desulfovibrionales	NA	
+Hemolysin	Desulfovibrionales	NA	
+Inerolysin	Desulfovibrionales	NA	
+lactate production	Desulfovibrionales	NA	
+macrolide_lincosamide_streptogramin	Desulfovibrionales	NA	
+multiple_drug_resistance	Desulfovibrionales	0.000275798	
+N-Acetylputrescine	Desulfovibrionales	0.00365733	
+peptide_antibiotic	Desulfovibrionales	NA	
+phenicols	Desulfovibrionales	NA	
+Phospholipase C	Desulfovibrionales	NA	
+polymyxin	Desulfovibrionales	NA	
+propionate production I	Desulfovibrionales	NA	
+propionate production II	Desulfovibrionales	NA	
+propionate production III	Desulfovibrionales	NA	
+quinolone_antibacterials	Desulfovibrionales	NA	
+rifampicin	Desulfovibrionales	NA	
+Sialidase	Desulfovibrionales	NA	
+succinate production	Desulfovibrionales	0.001940234	
+sulfonamides	Desulfovibrionales	NA	
+tetracyclines	Desulfovibrionales	NA	
+trimethoprim	Desulfovibrionales	NA	
+Trimethylamine	Desulfovibrionales	0.072741289	
+Urease	Desulfovibrionales	0.01495986	
+Vaginolysin	Desulfovibrionales	NA	
+acetate: acetyl-CoA to acetate	Enterobacterales	0.187750731	
+aminoglycosides	Enterobacterales	0.798657193	
+beta_lactamases	Enterobacterales	3.295294462	
+Biofilm	Enterobacterales	2.714798431	
+butyrate production I	Enterobacterales	0.019155874	
+butyrate production II	Enterobacterales	3.008703593	
+butyrate: acetyl-CoA to crotonyl-CoA	Enterobacterales	0.820443762	
+Cadaverine	Enterobacterales	2.077854681	
+Cytolysin	Enterobacterales	NA	
+fosfomycins	Enterobacterales	1.417146885	
+glycopeptides	Enterobacterales	NA	
+Hemolysin	Enterobacterales	NA	
+Inerolysin	Enterobacterales	NA	
+lactate production	Enterobacterales	0.211801636	
+macrolide_lincosamide_streptogramin	Enterobacterales	0.306996854	
+multiple_drug_resistance	Enterobacterales	3.955242057	
+N-Acetylputrescine	Enterobacterales	1.446556237	
+peptide_antibiotic	Enterobacterales	2.19372521	
+phenicols	Enterobacterales	0.680140845	
+Phospholipase C	Enterobacterales	0.041489483	
+polymyxin	Enterobacterales	NA	
+propionate production I	Enterobacterales	1.414000411	
+propionate production II	Enterobacterales	1.656281145	
+propionate production III	Enterobacterales	0.541449153	
+quinolone_antibacterials	Enterobacterales	2.377879366	
+rifampicin	Enterobacterales	0.406262826	
+Sialidase	Enterobacterales	0.000575031	
+succinate production	Enterobacterales	0.955432016	
+sulfonamides	Enterobacterales	2.055445745	
+tetracyclines	Enterobacterales	0.313343463	
+trimethoprim	Enterobacterales	0.675151979	
+Trimethylamine	Enterobacterales	2.366156136	
+Urease	Enterobacterales	2.010446815	
+Vaginolysin	Enterobacterales	NA	
+acetate: acetyl-CoA to acetate	Enterobacterales_A	0.008359385	
+aminoglycosides	Enterobacterales_A	0.003272042	
+beta_lactamases	Enterobacterales_A	0.00489006	
+Biofilm	Enterobacterales_A	0.041386552	
+butyrate production I	Enterobacterales_A	NA	
+butyrate production II	Enterobacterales_A	NA	
+butyrate: acetyl-CoA to crotonyl-CoA	Enterobacterales_A	NA	
+Cadaverine	Enterobacterales_A	NA	
+Cytolysin	Enterobacterales_A	NA	
+fosfomycins	Enterobacterales_A	NA	
+glycopeptides	Enterobacterales_A	NA	
+Hemolysin	Enterobacterales_A	NA	
+Inerolysin	Enterobacterales_A	NA	
+lactate production	Enterobacterales_A	0.001750971	
+macrolide_lincosamide_streptogramin	Enterobacterales_A	NA	
+multiple_drug_resistance	Enterobacterales_A	0.006885456	
+N-Acetylputrescine	Enterobacterales_A	NA	
+peptide_antibiotic	Enterobacterales_A	NA	
+phenicols	Enterobacterales_A	NA	
+Phospholipase C	Enterobacterales_A	NA	
+polymyxin	Enterobacterales_A	NA	
+propionate production I	Enterobacterales_A	NA	
+propionate production II	Enterobacterales_A	NA	
+propionate production III	Enterobacterales_A	NA	
+quinolone_antibacterials	Enterobacterales_A	0.07952371	
+rifampicin	Enterobacterales_A	0.015306189	
+Sialidase	Enterobacterales_A	NA	
+succinate production	Enterobacterales_A	0.024631133	
+sulfonamides	Enterobacterales_A	NA	
+tetracyclines	Enterobacterales_A	NA	
+trimethoprim	Enterobacterales_A	NA	
+Trimethylamine	Enterobacterales_A	NA	
+Urease	Enterobacterales_A	0.311958287	
+Vaginolysin	Enterobacterales_A	NA	
+acetate: acetyl-CoA to acetate	Erysipelotrichales	0.007653586	
+aminoglycosides	Erysipelotrichales	NA	
+beta_lactamases	Erysipelotrichales	NA	
+Biofilm	Erysipelotrichales	0.006185408	
+butyrate production I	Erysipelotrichales	NA	
+butyrate production II	Erysipelotrichales	NA	
+butyrate: acetyl-CoA to crotonyl-CoA	Erysipelotrichales	NA	
+Cadaverine	Erysipelotrichales	NA	
+Cytolysin	Erysipelotrichales	NA	
+fosfomycins	Erysipelotrichales	NA	
+glycopeptides	Erysipelotrichales	NA	
+Hemolysin	Erysipelotrichales	NA	
+Inerolysin	Erysipelotrichales	NA	
+lactate production	Erysipelotrichales	0.003250239	
+macrolide_lincosamide_streptogramin	Erysipelotrichales	8.04E-05	
+multiple_drug_resistance	Erysipelotrichales	NA	
+N-Acetylputrescine	Erysipelotrichales	0.036417503	
+peptide_antibiotic	Erysipelotrichales	NA	
+phenicols	Erysipelotrichales	NA	
+Phospholipase C	Erysipelotrichales	NA	
+polymyxin	Erysipelotrichales	NA	
+propionate production I	Erysipelotrichales	NA	
+propionate production II	Erysipelotrichales	NA	
+propionate production III	Erysipelotrichales	NA	
+quinolone_antibacterials	Erysipelotrichales	NA	
+rifampicin	Erysipelotrichales	NA	
+Sialidase	Erysipelotrichales	NA	
+succinate production	Erysipelotrichales	0.000914148	
+sulfonamides	Erysipelotrichales	NA	
+tetracyclines	Erysipelotrichales	NA	
+trimethoprim	Erysipelotrichales	NA	
+Trimethylamine	Erysipelotrichales	0.296274707	
+Urease	Erysipelotrichales	NA	
+Vaginolysin	Erysipelotrichales	NA	
+acetate: acetyl-CoA to acetate	Flavobacteriales	0.00191518	
+aminoglycosides	Flavobacteriales	0.001772594	
+beta_lactamases	Flavobacteriales	0.003452089	
+Biofilm	Flavobacteriales	0.008209383	
+butyrate production I	Flavobacteriales	0.03374571	
+butyrate production II	Flavobacteriales	0.026056199	
+butyrate: acetyl-CoA to crotonyl-CoA	Flavobacteriales	0.003602815	
+Cadaverine	Flavobacteriales	NA	
+Cytolysin	Flavobacteriales	0.000532694	
+fosfomycins	Flavobacteriales	NA	
+glycopeptides	Flavobacteriales	NA	
+Hemolysin	Flavobacteriales	0.000575264	
+Inerolysin	Flavobacteriales	0.000532694	
+lactate production	Flavobacteriales	0.001004575	
+macrolide_lincosamide_streptogramin	Flavobacteriales	0.001485022	
+multiple_drug_resistance	Flavobacteriales	0.000464407	
+N-Acetylputrescine	Flavobacteriales	0.024384187	
+peptide_antibiotic	Flavobacteriales	NA	
+phenicols	Flavobacteriales	NA	
+Phospholipase C	Flavobacteriales	0.014525452	
+polymyxin	Flavobacteriales	NA	
+propionate production I	Flavobacteriales	NA	
+propionate production II	Flavobacteriales	NA	
+propionate production III	Flavobacteriales	0.028252143	
+quinolone_antibacterials	Flavobacteriales	0.00500073	
+rifampicin	Flavobacteriales	NA	
+Sialidase	Flavobacteriales	0.001280971	
+succinate production	Flavobacteriales	0.011005484	
+sulfonamides	Flavobacteriales	NA	
+tetracyclines	Flavobacteriales	4.54E-05	
+trimethoprim	Flavobacteriales	NA	
+Trimethylamine	Flavobacteriales	NA	
+Urease	Flavobacteriales	0.036493362	
+Vaginolysin	Flavobacteriales	0.000532694	
+acetate: acetyl-CoA to acetate	Fusobacteriales	0.080038331	
+aminoglycosides	Fusobacteriales	NA	
+beta_lactamases	Fusobacteriales	NA	
+Biofilm	Fusobacteriales	0.070528484	
+butyrate production I	Fusobacteriales	0.237869371	
+butyrate production II	Fusobacteriales	0.315082397	
+butyrate: acetyl-CoA to crotonyl-CoA	Fusobacteriales	0.075961593	
+Cadaverine	Fusobacteriales	NA	
+Cytolysin	Fusobacteriales	NA	
+fosfomycins	Fusobacteriales	NA	
+glycopeptides	Fusobacteriales	NA	
+Hemolysin	Fusobacteriales	NA	
+Inerolysin	Fusobacteriales	NA	
+lactate production	Fusobacteriales	0.059336202	
+macrolide_lincosamide_streptogramin	Fusobacteriales	0.011931592	
+multiple_drug_resistance	Fusobacteriales	NA	
+N-Acetylputrescine	Fusobacteriales	0.00766841	
+peptide_antibiotic	Fusobacteriales	NA	
+phenicols	Fusobacteriales	NA	
+Phospholipase C	Fusobacteriales	NA	
+polymyxin	Fusobacteriales	NA	
+propionate production I	Fusobacteriales	NA	
+propionate production II	Fusobacteriales	NA	
+propionate production III	Fusobacteriales	NA	
+quinolone_antibacterials	Fusobacteriales	NA	
+rifampicin	Fusobacteriales	NA	
+Sialidase	Fusobacteriales	NA	
+succinate production	Fusobacteriales	0.037357846	
+sulfonamides	Fusobacteriales	NA	
+tetracyclines	Fusobacteriales	NA	
+trimethoprim	Fusobacteriales	NA	
+Trimethylamine	Fusobacteriales	NA	
+Urease	Fusobacteriales	NA	
+Vaginolysin	Fusobacteriales	NA	
+acetate: acetyl-CoA to acetate	Lachnospirales	0.149724338	
+aminoglycosides	Lachnospirales	NA	
+beta_lactamases	Lachnospirales	NA	
+Biofilm	Lachnospirales	0.387103236	
+butyrate production I	Lachnospirales	0.481457347	
+butyrate production II	Lachnospirales	0.352829231	
+butyrate: acetyl-CoA to crotonyl-CoA	Lachnospirales	0.02976344	
+Cadaverine	Lachnospirales	NA	
+Cytolysin	Lachnospirales	NA	
+fosfomycins	Lachnospirales	NA	
+glycopeptides	Lachnospirales	0.05695439	
+Hemolysin	Lachnospirales	NA	
+Inerolysin	Lachnospirales	NA	
+lactate production	Lachnospirales	0.080481768	
+macrolide_lincosamide_streptogramin	Lachnospirales	0.00058319	
+multiple_drug_resistance	Lachnospirales	NA	
+N-Acetylputrescine	Lachnospirales	0.138269981	
+peptide_antibiotic	Lachnospirales	NA	
+phenicols	Lachnospirales	NA	
+Phospholipase C	Lachnospirales	NA	
+polymyxin	Lachnospirales	NA	
+propionate production I	Lachnospirales	NA	
+propionate production II	Lachnospirales	0.277117285	
+propionate production III	Lachnospirales	0.010511208	
+quinolone_antibacterials	Lachnospirales	NA	
+rifampicin	Lachnospirales	NA	
+Sialidase	Lachnospirales	0.008644077	
+succinate production	Lachnospirales	0.114839013	
+sulfonamides	Lachnospirales	NA	
+tetracyclines	Lachnospirales	0.003410504	
+trimethoprim	Lachnospirales	NA	
+Trimethylamine	Lachnospirales	0.268243671	
+Urease	Lachnospirales	0.336745024	
+Vaginolysin	Lachnospirales	NA	
+acetate: acetyl-CoA to acetate	Lactobacillales	5.940185127	
+aminoglycosides	Lactobacillales	0.096615724	
+beta_lactamases	Lactobacillales	0.260712469	
+Biofilm	Lactobacillales	4.720502566	
+butyrate production I	Lactobacillales	1.956050432	
+butyrate production II	Lactobacillales	1.081931958	
+butyrate: acetyl-CoA to crotonyl-CoA	Lactobacillales	4.014526076	
+Cadaverine	Lactobacillales	NA	
+Cytolysin	Lactobacillales	1.962688268	
+fosfomycins	Lactobacillales	0.005057218	
+glycopeptides	Lactobacillales	1.343282318	
+Hemolysin	Lactobacillales	2.119535697	
+Inerolysin	Lactobacillales	1.962688268	
+lactate production	Lactobacillales	5.390123439	
+macrolide_lincosamide_streptogramin	Lactobacillales	3.721212846	
+multiple_drug_resistance	Lactobacillales	0.271167537	
+N-Acetylputrescine	Lactobacillales	2.890292691	
+peptide_antibiotic	Lactobacillales	0.109999437	
+phenicols	Lactobacillales	0.195847045	
+Phospholipase C	Lactobacillales	0.002592432	
+polymyxin	Lactobacillales	NA	
+propionate production I	Lactobacillales	0.00104272	
+propionate production II	Lactobacillales	1.395572778	
+propionate production III	Lactobacillales	NA	
+quinolone_antibacterials	Lactobacillales	3.058210345	
+rifampicin	Lactobacillales	1.024292612	
+Sialidase	Lactobacillales	0.454883389	
+succinate production	Lactobacillales	3.016356736	
+sulfonamides	Lactobacillales	1.477809659	
+tetracyclines	Lactobacillales	3.766199621	
+trimethoprim	Lactobacillales	1.09560711	
+Trimethylamine	Lactobacillales	NA	
+Urease	Lactobacillales	0.24114098	
+Vaginolysin	Lactobacillales	1.962688268	
+acetate: acetyl-CoA to acetate	Mycobacteriales	0.194204361	
+aminoglycosides	Mycobacteriales	0.616590543	
+beta_lactamases	Mycobacteriales	0.146660358	
+Biofilm	Mycobacteriales	0.453002596	
+butyrate production I	Mycobacteriales	1.009563769	
+butyrate production II	Mycobacteriales	0.779518174	
+butyrate: acetyl-CoA to crotonyl-CoA	Mycobacteriales	1.893857573	
+Cadaverine	Mycobacteriales	NA	
+Cytolysin	Mycobacteriales	NA	
+fosfomycins	Mycobacteriales	NA	
+glycopeptides	Mycobacteriales	NA	
+Hemolysin	Mycobacteriales	NA	
+Inerolysin	Mycobacteriales	NA	
+lactate production	Mycobacteriales	0.053504518	
+macrolide_lincosamide_streptogramin	Mycobacteriales	0.099760094	
+multiple_drug_resistance	Mycobacteriales	0.116364518	
+N-Acetylputrescine	Mycobacteriales	0.554249637	
+peptide_antibiotic	Mycobacteriales	NA	
+phenicols	Mycobacteriales	0.183457188	
+Phospholipase C	Mycobacteriales	2.440064907	
+polymyxin	Mycobacteriales	NA	
+propionate production I	Mycobacteriales	NA	
+propionate production II	Mycobacteriales	NA	
+propionate production III	Mycobacteriales	2.356994854	
+quinolone_antibacterials	Mycobacteriales	0.559986596	
+rifampicin	Mycobacteriales	0.210897575	
+Sialidase	Mycobacteriales	0.037669118	
+succinate production	Mycobacteriales	0.770653546	
+sulfonamides	Mycobacteriales	0.664929822	
+tetracyclines	Mycobacteriales	0.051677833	
+trimethoprim	Mycobacteriales	NA	
+Trimethylamine	Mycobacteriales	NA	
+Urease	Mycobacteriales	2.063758274	
+Vaginolysin	Mycobacteriales	NA	
+acetate: acetyl-CoA to acetate	Mycoplasmatales	0.053886203	
+aminoglycosides	Mycoplasmatales	NA	
+beta_lactamases	Mycoplasmatales	NA	
+Biofilm	Mycoplasmatales	0.002587669	
+butyrate production I	Mycoplasmatales	NA	
+butyrate production II	Mycoplasmatales	NA	
+butyrate: acetyl-CoA to crotonyl-CoA	Mycoplasmatales	NA	
+Cadaverine	Mycoplasmatales	NA	
+Cytolysin	Mycoplasmatales	NA	
+fosfomycins	Mycoplasmatales	NA	
+glycopeptides	Mycoplasmatales	NA	
+Hemolysin	Mycoplasmatales	NA	
+Inerolysin	Mycoplasmatales	NA	
+lactate production	Mycoplasmatales	0.006865948	
+macrolide_lincosamide_streptogramin	Mycoplasmatales	NA	
+multiple_drug_resistance	Mycoplasmatales	NA	
+N-Acetylputrescine	Mycoplasmatales	NA	
+peptide_antibiotic	Mycoplasmatales	NA	
+phenicols	Mycoplasmatales	NA	
+Phospholipase C	Mycoplasmatales	NA	
+polymyxin	Mycoplasmatales	NA	
+propionate production I	Mycoplasmatales	NA	
+propionate production II	Mycoplasmatales	NA	
+propionate production III	Mycoplasmatales	NA	
+quinolone_antibacterials	Mycoplasmatales	0.47466498	
+rifampicin	Mycoplasmatales	NA	
+Sialidase	Mycoplasmatales	NA	
+succinate production	Mycoplasmatales	NA	
+sulfonamides	Mycoplasmatales	NA	
+tetracyclines	Mycoplasmatales	NA	
+trimethoprim	Mycoplasmatales	NA	
+Trimethylamine	Mycoplasmatales	NA	
+Urease	Mycoplasmatales	1.704131028	
+Vaginolysin	Mycoplasmatales	NA	
+acetate: acetyl-CoA to acetate	Oscillospirales	0.00847757	
+aminoglycosides	Oscillospirales	NA	
+beta_lactamases	Oscillospirales	NA	
+Biofilm	Oscillospirales	0.023705221	
+butyrate production I	Oscillospirales	0.033208845	
+butyrate production II	Oscillospirales	0.020311516	
+butyrate: acetyl-CoA to crotonyl-CoA	Oscillospirales	0.006460737	
+Cadaverine	Oscillospirales	NA	
+Cytolysin	Oscillospirales	NA	
+fosfomycins	Oscillospirales	NA	
+glycopeptides	Oscillospirales	NA	
+Hemolysin	Oscillospirales	NA	
+Inerolysin	Oscillospirales	NA	
+lactate production	Oscillospirales	0.002510729	
+macrolide_lincosamide_streptogramin	Oscillospirales	NA	
+multiple_drug_resistance	Oscillospirales	0.000140452	
+N-Acetylputrescine	Oscillospirales	NA	
+peptide_antibiotic	Oscillospirales	NA	
+phenicols	Oscillospirales	NA	
+Phospholipase C	Oscillospirales	NA	
+polymyxin	Oscillospirales	NA	
+propionate production I	Oscillospirales	NA	
+propionate production II	Oscillospirales	0.002462156	
+propionate production III	Oscillospirales	0.011080795	
+quinolone_antibacterials	Oscillospirales	NA	
+rifampicin	Oscillospirales	NA	
+Sialidase	Oscillospirales	0.001193295	
+succinate production	Oscillospirales	0.010628929	
+sulfonamides	Oscillospirales	NA	
+tetracyclines	Oscillospirales	NA	
+trimethoprim	Oscillospirales	NA	
+Trimethylamine	Oscillospirales	NA	
+Urease	Oscillospirales	0.032563618	
+Vaginolysin	Oscillospirales	NA	
+acetate: acetyl-CoA to acetate	Peptococcales	0.001333828	
+aminoglycosides	Peptococcales	NA	
+beta_lactamases	Peptococcales	NA	
+Biofilm	Peptococcales	0.001748067	
+butyrate production I	Peptococcales	0.030099437	
+butyrate production II	Peptococcales	0.023240789	
+butyrate: acetyl-CoA to crotonyl-CoA	Peptococcales	0.003177124	
+Cadaverine	Peptococcales	NA	
+Cytolysin	Peptococcales	NA	
+fosfomycins	Peptococcales	NA	
+glycopeptides	Peptococcales	NA	
+Hemolysin	Peptococcales	NA	
+Inerolysin	Peptococcales	NA	
+lactate production	Peptococcales	NA	
+macrolide_lincosamide_streptogramin	Peptococcales	NA	
+multiple_drug_resistance	Peptococcales	NA	
+N-Acetylputrescine	Peptococcales	NA	
+peptide_antibiotic	Peptococcales	NA	
+phenicols	Peptococcales	NA	
+Phospholipase C	Peptococcales	NA	
+polymyxin	Peptococcales	NA	
+propionate production I	Peptococcales	NA	
+propionate production II	Peptococcales	NA	
+propionate production III	Peptococcales	NA	
+quinolone_antibacterials	Peptococcales	NA	
+rifampicin	Peptococcales	NA	
+Sialidase	Peptococcales	NA	
+succinate production	Peptococcales	0.002123575	
+sulfonamides	Peptococcales	NA	
+tetracyclines	Peptococcales	NA	
+trimethoprim	Peptococcales	NA	
+Trimethylamine	Peptococcales	0.071601533	
+Urease	Peptococcales	NA	
+Vaginolysin	Peptococcales	NA	
+acetate: acetyl-CoA to acetate	Peptostreptococcales	0.016880625	
+aminoglycosides	Peptostreptococcales	NA	
+beta_lactamases	Peptostreptococcales	NA	
+Biofilm	Peptostreptococcales	0.021115518	
+butyrate production I	Peptostreptococcales	0.775418444	
+butyrate production II	Peptostreptococcales	0.241347854	
+butyrate: acetyl-CoA to crotonyl-CoA	Peptostreptococcales	0.011323667	
+Cadaverine	Peptostreptococcales	0.004427906	
+Cytolysin	Peptostreptococcales	0.000888023	
+fosfomycins	Peptostreptococcales	NA	
+glycopeptides	Peptostreptococcales	0.438575892	
+Hemolysin	Peptostreptococcales	0.000958989	
+Inerolysin	Peptostreptococcales	0.000888023	
+lactate production	Peptostreptococcales	0.006165773	
+macrolide_lincosamide_streptogramin	Peptostreptococcales	0.000569232	
+multiple_drug_resistance	Peptostreptococcales	2.84E-05	
+N-Acetylputrescine	Peptostreptococcales	0.008528557	
+peptide_antibiotic	Peptostreptococcales	NA	
+phenicols	Peptostreptococcales	NA	
+Phospholipase C	Peptostreptococcales	0.023885231	
+polymyxin	Peptostreptococcales	NA	
+propionate production I	Peptostreptococcales	NA	
+propionate production II	Peptostreptococcales	0.191266175	
+propionate production III	Peptostreptococcales	0.015178742	
+quinolone_antibacterials	Peptostreptococcales	0.002717426	
+rifampicin	Peptostreptococcales	0.032341527	
+Sialidase	Peptostreptococcales	0.001961998	
+succinate production	Peptostreptococcales	0.034943102	
+sulfonamides	Peptostreptococcales	NA	
+tetracyclines	Peptostreptococcales	0.009088017	
+trimethoprim	Peptostreptococcales	NA	
+Trimethylamine	Peptostreptococcales	0.016411409	
+Urease	Peptostreptococcales	0.024401437	
+Vaginolysin	Peptostreptococcales	0.000888023	
+acetate: acetyl-CoA to acetate	Propionibacteriales	0.024393984	
+aminoglycosides	Propionibacteriales	0.082769165	
+beta_lactamases	Propionibacteriales	0.001792414	
+Biofilm	Propionibacteriales	0.093934677	
+butyrate production I	Propionibacteriales	0.265642976	
+butyrate production II	Propionibacteriales	0.205111885	
+butyrate: acetyl-CoA to crotonyl-CoA	Propionibacteriales	0.040590662	
+Cadaverine	Propionibacteriales	NA	
+Cytolysin	Propionibacteriales	NA	
+fosfomycins	Propionibacteriales	NA	
+glycopeptides	Propionibacteriales	NA	
+Hemolysin	Propionibacteriales	NA	
+Inerolysin	Propionibacteriales	NA	
+lactate production	Propionibacteriales	0.050286505	
+macrolide_lincosamide_streptogramin	Propionibacteriales	0.009740536	
+multiple_drug_resistance	Propionibacteriales	0.000241132	
+N-Acetylputrescine	Propionibacteriales	NA	
+peptide_antibiotic	Propionibacteriales	NA	
+phenicols	Propionibacteriales	NA	
+Phospholipase C	Propionibacteriales	NA	
+polymyxin	Propionibacteriales	NA	
+propionate production I	Propionibacteriales	NA	
+propionate production II	Propionibacteriales	NA	
+propionate production III	Propionibacteriales	1.573789398	
+quinolone_antibacterials	Propionibacteriales	0.118661566	
+rifampicin	Propionibacteriales	NA	
+Sialidase	Propionibacteriales	0.31942458	
+succinate production	Propionibacteriales	0.168009186	
+sulfonamides	Propionibacteriales	0.004060922	
+tetracyclines	Propionibacteriales	0.012426091	
+trimethoprim	Propionibacteriales	NA	
+Trimethylamine	Propionibacteriales	NA	
+Urease	Propionibacteriales	0.046176879	
+Vaginolysin	Propionibacteriales	NA	
+acetate: acetyl-CoA to acetate	Pseudomonadales	0.089953992	
+aminoglycosides	Pseudomonadales	0.240501181	
+beta_lactamases	Pseudomonadales	0.504002723	
+Biofilm	Pseudomonadales	1.972096339	
+butyrate production I	Pseudomonadales	2.277126287	
+butyrate production II	Pseudomonadales	1.758245869	
+butyrate: acetyl-CoA to crotonyl-CoA	Pseudomonadales	1.137973786	
+Cadaverine	Pseudomonadales	NA	
+Cytolysin	Pseudomonadales	NA	
+fosfomycins	Pseudomonadales	1.112772871	
+glycopeptides	Pseudomonadales	NA	
+Hemolysin	Pseudomonadales	NA	
+Inerolysin	Pseudomonadales	NA	
+lactate production	Pseudomonadales	0.025229211	
+macrolide_lincosamide_streptogramin	Pseudomonadales	NA	
+multiple_drug_resistance	Pseudomonadales	1.117949407	
+N-Acetylputrescine	Pseudomonadales	0.546319519	
+peptide_antibiotic	Pseudomonadales	0.418772384	
+phenicols	Pseudomonadales	2.333875458	
+Phospholipase C	Pseudomonadales	1.389433427	
+polymyxin	Pseudomonadales	1	
+propionate production I	Pseudomonadales	NA	
+propionate production II	Pseudomonadales	NA	
+propionate production III	Pseudomonadales	0.112671687	
+quinolone_antibacterials	Pseudomonadales	0.516397503	
+rifampicin	Pseudomonadales	0.158977973	
+Sialidase	Pseudomonadales	NA	
+succinate production	Pseudomonadales	0.39349086	
+sulfonamides	Pseudomonadales	0.383204738	
+tetracyclines	Pseudomonadales	NA	
+trimethoprim	Pseudomonadales	NA	
+Trimethylamine	Pseudomonadales	NA	
+Urease	Pseudomonadales	2.443170488	
+Vaginolysin	Pseudomonadales	NA	
+acetate: acetyl-CoA to acetate	RF39	5.75E-05	
+aminoglycosides	RF39	NA	
+beta_lactamases	RF39	NA	
+Biofilm	RF39	0.000117471	
+butyrate production I	RF39	NA	
+butyrate production II	RF39	NA	
+butyrate: acetyl-CoA to crotonyl-CoA	RF39	NA	
+Cadaverine	RF39	NA	
+Cytolysin	RF39	NA	
+fosfomycins	RF39	NA	
+glycopeptides	RF39	NA	
+Hemolysin	RF39	NA	
+Inerolysin	RF39	NA	
+lactate production	RF39	NA	
+macrolide_lincosamide_streptogramin	RF39	NA	
+multiple_drug_resistance	RF39	NA	
+N-Acetylputrescine	RF39	NA	
+peptide_antibiotic	RF39	NA	
+phenicols	RF39	NA	
+Phospholipase C	RF39	NA	
+polymyxin	RF39	NA	
+propionate production I	RF39	NA	
+propionate production II	RF39	NA	
+propionate production III	RF39	NA	
+quinolone_antibacterials	RF39	NA	
+rifampicin	RF39	NA	
+Sialidase	RF39	NA	
+succinate production	RF39	NA	
+sulfonamides	RF39	NA	
+tetracyclines	RF39	NA	
+trimethoprim	RF39	NA	
+Trimethylamine	RF39	NA	
+Urease	RF39	NA	
+Vaginolysin	RF39	NA	
+acetate: acetyl-CoA to acetate	Rhizobiales	0.005877235	
+aminoglycosides	Rhizobiales	NA	
+beta_lactamases	Rhizobiales	0.011426539	
+Biofilm	Rhizobiales	0.035917278	
+butyrate production I	Rhizobiales	0.061470718	
+butyrate production II	Rhizobiales	0.047463611	
+butyrate: acetyl-CoA to crotonyl-CoA	Rhizobiales	0.024468284	
+Cadaverine	Rhizobiales	NA	
+Cytolysin	Rhizobiales	NA	
+fosfomycins	Rhizobiales	NA	
+glycopeptides	Rhizobiales	NA	
+Hemolysin	Rhizobiales	NA	
+Inerolysin	Rhizobiales	NA	
+lactate production	Rhizobiales	NA	
+macrolide_lincosamide_streptogramin	Rhizobiales	NA	
+multiple_drug_resistance	Rhizobiales	0.00922322	
+N-Acetylputrescine	Rhizobiales	0.02038468	
+peptide_antibiotic	Rhizobiales	0.009634036	
+phenicols	Rhizobiales	NA	
+Phospholipase C	Rhizobiales	NA	
+polymyxin	Rhizobiales	NA	
+propionate production I	Rhizobiales	NA	
+propionate production II	Rhizobiales	0.049253717	
+propionate production III	Rhizobiales	0.066715827	
+quinolone_antibacterials	Rhizobiales	0.012999829	
+rifampicin	Rhizobiales	NA	
+Sialidase	Rhizobiales	NA	
+succinate production	Rhizobiales	0.015139867	
+sulfonamides	Rhizobiales	NA	
+tetracyclines	Rhizobiales	NA	
+trimethoprim	Rhizobiales	NA	
+Trimethylamine	Rhizobiales	NA	
+Urease	Rhizobiales	0.233466931	
+Vaginolysin	Rhizobiales	NA	
+acetate: acetyl-CoA to acetate	Rickettsiales	NA	
+aminoglycosides	Rickettsiales	NA	
+beta_lactamases	Rickettsiales	NA	
+Biofilm	Rickettsiales	1.17E-05	
+butyrate production I	Rickettsiales	NA	
+butyrate production II	Rickettsiales	NA	
+butyrate: acetyl-CoA to crotonyl-CoA	Rickettsiales	NA	
+Cadaverine	Rickettsiales	NA	
+Cytolysin	Rickettsiales	NA	
+fosfomycins	Rickettsiales	NA	
+glycopeptides	Rickettsiales	NA	
+Hemolysin	Rickettsiales	NA	
+Inerolysin	Rickettsiales	NA	
+lactate production	Rickettsiales	NA	
+macrolide_lincosamide_streptogramin	Rickettsiales	NA	
+multiple_drug_resistance	Rickettsiales	NA	
+N-Acetylputrescine	Rickettsiales	NA	
+peptide_antibiotic	Rickettsiales	NA	
+phenicols	Rickettsiales	NA	
+Phospholipase C	Rickettsiales	NA	
+polymyxin	Rickettsiales	NA	
+propionate production I	Rickettsiales	NA	
+propionate production II	Rickettsiales	NA	
+propionate production III	Rickettsiales	NA	
+quinolone_antibacterials	Rickettsiales	NA	
+rifampicin	Rickettsiales	NA	
+Sialidase	Rickettsiales	NA	
+succinate production	Rickettsiales	NA	
+sulfonamides	Rickettsiales	NA	
+tetracyclines	Rickettsiales	NA	
+trimethoprim	Rickettsiales	NA	
+Trimethylamine	Rickettsiales	NA	
+Urease	Rickettsiales	NA	
+Vaginolysin	Rickettsiales	NA	
+acetate: acetyl-CoA to acetate	RUG11792	NA	
+aminoglycosides	RUG11792	NA	
+beta_lactamases	RUG11792	NA	
+Biofilm	RUG11792	0.00191077	
+butyrate production I	RUG11792	NA	
+butyrate production II	RUG11792	NA	
+butyrate: acetyl-CoA to crotonyl-CoA	RUG11792	NA	
+Cadaverine	RUG11792	NA	
+Cytolysin	RUG11792	NA	
+fosfomycins	RUG11792	NA	
+glycopeptides	RUG11792	NA	
+Hemolysin	RUG11792	NA	
+Inerolysin	RUG11792	NA	
+lactate production	RUG11792	NA	
+macrolide_lincosamide_streptogramin	RUG11792	NA	
+multiple_drug_resistance	RUG11792	NA	
+N-Acetylputrescine	RUG11792	NA	
+peptide_antibiotic	RUG11792	NA	
+phenicols	RUG11792	NA	
+Phospholipase C	RUG11792	NA	
+polymyxin	RUG11792	NA	
+propionate production I	RUG11792	NA	
+propionate production II	RUG11792	NA	
+propionate production III	RUG11792	NA	
+quinolone_antibacterials	RUG11792	NA	
+rifampicin	RUG11792	NA	
+Sialidase	RUG11792	NA	
+succinate production	RUG11792	NA	
+sulfonamides	RUG11792	NA	
+tetracyclines	RUG11792	NA	
+trimethoprim	RUG11792	NA	
+Trimethylamine	RUG11792	NA	
+Urease	RUG11792	NA	
+Vaginolysin	RUG11792	NA	
+acetate: acetyl-CoA to acetate	Saccharimonadales	0.013985393	
+aminoglycosides	Saccharimonadales	NA	
+beta_lactamases	Saccharimonadales	NA	
+Biofilm	Saccharimonadales	0.01148083	
+butyrate production I	Saccharimonadales	NA	
+butyrate production II	Saccharimonadales	NA	
+butyrate: acetyl-CoA to crotonyl-CoA	Saccharimonadales	NA	
+Cadaverine	Saccharimonadales	NA	
+Cytolysin	Saccharimonadales	NA	
+fosfomycins	Saccharimonadales	NA	
+glycopeptides	Saccharimonadales	NA	
+Hemolysin	Saccharimonadales	NA	
+Inerolysin	Saccharimonadales	NA	
+lactate production	Saccharimonadales	0.012402292	
+macrolide_lincosamide_streptogramin	Saccharimonadales	NA	
+multiple_drug_resistance	Saccharimonadales	NA	
+N-Acetylputrescine	Saccharimonadales	NA	
+peptide_antibiotic	Saccharimonadales	NA	
+phenicols	Saccharimonadales	NA	
+Phospholipase C	Saccharimonadales	NA	
+polymyxin	Saccharimonadales	NA	
+propionate production I	Saccharimonadales	NA	
+propionate production II	Saccharimonadales	NA	
+propionate production III	Saccharimonadales	NA	
+quinolone_antibacterials	Saccharimonadales	NA	
+rifampicin	Saccharimonadales	NA	
+Sialidase	Saccharimonadales	NA	
+succinate production	Saccharimonadales	NA	
+sulfonamides	Saccharimonadales	NA	
+tetracyclines	Saccharimonadales	NA	
+trimethoprim	Saccharimonadales	NA	
+Trimethylamine	Saccharimonadales	NA	
+Urease	Saccharimonadales	NA	
+Vaginolysin	Saccharimonadales	NA	
+acetate: acetyl-CoA to acetate	Saccharofermentanales	0.07112111	
+aminoglycosides	Saccharofermentanales	NA	
+beta_lactamases	Saccharofermentanales	NA	
+Biofilm	Saccharofermentanales	0.084217733	
+butyrate production I	Saccharofermentanales	0.041926165	
+butyrate production II	Saccharofermentanales	0.01408098	
+butyrate: acetyl-CoA to crotonyl-CoA	Saccharofermentanales	0.002139965	
+Cadaverine	Saccharofermentanales	0.41768598	
+Cytolysin	Saccharofermentanales	NA	
+fosfomycins	Saccharofermentanales	NA	
+glycopeptides	Saccharofermentanales	NA	
+Hemolysin	Saccharofermentanales	NA	
+Inerolysin	Saccharofermentanales	NA	
+lactate production	Saccharofermentanales	0.02802805	
+macrolide_lincosamide_streptogramin	Saccharofermentanales	0.001626898	
+multiple_drug_resistance	Saccharofermentanales	NA	
+N-Acetylputrescine	Saccharofermentanales	0.201173982	
+peptide_antibiotic	Saccharofermentanales	NA	
+phenicols	Saccharofermentanales	NA	
+Phospholipase C	Saccharofermentanales	NA	
+polymyxin	Saccharofermentanales	NA	
+propionate production I	Saccharofermentanales	NA	
+propionate production II	Saccharofermentanales	0.005237241	
+propionate production III	Saccharofermentanales	NA	
+quinolone_antibacterials	Saccharofermentanales	NA	
+rifampicin	Saccharofermentanales	NA	
+Sialidase	Saccharofermentanales	0.07401679	
+succinate production	Saccharofermentanales	0.049884173	
+sulfonamides	Saccharofermentanales	NA	
+tetracyclines	Saccharofermentanales	0.087178388	
+trimethoprim	Saccharofermentanales	NA	
+Trimethylamine	Saccharofermentanales	NA	
+Urease	Saccharofermentanales	NA	
+Vaginolysin	Saccharofermentanales	NA	
+acetate: acetyl-CoA to acetate	Selenomonadales	7.13E-05	
+aminoglycosides	Selenomonadales	NA	
+beta_lactamases	Selenomonadales	NA	
+Biofilm	Selenomonadales	0.000706316	
+butyrate production I	Selenomonadales	NA	
+butyrate production II	Selenomonadales	NA	
+butyrate: acetyl-CoA to crotonyl-CoA	Selenomonadales	NA	
+Cadaverine	Selenomonadales	NA	
+Cytolysin	Selenomonadales	NA	
+fosfomycins	Selenomonadales	NA	
+glycopeptides	Selenomonadales	NA	
+Hemolysin	Selenomonadales	NA	
+Inerolysin	Selenomonadales	NA	
+lactate production	Selenomonadales	2.80E-05	
+macrolide_lincosamide_streptogramin	Selenomonadales	NA	
+multiple_drug_resistance	Selenomonadales	NA	
+N-Acetylputrescine	Selenomonadales	0.000438163	
+peptide_antibiotic	Selenomonadales	NA	
+phenicols	Selenomonadales	NA	
+Phospholipase C	Selenomonadales	NA	
+polymyxin	Selenomonadales	NA	
+propionate production I	Selenomonadales	NA	
+propionate production II	Selenomonadales	NA	
+propionate production III	Selenomonadales	0.005397815	
+quinolone_antibacterials	Selenomonadales	NA	
+rifampicin	Selenomonadales	NA	
+Sialidase	Selenomonadales	NA	
+succinate production	Selenomonadales	0.000863981	
+sulfonamides	Selenomonadales	NA	
+tetracyclines	Selenomonadales	NA	
+trimethoprim	Selenomonadales	NA	
+Trimethylamine	Selenomonadales	NA	
+Urease	Selenomonadales	NA	
+Vaginolysin	Selenomonadales	NA	
+acetate: acetyl-CoA to acetate	Sphingobacteriales	9.21E-05	
+aminoglycosides	Sphingobacteriales	3.62E-05	
+beta_lactamases	Sphingobacteriales	NA	
+Biofilm	Sphingobacteriales	0.001121192	
+butyrate production I	Sphingobacteriales	0.003853556	
+butyrate production II	Sphingobacteriales	0.002975461	
+butyrate: acetyl-CoA to crotonyl-CoA	Sphingobacteriales	0.00076695	
+Cadaverine	Sphingobacteriales	NA	
+Cytolysin	Sphingobacteriales	0.000206016	
+fosfomycins	Sphingobacteriales	NA	
+glycopeptides	Sphingobacteriales	NA	
+Hemolysin	Sphingobacteriales	0.000222479	
+Inerolysin	Sphingobacteriales	0.000206016	
+lactate production	Sphingobacteriales	6.86E-05	
+macrolide_lincosamide_streptogramin	Sphingobacteriales	NA	
+multiple_drug_resistance	Sphingobacteriales	NA	
+N-Acetylputrescine	Sphingobacteriales	0.002458351	
+peptide_antibiotic	Sphingobacteriales	NA	
+phenicols	Sphingobacteriales	0.001063925	
+Phospholipase C	Sphingobacteriales	0.009351973	
+polymyxin	Sphingobacteriales	NA	
+propionate production I	Sphingobacteriales	NA	
+propionate production II	Sphingobacteriales	NA	
+propionate production III	Sphingobacteriales	NA	
+quinolone_antibacterials	Sphingobacteriales	NA	
+rifampicin	Sphingobacteriales	NA	
+Sialidase	Sphingobacteriales	0.000588399	
+succinate production	Sphingobacteriales	0.001220281	
+sulfonamides	Sphingobacteriales	NA	
+tetracyclines	Sphingobacteriales	NA	
+trimethoprim	Sphingobacteriales	NA	
+Trimethylamine	Sphingobacteriales	NA	
+Urease	Sphingobacteriales	0.015404935	
+Vaginolysin	Sphingobacteriales	0.000206016	
+acetate: acetyl-CoA to acetate	Staphylococcales	0.052528938	
+aminoglycosides	Staphylococcales	0.115600255	
+beta_lactamases	Staphylococcales	0.114344353	
+Biofilm	Staphylococcales	0.092195201	
+butyrate production I	Staphylococcales	0.119865286	
+butyrate production II	Staphylococcales	0.080538334	
+butyrate: acetyl-CoA to crotonyl-CoA	Staphylococcales	0.106502326	
+Cadaverine	Staphylococcales	NA	
+Cytolysin	Staphylococcales	NA	
+fosfomycins	Staphylococcales	0.83747656	
+glycopeptides	Staphylococcales	NA	
+Hemolysin	Staphylococcales	0.052027562	
+Inerolysin	Staphylococcales	NA	
+lactate production	Staphylococcales	0.085395784	
+macrolide_lincosamide_streptogramin	Staphylococcales	0.177105215	
+multiple_drug_resistance	Staphylococcales	0.134165314	
+N-Acetylputrescine	Staphylococcales	0.574774843	
+peptide_antibiotic	Staphylococcales	NA	
+phenicols	Staphylococcales	0.132308385	
+Phospholipase C	Staphylococcales	0.44587533	
+polymyxin	Staphylococcales	NA	
+propionate production I	Staphylococcales	NA	
+propionate production II	Staphylococcales	0.061229484	
+propionate production III	Staphylococcales	NA	
+quinolone_antibacterials	Staphylococcales	0.396859498	
+rifampicin	Staphylococcales	0.113023447	
+Sialidase	Staphylococcales	0.00094627	
+succinate production	Staphylococcales	0.153996781	
+sulfonamides	Staphylococcales	0.031897036	
+tetracyclines	Staphylococcales	0.046027953	
+trimethoprim	Staphylococcales	0.586357285	
+Trimethylamine	Staphylococcales	NA	
+Urease	Staphylococcales	1.257297608	
+Vaginolysin	Staphylococcales	NA	
+acetate: acetyl-CoA to acetate	Synergistales	0.001072399	
+aminoglycosides	Synergistales	NA	
+beta_lactamases	Synergistales	NA	
+Biofilm	Synergistales	0.001268552	
+butyrate production I	Synergistales	0.066969455	
+butyrate production II	Synergistales	NA	
+butyrate: acetyl-CoA to crotonyl-CoA	Synergistales	NA	
+Cadaverine	Synergistales	0.002552266	
+Cytolysin	Synergistales	NA	
+fosfomycins	Synergistales	NA	
+glycopeptides	Synergistales	NA	
+Hemolysin	Synergistales	NA	
+Inerolysin	Synergistales	NA	
+lactate production	Synergistales	NA	
+macrolide_lincosamide_streptogramin	Synergistales	NA	
+multiple_drug_resistance	Synergistales	NA	
+N-Acetylputrescine	Synergistales	NA	
+peptide_antibiotic	Synergistales	NA	
+phenicols	Synergistales	NA	
+Phospholipase C	Synergistales	NA	
+polymyxin	Synergistales	NA	
+propionate production I	Synergistales	NA	
+propionate production II	Synergistales	NA	
+propionate production III	Synergistales	0.041635484	
+quinolone_antibacterials	Synergistales	NA	
+rifampicin	Synergistales	NA	
+Sialidase	Synergistales	NA	
+succinate production	Synergistales	0.001349767	
+sulfonamides	Synergistales	NA	
+tetracyclines	Synergistales	NA	
+trimethoprim	Synergistales	NA	
+Trimethylamine	Synergistales	NA	
+Urease	Synergistales	NA	
+Vaginolysin	Synergistales	NA	
+acetate: acetyl-CoA to acetate	TANB77	0.000539592	
+aminoglycosides	TANB77	NA	
+beta_lactamases	TANB77	NA	
+Biofilm	TANB77	0.000219551	
+butyrate production I	TANB77	NA	
+butyrate production II	TANB77	NA	
+butyrate: acetyl-CoA to crotonyl-CoA	TANB77	NA	
+Cadaverine	TANB77	NA	
+Cytolysin	TANB77	NA	
+fosfomycins	TANB77	NA	
+glycopeptides	TANB77	NA	
+Hemolysin	TANB77	NA	
+Inerolysin	TANB77	NA	
+lactate production	TANB77	0.000248967	
+macrolide_lincosamide_streptogramin	TANB77	NA	
+multiple_drug_resistance	TANB77	NA	
+N-Acetylputrescine	TANB77	NA	
+peptide_antibiotic	TANB77	NA	
+phenicols	TANB77	NA	
+Phospholipase C	TANB77	NA	
+polymyxin	TANB77	NA	
+propionate production I	TANB77	NA	
+propionate production II	TANB77	NA	
+propionate production III	TANB77	NA	
+quinolone_antibacterials	TANB77	NA	
+rifampicin	TANB77	NA	
+Sialidase	TANB77	NA	
+succinate production	TANB77	NA	
+sulfonamides	TANB77	NA	
+tetracyclines	TANB77	NA	
+trimethoprim	TANB77	NA	
+Trimethylamine	TANB77	NA	
+Urease	TANB77	NA	
+Vaginolysin	TANB77	NA	
+acetate: acetyl-CoA to acetate	Tissierellales	0.152536707	
+aminoglycosides	Tissierellales	NA	
+beta_lactamases	Tissierellales	NA	
+Biofilm	Tissierellales	0.193115364	
+butyrate production I	Tissierellales	3.208136279	
+butyrate production II	Tissierellales	2.544615103	
+butyrate: acetyl-CoA to crotonyl-CoA	Tissierellales	0.315289395	
+Cadaverine	Tissierellales	0.712759928	
+Cytolysin	Tissierellales	NA	
+fosfomycins	Tissierellales	NA	
+glycopeptides	Tissierellales	NA	
+Hemolysin	Tissierellales	NA	
+Inerolysin	Tissierellales	NA	
+lactate production	Tissierellales	0.070246151	
+macrolide_lincosamide_streptogramin	Tissierellales	0.050293142	
+multiple_drug_resistance	Tissierellales	NA	
+N-Acetylputrescine	Tissierellales	1.073169445	
+peptide_antibiotic	Tissierellales	NA	
+phenicols	Tissierellales	NA	
+Phospholipase C	Tissierellales	NA	
+polymyxin	Tissierellales	NA	
+propionate production I	Tissierellales	NA	
+propionate production II	Tissierellales	0.155974819	
+propionate production III	Tissierellales	0.007114843	
+quinolone_antibacterials	Tissierellales	0.003759257	
+rifampicin	Tissierellales	0.05471138	
+Sialidase	Tissierellales	0.032186601	
+succinate production	Tissierellales	0.093159846	
+sulfonamides	Tissierellales	NA	
+tetracyclines	Tissierellales	0.061878756	
+trimethoprim	Tissierellales	NA	
+Trimethylamine	Tissierellales	1.219140303	
+Urease	Tissierellales	0.888014742	
+Vaginolysin	Tissierellales	NA	
+acetate: acetyl-CoA to acetate	Treponematales	0.000674852	
+aminoglycosides	Treponematales	NA	
+beta_lactamases	Treponematales	NA	
+Biofilm	Treponematales	0.003020651	
+butyrate production I	Treponematales	0.003397695	
+butyrate production II	Treponematales	0.002623475	
+butyrate: acetyl-CoA to crotonyl-CoA	Treponematales	0.000338111	
+Cadaverine	Treponematales	NA	
+Cytolysin	Treponematales	NA	
+fosfomycins	Treponematales	NA	
+glycopeptides	Treponematales	NA	
+Hemolysin	Treponematales	NA	
+Inerolysin	Treponematales	NA	
+lactate production	Treponematales	0.000133559	
+macrolide_lincosamide_streptogramin	Treponematales	NA	
+multiple_drug_resistance	Treponematales	NA	
+N-Acetylputrescine	Treponematales	0.005069822	
+peptide_antibiotic	Treponematales	NA	
+phenicols	Treponematales	NA	
+Phospholipase C	Treponematales	NA	
+polymyxin	Treponematales	NA	
+propionate production I	Treponematales	NA	
+propionate production II	Treponematales	NA	
+propionate production III	Treponematales	NA	
+quinolone_antibacterials	Treponematales	NA	
+rifampicin	Treponematales	NA	
+Sialidase	Treponematales	0.000518794	
+succinate production	Treponematales	0.000876602	
+sulfonamides	Treponematales	NA	
+tetracyclines	Treponematales	NA	
+trimethoprim	Treponematales	NA	
+Trimethylamine	Treponematales	NA	
+Urease	Treponematales	NA	
+Vaginolysin	Treponematales	NA	
+acetate: acetyl-CoA to acetate	UBA1381	0.000142966	
+aminoglycosides	UBA1381	NA	
+beta_lactamases	UBA1381	NA	
+Biofilm	UBA1381	0.001125442	
+butyrate production I	UBA1381	NA	
+butyrate production II	UBA1381	NA	
+butyrate: acetyl-CoA to crotonyl-CoA	UBA1381	NA	
+Cadaverine	UBA1381	0.002347376	
+Cytolysin	UBA1381	NA	
+fosfomycins	UBA1381	NA	
+glycopeptides	UBA1381	NA	
+Hemolysin	UBA1381	NA	
+Inerolysin	UBA1381	NA	
+lactate production	UBA1381	0.000253072	
+macrolide_lincosamide_streptogramin	UBA1381	NA	
+multiple_drug_resistance	UBA1381	NA	
+N-Acetylputrescine	UBA1381	NA	
+peptide_antibiotic	UBA1381	NA	
+phenicols	UBA1381	NA	
+Phospholipase C	UBA1381	NA	
+polymyxin	UBA1381	NA	
+propionate production I	UBA1381	NA	
+propionate production II	UBA1381	NA	
+propionate production III	UBA1381	NA	
+quinolone_antibacterials	UBA1381	NA	
+rifampicin	UBA1381	NA	
+Sialidase	UBA1381	NA	
+succinate production	UBA1381	0.00063134	
+sulfonamides	UBA1381	NA	
+tetracyclines	UBA1381	NA	
+trimethoprim	UBA1381	NA	
+Trimethylamine	UBA1381	NA	
+Urease	UBA1381	NA	
+Vaginolysin	UBA1381	NA	
+acetate: acetyl-CoA to acetate	Veillonellales	0.183368529	
+aminoglycosides	Veillonellales	0.00497428	
+beta_lactamases	Veillonellales	0.002768022	
+Biofilm	Veillonellales	0.252308375	
+butyrate production I	Veillonellales	1.819904925	
+butyrate production II	Veillonellales	1.405209862	
+butyrate: acetyl-CoA to crotonyl-CoA	Veillonellales	0.216686001	
+Cadaverine	Veillonellales	NA	
+Cytolysin	Veillonellales	NA	
+fosfomycins	Veillonellales	NA	
+glycopeptides	Veillonellales	NA	
+Hemolysin	Veillonellales	NA	
+Inerolysin	Veillonellales	NA	
+lactate production	Veillonellales	0.152500505	
+macrolide_lincosamide_streptogramin	Veillonellales	0.019362706	
+multiple_drug_resistance	Veillonellales	NA	
+N-Acetylputrescine	Veillonellales	0.079139546	
+peptide_antibiotic	Veillonellales	NA	
+phenicols	Veillonellales	NA	
+Phospholipase C	Veillonellales	NA	
+polymyxin	Veillonellales	NA	
+propionate production I	Veillonellales	0.024530615	
+propionate production II	Veillonellales	3.022032087	
+propionate production III	Veillonellales	2.294512267	
+quinolone_antibacterials	Veillonellales	NA	
+rifampicin	Veillonellales	NA	
+Sialidase	Veillonellales	NA	
+succinate production	Veillonellales	0.329040927	
+sulfonamides	Veillonellales	NA	
+tetracyclines	Veillonellales	0.137666269	
+trimethoprim	Veillonellales	NA	
+Trimethylamine	Veillonellales	0.191417956	
+Urease	Veillonellales	NA	
+Vaginolysin	Veillonellales	NA	
+acetate: acetyl-CoA to acetate	Verrucomicrobiales	0.000540706	
+aminoglycosides	Verrucomicrobiales	NA	
+beta_lactamases	Verrucomicrobiales	NA	
+Biofilm	Verrucomicrobiales	0.002688321	
+butyrate production I	Verrucomicrobiales	NA	
+butyrate production II	Verrucomicrobiales	NA	
+butyrate: acetyl-CoA to crotonyl-CoA	Verrucomicrobiales	NA	
+Cadaverine	Verrucomicrobiales	NA	
+Cytolysin	Verrucomicrobiales	NA	
+fosfomycins	Verrucomicrobiales	NA	
+glycopeptides	Verrucomicrobiales	NA	
+Hemolysin	Verrucomicrobiales	NA	
+Inerolysin	Verrucomicrobiales	NA	
+lactate production	Verrucomicrobiales	0.000478569	
+macrolide_lincosamide_streptogramin	Verrucomicrobiales	NA	
+multiple_drug_resistance	Verrucomicrobiales	NA	
+N-Acetylputrescine	Verrucomicrobiales	NA	
+peptide_antibiotic	Verrucomicrobiales	NA	
+phenicols	Verrucomicrobiales	NA	
+Phospholipase C	Verrucomicrobiales	NA	
+polymyxin	Verrucomicrobiales	NA	
+propionate production I	Verrucomicrobiales	NA	
+propionate production II	Verrucomicrobiales	NA	
+propionate production III	Verrucomicrobiales	0.02455146	
+quinolone_antibacterials	Verrucomicrobiales	NA	
+rifampicin	Verrucomicrobiales	NA	
+Sialidase	Verrucomicrobiales	0.006908075	
+succinate production	Verrucomicrobiales	0.004775554	
+sulfonamides	Verrucomicrobiales	NA	
+tetracyclines	Verrucomicrobiales	NA	
+trimethoprim	Verrucomicrobiales	NA	
+Trimethylamine	Verrucomicrobiales	NA	
+Urease	Verrucomicrobiales	NA	
+Vaginolysin	Verrucomicrobiales	NA	
