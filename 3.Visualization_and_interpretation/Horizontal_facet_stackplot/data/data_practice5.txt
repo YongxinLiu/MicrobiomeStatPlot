@@ -1,0 +1,321 @@
+Species	Pathways	values	values2	Group
+Unclassified	RIBOSYN2-PWY	0.2	20	Metagenome
+Unclassified	RHAMCAT-PWY	0.22	22	Metagenome
+Unclassified	PYRIDOXSYN-PWY	0	0	Metagenome
+Unclassified	PWY-7539	0.23	23	Metagenome
+Unclassified	PWY-7228	0.25	25	Metagenome
+Unclassified	PWY-5367	0	0	Metagenome
+Unclassified	PWY-5104	0.77	77	Metagenome
+Unclassified	PWY-4242	0.235	23.5	Metagenome
+Escherichia coli	RIBOSYN2-PWY	0.33	33	Metagenome
+Escherichia coli	RHAMCAT-PWY	0	0	Metagenome
+Escherichia coli	PYRIDOXSYN-PWY	0	0	Metagenome
+Escherichia coli	PWY-7539	0.07	7	Metagenome
+Escherichia coli	PWY-7228	0	0	Metagenome
+Escherichia coli	PWY-5367	0	0	Metagenome
+Escherichia coli	PWY-5104	0	0	Metagenome
+Escherichia coli	PWY-4242	0	0	Metagenome
+Faecalibacterium prausnitzii	RIBOSYN2-PWY	0	0	Metagenome
+Faecalibacterium prausnitzii	RHAMCAT-PWY	0.14	14	Metagenome
+Faecalibacterium prausnitzii	PYRIDOXSYN-PWY	0	0	Metagenome
+Faecalibacterium prausnitzii	PWY-7539	0	0	Metagenome
+Faecalibacterium prausnitzii	PWY-7228	0	0	Metagenome
+Faecalibacterium prausnitzii	PWY-5367	0	0	Metagenome
+Faecalibacterium prausnitzii	PWY-5104	0	0	Metagenome
+Faecalibacterium prausnitzii	PWY-4242	0.18	18	Metagenome
+Bacteroides thetaiotaomicron	RIBOSYN2-PWY	0	0	Metagenome
+Bacteroides thetaiotaomicron	RHAMCAT-PWY	0.05	5	Metagenome
+Bacteroides thetaiotaomicron	PYRIDOXSYN-PWY	0	0	Metagenome
+Bacteroides thetaiotaomicron	PWY-7539	0	0	Metagenome
+Bacteroides thetaiotaomicron	PWY-7228	0	0	Metagenome
+Bacteroides thetaiotaomicron	PWY-5367	0	0	Metagenome
+Bacteroides thetaiotaomicron	PWY-5104	0	0	Metagenome
+Bacteroides thetaiotaomicron	PWY-4242	0	0	Metagenome
+Bacteroides ovatus	RIBOSYN2-PWY	0	0	Metagenome
+Bacteroides ovatus	RHAMCAT-PWY	0.15	15	Metagenome
+Bacteroides ovatus	PYRIDOXSYN-PWY	0.1	10	Metagenome
+Bacteroides ovatus	PWY-7539	0.36	36	Metagenome
+Bacteroides ovatus	PWY-7228	0	0	Metagenome
+Bacteroides ovatus	PWY-5367	0	0	Metagenome
+Bacteroides ovatus	PWY-5104	0	0	Metagenome
+Bacteroides ovatus	PWY-4242	0.1	10	Metagenome
+Bacteroides caccae	RIBOSYN2-PWY	0	0	Metagenome
+Bacteroides caccae	RHAMCAT-PWY	0.08	8	Metagenome
+Bacteroides caccae	PYRIDOXSYN-PWY	0.08	8	Metagenome
+Bacteroides caccae	PWY-7539	0	0	Metagenome
+Bacteroides caccae	PWY-7228	0	0	Metagenome
+Bacteroides caccae	PWY-5367	0.03	3	Metagenome
+Bacteroides caccae	PWY-5104	0	0	Metagenome
+Bacteroides caccae	PWY-4242	0	0	Metagenome
+Bacteroides uniformis	RIBOSYN2-PWY	0	0	Metagenome
+Bacteroides uniformis	RHAMCAT-PWY	0	0	Metagenome
+Bacteroides uniformis	PYRIDOXSYN-PWY	0.38	38	Metagenome
+Bacteroides uniformis	PWY-7539	0	0	Metagenome
+Bacteroides uniformis	PWY-7228	0	0	Metagenome
+Bacteroides uniformis	PWY-5367	0.01	1	Metagenome
+Bacteroides uniformis	PWY-5104	0	0	Metagenome
+Bacteroides uniformis	PWY-4242	0	0	Metagenome
+Bacteroides stercoris	RIBOSYN2-PWY	0	0	Metagenome
+Bacteroides stercoris	RHAMCAT-PWY	0	0	Metagenome
+Bacteroides stercoris	PYRIDOXSYN-PWY	0.13	13	Metagenome
+Bacteroides stercoris	PWY-7539	0	0	Metagenome
+Bacteroides stercoris	PWY-7228	0	0	Metagenome
+Bacteroides stercoris	PWY-5367	0	0	Metagenome
+Bacteroides stercoris	PWY-5104	0	0	Metagenome
+Bacteroides stercoris	PWY-4242	0	0	Metagenome
+Bacteroides eggerthii	RIBOSYN2-PWY	0	0	Metagenome
+Bacteroides eggerthii	RHAMCAT-PWY	0	0	Metagenome
+Bacteroides eggerthii	PYRIDOXSYN-PWY	0.05	5	Metagenome
+Bacteroides eggerthii	PWY-7539	0	0	Metagenome
+Bacteroides eggerthii	PWY-7228	0	0	Metagenome
+Bacteroides eggerthii	PWY-5367	0	0	Metagenome
+Bacteroides eggerthii	PWY-5104	0	0	Metagenome
+Bacteroides eggerthii	PWY-4242	0	0	Metagenome
+Bacteroides vulgatus	RIBOSYN2-PWY	0	0	Metagenome
+Bacteroides vulgatus	RHAMCAT-PWY	0	0	Metagenome
+Bacteroides vulgatus	PYRIDOXSYN-PWY	0	0	Metagenome
+Bacteroides vulgatus	PWY-7539	0.21	21	Metagenome
+Bacteroides vulgatus	PWY-7228	0.2	20	Metagenome
+Bacteroides vulgatus	PWY-5367	0	0	Metagenome
+Bacteroides vulgatus	PWY-5104	0	0	Metagenome
+Bacteroides vulgatus	PWY-4242	0	0	Metagenome
+Methanobrevibacter smithii	RIBOSYN2-PWY	0	0	Metagenome
+Methanobrevibacter smithii	RHAMCAT-PWY	0	0	Metagenome
+Methanobrevibacter smithii	PYRIDOXSYN-PWY	0	0	Metagenome
+Methanobrevibacter smithii	PWY-7539	0.03	3	Metagenome
+Methanobrevibacter smithii	PWY-7228	0	0	Metagenome
+Methanobrevibacter smithii	PWY-5367	0	0	Metagenome
+Methanobrevibacter smithii	PWY-5104	0.015	1.5	Metagenome
+Methanobrevibacter smithii	PWY-4242	0	0	Metagenome
+Bacteroides massiliensis	RIBOSYN2-PWY	0	0	Metagenome
+Bacteroides massiliensis	RHAMCAT-PWY	0	0	Metagenome
+Bacteroides massiliensis	PYRIDOXSYN-PWY	0	0	Metagenome
+Bacteroides massiliensis	PWY-7539	0	0	Metagenome
+Bacteroides massiliensis	PWY-7228	0.06	6	Metagenome
+Bacteroides massiliensis	PWY-5367	0	0	Metagenome
+Bacteroides massiliensis	PWY-5104	0	0	Metagenome
+Bacteroides massiliensis	PWY-4242	0	0	Metagenome
+Bacteroides dorei	RIBOSYN2-PWY	0	0	Metagenome
+Bacteroides dorei	RHAMCAT-PWY	0	0	Metagenome
+Bacteroides dorei	PYRIDOXSYN-PWY	0	0	Metagenome
+Bacteroides dorei	PWY-7539	0	0	Metagenome
+Bacteroides dorei	PWY-7228	0.18	18	Metagenome
+Bacteroides dorei	PWY-5367	0	0	Metagenome
+Bacteroides dorei	PWY-5104	0	0	Metagenome
+Bacteroides dorei	PWY-4242	0	0	Metagenome
+Akkermansia muciniphila	RIBOSYN2-PWY	0	0	Metagenome
+Akkermansia muciniphila	RHAMCAT-PWY	0	0	Metagenome
+Akkermansia muciniphila	PYRIDOXSYN-PWY	0	0	Metagenome
+Akkermansia muciniphila	PWY-7539	0	0	Metagenome
+Akkermansia muciniphila	PWY-7228	0.04	4	Metagenome
+Akkermansia muciniphila	PWY-5367	0	0	Metagenome
+Akkermansia muciniphila	PWY-5104	0	0	Metagenome
+Akkermansia muciniphila	PWY-4242	0.08	8	Metagenome
+Eubacterium rectale	RIBOSYN2-PWY	0	0	Metagenome
+Eubacterium rectale	RHAMCAT-PWY	0	0	Metagenome
+Eubacterium rectale	PYRIDOXSYN-PWY	0	0	Metagenome
+Eubacterium rectale	PWY-7539	0	0	Metagenome
+Eubacterium rectale	PWY-7228	0	0	Metagenome
+Eubacterium rectale	PWY-5367	0.61	61	Metagenome
+Eubacterium rectale	PWY-5104	0	0	Metagenome
+Eubacterium rectale	PWY-4242	0	0	Metagenome
+Roseburia intestinalis	RIBOSYN2-PWY	0	0	Metagenome
+Roseburia intestinalis	RHAMCAT-PWY	0	0	Metagenome
+Roseburia intestinalis	PYRIDOXSYN-PWY	0	0	Metagenome
+Roseburia intestinalis	PWY-7539	0	0	Metagenome
+Roseburia intestinalis	PWY-7228	0	0	Metagenome
+Roseburia intestinalis	PWY-5367	0	0	Metagenome
+Roseburia intestinalis	PWY-5104	0.12	12	Metagenome
+Roseburia intestinalis	PWY-4242	0	0	Metagenome
+Lachnospiraceae bacterium 5 1 63FAA	RIBOSYN2-PWY	0	0	Metagenome
+Lachnospiraceae bacterium 5 1 63FAA	RHAMCAT-PWY	0	0	Metagenome
+Lachnospiraceae bacterium 5 1 63FAA	PYRIDOXSYN-PWY	0	0	Metagenome
+Lachnospiraceae bacterium 5 1 63FAA	PWY-7539	0	0	Metagenome
+Lachnospiraceae bacterium 5 1 63FAA	PWY-7228	0	0	Metagenome
+Lachnospiraceae bacterium 5 1 63FAA	PWY-5367	0	0	Metagenome
+Lachnospiraceae bacterium 5 1 63FAA	PWY-5104	0.022	2.2	Metagenome
+Lachnospiraceae bacterium 5 1 63FAA	PWY-4242	0	0	Metagenome
+Coprococcus eutactus	RIBOSYN2-PWY	0	0	Metagenome
+Coprococcus eutactus	RHAMCAT-PWY	0	0	Metagenome
+Coprococcus eutactus	PYRIDOXSYN-PWY	0	0	Metagenome
+Coprococcus eutactus	PWY-7539	0	0	Metagenome
+Coprococcus eutactus	PWY-7228	0	0	Metagenome
+Coprococcus eutactus	PWY-5367	0	0	Metagenome
+Coprococcus eutactus	PWY-5104	0.03	3	Metagenome
+Coprococcus eutactus	PWY-4242	0	0	Metagenome
+Bacteroides xylanisolvens	RIBOSYN2-PWY	0	0	Metagenome
+Bacteroides xylanisolvens	RHAMCAT-PWY	0	0	Metagenome
+Bacteroides xylanisolvens	PYRIDOXSYN-PWY	0	0	Metagenome
+Bacteroides xylanisolvens	PWY-7539	0	0	Metagenome
+Bacteroides xylanisolvens	PWY-7228	0	0	Metagenome
+Bacteroides xylanisolvens	PWY-5367	0	0	Metagenome
+Bacteroides xylanisolvens	PWY-5104	0	0	Metagenome
+Bacteroides xylanisolvens	PWY-4242	0.08	8	Metagenome
+Unclassified	RIBOSYN2-PWY	0.18	18	Metatransceiptome
+Unclassified	RHAMCAT-PWY	0.05	5	Metatransceiptome
+Unclassified	PYRIDOXSYN-PWY	0	0	Metatransceiptome
+Unclassified	PWY-7539	0.04	4	Metatransceiptome
+Unclassified	PWY-7228	0.21	21	Metatransceiptome
+Unclassified	PWY-5367	0	0	Metatransceiptome
+Unclassified	PWY-5104	0.72	72	Metatransceiptome
+Unclassified	PWY-4242	0.125	12.5	Metatransceiptome
+Escherichia coli	RIBOSYN2-PWY	0	0	Metatransceiptome
+Escherichia coli	RHAMCAT-PWY	0	0	Metatransceiptome
+Escherichia coli	PYRIDOXSYN-PWY	0	0	Metatransceiptome
+Escherichia coli	PWY-7539	0	0	Metatransceiptome
+Escherichia coli	PWY-7228	0	0	Metatransceiptome
+Escherichia coli	PWY-5367	0	0	Metatransceiptome
+Escherichia coli	PWY-5104	0	0	Metatransceiptome
+Escherichia coli	PWY-4242	0	0	Metatransceiptome
+Faecalibacterium prausnitzii	RIBOSYN2-PWY	0	0	Metatransceiptome
+Faecalibacterium prausnitzii	RHAMCAT-PWY	0	0	Metatransceiptome
+Faecalibacterium prausnitzii	PYRIDOXSYN-PWY	0	0	Metatransceiptome
+Faecalibacterium prausnitzii	PWY-7539	0	0	Metatransceiptome
+Faecalibacterium prausnitzii	PWY-7228	0	0	Metatransceiptome
+Faecalibacterium prausnitzii	PWY-5367	0	0	Metatransceiptome
+Faecalibacterium prausnitzii	PWY-5104	0	0	Metatransceiptome
+Faecalibacterium prausnitzii	PWY-4242	0.29	29	Metatransceiptome
+Bacteroides thetaiotaomicron	RIBOSYN2-PWY	0	0	Metatransceiptome
+Bacteroides thetaiotaomicron	RHAMCAT-PWY	0.12	12	Metatransceiptome
+Bacteroides thetaiotaomicron	PYRIDOXSYN-PWY	0.125	12.5	Metatransceiptome
+Bacteroides thetaiotaomicron	PWY-7539	0	0	Metatransceiptome
+Bacteroides thetaiotaomicron	PWY-7228	0	0	Metatransceiptome
+Bacteroides thetaiotaomicron	PWY-5367	0	0	Metatransceiptome
+Bacteroides thetaiotaomicron	PWY-5104	0	0	Metatransceiptome
+Bacteroides thetaiotaomicron	PWY-4242	0	0	Metatransceiptome
+Bacteroides ovatus	RIBOSYN2-PWY	0	0	Metatransceiptome
+Bacteroides ovatus	RHAMCAT-PWY	0.47	47	Metatransceiptome
+Bacteroides ovatus	PYRIDOXSYN-PWY	0.15	15	Metatransceiptome
+Bacteroides ovatus	PWY-7539	0.27	27	Metatransceiptome
+Bacteroides ovatus	PWY-7228	0	0	Metatransceiptome
+Bacteroides ovatus	PWY-5367	0	0	Metatransceiptome
+Bacteroides ovatus	PWY-5104	0	0	Metatransceiptome
+Bacteroides ovatus	PWY-4242	0.13	13	Metatransceiptome
+Bacteroides caccae	RIBOSYN2-PWY	0	0	Metatransceiptome
+Bacteroides caccae	RHAMCAT-PWY	0	0	Metatransceiptome
+Bacteroides caccae	PYRIDOXSYN-PWY	0.2	20	Metatransceiptome
+Bacteroides caccae	PWY-7539	0	0	Metatransceiptome
+Bacteroides caccae	PWY-7228	0	0	Metatransceiptome
+Bacteroides caccae	PWY-5367	0	0	Metatransceiptome
+Bacteroides caccae	PWY-5104	0	0	Metatransceiptome
+Bacteroides caccae	PWY-4242	0	0	Metatransceiptome
+Bacteroides uniformis	RIBOSYN2-PWY	0	0	Metatransceiptome
+Bacteroides uniformis	RHAMCAT-PWY	0	0	Metatransceiptome
+Bacteroides uniformis	PYRIDOXSYN-PWY	0	0	Metatransceiptome
+Bacteroides uniformis	PWY-7539	0	0	Metatransceiptome
+Bacteroides uniformis	PWY-7228	0	0	Metatransceiptome
+Bacteroides uniformis	PWY-5367	0	0	Metatransceiptome
+Bacteroides uniformis	PWY-5104	0	0	Metatransceiptome
+Bacteroides uniformis	PWY-4242	0	0	Metatransceiptome
+Bacteroides stercoris	RIBOSYN2-PWY	0	0	Metatransceiptome
+Bacteroides stercoris	RHAMCAT-PWY	0	0	Metatransceiptome
+Bacteroides stercoris	PYRIDOXSYN-PWY	0	0	Metatransceiptome
+Bacteroides stercoris	PWY-7539	0	0	Metatransceiptome
+Bacteroides stercoris	PWY-7228	0	0	Metatransceiptome
+Bacteroides stercoris	PWY-5367	0	0	Metatransceiptome
+Bacteroides stercoris	PWY-5104	0	0	Metatransceiptome
+Bacteroides stercoris	PWY-4242	0	0	Metatransceiptome
+Bacteroides eggerthii	RIBOSYN2-PWY	0	0	Metatransceiptome
+Bacteroides eggerthii	RHAMCAT-PWY	0	0	Metatransceiptome
+Bacteroides eggerthii	PYRIDOXSYN-PWY	0.07	7	Metatransceiptome
+Bacteroides eggerthii	PWY-7539	0	0	Metatransceiptome
+Bacteroides eggerthii	PWY-7228	0	0	Metatransceiptome
+Bacteroides eggerthii	PWY-5367	0	0	Metatransceiptome
+Bacteroides eggerthii	PWY-5104	0	0	Metatransceiptome
+Bacteroides eggerthii	PWY-4242	0	0	Metatransceiptome
+Bacteroides vulgatus	RIBOSYN2-PWY	0	0	Metatransceiptome
+Bacteroides vulgatus	RHAMCAT-PWY	0	0	Metatransceiptome
+Bacteroides vulgatus	PYRIDOXSYN-PWY	0	0	Metatransceiptome
+Bacteroides vulgatus	PWY-7539	0	0	Metatransceiptome
+Bacteroides vulgatus	PWY-7228	0.3	30	Metatransceiptome
+Bacteroides vulgatus	PWY-5367	0	0	Metatransceiptome
+Bacteroides vulgatus	PWY-5104	0	0	Metatransceiptome
+Bacteroides vulgatus	PWY-4242	0	0	Metatransceiptome
+Methanobrevibacter smithii	RIBOSYN2-PWY	0	0	Metatransceiptome
+Methanobrevibacter smithii	RHAMCAT-PWY	0	0	Metatransceiptome
+Methanobrevibacter smithii	PYRIDOXSYN-PWY	0	0	Metatransceiptome
+Methanobrevibacter smithii	PWY-7539	0	0	Metatransceiptome
+Methanobrevibacter smithii	PWY-7228	0	0	Metatransceiptome
+Methanobrevibacter smithii	PWY-5367	0	0	Metatransceiptome
+Methanobrevibacter smithii	PWY-5104	0.13	13	Metatransceiptome
+Methanobrevibacter smithii	PWY-4242	0	0	Metatransceiptome
+Bacteroides massiliensis	RIBOSYN2-PWY	0	0	Metatransceiptome
+Bacteroides massiliensis	RHAMCAT-PWY	0	0	Metatransceiptome
+Bacteroides massiliensis	PYRIDOXSYN-PWY	0	0	Metatransceiptome
+Bacteroides massiliensis	PWY-7539	0	0	Metatransceiptome
+Bacteroides massiliensis	PWY-7228	0.12	12	Metatransceiptome
+Bacteroides massiliensis	PWY-5367	0	0	Metatransceiptome
+Bacteroides massiliensis	PWY-5104	0	0	Metatransceiptome
+Bacteroides massiliensis	PWY-4242	0	0	Metatransceiptome
+Bacteroides dorei	RIBOSYN2-PWY	0	0	Metatransceiptome
+Bacteroides dorei	RHAMCAT-PWY	0	0	Metatransceiptome
+Bacteroides dorei	PYRIDOXSYN-PWY	0	0	Metatransceiptome
+Bacteroides dorei	PWY-7539	0	0	Metatransceiptome
+Bacteroides dorei	PWY-7228	0.3	30	Metatransceiptome
+Bacteroides dorei	PWY-5367	0	0	Metatransceiptome
+Bacteroides dorei	PWY-5104	0	0	Metatransceiptome
+Bacteroides dorei	PWY-4242	0	0	Metatransceiptome
+Akkermansia muciniphila	RIBOSYN2-PWY	0	0	Metatransceiptome
+Akkermansia muciniphila	RHAMCAT-PWY	0	0	Metatransceiptome
+Akkermansia muciniphila	PYRIDOXSYN-PWY	0	0	Metatransceiptome
+Akkermansia muciniphila	PWY-7539	0	0	Metatransceiptome
+Akkermansia muciniphila	PWY-7228	0	0	Metatransceiptome
+Akkermansia muciniphila	PWY-5367	0	0	Metatransceiptome
+Akkermansia muciniphila	PWY-5104	0	0	Metatransceiptome
+Akkermansia muciniphila	PWY-4242	0.16	16	Metatransceiptome
+Eubacterium rectale	RIBOSYN2-PWY	0	0	Metatransceiptome
+Eubacterium rectale	RHAMCAT-PWY	0	0	Metatransceiptome
+Eubacterium rectale	PYRIDOXSYN-PWY	0	0	Metatransceiptome
+Eubacterium rectale	PWY-7539	0	0	Metatransceiptome
+Eubacterium rectale	PWY-7228	0	0	Metatransceiptome
+Eubacterium rectale	PWY-5367	0.35	35	Metatransceiptome
+Eubacterium rectale	PWY-5104	0	0	Metatransceiptome
+Eubacterium rectale	PWY-4242	0	0	Metatransceiptome
+Roseburia intestinalis	RIBOSYN2-PWY	0	0	Metatransceiptome
+Roseburia intestinalis	RHAMCAT-PWY	0	0	Metatransceiptome
+Roseburia intestinalis	PYRIDOXSYN-PWY	0	0	Metatransceiptome
+Roseburia intestinalis	PWY-7539	0	0	Metatransceiptome
+Roseburia intestinalis	PWY-7228	0	0	Metatransceiptome
+Roseburia intestinalis	PWY-5367	0	0	Metatransceiptome
+Roseburia intestinalis	PWY-5104	0.03	3	Metatransceiptome
+Roseburia intestinalis	PWY-4242	0	0	Metatransceiptome
+Lachnospiraceae bacterium 5 1 63FAA	RIBOSYN2-PWY	0	0	Metatransceiptome
+Lachnospiraceae bacterium 5 1 63FAA	RHAMCAT-PWY	0	0	Metatransceiptome
+Lachnospiraceae bacterium 5 1 63FAA	PYRIDOXSYN-PWY	0	0	Metatransceiptome
+Lachnospiraceae bacterium 5 1 63FAA	PWY-7539	0	0	Metatransceiptome
+Lachnospiraceae bacterium 5 1 63FAA	PWY-7228	0	0	Metatransceiptome
+Lachnospiraceae bacterium 5 1 63FAA	PWY-5367	0	0	Metatransceiptome
+Lachnospiraceae bacterium 5 1 63FAA	PWY-5104	0	0	Metatransceiptome
+Lachnospiraceae bacterium 5 1 63FAA	PWY-4242	0	0	Metatransceiptome
+Coprococcus eutactus	RIBOSYN2-PWY	0	0	Metatransceiptome
+Coprococcus eutactus	RHAMCAT-PWY	0	0	Metatransceiptome
+Coprococcus eutactus	PYRIDOXSYN-PWY	0	0	Metatransceiptome
+Coprococcus eutactus	PWY-7539	0	0	Metatransceiptome
+Coprococcus eutactus	PWY-7228	0	0	Metatransceiptome
+Coprococcus eutactus	PWY-5367	0	0	Metatransceiptome
+Coprococcus eutactus	PWY-5104	0	0	Metatransceiptome
+Coprococcus eutactus	PWY-4242	0	0	Metatransceiptome
+Bacteroides xylanisolvens	RIBOSYN2-PWY	0	0	Metatransceiptome
+Bacteroides xylanisolvens	RHAMCAT-PWY	0.03	3	Metatransceiptome
+Bacteroides xylanisolvens	PYRIDOXSYN-PWY	0.025	2.5	Metatransceiptome
+Bacteroides xylanisolvens	PWY-7539	0.16	16	Metatransceiptome
+Bacteroides xylanisolvens	PWY-7228	0	0	Metatransceiptome
+Bacteroides xylanisolvens	PWY-5367	0	0	Metatransceiptome
+Bacteroides xylanisolvens	PWY-5104	0	0	Metatransceiptome
+Bacteroides xylanisolvens	PWY-4242	0.11	11	Metatransceiptome
+Bacteroides finegoldii	RIBOSYN2-PWY	0	0	Metatransceiptome
+Bacteroides finegoldii	RHAMCAT-PWY	0.05	5	Metatransceiptome
+Bacteroides finegoldii	PYRIDOXSYN-PWY	0	0	Metatransceiptome
+Bacteroides finegoldii	PWY-7539	0	0	Metatransceiptome
+Bacteroides finegoldii	PWY-7228	0	0	Metatransceiptome
+Bacteroides finegoldii	PWY-5367	0	0	Metatransceiptome
+Bacteroides finegoldii	PWY-5104	0	0	Metatransceiptome
+Bacteroides finegoldii	PWY-4242	0	0	Metatransceiptome
+Prevotella stercorea	RIBOSYN2-PWY	0	0	Metatransceiptome
+Prevotella stercorea	RHAMCAT-PWY	0	0	Metatransceiptome
+Prevotella stercorea	PYRIDOXSYN-PWY	0	0	Metatransceiptome
+Prevotella stercorea	PWY-7539	0	0	Metatransceiptome
+Prevotella stercorea	PWY-7228	0.03	3	Metatransceiptome
+Prevotella stercorea	PWY-5367	0	0	Metatransceiptome
+Prevotella stercorea	PWY-5104	0	0	Metatransceiptome
+Prevotella stercorea	PWY-4242	0	0	Metatransceiptome

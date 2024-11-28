@@ -1,0 +1,41 @@
+Species	Group	RIBOSYN2-PWY	RHAMCAT-PWY	PYRIDOXSYN-PWY	PWY-7539	PWY-7228	PWY-5367	PWY-5104	PWY-4242
+Unclassified	Metagenome	0.2	0.22	0	0.23	0.25	0	0.77	0.235
+Escherichia coli	Metagenome	0.33	0	0	0.07	0	0	0	0
+Faecalibacterium prausnitzii	Metagenome	0	0.14	0	0	0	0	0	0.18
+Bacteroides thetaiotaomicron	Metagenome	0	0.05	0	0	0	0	0	0
+Bacteroides ovatus	Metagenome	0	0.15	0.1	0.36	0	0	0	0.1
+Bacteroides caccae	Metagenome	0	0.08	0.08	0	0	0.03	0	0
+Bacteroides uniformis	Metagenome	0	0	0.38	0	0	0.01	0	0
+Bacteroides stercoris	Metagenome	0	0	0.13	0	0	0	0	0
+Bacteroides eggerthii	Metagenome	0	0	0.05	0	0	0	0	0
+Bacteroides vulgatus	Metagenome	0	0	0	0.21	0.2	0	0	0
+Methanobrevibacter smithii	Metagenome	0	0	0	0.03	0	0	0.015	0
+Bacteroides massiliensis	Metagenome	0	0	0	0	0.06	0	0	0
+Bacteroides dorei	Metagenome	0	0	0	0	0.18	0	0	0
+Akkermansia muciniphila	Metagenome	0	0	0	0	0.04	0	0	0.08
+Eubacterium rectale	Metagenome	0	0	0	0	0	0.61	0	0
+Roseburia intestinalis	Metagenome	0	0	0	0	0	0	0.12	0
+Lachnospiraceae bacterium 5 1 63FAA	Metagenome	0	0	0	0	0	0	0.022	0
+Coprococcus eutactus	Metagenome	0	0	0	0	0	0	0.03	0
+Bacteroides xylanisolvens	Metagenome	0	0	0	0	0	0	0	0.08
+Unclassified	Metatranscriptome	0.18	0.05	0	0.04	0.21	0	0.72	0.125
+Escherichia coli	Metatranscriptome	0	0	0	0	0	0	0	0
+Faecalibacterium prausnitzii	Metatranscriptome	0	0	0	0	0	0	0	0.29
+Bacteroides thetaiotaomicron	Metatranscriptome	0	0.12	0.125	0	0	0	0	0
+Bacteroides ovatus	Metatranscriptome	0	0.47	0.15	0.27	0	0	0	0.13
+Bacteroides caccae	Metatranscriptome	0	0	0.2	0	0	0	0	0
+Bacteroides uniformis	Metatranscriptome	0	0	0	0	0	0	0	0
+Bacteroides stercoris	Metatranscriptome	0	0	0	0	0	0	0	0
+Bacteroides eggerthii	Metatranscriptome	0	0	0.07	0	0	0	0	0
+Bacteroides vulgatus	Metatranscriptome	0	0	0	0	0.3	0	0	0
+Methanobrevibacter smithii	Metatranscriptome	0	0	0	0	0	0	0.13	0
+Bacteroides massiliensis	Metatranscriptome	0	0	0	0	0.12	0	0	0
+Bacteroides dorei	Metatranscriptome	0	0	0	0	0.3	0	0	0
+Akkermansia muciniphila	Metatranscriptome	0	0	0	0	0	0	0	0.16
+Eubacterium rectale	Metatranscriptome	0	0	0	0	0	0.35	0	0
+Roseburia intestinalis	Metatranscriptome	0	0	0	0	0	0	0.03	0
+Lachnospiraceae bacterium 5 1 63FAA	Metatranscriptome	0	0	0	0	0	0	0	0
+Coprococcus eutactus	Metatranscriptome	0	0	0	0	0	0	0	0
+Bacteroides xylanisolvens	Metatranscriptome	0	0.03	0.025	0.16	0	0	0	0.11
+Bacteroides finegoldii	Metatranscriptome	0	0.05	0	0	0	0	0	0
+Prevotella stercorea	Metatranscriptome	0	0	0	0	0.03	0	0	0
