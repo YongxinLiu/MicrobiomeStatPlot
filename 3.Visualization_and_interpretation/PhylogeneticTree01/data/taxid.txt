@@ -1,0 +1,296 @@
+
+code	|	name	|	preferred name	|	taxid
+1	|	Treponema denticola ASLM	|	 	|	999427
+1	|	Treponema denticola AL-2	|	 	|	999426
+1	|	Akkermansia muciniphila ATCC BAA-835	|	 	|	349741
+1	|	Olsenella sp. oral taxon 809 str. F0356	|	 	|	661087
+1	|	Collinsella sp. 4_8_47FAA	|	 	|	742722
+1	|	Collinsella intestinalis DSM 13280	|	 	|	521003
+1	|	Collinsella stercoris DSM 13279	|	 	|	445975
+1	|	Collinsella aerofaciens ATCC 25986	|	 	|	411903
+1	|	Mobiluncus mulieris 28-1	|	 	|	596328
+1	|	Actinomyces viscosus C505	|	 	|	562973
+1	|	Cutibacterium modestum HL037PA2	|	 	|	765123
+1	|	Cutibacterium modestum HL044PA1	|	 	|	765109
+1	|	Cutibacterium acnes HL037PA1	|	 	|	765122
+1	|	Cutibacterium acnes HL082PA2	|	 	|	765121
+1	|	Cutibacterium acnes HL056PA1	|	 	|	765119
+1	|	Cutibacterium acnes HL007PA1	|	 	|	765118
+1	|	Cutibacterium acnes HL002PA3	|	 	|	765117
+1	|	Cutibacterium acnes HL002PA2	|	 	|	765116
+1	|	Cutibacterium acnes HL002PA1	|	 	|	765115
+1	|	Cutibacterium acnes HL063PA2	|	 	|	765114
+1	|	Cutibacterium acnes HL063PA1	|	 	|	765113
+1	|	Cutibacterium acnes HL027PA2	|	 	|	765112
+1	|	Cutibacterium acnes HL027PA1	|	 	|	765111
+1	|	Cutibacterium acnes HL067PA1	|	 	|	765110
+1	|	Cutibacterium acnes HL036PA3	|	 	|	765108
+1	|	Cutibacterium acnes HL036PA2	|	 	|	765107
+1	|	Cutibacterium acnes HL036PA1	|	 	|	765106
+1	|	Cutibacterium acnes HL001PA1	|	 	|	765105
+1	|	Cutibacterium acnes HL030PA2	|	 	|	765104
+1	|	Cutibacterium acnes HL030PA1	|	 	|	765103
+1	|	Cutibacterium acnes HL050PA3	|	 	|	765102
+1	|	Cutibacterium acnes HL050PA2	|	 	|	765101
+1	|	Cutibacterium acnes HL050PA1	|	 	|	765100
+1	|	Cutibacterium acnes HL005PA4	|	 	|	765099
+1	|	Cutibacterium acnes HL005PA3	|	 	|	765098
+1	|	Cutibacterium acnes HL005PA2	|	 	|	765097
+1	|	Cutibacterium acnes HL005PA1	|	 	|	765096
+1	|	Cutibacterium acnes HL046PA2	|	 	|	765095
+1	|	Cutibacterium acnes HL086PA1	|	 	|	765093
+1	|	Cutibacterium acnes HL059PA2	|	 	|	765092
+1	|	Cutibacterium acnes HL059PA1	|	 	|	765091
+1	|	Cutibacterium acnes HL025PA2	|	 	|	765090
+1	|	Cutibacterium acnes HL025PA1	|	 	|	765089
+1	|	Cutibacterium acnes HL038PA1	|	 	|	765085
+1	|	Cutibacterium acnes HL060PA1	|	 	|	765084
+1	|	Cutibacterium acnes HL110PA4	|	 	|	765080
+1	|	Cutibacterium acnes HL110PA3	|	 	|	765079
+1	|	Cutibacterium acnes HL110PA1	|	 	|	765077
+1	|	Cutibacterium acnes HL072PA1	|	 	|	765074
+1	|	Cutibacterium acnes HL043PA2	|	 	|	765073
+1	|	Cutibacterium acnes HL043PA1	|	 	|	765072
+1	|	Cutibacterium acnes HL078PA1	|	 	|	765071
+1	|	Cutibacterium acnes HL013PA2	|	 	|	765070
+1	|	Cutibacterium acnes HL013PA1	|	 	|	765069
+1	|	Cutibacterium acnes HL045PA1	|	 	|	765068
+1	|	Cutibacterium acnes HL053PA2	|	 	|	765067
+1	|	Cutibacterium acnes HL053PA1	|	 	|	765066
+1	|	Cutibacterium acnes HL020PA1	|	 	|	765065
+1	|	Cutibacterium acnes SK182	|	 	|	679193
+1	|	Cutibacterium acnes SK137	|	 	|	553199
+1	|	Propionibacterium acidifaciens F0233	|	 	|	553198
+1	|	Gardnerella vaginalis JCP8522	|	 	|	1261071
+1	|	Gardnerella vaginalis JCP8481B	|	 	|	1261070
+1	|	Gardnerella vaginalis JCP8151B	|	 	|	1261068
+1	|	Gardnerella vaginalis JCP8151A	|	 	|	1261067
+1	|	Gardnerella vaginalis JCP8108	|	 	|	1261066
+1	|	Gardnerella vaginalis JCP8066	|	 	|	1261064
+1	|	Gardnerella vaginalis JCP8017B	|	 	|	1261063
+1	|	Gardnerella vaginalis JCP8017A	|	 	|	1261062
+1	|	Gardnerella vaginalis JCP7719	|	 	|	1261061
+1	|	Gardnerella vaginalis JCP7672	|	 	|	1261060
+1	|	Gardnerella vaginalis JCP7659	|	 	|	1261059
+1	|	Gardnerella vaginalis JCP7276	|	 	|	1261058
+1	|	Gardnerella vaginalis JCP7275	|	 	|	1261057
+1	|	Bifidobacterium breve JCP7499	|	 	|	1261072
+1	|	Bifidobacterium breve HPH0326	|	 	|	1203540
+1	|	Bifidobacterium sp. MSTE12	|	 	|	1161409
+1	|	Bifidobacterium pseudocatenulatum DSM 20438 = JCM 1200 = LMG 10505	|	 	|	547043
+1	|	Bifidobacterium angulatum DSM 20098 = JCM 7096	|	 	|	518635
+1	|	Bifidobacterium bifidum ATCC 29521 = JCM 1255 = DSM 20456	|	 	|	500634
+1	|	Bifidobacterium dentium ATCC 27678	|	 	|	473819
+1	|	Bifidobacterium adolescentis L2-32	|	 	|	411481
+1	|	Bifidobacterium adolescentis ATCC 15703	|	 	|	367928
+1	|	Bifidobacterium longum subsp. longum 35B	|	 	|	1161904
+1	|	Bifidobacterium longum subsp. longum 2-2B	|	 	|	1161745
+1	|	Bifidobacterium longum subsp. longum 1-6B	|	 	|	1161744
+1	|	Bifidobacterium longum subsp. longum 44B	|	 	|	1161743
+1	|	Victivallis vadensis	|	 	|	172901
+1	|	Sutterella wadsworthensis HGA0223	|	 	|	1203554
+1	|	Edwardsiella tarda ATCC 23685	|	 	|	500638
+1	|	Proteus penneri ATCC 35198	|	 	|	471881
+1	|	Providencia rettgeri DSM 1131	|	 	|	521000
+1	|	Providencia stuartii ATCC 25827	|	 	|	471874
+1	|	Citrobacter youngae ATCC 29220	|	 	|	500640
+1	|	Enterobacter cancerogenus ATCC 35316	|	 	|	500639
+1	|	Escherichia fergusonii ATCC 35469	|	 	|	585054
+1	|	Escherichia coli K-12	|	 	|	83333
+1	|	Parvimonas sp. oral taxon 110 str. F0139	|	 	|	767100
+1	|	Peptoniphilus lacrimalis DNF00528	|	 	|	1401070
+1	|	Peptoniphilus sp. BV3AC2	|	 	|	1111133
+1	|	Peptoniphilus sp. oral taxon 836 str. F0141	|	 	|	768724
+1	|	Peptoniphilus sp. oral taxon 386 str. F0131	|	 	|	575609
+1	|	Anaerococcus hydrogenalis DSM 7454	|	 	|	561177
+1	|	Veillonella montpellierensis DNF00314	|	 	|	1401067
+1	|	Veillonella sp. 3_1_44	|	 	|	457416
+1	|	Selenomonas noxia F0398	|	 	|	702437
+1	|	Mitsuokella multacida DSM 20544	|	 	|	500635
+1	|	Megamonas funiformis	|	 	|	437897
+1	|	Acidaminococcus intestini	|	 	|	187327
+1	|	Holdemania filiformis DSM 12042	|	 	|	545696
+1	|	Holdemanella biformis DSM 3989	|	 	|	518637
+1	|	Erysipelatoclostridium ramosum DSM 1402	|	 	|	445974
+1	|	Coprobacillus sp. 8_2_54BFAA	|	 	|	469597
+1	|	Coprobacillus cateniformis	|	 	|	100884
+1	|	Clostridiales bacterium oral taxon 876 str. F0540	|	 	|	1321778
+1	|	Peptostreptococcaceae bacterium AS15	|	 	|	936556
+1	|	Hungatella hathewayi DSM 13479	|	 	|	566550
+1	|	Clostridium sp. KLE 1755	|	 	|	1226325
+1	|	Clostridium sp. MSTE9	|	 	|	1105031
+1	|	Clostridium sp. HGF2	|	 	|	908340
+1	|	Clostridium sporogenes ATCC 15579	|	 	|	471871
+1	|	Clostridium sp. 7_2_43FAA	|	 	|	457396
+1	|	Clostridium sp. M62/1	|	 	|	411486
+1	|	Flavonifractor plautii 1_3_50AFAA	|	 	|	742738
+1	|	[Clostridium] leptum DSM 753	|	 	|	428125
+1	|	Faecalibacterium prausnitzii M21/2	|	 	|	411485
+1	|	Subdoligranulum variabile DSM 15176	|	 	|	411471
+1	|	Lachnoanaerobaculum sp. OBRC5-5	|	 	|	936595
+1	|	Lachnoanaerobaculum sp. ICM7	|	 	|	936594
+1	|	Stomatobaculum longum	|	 	|	796942
+1	|	Lachnospiraceae bacterium 2_1_58FAA	|	 	|	658082
+1	|	Oribacterium sinus F0268	|	 	|	585501
+1	|	Lachnospiraceae oral taxon 107 str. F0167	|	 	|	575593
+1	|	Blautia luti DSM 14534	|	 	|	649762
+1	|	Blautia hansenii DSM 20583	|	 	|	537007
+1	|	Roseburia intestinalis L1-82	|	 	|	536231
+1	|	[Eubacterium] eligens ATCC 27750	|	 	|	515620
+1	|	[Eubacterium] rectale ATCC 33656	|	 	|	515619
+1	|	Tyzzerella nexilis DSM 1787	|	 	|	500632
+1	|	Marvinbryantia formatexigens DSM 14469	|	 	|	478749
+1	|	Coprococcus comes ATCC 27758	|	 	|	470146
+1	|	Dorea longicatena DSM 13814	|	 	|	411462
+1	|	Dorea formicigenerans ATCC 27755	|	 	|	411461
+1	|	[Ruminococcus] lactaris ATCC 29176	|	 	|	471875
+1	|	[Ruminococcus] gnavus ATCC 29149	|	 	|	411470
+1	|	[Ruminococcus] torques ATCC 27756	|	 	|	411460
+1	|	[Clostridium] asparagiforme DSM 15981	|	 	|	518636
+1	|	Enterocloster bolteae	|	 	|	208479
+1	|	[Clostridium] hylemonae DSM 15053	|	 	|	553973
+1	|	[Clostridium] symbiosum WAL-14673	|	 	|	742741
+1	|	[Clostridium] symbiosum ATCC 14940	|	 	|	411472
+1	|	[Clostridium] scindens	|	 	|	29347
+1	|	Enterococcus faecalis ERV103	|	 	|	1134785
+1	|	Enterococcus faecium ERV99	|	 	|	1134827
+1	|	Enterococcus faecium ERV165	|	 	|	1134822
+1	|	Enterococcus faecium ERV102	|	 	|	1134820
+1	|	Enterococcus faecium E417	|	 	|	1134817
+1	|	Enterococcus faecium 513	|	 	|	1134811
+1	|	Enterococcus faecium 503	|	 	|	1134804
+1	|	Enterococcus faecium TX0133a04	|	 	|	749523
+1	|	Streptococcus infantarius subsp. infantarius ATCC BAA-102	|	 	|	471872
+1	|	Ligilactobacillus ruminis	|	 	|	1623
+1	|	Fusobacterium sp. CM22	|	 	|	936563
+1	|	Fusobacterium sp. CM21	|	 	|	936562
+1	|	Fusobacterium nucleatum subsp. animalis F0419	|	 	|	999414
+1	|	Fusobacterium nucleatum subsp. polymorphum F0401	|	 	|	693991
+1	|	Fusobacterium periodonticum D10	|	 	|	620833
+1	|	Fusobacterium ulcerans 12-1B	|	 	|	457404
+1	|	Fusobacterium varium	|	 	|	856
+1	|	Porphyromonas sp. oral taxon 278 str. W7784	|	 	|	1227272
+1	|	Prevotella denticola DNF00960	|	 	|	1401077
+1	|	Prevotella disiens DNF00882	|	 	|	1401075
+1	|	Prevotella bivia DNF00650	|	 	|	1401072
+1	|	Prevotella bivia DNF00188	|	 	|	1287476
+1	|	Prevotella oralis HGA0225	|	 	|	1203550
+1	|	Prevotella histicola F0411	|	 	|	857291
+1	|	Prevotella nigrescens CC14M	|	 	|	1073366
+1	|	Prevotella nigrescens F0103	|	 	|	702439
+1	|	Prevotella amnii CRIS 21A-A	|	 	|	679191
+1	|	Prevotella timonensis CRIS 5C-B1	|	 	|	679189
+1	|	Prevotella veroralis F0319	|	 	|	649761
+1	|	Prevotella oris F0302	|	 	|	649760
+1	|	Prevotella sp. oral taxon 472 str. F0295	|	 	|	619693
+1	|	Prevotella sp. oral taxon 317 str. F0108	|	 	|	575615
+1	|	Prevotella melaninogenica D18	|	 	|	575612
+1	|	Prevotella buccae D17	|	 	|	575611
+1	|	Parabacteroides sp. D13	|	 	|	563193
+1	|	Parabacteroides johnsonii CL02T12C29	|	 	|	999419
+1	|	Parabacteroides johnsonii DSM 18315	|	 	|	537006
+1	|	Parabacteroides distasonis ATCC 8503	|	 	|	435591
+1	|	Parabacteroides merdae CL09T00C40	|	 	|	999421
+1	|	Parabacteroides merdae CL03T12C32	|	 	|	999420
+1	|	Parabacteroides merdae ATCC 43184	|	 	|	411477
+1	|	Phocaeicola coprophilus DSM 18228 = JCM 13818	|	 	|	547042
+1	|	Phocaeicola plebeius DSM 17135	|	 	|	484018
+1	|	Phocaeicola dorei CL03T12C01	|	 	|	997877
+1	|	Phocaeicola dorei CL02T12C06	|	 	|	997876
+1	|	Phocaeicola dorei CL02T00C15	|	 	|	997875
+1	|	Phocaeicola dorei 5_1_36/D4	|	 	|	556260
+1	|	Phocaeicola dorei DSM 17855	|	 	|	483217
+1	|	Phocaeicola vulgatus CL09T03C04	|	 	|	997891
+1	|	Phocaeicola vulgatus ATCC 8482	|	 	|	435590
+1	|	Bacteroides salyersiae CL02T12C01	|	 	|	997887
+1	|	Bacteroides eggerthii 1_2_48FAA	|	 	|	665953
+1	|	Bacteroides xylanisolvens XB1A	|	 	|	657309
+1	|	Bacteroides sp. D20	|	 	|	585543
+1	|	Bacteroides sp. D2	|	 	|	556259
+1	|	Bacteroides cellulosilyticus CL02T12C19	|	 	|	997874
+1	|	Bacteroides cellulosilyticus DSM 14838	|	 	|	537012
+1	|	Bacteroides finegoldii CL09T03C10	|	 	|	997888
+1	|	Bacteroides finegoldii DSM 17565	|	 	|	483215
+1	|	Bacteroides intestinalis DSM 17393	|	 	|	471870
+1	|	Bacteroides sp. 2_1_22	|	 	|	469588
+1	|	Bacteroides sp. 9_1_42FAA	|	 	|	457395
+1	|	Bacteroides sp. 4_1_36	|	 	|	457393
+1	|	Bacteroides stercoris CC31F	|	 	|	1073351
+1	|	Bacteroides stercoris ATCC 43183	|	 	|	449673
+1	|	Bacteroides caccae CL03T12C61	|	 	|	997873
+1	|	Bacteroides caccae ATCC 43185	|	 	|	411901
+1	|	Bacteroides uniformis ATCC 8492	|	 	|	411479
+1	|	Bacteroides ovatus 3_8_47FAA	|	 	|	665954
+1	|	Bacteroides thetaiotaomicron VPI-5482	|	 	|	226186
+1	|	Bacteroides fragilis CL07T12C05	|	 	|	997883
+1	|	Bacteroides fragilis CL07T00C01	|	 	|	997882
+1	|	Bacteroides fragilis CL05T00C42	|	 	|	997880
+1	|	Bacteroides fragilis CL03T12C07	|	 	|	997879
+1	|	Bacteroides fragilis 3_1_12	|	 	|	457424
+1+	|	Bacteria	|	 	|	2
+2+	|	Bacteria	|	Bacteria Latreille et al. 1825	|	629395
+1	|	Treponema denticola	|	 	|	158
+1	|	Actinobacteria	|	 	|	201174
+1	|	Coriobacteriales	|	 	|	84999
+1	|	Collinsella	|	 	|	102106
+1	|	Actinomycetia	|	 	|	1760
+1	|	Actinomycetaceae	|	 	|	2049
+1	|	Propionibacteriaceae	|	 	|	31957
+1	|	Cutibacterium	|	 	|	1912216
+1	|	Cutibacterium modestum	|	 	|	2559073
+1	|	Cutibacterium acnes	|	 	|	1747
+1	|	Bifidobacteriaceae	|	 	|	31953
+1	|	Gardnerella vaginalis	|	 	|	2702
+1	|	Bifidobacterium	|	 	|	1678
+1	|	Bifidobacterium breve	|	 	|	1685
+1	|	Bifidobacterium adolescentis	|	 	|	1680
+1	|	Bifidobacterium longum	|	 	|	216816
+1	|	Proteobacteria	|	 	|	1224
+1	|	Enterobacterales	|	 	|	91347
+1	|	Morganellaceae	|	 	|	1903414
+1	|	Providencia	|	 	|	586
+1	|	Enterobacteriaceae	|	 	|	543
+1	|	Escherichia	|	 	|	561
+1	|	Firmicutes	|	 	|	1239
+1	|	Peptoniphilaceae	|	 	|	1570339
+1	|	Peptoniphilus	|	 	|	162289
+1	|	Negativicutes	|	 	|	909932
+1	|	Veillonella	|	 	|	29465
+1	|	Selenomonadaceae	|	 	|	1843491
+1	|	Erysipelotrichales	|	 	|	526525
+1	|	Erysipelotrichaceae	|	 	|	128827
+1	|	Coprobacillus	|	 	|	100883
+1	|	Eubacteriales	|	 	|	186802
+1	|	Clostridiaceae	|	 	|	31979
+1	|	Clostridium	|	 	|	1485
+1	|	Oscillospiraceae	|	 	|	216572
+1	|	Lachnospiraceae	|	 	|	186803
+1	|	Lachnoanaerobaculum	|	 	|	1164882
+1	|	Blautia	|	 	|	572511
+1	|	Dorea	|	 	|	189330
+1	|	Mediterraneibacter	|	 	|	2316020
+1	|	Enterocloster	|	 	|	2719313
+1	|	Lachnoclostridium	|	 	|	1506553
+1	|	[Clostridium] symbiosum	|	 	|	1512
+1	|	Lactobacillales	|	 	|	186826
+1	|	Enterococcus	|	 	|	1350
+1	|	Enterococcus faecium	|	 	|	1352
+1	|	Fusobacterium	|	 	|	848
+1	|	Fusobacterium nucleatum	|	 	|	851
+1	|	Bacteroidales	|	 	|	171549
+1	|	Prevotella	|	 	|	838
+1	|	Prevotella bivia	|	 	|	28125
+1	|	Prevotella nigrescens	|	 	|	28133
+1	|	Parabacteroides	|	 	|	375288
+1	|	Parabacteroides johnsonii	|	 	|	387661
+1	|	Parabacteroides merdae	|	 	|	46503
+1	|	Bacteroidaceae	|	 	|	815
+1	|	Phocaeicola	|	 	|	909656
+1	|	Phocaeicola dorei	|	 	|	357276
+1	|	Phocaeicola vulgatus	|	 	|	821
+1	|	Bacteroides	|	 	|	816
+1	|	Bacteroides cellulosilyticus	|	 	|	246787
+1	|	Bacteroides finegoldii	|	 	|	338188
+1	|	Bacteroides stercoris	|	 	|	46506
+1	|	Bacteroides caccae	|	 	|	47678
+1	|	Bacteroides fragilis	|	 	|	817
