@@ -92,6 +92,11 @@ Construction of Evolutionary Tree:
 The process of constructing a phylogenetic tree is called molecular phylogenetic analysis, which is a method used to study species or sequence evolution and systematic classification. The general research object is base sequence or amino acid sequence, and the evolutionary relationship between organisms is calculated through mathematical statistical algorithms. Finally, based on the calculation results, it is visualized as a phylogenetic tree. The construction of an evolutionary tree can be roughly divided into three steps: sequence alignment, tree construction, and evaluation and validation.
 
 
+关键字：微生物组数据分析、MicrobiomeStatPlot、系统发育树案例1、R语言可视化
+
+Keywords: Microbiome analysis, MicrobiomeStatPlot, Phylogenetic Tree 1, R visulization
+
+
 # 微生物系统发育树案例
 Microbial phylogenetic tree case study
 
