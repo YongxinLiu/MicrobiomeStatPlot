@@ -1,0 +1,793 @@
+---
+title: "Metagenome analysis examples 宏基因组分析可视化案例"
+author: "Defeng Bai(白德凤)"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    df_print: paged
+    theme: cerulean
+    highlight: haddock
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      collapsed: no
+      smooth_scroll: yes
+    code_fold: show
+  word_document:
+    toc: yes
+    toc_depth: '3'
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+Figure 5. An example of the metagenome illustration included in MicrobiomeStatPlots.
+
+## 宏基因组分析可视化案例
+
+(A) An upset plot showed the number of shared and unique species across groups.
+
+### A: 集合图展示共有和独有物种
+
+https://github.com/baidefeng/MicrobiomeStatPlot/tree/master/3.Visualization_and_interpretation/VennAndUpSet
+
+```{r UpSet plot}
+
+#https://github.com/baidefeng/MicrobiomeStatPlot/tree/master/3.Visualization_and_interpretation/VennAndUpSet
+
+```
+
+
+(B) A co-abundance network showed the positive and negative correlations between species and KO genes. The correlations and p values for each pair were calculated using sparse correlations for compositional data (SparCC) analysis method.
+
+### B: 共丰度网络图
+co-abundance network
+
+https://github.com/baidefeng/MicrobiomeStatPlot/tree/master/3.Visualization_and_interpretation/SparCCNetworkAnalysis
+
+```{r co-abundance network, echo=TRUE}
+# 基于CRAN安装R包，检测没有则安装
+p_list = c("reshape2","ggplot2","ggprism","dplyr","plyr","igraph",
+           "magrittr","tidyr","clusterProfiler")
+for(p in p_list){if (!requireNamespace(p)){install.packages(p)}
+    library(p, character.only = TRUE, quietly = TRUE, warn.conflicts = FALSE)}
+
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+#BiocManager::install("GOSemSim")
+
+# 加载R包 Load the package
+suppressWarnings(suppressMessages(library(reshape2)))
+suppressWarnings(suppressMessages(library(ggplot2)))
+suppressWarnings(suppressMessages(library(ggprism)))
+suppressWarnings(suppressMessages(library(dplyr)))
+suppressWarnings(suppressMessages(library(plyr)))
+suppressWarnings(suppressMessages(library(igraph)))
+suppressWarnings(suppressMessages(library(magrittr)))
+suppressWarnings(suppressMessages(library(clusterProfiler)))
+
+# metadata 
+design <- read.table(file = "data/group.txt", sep = "\t", header = T, row.names=1)
+# Top 36
+df3 <- read.table(file = "data/species_data.txt", sep = "\t", header = T, check.names = FALSE)
+
+# sum of Species
+data<-aggregate(.~ Species,data=df3,sum)
+rownames(data) = data$Species
+data = data[, -1]
+
+# retain microbiota speices with prevalence > 5% and relative abundance > 1E-4
+# 1.prevalence > 5%
+zero_counts <- vector("integer", nrow(data))
+for (i in 1:nrow(data)) {
+  count <- 0
+  for (j in 1:ncol(data)) {
+    if (data[i, j] == 0) {
+      count <- count + 1
+    }
+  }
+  zero_counts[i] <- count
+}
+# output
+zero_count = as.data.frame(zero_counts)
+data2 = data
+data2$zero_counts = zero_count$zero_counts
+data2$all_counts = 20
+data2$sample_percent = round(1-data2$zero_counts/data2$all_counts, 6)
+data3 = data2 %>% filter(data2$sample_percent >= 0.05)
+data3 = data3[, -c(21, 22, 23)]
+
+# check data
+dim(data3)
+data3 = data3 * 100000
+
+OTU.table.filtered.colnames <- colnames(data3)
+OTU.table.filtered.SparCC <- cbind(rownames(data3), data3)
+colnames(OTU.table.filtered.SparCC) <- c("OTU_id", OTU.table.filtered.colnames)
+OTU.table.filtered.SparCC2 <- t(OTU.table.filtered.SparCC)
+OTU.table.filtered.SparCC2 <- OTU.table.filtered.SparCC2[-1,]
+OTU.table.filtered.SparCC2 <- as.data.frame(OTU.table.filtered.SparCC2)
+
+OTU.table.filtered.SparCC2$group <- rownames(OTU.table.filtered.SparCC2)
+OTU.table.filtered.SparCC2$group = as.character(OTU.table.filtered.SparCC2$group)
+OTU.table.filtered.SparCC2$group = sub("[0-9]","_", OTU.table.filtered.SparCC2$group)
+OTU.table.filtered.SparCC2$group = gsub("[0-9]","", OTU.table.filtered.SparCC2$group)
+OTU.table.filtered.SparCC2$group = gsub("Healthy","Control", OTU.table.filtered.SparCC2$group)
+otutab <- as.data.frame(t(OTU.table.filtered.SparCC2))
+
+# Select by manual set group
+# patients group
+if (TRUE){
+  sub_design = subset(design, Group %in% c("Patients")) 
+  sub_design$Group  = factor(sub_design$Group, levels=c("Patients"))
+}
+idx = rownames(sub_design) %in% colnames(otutab)
+sub_design_patients = sub_design[idx,]
+sub_otutab_patients = otutab[,rownames(sub_design_patients)]
+sub_otutab_patients = sub_otutab_patients[-37, ]
+sub_otutab_patients <- as.data.frame(sub_otutab_patients)
+write.table(sub_otutab_patients, file = "results/species_SparCC_p01.txt", row.names = T, sep = "\t", quote = T, col.names = T)
+
+# Healthy group
+if (TRUE){
+  sub_design = subset(design, Group %in% c("Control")) 
+  sub_design$Group  = factor(sub_design$Group, levels=c("Control"))
+}
+idx = rownames(sub_design) %in% colnames(otutab)
+sub_design_healthy = sub_design[idx,]
+sub_otutab_healthy = otutab[,rownames(sub_design_healthy)]
+sub_otutab_healthy = sub_otutab_healthy[-37, ]
+sub_otutab_healthy = as.data.frame(sub_otutab_healthy)
+write.table(sub_otutab_healthy, file = "results/species_SparCC_h01.txt", row.names = T, sep = "\t", quote = T, col.names = T)
+
+# OTU.table.filtered.SparCC <- OTU.table.filtered.SparCC[, -1]
+# We need to transpose the table
+# Patients group
+# write.table(sub_otutab_patients, file = "results/genus_SparCC_1.tsv", row.names = T, sep = "\t", quote = T, col.names = T)
+# write.table(sub_otutab_healthy, file = "results/genus_SparCC_2.tsv", row.names = T, sep = "\t", quote = T, col.names = T)
+
+#!/usr/bin/bash
+
+# install FastSpar
+#conda install -c bioconda -c conda-forge fastspar
+
+# Convert CSV file to TSV file
+#awk -F ',' 'BEGIN {OFS="\t"} {$1=$1}1' tests/data/SparCC_healthy_1.txt > tests/data/SparCC_healthy_1.tsv
+#awk -F ',' 'BEGIN {OFS="\t"} {$1=$1}1' tests/data/SparCC_patients_1.txt > tests/data/SparCC_patients_2.tsv
+
+# Control group
+# Correlation inference
+# test run
+#fastspar --otu_table tests/data/fake_data.tsv --correlation median_correlation.tsv --covariance median_covariance.tsv
+#fastspar --otu_table tests/data/SparCC_healthy_1.tsv --correlation median_correlation_HC.tsv --covariance median_covariance_HC.tsv
+
+# change iterations
+#fastspar --iterations 100 --exclude_iterations 20 --otu_table tests/data/fake_data.tsv --correlation median_correlation.tsv --covariance median_covariance.tsv
+#fastspar --iterations 100 --exclude_iterations 20 --otu_table tests/data/SparCC_healthy_1.tsvv --correlation median_correlation_HC.tsv --covariance median_covariance_HC.tsv
+# change thresholds
+#fastspar --threshold 0.1 --otu_table tests/data/fake_data.tsv --correlation median_correlation.tsv --covariance median_covariance.tsv
+#fastspar --iterations 100 --threads 10 --threshold 0.1 --otu_table tests/data/SparCC_healthy_1.tsv --correlation median_correlation_HC.tsv --covariance median_covariance_HC.tsv
+
+# combine
+#fastspar --iterations 100 --threads 3 --threshold 0.1 --otu_table tests/data/SparCC_healthy_1.tsv --correlation median_correlation_HC.tsv --covariance median_covariance_HC.tsv
+
+# Calculation of exact *p*-values
+# First we generate the 1000 bootstrap counts:
+# conda install -c intel mkl
+
+# mkdir bootstrap_counts_HC
+# fastspar_bootstrap --otu_table tests/data/SparCC_healthy_1.tsv --number 1000 --prefix bootstrap_counts_HC/HC_data
+
+# And then infer correlations for each bootstrap count (running in parallel with all processes available):
+# mkdir bootstrap_correlation
+# parallel fastspar --otu_table {} --correlation bootstrap_correlation/cor_{/} --covariance bootstrap_correlation/cov_{/} -i 5 ::: bootstrap_counts/*
+  
+# From these correlations, the *p*-values are then calculated:
+# fastspar_pvalues --otu_table tests/data/fake_data.tsv --correlation median_correlation.tsv --prefix bootstrap_correlation/cor_fake_data_ --permutations 1000 --outfile pvalues.tsv
+
+# add threads to accelerate
+# fastspar --otu_table tests/data/fake_data.txt --correlation median_correlation.tsv --covariance median_covariance.tsv --iterations 50 --threads 10
+
+# Alternative solutions
+# Using SparCC in iNAP online website for analysis, the website is doing really well
+# https://inap.denglab.org.cn/
+
+# 导入经过FastSpar计算得到的r和p矩阵数据表
+# patients
+r.cor <- read.table("data/r.cor.txt", sep="\t", header=T, check.names=F,row.names = 1)
+p.cor <- read.table("data/p.cor.txt", sep="\t", header=T, check.names=F,row.names = 1)
+r.cor[p.cor>0.05] <- 0
+
+# Build network connection attributes and node attributes
+# Convert data to long format for merging and add connection properties
+r.cor$from = rownames(r.cor)
+p.cor$from = rownames(p.cor)
+p_value <-  p.cor %>%
+  gather(key = "to", value = "p", -from) %>%
+  data.frame() 
+p_value$FDR <- p.adjust(p_value$p,"BH")
+p_value <- p_value[, -3]
+
+cor.data<- r.cor %>%
+  gather(key = "to", value = "r", -from) %>%
+  data.frame() %>%
+  left_join(p_value, by=c("from","to"))
+cor.data <- as.data.frame(cor.data)
+cor.data <- cor.data[cor.data$FDR <= 0.1 & cor.data$from != cor.data$to, ]
+cor.data <- cor.data[abs(cor.data$r) >= 0.15 & cor.data$from != cor.data$to, ]
+cor.data <- cor.data %>%
+    plyr::mutate(
+      linecolor = ifelse(r > 0,"positive","negative"),
+      linesize = abs(r)
+    )
+
+# Set node properties
+vertices <- c(as.character(cor.data$from),as.character(cor.data$to)) %>%
+  as_tibble() %>%
+  group_by(value) %>%
+  clusterProfiler::summarise()
+colnames(vertices) <- "name"
+
+# Build graph data structure and add network basic attributes, save data
+# Building a graph data structure
+graph <- graph_from_data_frame(cor.data, vertices = vertices, directed = FALSE)
+E(graph)$weight <- abs(E(graph)$r)
+V(graph)$label <- V(graph)$name
+
+# 利用“louvain”算法进行进行聚类群划分
+# calculate community membership and modularity of networks
+patients.clusters <- cluster_louvain(graph)
+V(graph)$Cluster <- patients.clusters$membership
+
+# save data
+write_graph(graph, "results/patients01.graphml", format="graphml")
+
+# 可视化方式1：基于Gephi软件进行可视化 https://gephi.org/
+# Visualized in Gephi software
+# The same procedure for healthy group
+
+# healthy组和patients组相同
+# healthy.clusters <- cluster_louvain(healthy.igraph.s)
+# V(healthy.igraph.s)$Cluster <- healthy.clusters$membership
+
+# 可视化方式2：利用igraph进行可视化
+g <- graph
+# 准备网络图布局数据
+# Preparing network diagram layout data。
+layout1 <- layout_in_circle(g) 
+layout5 <- layout_with_graphopt(g)
+
+# 设置绘图颜色
+# Setting the drawing color
+color <- c("#879b56","#ce77ad","#5ea6c2")
+
+names(color) <- unique(V(g)$Cluster) 
+V(g)$point.col <- color[match(V(g)$Cluster,names(color))] 
+
+# 边颜色按照相关性正负设置
+# The edge color is set according to the positive or negative correlation
+E(g)$color <- ifelse(E(g)$linecolor == "positive","#ff878c","#5ea6c2")
+
+pdf("results/network_group_graphopt1.pdf",family = "Times",width = 10,height = 12)
+par(mar=c(5,2,1,2))
+plot.igraph(g, layout=layout5,
+     vertex.color=V(g)$point.col,
+     vertex.border=V(g)$point.col,
+     vertex.size=6,
+     vertex.frame.color="white",
+     vertex.label=g$name,
+     vertex.label.cex=0.8,
+     vertex.label.dist=0, 
+     vertex.label.degree = pi/2,
+     vertex.label.col="black",
+     edge.arrow.size=0.5,
+     edge.width=abs(E(g)$r)*15,
+     edge.curved = FALSE
+     )
+
+# 设置图例
+legend(
+  title = "Cluster",
+  list(x = min(layout1[,1])-0.05,
+       y = min(layout1[,2])-0.05), 
+  legend = c(unique(V(g)$Cluster)),
+  fill = color,
+  #pch=1
+)
+
+legend(
+  title = "|r-value|",
+  list(x = min(layout1[,1])+0.6,
+       y = min(layout1[,2])-0.05),
+  legend = c(0.2,0.4,0.6,0.8,1.0),
+  col = "black",
+  lty=1,
+  lwd=c(0.2,0.4,0.6,0.8,1.0)*4,
+)
+
+legend(
+  title = "Correlation (±)",
+  list(x = min(layout1[,1])+1.0,
+       y = min(layout1[,2])-0.05),
+  legend = c("positive","negative"),
+  col = c("#ff878c",rgb(0,147,0,maxColorValue = 255)),
+  lty=1,
+  lwd=1
+)
+dev.off()
+
+```
+
+
+(C) A phylogenetic tree showed the phylogenetic relationships of different metagenome-assembled genomes (MAGs) annotated using human metagenome sequence data. Different phylum levels are marked with different colors. Two circles of histograms outside the branch tree showed the prevalence of each MAG species for young and centenarian group, respectively.
+
+### C: 系统发育树图进行组间比较
+
+https://github.com/baidefeng/MicrobiomeStatPlot/tree/master/3.Visualization_and_interpretation/PhylogeneticTree02
+
+```{r phylogenetic plot, fig.show='asis', fig.width=4, fig.height=2.5}
+
+# 基于CRAN安装R包，检测没有则安装
+p_list = c("ggtreeExtra","ggtree","treeio","tidytree","ggstar","ggplot2",
+             "ggnewscale","TDbook")
+for(p in p_list){if (!requireNamespace(p)){install.packages(p)}
+    library(p, character.only = TRUE, quietly = TRUE, warn.conflicts = FALSE)}
+
+# 加载R包 Load the package
+suppressWarnings(suppressMessages(library("ggtreeExtra")))
+suppressWarnings(suppressMessages(library("ggtree")))
+suppressWarnings(suppressMessages(library("treeio")))
+suppressWarnings(suppressMessages(library("tidytree")))
+suppressWarnings(suppressMessages(library("ggstar")))
+suppressWarnings(suppressMessages(library("ggplot2")))
+suppressWarnings(suppressMessages(library("ggnewscale")))
+suppressWarnings(suppressMessages(library("TDbook")))
+
+# 树文件和注释文件是通过EasyMetagenome分析流程获取的，EasyMetagenome网址：https://github.com/YongxinLiu/EasyMetagenome
+
+# Load tree data
+# 导入树文件
+tree <- read.tree("data/tax.unrooted.tree")
+
+# Load annotation data
+# 导入注释文件
+data_anno <- read.table("data/annotation.txt", header = TRUE, sep = "\t")
+
+data1 <- subset(data_anno, select = c(ID, Phylum))
+data1 <- data1[order(data1$Phylum), ]
+color_palette <-c("#4393c3","#fec44f","#fa9fb5","#a1d99b",
+                  "#dd1c77","#bcbddc","#1c9099","#bf812d",
+                  "#c7eae5", "#80cdc1", "#01665e", "#de77ae", 
+                  "#d73027", "#e0e0e0")
+
+unique_phyla <- unique(data1$Phylum)
+num_unique_phyla <- length(unique_phyla)
+if (num_unique_phyla > length(color_palette)) {
+  color_mapping <- setNames(rep(color_palette, length.out = num_unique_phyla), unique_phyla)
+} else {
+  color_mapping <- setNames(color_palette[1:num_unique_phyla], unique_phyla)
+}
+
+data1$color <- color_mapping[data1$Phylum]
+data1 <- data1[order(data1$ID), ]
+
+data2 <- subset(data_anno, select = c(ID, MY1, MY2, MY3))
+data2$Prevalence<- rowMeans(data2[, c("MY1", "MY2", "MY3")])
+data2$Group <- "Young"
+
+data3 <- subset(data_anno, select = c(ID, FC1, FC2, FC3))
+data3$Prevalence<- rowMeans(data3[, c("FC1","FC2","FC3")])
+data3$Group <- "Centenarian"
+
+#如果数据相差太大，可以做Min-Max Normalization
+min_max_normalize <- function(x) {
+  return((x - min(x)) / (max(x) - min(x)))
+}
+data2$Prevalence <- min_max_normalize(data2$Prevalence)
+data3$Prevalence <- min_max_normalize(data3$Prevalence)
+# Prepare the tree
+data1$label <- data1$ID
+tree2 <- full_join(tree, data1, by = "label")
+
+# Create the circular layout tree
+# 绘制系统发育树圈图
+p1<- ggtree(tree2,
+            aes(color=Phylum),#支长颜色按照分组进行着色
+            layout="fan",#进化树类型
+            open.angle=0,#开口角度
+            linewidth=0.75,#分支线条粗细
+            show.legend = F)+
+  new_scale_fill() +
+  geom_fruit(
+    data=data2,#数据
+    geom = geom_col,#绘图类型
+    mapping = aes(y=ID, x= Prevalence, fill = Group),
+    offset = 0.1,
+    pwidth = 0.1,
+    width=0.5,
+  )+
+  scale_fill_manual(
+    values=c("#4393c3","#fec44f","#fa9fb5","#a1d99b",
+             "#dd1c77","#bcbddc"),
+    guide=guide_legend(keywidth=1, keyheight=1, order=2),
+    name="Group")+
+  new_scale_fill() +
+  geom_fruit(
+    data=data3,#数据
+    geom = geom_col,#绘图类型
+    mapping = aes(y=ID, x= Prevalence, fill = Group),
+    offset = 0.01,
+    pwidth = 0.1,
+    width=0.5
+  )+
+  new_scale_fill() +
+  geom_fruit(
+    data=data1,
+    geom=geom_tile,
+    mapping=aes(y=ID, fill=data1$Phylum),
+    width=0.03,
+    offset=0.15
+  )+
+    scale_fill_manual(
+    values=c("#bf812d", "#c7eae5", "#80cdc1", "#01665e", "#de77ae", "#d73027", "#4393c3","#e0e0e0"),
+    guide=guide_legend(keywidth=0.5, keyheight=0.5, order=2),
+    name="Phylum")
+
+pdf(file=paste("results/MAGs_phylogenetic_tree01.pdf", sep=""), height = 5.2, width = 11)
+p1
+dev.off()
+
+```
+
+
+(D) Differential analysis of metagenomic species. The left heatmap showed the significance and enriched (red) or depleted (blue) trend between groups. The three combined bar charts on the right showed the relative abundance of each species in each group.
+
+### D: 差异分析热图+柱状图
+
+https://github.com/baidefeng/MicrobiomeStatPlot/tree/master/3.Visualization_and_interpretation/HeatmapBarPlot
+
+```{r heatmap and bar plot, fig.show='asis', fig.width=4, fig.height=2.5}
+
+# 基于CRAN安装R包，检测没有则安装 Installing R packages based on CRAN and installing them if they are not detected
+p_list = c("ggplot2", "patchwork", "dplyr", "reshape2", "ggprism", "plyr",
+           "magrittr","ggfun","cowplot" )
+for(p in p_list){if (!requireNamespace(p)){install.packages(p)}
+    library(p, character.only = TRUE, quietly = TRUE, warn.conflicts = FALSE)}
+
+# 加载R包 Loading R packages
+suppressWarnings(suppressMessages(library(ggplot2)))
+suppressWarnings(suppressMessages(library(patchwork)))
+suppressWarnings(suppressMessages(library(dplyr)))
+suppressWarnings(suppressMessages(library(reshape2)))
+suppressWarnings(suppressMessages(library(ggprism)))
+suppressWarnings(suppressMessages(library(plyr)))
+suppressWarnings(suppressMessages(library(magrittr)))
+suppressWarnings(suppressMessages(library(ggfun)))
+suppressWarnings(suppressMessages(library(cowplot)))
+
+# 计算流行率
+# Load data
+data_fungi <- read.table("data/species_count_data.txt", sep = "\t", header = TRUE, check.names = FALSE)
+design_A <- read.table("data/design_A.txt", sep = "\t", header = TRUE, row.names = 1)
+design_B <- read.table("data/design_B.txt", sep = "\t", header = TRUE, row.names = 1)
+design_C <- read.table("data/design_C.txt", sep = "\t", header = TRUE, row.names = 1)
+difference_species <- read.table("data/Difference_species.txt", sep = "\t", header = TRUE, row.names = 1)
+
+# Preprocess data
+rownames(data_fungi) <- data_fungi$Species
+data_fungi <- data_fungi[, -1] %>% apply(2, function(x) x / sum(x))
+data_fungi02 <- as.data.frame(t(data_fungi))
+
+# Function to process each design group
+process_design <- function(design, data_fungi02, all_counts_value) {
+  data_fungi_group <- data_fungi02[rownames(data_fungi02) %in% rownames(design), ] %>% t() %>% as.data.frame()
+  
+  zero_counts <- rowSums(data_fungi_group == 0)
+  data_species2 <- data_fungi_group %>%
+    mutate(zero_counts = zero_counts,
+           sample_percent = round(1 - zero_counts / all_counts_value, 6))
+
+  data_species3 <- data_species2[rownames(data_species2) %in% rownames(difference_species), ]
+  return(data_species3)
+}
+
+# Process each design group and write to CSV
+data_species3_C <- process_design(design_A, data_fungi02, 30)
+write.csv(data_species3_C, "data/data_species3_prevalence_A.csv")
+
+data_species3_E <- process_design(design_B, data_fungi02, 35)
+write.csv(data_species3_E, "data/data_species3_prevalence_B.csv")
+
+data_species3_Y <- process_design(design_C, data_fungi02, 50)
+write.csv(data_species3_Y, "data/data_species3_prevalence_C.csv")
+
+# 载入数据
+# Load data
+data <- read.table("data/Difference_species2.txt",header = TRUE,row.names = 1,sep = "\t")
+data[which(data$FDR<0.05),'sig'] <- '*'
+
+# 排序
+# Set order
+data$Species2 = factor(data$Species, levels = unique(data$Species))
+data = data %>%
+  mutate(Species2 = ordered(Species2,
+                         levels=c("Species21",
+                                  "Species20","Species19",
+                                  "Species18","Species17",
+                                  "Species16","Species15","Species14",
+                                  "Species13",
+                                  "Species12","Species11","Species10",
+                                  "Species09","Species08","Species07", 
+                                  "Species06","Species05","Species04",
+                                  "Species03","Species02","Species01"
+                                  )))
+
+# 绘图
+# Plot
+p1 <- ggplot(data, aes(Group,Species2)) +  
+  geom_tile(aes(fill=B_coef), color="white") +    
+  geom_text(aes(label=sig), color="black", size=6,vjust = 0.8) + 
+  scale_fill_gradient2(low='#0085c1', high='red',mid = 'white', limit=c(-1.3,1.3),name=paste0("B-coef.")) +
+  labs(x=NULL,y=NULL) +  
+  theme_classic()+
+  theme(axis.text.x = element_text(size=10,angle = 45,hjust = 1,color = "black"),            
+        axis.text.y = element_text(size=10,color = "black"), 
+        axis.line.x = element_blank(),
+        axis.line.y = element_blank(),
+        axis.ticks.length = unit(2.0, "mm"),
+        panel.background=element_blank(),
+        legend.position = "left")
+#p1
+#ggsave(paste("results/age_fheatmap01",".pdf", sep=""), p1, width=89 * 1.5, height=180 * 1.5, unit='mm')
+
+
+# Bar plot prevalence
+# 柱状图展示每个物种的流行率
+imp_species <- read.table("data/Prevalence2.txt", header = TRUE, sep = "\t")
+imp_species <- imp_species %>%
+  mutate(Species2 = ordered(Species,
+                            levels = c("Species21", "Species20", "Species19", "Species18", "Species17",
+                                       "Species16", "Species15", "Species14", "Species13",
+                                       "Species12", "Species11", "Species10", "Species09",
+                                       "Species08", "Species07", "Species06", "Species05",
+                                       "Species04", "Species03", "Species02", "Species01")))
+
+# 获取所有唯一的组名
+groups <- unique(imp_species$Group)
+
+# 为每个组指定不同的颜色
+colors <- c("A" = "#ffad00", "B" = "#5196d5", "C" = "#00fc8d")
+
+# 使用 lapply 绘制每个组的图
+plots <- lapply(seq_along(groups), function(i) {
+  g <- groups[i]
+  p <- ggplot(subset(imp_species, Group == g), aes(x = Species2, y = Prevalence)) +
+    geom_bar(stat = "identity", fill = colors[g]) +
+    coord_flip() +
+    theme_classic() +
+    theme(text = element_text(family = 'sans', size = 14),
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(),
+          legend.position = "none",
+          axis.line.x = element_blank(),
+          axis.line.y = element_blank(),
+          axis.title.y = element_blank(),
+          axis.text.x = element_text(size = 10, angle = 45, hjust = 1, color = "black"),
+          axis.text.y = element_blank()
+          ) +
+    geom_hline(yintercept = c(0.25, 0.5, 0.75, 1), colour = 'black', lwd = 0.36, linetype = "dashed") +
+    #scale_y_continuous(expand = expansion(0, 0), limits = c(0, 1), breaks = c(0, 0.25, 0.5, 0.75, 1)) +
+    #labs(title = paste("Prevalence for", g))
+  facet_set(label=paste(g))
+  
+  if (i != 1) {
+    p <- p + theme(axis.text.y = element_blank(),
+                   axis.ticks.y = element_blank())
+  }
+  
+  return(p)
+})
+
+# 使用 plot_grid 将三个图放在一起，并确保宽度一致
+final_plot <- plot_grid(plotlist = plots, ncol = 3, rel_widths = c(1, 1, 1))
+
+# 显示最终图形
+#print(final_plot)
+
+library(cowplot)
+p2 <- ggdraw() +
+  draw_plot(p1, 0, 0.01, .35, 0.945)+
+  draw_plot(final_plot, 0.350, -0.01, .58, 1.002)
+#p2
+
+pdf("results/age_fungi_heatmap_ra_bar1.pdf", height = 7.2, width = 8)
+p2
+dev.off()
+
+
+# Bar plot relative abundance
+# 柱状图展示每个物种的相对丰度
+# 如果要按照相对丰度降序排列，请自行调整
+imp_species <- read.table("data/Prevalence2.txt", header = TRUE, sep = "\t")
+imp_species <- imp_species %>%
+  mutate(Species2 = ordered(Species,
+                            levels = c("Species21", "Species20", "Species19", "Species18", "Species17",
+                                       "Species16", "Species15", "Species14", "Species13",
+                                       "Species12", "Species11", "Species10", "Species09",
+                                       "Species08", "Species07", "Species06", "Species05",
+                                       "Species04", "Species03", "Species02", "Species01")))
+
+# 获取所有唯一的组名
+groups <- unique(imp_species$Group)
+
+# 为每个组指定不同的颜色
+colors <- c("A" = "#ffad00", "B" = "#5196d5", "C" = "#00fc8d")
+
+# 使用 lapply 绘制每个组的图
+plots <- lapply(seq_along(groups), function(i) {
+  g <- groups[i]
+  p <- ggplot(subset(imp_species, Group == g), aes(x = Species2, y = RA)) +
+    geom_bar(stat = "identity", fill = colors[g]) +
+    coord_flip() +
+    theme_classic() +
+    theme(text = element_text(family = 'sans', size = 14),
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(),
+          legend.position = "none",
+          axis.line.x = element_blank(),
+          axis.line.y = element_blank(),
+          axis.title.y = element_blank(),
+          axis.text.x = element_text(size = 10, angle = 45, hjust = 1, color = "black"),
+          axis.text.y = element_blank()
+          ) +
+    geom_hline(yintercept = c(0.05, 0.1, 0.15, 0.20), colour = 'black', lwd = 0.36, linetype = "dashed") +
+    #scale_y_continuous(expand = expansion(0, 0), limits = c(0, 1), breaks = c(0, 0.25, 0.5, 0.75, 1)) +
+    #labs(title = paste("Prevalence for", g))
+  facet_set(label=paste(g))
+  
+  if (i != 1) {
+    p <- p + theme(axis.text.y = element_blank(),
+                   axis.ticks.y = element_blank())
+  }
+  
+  return(p)
+})
+
+# 使用 plot_grid 将三个图放在一起，并确保宽度一致
+final_plot2 <- plot_grid(plotlist = plots, ncol = 3, rel_widths = c(1, 1, 1))
+
+# 显示最终图形
+#print(final_plot)
+
+library(cowplot)
+p3 <- ggdraw() +
+  draw_plot(p1, 0, 0.01, .35, 0.945)+
+  draw_plot(final_plot2, 0.350, -0.01, .58, 1.002)
+#p2
+
+pdf("results/age_fungi_heatmap_ra_bar2.pdf", height = 7.2, width = 8)
+p3
+dev.off()
+
+```
+
+
+(E) The heatmap showed the genes of Alistipes shahii associated with the occurrence of disease. The colors showed the absence (blue) or presence (green) of a UniRef90 gene family in a metagenome.
+
+### E: 菌株组间基因比较
+
+https://github.com/baidefeng/MicrobiomeStatPlot/tree/master/3.Visualization_and_interpretation/anpan_analysis
+
+```{r anpan analysis, fig.show='asis', fig.width=4, fig.height=2.5}
+# 基于CRAN安装R包，检测没有则安装
+p_list = c("ape", "data.table", "dplyr", "fastglm", "furrr", "ggdendro",
+           "ggnewscale", "ggplot2", "loo", "patchwork", "phylogram", "posterior",
+           "progressr", "purrr", "R.utils", "remotes", "stringr", "tibble", "tidyselect")
+for(p in p_list){if (!requireNamespace(p)){install.packages(p)}
+    library(p, character.only = TRUE, quietly = TRUE, warn.conflicts = FALSE)}
+
+# 安装cmdstanr
+# install.packages("cmdstanr", repos = c("https://mc-stan.org/r-packages/", getOption("repos")))
+
+# 基于github安装
+library(remotes)
+if(!requireNamespace("anpan", quietly = TRUE))
+  remotes::install_github("biobakery/anpan")
+
+# 加载R包 Load the package
+suppressWarnings(suppressMessages(library(ape)))
+suppressWarnings(suppressMessages(library(data.table)))
+suppressWarnings(suppressMessages(library(dplyr)))
+suppressWarnings(suppressMessages(library(fastglm)))
+suppressWarnings(suppressMessages(library(furrr)))
+suppressWarnings(suppressMessages(library(ggdendro)))
+suppressWarnings(suppressMessages(library(ggnewscale)))
+suppressWarnings(suppressMessages(library(ggplot2)))
+suppressWarnings(suppressMessages(library(loo)))
+suppressWarnings(suppressMessages(library(patchwork)))
+suppressWarnings(suppressMessages(library(phylogram)))
+suppressWarnings(suppressMessages(library(posterior)))
+suppressWarnings(suppressMessages(library(progressr)))
+suppressWarnings(suppressMessages(library(purrr)))
+suppressWarnings(suppressMessages(library(R.utils)))
+suppressWarnings(suppressMessages(library(remotes)))
+suppressWarnings(suppressMessages(library(stringr)))
+suppressWarnings(suppressMessages(library(tibble)))
+suppressWarnings(suppressMessages(library(tidyselect)))
+suppressWarnings(suppressMessages(library(cmdstanr)))
+suppressWarnings(suppressMessages(library(anpan)))
+
+# 导入数据 Load data
+#meta_path <- "data/fake_metadata.tsv"
+#meta_path <- "data/group779.tsv"
+meta_path <- "data/group779_2.tsv"
+#bug_path = "data/g__Madeuppy.s__Madeuppy_Fakerii.genefamilies.tsv.gz"
+#bug_path = "data/NPC.E.coli.tsv.gz"
+bug_path = "data/NPC.Alistipes_shahii.tsv.gz"
+fread(meta_path, nrows = 5)
+fread(bug_path, nrows = 5, select = 1:4)
+
+# anpan analysis
+anpan_res = anpan(bug_file          = bug_path,
+                  meta_file         = meta_path,
+                  out_dir           = file.path("results/", "anpan_output"),
+                  covariates        = NULL,
+                  outcome           = "is_case",
+                  model_type        = "fastglm",
+                  discretize_inputs = TRUE)
+
+head(anpan_res[order(p.value)])
+
+#visualize the results
+# input_path = file.path("results/", 
+#                        "anpan_output", "filter_stats",
+#                        "filtered_Madeuppy_Fakerii.tsv.gz")
+# input_path = file.path("results/", 
+#                        "anpan_output", "filter_stats",
+#                        "filtered_NPC.E.coli.tsv.gz")
+input_path = file.path("results/", 
+                       "anpan_output", "filter_stats",
+                       "filtered_NPC.Alistipes_shahii.tsv.gz")
+model_input = fread(input_path)
+
+#pdf("results/Gene_model_Madeuppy_Fakerii.pdf", width = 10, height = 6)
+#pdf("results/Gene_model_E.coli.pdf", width = 8, height = 6.5)
+pdf("results/Gene_model_Alistipes_shahii.pdf", width = 6, height = 6)
+plot_results(res            = anpan_res,
+             model_input    = model_input,
+             covariates     = NULL, 
+             outcome        = "is_case",
+             #bug_name       = "Madeuppy_Fakerii",
+             bug_name       = "E.coli",
+             cluster        = "both",
+             #show_trees     = TRUE,
+             show_trees     = FALSE,
+             n_top          = 30,
+             q_threshold    = NULL,
+             beta_threshold = NULL)
+dev.off()
+
+```
+
+
+(F) The pangenome analysis of Alistipes shahii using metagenome sequence data.
+
+### F:泛基因组分析
+
+https://github.com/baidefeng/MicrobiomeStatPlot/tree/master/3.Visualization_and_interpretation/PangenomeAnvio
+https://github.com/YongxinLiu/EasyMetagenome
+
+```{r pangenome, fig.show='asis', fig.width=4, fig.height=2.5}
+
+#https://github.com/baidefeng/MicrobiomeStatPlot/tree/master/3.Visualization_and_interpretation/PangenomeAnvio
+#https://github.com/YongxinLiu/EasyMetagenome
+
+```
+
+
+
