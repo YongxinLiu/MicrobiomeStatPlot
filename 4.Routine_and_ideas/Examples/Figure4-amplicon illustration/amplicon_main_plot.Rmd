@@ -1,0 +1,817 @@
+---
+title: "amplicon analysis examples 扩增子分析可视化案例"
+author: "Defeng Bai(白德凤), Chuang Ma(马闯), Jiani Xun(荀佳妮)"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    df_print: paged
+    theme: cerulean
+    highlight: haddock
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      collapsed: no
+      smooth_scroll: yes
+    code_fold: show
+  word_document:
+    toc: yes
+    toc_depth: '3'
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = T, echo=T, comment="#>", message=F, warning=F,
+	fig.align="center", fig.width=5, fig.height=3, dpi=150)
+```
+
+
+Figure 4. An example of the amplicon illustration included in MicrobiomeStatPlots.
+
+扩增子分析中可能会用到的可视化方式。
+Visualisations that may be used in amplicon analysis.
+
+
+## Amplicon master image example扩增子主案例
+
+## Packages installation软件包安装
+
+```{r install, echo=TRUE}
+# 基于CRAN安装R包，检测没有则安装
+p_list = c("vegan","data.table", "ggplot2", "dplyr", "ggsignif", "scales", "pairwiseAdonis", "ggpubr", "patchwork", "ggh4x", "ggprism","ggVolcano","ggchicklet","tidyverse","ggsci","magrittr","rstatix","ggsignif","linkET","ggpubr","ggnewscale","reshape2","ggtree","colorspace","RColorBrewer","VennDiagram","grid")
+for(p in p_list){if (!requireNamespace(p)){install.packages(p)}
+    library(p, character.only = TRUE, quietly = TRUE, warn.conflicts = FALSE)}
+
+# 加载R包 Load the package
+suppressWarnings(suppressMessages(library(ggplot2)))
+suppressWarnings(suppressMessages(library(dplyr)))
+suppressWarnings(suppressMessages(library(vegan)))
+suppressWarnings(suppressMessages(library(data.table)))
+suppressWarnings(suppressMessages(library(ggsignif)))
+suppressWarnings(suppressMessages(library(scales)))
+suppressWarnings(suppressMessages(library(pairwiseAdonis)))
+suppressWarnings(suppressMessages(library(ggpubr)))
+suppressWarnings(suppressMessages(library(patchwork)))
+suppressWarnings(suppressMessages(library(ggh4x)))
+suppressWarnings(suppressMessages(library(ggprism)))
+suppressWarnings(suppressMessages(library(ggVolcano)))
+suppressWarnings(suppressMessages(library(ggchicklet)))
+suppressWarnings(suppressMessages(library(tidyverse)))
+suppressWarnings(suppressMessages(library(ggsci)))
+suppressWarnings(suppressMessages(library(magrittr)))
+suppressWarnings(suppressMessages(library(rstatix)))
+suppressWarnings(suppressMessages(library(ggsignif)))
+suppressWarnings(suppressMessages(library(linkET)))
+suppressWarnings(suppressMessages(library(ggpubr)))
+suppressWarnings(suppressMessages(library(ggnewscale)))
+suppressWarnings(suppressMessages(library(reshape2)))
+suppressWarnings(suppressMessages(library(ggtree)))
+suppressWarnings(suppressMessages(library(colorspace)))
+suppressWarnings(suppressMessages(library(RColorBrewer)))
+suppressWarnings(suppressMessages(library(VennDiagram)))
+suppressWarnings(suppressMessages(library(grid)))
+
+remotes::install_github("pmartinezarbizu/pairwiseAdonis")
+library(pairwiseAdonis)
+
+```
+
+
+(A) Comparison of operational taxonomic units (OTUs) richness among three groups (AT, AO and AP).
+
+### A. box plot箱线图
+α多样性箱线图 α diversity boxplots
+
+```{r box plot, fig.show='asis', fig.width=4, fig.height=2.5}
+#计算α多样性指数
+
+#library(vegan)
+#library(data.table)
+#读取数据,可以将数据换为otutab.txt
+dat <- read.csv("data/abundance.txt", header = TRUE, row.names = 1, sep = "\t")
+head(dat)
+tail(dat)
+dat1<- dat[,c(1:279)]
+head(dat1)
+##计算OTU多样性
+dat_div<-t(dat1)
+# 计算物种丰富度 Richness 
+Richness <- rowSums(dat_div > 0)  
+  
+# 假设总计数为每列的总和
+total_counts <- colSums(dat_div)
+
+# 将丰度转换为计数，乘以总计数
+count_data <- t(apply(dat_div, 1, function(x) round(x * total_counts)))
+
+# 计算Chao1、ACE、Shannon、Simpson、invsimpson多样性指数
+Chao1 <- estimateR(count_data)[2,]  
+ACE <- estimateR(count_data)[4,]   
+shannon <- diversity(dat_div, "shannon")  
+simpson <- diversity(dat_div, "simpson")  
+invsimpson <- diversity(dat_div, "inv")  
+
+# 将NA替换为0
+Chao1[is.na(Chao1)] <- 0
+ACE[is.na(ACE)] <- 0
+shannon[is.na(shannon)] <- 0
+simpson[is.na(simpson)] <- 0
+invsimpson[is.na(invsimpson)] <- 0
+
+# 将所有多样性指标组合到一个数据框中  
+Diversity <- data.frame(
+  Sample = rownames(dat_div),
+  Richness = Richness,  
+  Chao1 = Chao1,  
+  ACE = ACE,  
+  Shannon = shannon,  
+  Simpson = simpson,  
+  Invsimpson = invsimpson
+)  
+  
+# 查看多样性数据框  
+# print(Diversity)  
+  
+# 将多样性数据框写入文件  
+write.table(Diversity, "results/alpha.txt", row.names = FALSE, sep = "\t", quote = FALSE)
+
+#可视化
+
+#library(ggplot2)
+#library(dplyr)
+#library(ggsignif)
+#library(scales) 
+# 读取多样性数据和metadata文件
+diversity_data <- read.table("results/alpha.txt", header = TRUE, sep = "\t")
+metadata <- read.table("data/metadata_box.txt", header = TRUE, sep = "\t")
+
+# 合并多样性数据和metadata
+merged_data <- merge(diversity_data, metadata, by.x = "Sample", by.y = "SampleID")
+
+# 定义组间的比较
+comparisons <- list(c("C", "E"), c("C", "Y"), c("E", "Y"))
+
+# 计算Shannon指数的p值并保存
+shannon_pvals <- sapply(comparisons, function(x) {
+  t.test(Shannon ~ Group, data = subset(merged_data, Group %in% x))$p.value
+})
+
+# 计算Richness指数的p值并保存
+richness_pvals <- sapply(comparisons, function(x) {
+  t.test(Richness ~ Group, data = subset(merged_data, Group %in% x))$p.value
+})
+
+# 将p值保存到文件
+p_values <- data.frame(Comparison = c("C vs E", "C vs Y", "E vs Y"),
+                       Shannon_pval = shannon_pvals,
+                       Richness_pval = richness_pvals)
+write.table(p_values, file = "results/alpha_p.txt", sep = "\t", row.names = FALSE, quote = FALSE)
+
+# 绘制箱线图
+p_shannon <- ggplot(merged_data, aes(x = Group, y = Shannon, fill = Group)) +
+  geom_boxplot(outlier.shape = NA, width = 0.6, 
+               aes(color = Group), fill = NA) +  # 边框颜色与组别对应
+  geom_jitter(width = 0.2, size = 2, aes(color = Group), shape = 16, alpha = 0.7) +  # 实心圆形散点，增加透明度
+  labs(y = "Shannon", x = "") +
+  theme_classic() +
+  theme(legend.position = "none", 
+        axis.text.x = element_text(size = 12, face = "bold"),
+        axis.title.y = element_text(size = 14, face = "bold")) +
+  scale_fill_manual(values = c("#F9A363","#6F99AD","#BF5960")) +
+  scale_color_manual(values = c("#F9A363","#6F99AD","#BF5960")) +  # 散点颜色对应"#EB746A","#7AA82C","#1EB5B8","#A07DB7"
+  geom_signif(comparisons = comparisons, 
+              map_signif_level = TRUE, 
+              test = "t.test",
+              tip_length = 0.03,  
+              y_position = c(5.8, 6.0, 6.2)) +  # 设置显著性标记的y坐标
+  scale_y_continuous(breaks = pretty_breaks(n = 5))
+
+ggsave("results/Shannon.pdf", plot = p_shannon, width = 3, height = 4)
+
+p_richness <- ggplot(merged_data, aes(x = Group, y = Richness, fill = Group)) +
+  geom_boxplot(outlier.shape = NA, width = 0.6, 
+               aes(color = Group), fill = NA) +  # 边框颜色与组别对应
+  geom_jitter(width = 0.2, size = 2, aes(color = Group), shape = 16, alpha = 0.7) +  # 实心圆形散点，增加透明度
+  labs(y = "Richness", x = "") +
+  theme_classic() +
+  theme(legend.position = "none", 
+        axis.text.x = element_text(size = 12, face = "bold"),
+        axis.title.y = element_text(size = 14, face = "bold")) +
+  scale_fill_manual(values = c("#F9A363","#6F99AD","#BF5960")) +
+  scale_color_manual(values = c("#F9A363","#6F99AD","#BF5960")) +  # 散点颜色对应"#EB746A","#7AA82C","#1EB5B8","#A07DB7"
+  geom_signif(comparisons = comparisons, 
+              map_signif_level = TRUE, 
+              test = "t.test",
+              tip_length = 0.03,  
+              y_position = c(810, 830, 850)) +  # 设置显著性标记的y坐标
+  scale_y_continuous(breaks = pretty_breaks(n = 5))
+
+ggsave("results/Richness.pdf", plot = p_richness, width = 3, height = 4)
+```
+
+
+(B) Beta diversity analysis showing OTU compositional structure differences between groups (BS, R, and RS) using PCoA (Principal Coordinate Analysis).
+
+### B: β多样性PCoA图  
+β diversity PCoA plot
+
+```{r pCoA, fig.show='asis', fig.width=4, fig.height=2.5}
+# 加载必要的库
+library(vegan)
+library(ggplot2)
+
+# 读取扩增子 OTU count 数据
+contigs <- read.delim('data/otutab.txt', row.names = 1, sep = '\t', stringsAsFactors = FALSE, check.names = FALSE)
+contigs <- data.frame(t(contigs))  # 转置数据并调整为数据框格式
+
+# 数据预处理：log10 转换并去除稀疏物种
+contigs <- log10(contigs + 1)
+contigs <- contigs[, colSums(contigs > 0) > (0.1 * nrow(contigs))]  # 删除稀疏物种
+
+# 计算 Bray-Curtis 距离
+distance <- vegdist(contigs, method = 'bray')
+distance_matrix <- as.matrix(distance)
+
+# 检查并替换 NA 值
+which(is.na(distance_matrix), arr.ind = TRUE)
+distance_matrix[is.na(distance_matrix)] <- 0
+
+# 用 cmdscale 进行主坐标分析
+pcoa <- cmdscale(distance_matrix, k = (nrow(contigs) - 1), eig = TRUE)
+
+# 提取坐标数据
+plot_data <- data.frame(pcoa$points)[, 1:2]
+names(plot_data)[1:2] <- c('PCoA1', 'PCoA2')  # 重命名
+
+# 计算 PCoA 百分比
+eig <- pcoa$eig
+PCOA1 <- format(100 * eig[1] / sum(eig), digits = 4)
+PCOA2 <- format(100 * eig[2] / sum(eig), digits = 4)
+
+# 导入样本分组数据
+group <- read.delim('data/metadata_pcoa.txt', row.names = 1, sep = '\t', stringsAsFactors = FALSE, check.names = FALSE)
+
+# 将坐标数据与分组数据结合
+data <- merge(plot_data, group, by = "row.names", all = TRUE)
+names(data)[1] <- "Sample"  # 重命名样本列
+data <- data[!is.na(data$Group) & data$Group != "", ]  # 移除 NA 或空白分组
+
+# 绘制 PCoA 图
+p <- ggplot(data, aes(x = PCoA1, y = PCoA2)) +
+  geom_point(aes(color = Group, shape = Group), size = 4) +  # 散点设置
+  scale_color_manual(values = c("#F9A363", "#6F99AD", "#BF5960")) +  # 自定义颜色
+  scale_shape_manual(values = c(15, 16, 17)) +  # 自定义形状
+  stat_ellipse(aes(color = Group), linetype = "solid", level = 0.95, size = 1) +  # 绘制置信椭圆
+  labs(x = paste("PCoA1 (", PCOA1, "%)", sep = ""),
+       y = paste("PCoA2 (", PCOA2, "%)", sep = ""),
+       title = 'PCoA') +
+  theme_bw() +
+  theme(
+    plot.title = element_text(size = 45, colour = "black", face = "bold", hjust = 0.5),
+    axis.title = element_text(size = 35, colour = "black", face = "bold"),
+    axis.text = element_text(size = 30, colour = "black"),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 30, colour = "black"),
+    legend.background = element_rect(fill = "transparent"),
+    legend.position = c(0.1, 0.1)  # 图例位置
+  ) +
+  geom_vline(aes(xintercept = 0), linetype = "dotted") +  # 添加虚线
+  geom_hline(aes(yintercept = 0), linetype = "dotted")
+p
+
+# 保存结果
+ggsave("results/PCoA.pdf", plot = p, device = "pdf", height = 9, width = 9)
+
+# 如果未安装，请运行以下命令
+#remotes::install_github("pmartinezarbizu/pairwiseAdonis")
+#library(pairwiseAdonis)
+# 调用 pairwise.adonis
+pairwise_result <- pairwise.adonis(distance_matrix, factors = data$Group)
+
+# 查看结果
+print(pairwise_result)
+
+# 保存结果到文件
+write.table(pairwise_result, file = "results/pcoa_p.txt", sep = "\t", quote = FALSE, row.names = FALSE)
+
+```
+
+
+(C) The Venn diagram showing the number of shared and unique OTUs that are the same or different among the three components (Root, Rhso, Tbuso).
+
+### C: venn图
+venn plot
+
+```{r venn, fig.show='asis', fig.width=4, fig.height=2.5}
+# 加载所需库
+#library(VennDiagram)
+#library(grid)
+
+# 读取文件
+venn <- read.csv("data/otu_group_exist.csv", header = TRUE)
+
+# 分别提取 Rhso, Root 和 Tbuso 对应的 OTU
+venn_list <- list(
+  "Rhso" = unique(venn$OTU[venn$Group == "Rhso"]),
+  "Root" = unique(venn$OTU[venn$Group == "Root"]),
+  "Tbuso" = unique(venn$OTU[venn$Group == "Tbuso"])
+)
+
+# 设置颜色
+fill_colors <- c("#F9A363", "#6F99AD", "#BF5960")
+
+# 绘制 Venn 图
+pdf("results/venn.pdf", width = 8, height = 8) 
+venn.plot <- venn.diagram(
+  x = venn_list,
+  category.names = c("Rhso", "Root", "Tbuso"),
+  filename = NULL,  # 不保存为文件，直接在 R 中显示
+  output = TRUE,
+  fill = fill_colors,  # 指定每组的颜色
+  alpha = 0.6,  # 设置颜色透明度
+  cat.col = fill_colors,  # 设置类别标签的颜色
+  lwd = 0,  # 去掉圆的边线
+  col = "transparent"  # 确保边线颜色为透明
+)
+
+# 绘制 Venn 图
+grid.draw(venn.plot)
+dev.off()  # 关闭PDF设备，保存文件
+
+```
+
+
+(D) The stacked bar plot showed the bacteria composition of different groups (AT, AO, AP and AK) at Phylum level. 
+
+### D: 堆积柱状图
+Stacked bar chart 
+
+参考：https://mp.weixin.qq.com/s/JYt0QW1oR8vvORPmkyFHtw
+
+```{r stacked bar chart1, fig.show='asis', fig.width=4, fig.height=2.5}
+#library(ggplot2)
+#install.packages("ggh4x")
+#library(ggh4x)
+#library(ggprism)
+#Creat data
+df<- data.frame(
+ genes=c(rep("Actinobacteria",4),rep("Proteobacteria",4),
+         rep("Bradyrhizobium",4),rep("Acidibacter",4),
+         rep("Streptomyces",4),rep("Other",4)),
+  time=rep(c("AT","AO","AP","AK"),6),
+  values=c(sample(24,replace = FALSE)) #生成的数据是随机的，每次都不一样；也可设置固定随机种子values=c(sample(1:24, size = 24,replace = FALSE))
+)
+
+#基本堆叠柱状图
+#Basic stacked bar chart
+
+df$time<-factor(df$time,levels = c("AT","AO","AP","AK"))
+df$genes<-factor(df$genes,levels = c("Actinobacteria","Proteobacteria","Bradyrhizobium","Acidibacter","Streptomyces","Other"))
+
+#百分比形式展示
+#Display as percentage
+p <- ggplot(df, aes(x = time, y = values, fill = genes)) +
+  # 百分比(percentage)
+  geom_bar(width = 0.5,stat="identity",position = "fill") +
+  #自定义颜色(set color)
+  scale_fill_manual(values=c("#BF5960","#F9A363","#FCDC89","#E3EA96","#AAD09D","#66BC98")) +
+  #自定义Y轴刻度,并缩短柱子与上下框线的留白
+  #Customize the Y-axis scale and shorten the blank space between the column and the upper and lower borders
+  scale_y_discrete(expand = c(0.0,0.0),limits=c(0.00,0.25,0.50,0.75,1.00))+
+  #自定义X轴刻度,并缩短柱子与左右框线的留白
+  #Customize the X-axis scale and shorten the blank space between the column and the left and right borders
+  scale_x_discrete(expand = c(0.1,0.1), limits = c("AT","AO","AP","AK"))+
+  labs(x = "", y = "Frequency", title = "") +
+  theme_prism(base_fontface = "plain",
+              base_family = "serif", 
+              base_size = 16,  
+              base_line_size = 0.8, 
+              axis_text_angle = 0) +
+  theme_classic()+
+  # 取消背景板网格线，并添加图片框线
+  # Cancel the background grid lines and add picture frame lines
+  theme(#panel.grid.major = element_blank(),
+        #panel.grid.minor = element_blank(),
+        #panel.border = element_rect(color = "black", fill = NA, size = 1.5),
+        axis.title.y = element_text(face="bold",size = 14, color = "black",family = "sans")
+  )
+ggsave("results/stacked_bar_percentage.pdf", width = 8, height = 6)
+
+```
+
+
+(E) The Mantel’s test heatmap showed the Pearson correlations between soil properties with bacterial species and metabolism.
+
+### E: 火山图
+Volcano plot
+
+```{r two_group difference analysis volcano plot, fig.show='asis', fig.width=4, fig.height=2.5}
+library(ggVolcano)
+library(dplyr)
+library(ggplot2)
+
+# load data
+# 这里使用的数据是DESeq2前面分析得到的结果(The data used here is the result of the previous analysis of DESeq2)
+data_vol <-read.table("data/data_volcano.txt",header=T,sep="\t",row.names=1)
+data_vol = as.data.frame(data_vol)
+# use add_regulate function to add a regulate column to the DEG result data. 
+data <- add_regulate(data_vol, log2FC_name = "log2FC",
+                     fdr_name = "padj",log2FC = 1, fdr = 0.05)
+#data <- data[, -6]
+data$regulate <- data_vol$association
+colnames(data)[3] <- "FoldChange"
+data$padj2 <- -log10(as.numeric(data$padj))
+
+#logFC = 0.5
+#P.Value = 0.05
+p_volcano1 <- ggplot(data = data, ggplot2::aes(x = FoldChange, y = padj2)) +
+  geom_point(alpha = 0.4, size = 3.0, ggplot2::aes(color = regulate)) + 
+  ylab("-log10(Pvalue)") +
+  scale_color_manual(values = c("#74add1","#a60026", "grey")) +
+#scale_color_manual(values = c("#4177a4","#b33e5b", "grey")) +
+  #scale_color_manual(values = c("#81CBAB","#854888", "grey")) +
+  geom_vline(xintercept = c(-0.5, 0.5), lty = 4, col = "black", lwd = 0.4) + 
+  geom_hline(yintercept = -log10(0.05), lty = 4, col = "black", lwd = 0.4) + 
+  labs(x = bquote(Log[2]~italic(FC)), y= bquote(atop(-Log[10]~italic(FDR))))+
+  ggplot2::theme_bw()
+
+# add labels
+# select top 5 enriched species
+up_data1 <- filter(data, data$regulate == "Enriched")
+up_data2 <- dplyr::arrange(up_data1, dplyr::desc(up_data1$padj2))
+up_data_5 <- up_data2[1:8, ] 
+  
+# select top 25 depleted species
+down_data1 <- filter(data, data$regulate == "Depleted")
+down_data2 <- dplyr::arrange(down_data1, desc(down_data1$padj2))
+down_data_25 <- down_data2[1:8, ] 
+
+# using geom_text_repel() to add labels
+library(ggrepel)
+p_volcano2 <- p_volcano1 +  
+  geom_text_repel(data = up_data_5, ggplot2::aes(x = FoldChange, 
+                                        y = padj2, 
+                                        label = up_data_5$row), size = 3) + 
+  geom_text_repel(data = down_data_25, ggplot2::aes(x = FoldChange, 
+                                           y = padj2, 
+                                           label = down_data_25$row), size = 3)+  
+  theme(legend.position = c(0.84, 0.85),panel.grid = element_blank())
+ggplot2::ggsave(paste("results/Two_group_volcano_plot",".pdf", sep=""), 
+       p_volcano2, width=100 * 1.5, height=80 * 1.5, unit='mm')
+#p_volcano2
+```
+
+
+(F) The volcano plot showed the significantly enriched (red) or depleted (blue) genera between different groups.
+
+### F:蒙特尔相关性热图
+Mantel correlation heatmap chart 
+ 
+参考https://mp.weixin.qq.com/s/X3BuMnBuqckf3dpoaCPZ-Q
+
+```{r Cor_mantel heatmap chart, fig.show='asis', fig.width=4, fig.height=2.5}
+#library(devtools)
+#install_github('Hy4m/linkET',force = TRUE) # 安装包
+#library(linkET)
+#library(ggplot2)
+#library(dplyr)
+#library(ggpubr)
+
+# 读取数据
+otu = read.csv("data/otu.csv", row.names = 1, stringsAsFactors = FALSE, check.names = FALSE) # otu数据
+met = read.csv("data/met.csv", row.names = 1, stringsAsFactors = FALSE, check.names = FALSE) # 代谢组数据
+env = read.csv("data/env.csv", row.names = 1, stringsAsFactors = FALSE, check.names = FALSE) # 环境因子数据
+
+# 合并 otu 和 met 数据
+data = data.frame(otu, met[match(rownames(otu), rownames(met)), 3:ncol(met)])
+head(data)
+
+# Mantel test
+mantel <- mantel_test(
+  seed = 12345,
+  spec = data, env = env,
+  spec_select = list(species = 3:ncol(otu),
+                     Metabolism = ncol(otu):ncol(otu)+ncol(met)-2), 
+  env_select =  as.list(setNames(1:ncol(env), names(env))),
+  spec_dist =  dist_func(.FUN = "vegdist", method = "bray"), 
+  env_dist = dist_func(.FUN = "vegdist", method = "euclidean"),
+  mantel_fun = 'mantel', 
+  na_omit=TRUE,
+  )
+mantel 
+
+# 设置标签和分段区间
+mantel <- mutate(mantel, 
+  rd = cut(r, right = TRUE, # 表示分割区间形式为(b1,b2]。
+           breaks = c(-Inf, 0.4, 0.6, 0.8, Inf),
+           labels = c('[0, 0.4]', '(0.4, 0.6]', '(0.6, 0.8]', '(0.8, 1]')
+          ),
+  pd = cut(p, right = FALSE, # 表示分割区间形式为[b1,b2)。
+           breaks = c(-Inf, 0.001, 0.01, 0.05, Inf), 
+           labels = c('***', '**', '*', 'ns')
+          )
+)
+
+# 调整颜色渐变，使用指定配色
+custom_palette <- c("#a60026", "#F9A363", "#FCDC89", "#E3EA96", "#AAD09D", "#66BC98")
+
+# 相关性组合图：热图在右上
+com <- correlate(
+  env,
+  method = "pearson",
+  adjust = TRUE,
+  adjust_method = "fdr"
+) %>% 
+  qcorrplot(
+    type = "upper",
+    diag = FALSE,
+    grid_col = "black", # 网格线颜色
+    grid_size = 0.25, # 网格大小
+    use_md = TRUE # 设置使用ggtext::element_markdown()设置轴标签
+    ) +
+  geom_square() + # 以颜色和矩形面积表示相关性大小
+  geom_mark(# 添加r值与显著性标记
+    sep = '\n', 
+    size = 3, 
+    sig_level = c(0.05, 0.01, 0.001), # 显著性水平设置
+    sig_thres = 0.05 # 显著性阈值，p值大于阈值的相关性系数不会被绘制。
+  ) +
+  scale_fill_gradientn(
+    colours = custom_palette,
+    limits = c(-1, 1),
+    breaks = seq(-1, 1, 0.5)
+  ) +
+  geom_couple(
+    aes(color = pd, size = rd),
+    data = mantel, 
+    label.size = 4,
+    drop = TRUE,
+    label.colour = "black",
+    label.fontface = 1,
+    nudge_x = 0.5,
+    curvature = nice_curvature()
+  ) +
+  scale_size_manual(values = c(0.5, 1, 1.5, 2)) +  #根据设置的mantel相关性r值区间设置线粗细
+  scale_color_manual(values = c("#a60026", "#66BC98")) +  #根据设置的mantel相关性p值区间设置线颜色,因为p结果只有两个区间，可以只设置两个颜色。
+  guides(
+    color = guide_legend(title = "Mantel's p", order = 1),
+    size = guide_legend(title = "Mantel's r", order = 2),
+    fill = guide_colorbar(title = "Pearson's r", order = 3)
+  ) +
+  theme(legend.key = element_blank())
+
+
+ggsave("results/cor_mantel.pdf", com, device = "pdf", family = "Times", width = 8, height = 8)
+
+```
+
+
+(G) The stamp plot showed the differences of pathways between patients and healthy controls. The left panel showed the mean proportions of relative abundance in patients (green bar) or healthy (orange bar) group. The right panel showed the p-value of the differences and 95% confidence intervals. 
+
+### G: STAMP图
+STAMP plot 
+
+```{r}
+#library(ggchicklet)
+#library(tidyverse)
+#library(ggsci)
+#library(magrittr)
+#library(ggh4x)
+#library(rstatix)
+#library(ggsignif)
+#library(ggpubr)
+#library(ggnewscale)
+#library(patchwork)
+#library(reshape2)
+#library(ggplot2)
+
+# 载入数据
+# Load data
+
+data <- read.table("data/pathway.txt",header = TRUE,row.names = 1,sep = "\t")
+group <- read.table("data/group.txt",header = FALSE,sep = "\t")
+
+group = group[-1,]
+
+# 构建矩阵
+# Construct matrix
+row=as.numeric(length(row.names(data))) 
+col=as.numeric(length(colnames(data))) 
+col_sum=rep(colSums(data), row)
+col_sum=matrix(col_sum, nrow = col, ncol = row)
+
+# 计算相对丰度
+# Calcualate relative abundance
+data2=data/t(col_sum)
+colSums(data2)
+
+# 过滤掉平均丰度低于5%的功能分类
+# Filter out functional categories with an average abundance below 5%
+data = data2
+data <- data*100
+data <- data %>% filter(apply(data,1,mean) > 0.05)
+
+data <- t(data)
+data1 <- data.frame(data,group$V2)
+colnames(data1) <- c(colnames(data),"Group")
+data1$Group <- as.factor(data1$Group)
+
+# 不符合正态分布，使用非参检验
+# Does not conform to normal distribution, use non-parametric test
+# shapiro.test(data1$`Amino acid metabolism`)
+# shapiro.test(data1$`Biosynthesis of other secondary metabolites`)
+# shapiro.test(data1$Alistipes_putredinis)
+
+# diff <- data1 %>% 
+#     select_if(is.numeric) %>%
+#     map_df(~ broom::tidy(t.test(. ~ Group,data = data1)), .id = 'var')
+# 
+# diff$p.value <- p.adjust(diff$p.value,"bonferroni")
+# diff <- diff %>% filter(p.value < 0.05)
+
+# 非参检验
+# wilcox test
+library(tidyverse)
+diff <- data1 %>% 
+    select_if(is.numeric) %>%
+    map_df(~ broom::tidy(wilcox.test(. ~ Group,data = data1, conf.int = TRUE)), .id = 'var')
+diff$p.value <- p.adjust(diff$p.value,"BH")
+diff <- diff %>% filter(p.value < 0.02)
+# write.csv(diff, "results/Pathway_wixcox_test_0.05_abun_filter_0.05.csv")
+
+## 绘图数据构建(Data construction)
+## 左侧条形图(Left bar plot)
+abun.bar <- data1[,c(diff$var,"Group")] %>% 
+    rstatix::gather(variable,value,-Group) %>% 
+    group_by(variable,Group) %>% 
+    summarise(Mean = mean(value))
+
+## 右侧散点图(Scatter plot on the right)
+diff.mean <- diff[,c("var","estimate","conf.low","conf.high","p.value")]
+diff.mean$Group <- c(ifelse(diff.mean$estimate >0,levels(data1$Group)[1],
+                            levels(data1$Group)[2]))
+diff.mean <- diff.mean[order(diff.mean$estimate,decreasing = TRUE),]
+
+## 左侧条形图(Left bar plot)
+cbbPalette <- c("#F9A363", "#66BC98")
+abun.bar$variable <- factor(abun.bar$variable,levels = rev(diff.mean$var))
+p1 <- ggplot(abun.bar,aes(variable,Mean,fill = Group)) +
+    scale_x_discrete(limits = levels(diff.mean$var)) +
+    coord_flip() +
+    xlab("") +
+    ylab("Mean proportion (%)") +
+    theme(panel.background = element_rect(fill = 'transparent'),
+          panel.grid = element_blank(),
+          axis.ticks.length = unit(0.2,"lines"), 
+          axis.ticks = element_line(color='black'),
+          axis.line = element_line(colour = "black"),
+          axis.title.x=element_text(colour='black', size=9,face = "bold"),
+          axis.text=element_text(colour='black',size=7,face = "bold"),
+          legend.title=element_blank(),
+          legend.text=element_text(size=12,face = "bold",colour = "black",
+                                   margin = margin(r = 20)),
+          #legend.position = c(-0.1,0.1),
+          legend.position = "top",
+          legend.direction = "horizontal",
+          legend.key.width = unit(0.8,"cm"),
+          legend.key.height = unit(0.5,"cm"))
+#p1
+
+for (i in 1:(nrow(diff.mean) - 1)) 
+    p1 <- p1 + annotate('rect', xmin = i+0.5, xmax = i+1.5, ymin = -Inf, ymax = Inf, 
+                        fill = ifelse(i %% 2 == 0, 'white', 'gray95'))
+
+p1 <- p1 + 
+    geom_bar(stat = "identity",position = "dodge",width = 0.4,colour = "black",linewidth = 0.1) +  #width调整柱子宽度
+    scale_fill_manual(values=cbbPalette)
+#p1
+
+## 右侧散点图(Scatter plot on the right)
+diff.mean$var <- factor(diff.mean$var,levels = levels(abun.bar$variable))
+diff.mean$p.value <- signif(diff.mean$p.value,3)
+diff.mean$p.value <- as.character(diff.mean$p.value)
+p2 <- ggplot(diff.mean,aes(var,estimate,fill = Group)) +
+    theme(panel.background = element_rect(fill = 'transparent'),
+          panel.grid = element_blank(),
+          axis.ticks.length = unit(0.4,"lines"), 
+          axis.ticks = element_line(color='black'),
+          axis.line = element_line(colour = "black"),
+          axis.title.x=element_text(colour='black', size=6,face = "bold"),
+          axis.text=element_text(colour='black',size=7,face = "bold"),
+          axis.text.y = element_blank(),
+          legend.position = "none",
+          axis.line.y = element_blank(),
+          axis.ticks.y = element_blank(),
+          plot.title = element_text(size = 10,face = "bold",colour = "black",hjust = 0.5)) +
+    scale_x_discrete(limits = levels(diff.mean$var)) +
+    coord_flip() +
+    xlab("") +
+    ylab("Difference in mean proportions (%)") +
+    labs(title="95% confidence intervals") 
+
+for (i in 1:(nrow(diff.mean) - 1)) 
+    p2 <- p2 + annotate('rect', xmin = i+0.5, xmax = i+1.5, ymin = -Inf, ymax = Inf, 
+                        fill = ifelse(i %% 2 == 0, 'white', 'gray95'))
+
+p2 <- p2 +
+    geom_errorbar(aes(ymin = conf.low, ymax = conf.high), 
+                  position = position_dodge(0.8), width = 0.3, size = 0.40) +
+    geom_point(shape = 21,size = 1.5) +
+    scale_fill_manual(values=cbbPalette) +
+    geom_hline(aes(yintercept = 0), linetype = 'dashed', color = 'black')
+#p2
+    
+p3 <- ggplot(diff.mean,aes(var,estimate,fill = Group)) +
+    geom_text(aes(y = 0,x = var),label = diff.mean$p.value,
+              hjust = 0,fontface = "bold",inherit.aes = FALSE,size = 3) +
+    geom_text(aes(x = nrow(diff.mean)/2 +0.5,y = 0.85),label = "P-value (corrected)",
+             srt = 90,fontface = "bold",size = 2.5) +
+    coord_flip() +
+    ylim(c(0,1)) +
+    theme(panel.background = element_blank(),
+          panel.grid = element_blank(),
+          axis.line = element_blank(),
+          axis.ticks = element_blank(),
+          axis.text = element_blank(),
+          axis.title = element_blank())
+
+## 图像拼接(Combined plot)
+p <- p1 + p2 + p3 + plot_layout(widths = c(2,2,1))
+#p
+
+## 保存图像
+# Save plot
+ggsave("results/Genus_stamp_abun_filter_0.05.pdf",p,width = 12,height = 6)
+
+```
+
+
+(H) The phylogenetic relationships among different amplicon sequence variants (ASVs), the branches were colored by different families.
+
+### H: 树图
+Tree map 
+
+参考https://mp.weixin.qq.com/s/0JAOPyTW1dQlTOVso5N9_A
+
+```{r}
+#library("ggplot2")
+#library("ggtree")
+#library("colorspace")
+#library("RColorBrewer")
+# 输入文件路径
+treFile = "data/otus.treefile"  # 进化树文件
+groupFile = "data/annotation.txt"  # 树枝分类文件
+outFile = "results/tree_Family.pdf"  # 输出文件路径
+
+# 自定义颜色
+#custom_colors = c("#a60026", "#F9A363", "#FCDC89", "#E3EA96", "#AAD09D", "#66BC98")
+
+# 读取属性文件，并将属性信息保存到列表
+cls = list()
+rt = read.table(groupFile, sep = "\t", header = TRUE)
+
+# 设置你想要使用的分类水平的列名，例如Kingdom, Phylum（3）, Class（4）, Order（5）, Family（6）, 
+# 在这里，假设你选择的是第二列，可以根据需要修改列号（如想用科级别，选择相应列）
+taxonomy_level = 6  # 可以更改这个数值，指定具体的分类水平列
+
+for (i in 1:nrow(rt)) {
+  otu = as.character(rt[i, 1])  # OTU 是第一列
+  taxonomy = as.character(rt[i, taxonomy_level])  # 根据选择的分类水平读取
+  cls[[taxonomy]] = c(cls[[taxonomy]], otu)
+}
+
+# 获取分类名称
+taxonomyNames = names(cls)
+taxonomyNum = length(taxonomyNames)
+
+
+# 如果自定义颜色不足，使用 colorRampPalette 生成足够多的颜色
+custom_colors = c("#a60026", "#F9A363", "#FCDC89", "#E3EA96", "#AAD09D", "#66BC98")
+if (taxonomyNum > length(custom_colors)) {
+  custom_colors = colorRampPalette(custom_colors)(taxonomyNum)
+}
+
+# 读取进化树文件，并将其与属性文件合并
+tree = read.tree(treFile)
+tree = groupOTU(tree, cls)
+
+# 绘制进化树并输出到 PDF 文件
+pdf(file = outFile, width = 8, height = 8)
+ggtree(tree, 
+       layout = "circular", 
+       ladderize = FALSE, 
+       branch.length = "none", 
+       aes(color = group)) +
+  scale_color_manual(values = custom_colors, 
+                     breaks = taxonomyNames, 
+                     labels = taxonomyNames) +
+  theme(legend.position = "right") + 
+  geom_text(aes(label = paste("              ", label, sep = ""), 
+                angle = angle + 45), 
+            size = 2)
+dev.off()
+```
+
+

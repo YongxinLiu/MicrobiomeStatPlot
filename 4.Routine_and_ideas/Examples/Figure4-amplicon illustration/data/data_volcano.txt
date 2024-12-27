@@ -1,0 +1,65 @@
+ID	row	padj	log2FC	association							
+Proteobacteria	Proteobacteria	3.08E-05	-1.03552188	Depleted							
+Planctomycetes	Planctomycetes	6.60E-05	1.434602692	Enriched							
+Actinobacteria	Actinobacteria	0.002358425	-0.591404333	Depleted							
+Verrucomicrobia	Verrucomicrobia	0.003132826	0.851992468	Enriched							
+Solirubrobacter	Solirubrobacter	0.0002	-0.7	Depleted							
+Conexibacter	Conexibacter	0.015	0.8	Enriched							
+Baekduia	Baekduia	0.03	-0.6	Depleted							
+Paraburkholderia	Paraburkholderia	0.001	1	Enriched							
+Mycobacterium	Mycobacterium	0.00002	-0.8	Depleted							
+Acidibacter	Acidibacter	0.025	0.9	Enriched							
+Actinoallomurus	Actinoallomurus	0.03	-0.65	Depleted							
+Streptomyces	Streptomyces	0.005	1.2	Enriched							
+Bradyrhizobium	Bradyrhizobium	0.02	-0.75	Depleted							
+Phenylobacterium	Phenylobacterium	0.01	0.85	Enriched							
+Pseudolabrys	Pseudolabrys	0.025	-0.7	Depleted							
+Ferrovibrio	Ferrovibrio	0.01	1.1	Enriched							
+Acidobacteria	Acidobacteria	0.10593574	0.606023674	Not significant							
+Armatimonadetes	Armatimonadetes	0.193184887	0.845738067	Not significant							
+Candidatus_Saccharibacteria	Candidatus_Saccharibacteria	0.232258418	-0.944874332	Not significant							
+Chloroflexi	Chloroflexi	0.273493257	-0.449620366	Not significant							
+Unassigned	Unassigned	0.35446995	-0.251749356	Not significant							
+Bacteroidetes	Bacteroidetes	0.645427665	-0.24274773	Not significant							
+Chlamydiae	Chlamydiae	0.799469591	0.271602161	Not significant							
+Firmicutes	Firmicutes	0.802385743	0.139706859	Not significant							
+Spirochaetes	Spirochaetes	0.899237548	-0.101563217	Not significant							
+Ignavibacteriae	Ignavibacteriae	0.987118841	0.086236271	Not significant							
+Nitrospirae	Nitrospirae	0.990001556	-0.004965678	Not significant							
+Flindersiella	Flindersiella	0.31	0.05	Not significant							
+Stella	Stella	0.32	-0.1	Not significant							
+Steroidobacter	Steroidobacter	0.31	0.12	Not significant							
+Paenibacillus	Paenibacillus	0.32	-0.08	Not significant							
+Caulobacter	Caulobacter	0.34	0.15	Not significant							
+Gemmatirosa	Gemmatirosa	0.38	-0.09	Not significant							
+Actinocrinis	Actinocrinis	0.46	0.13	Not significant							
+Reyranella	Reyranella	0.43	-0.11	Not significant							
+Aciditerrimonas	Aciditerrimonas	0.49	0.07	Not significant							
+Microvirga	Microvirga	0.55	-0.06	Not significant							
+Oceanibaculum	Oceanibaculum	0.57	0.1	Not significant							
+Rhodovastum	Rhodovastum	0.52	-0.04	Not significant							
+Acidibrevibacterium	Acidibrevibacterium	0.66	0.11	Not significant							
+Edaphobacter	Edaphobacter	0.61	-0.07	Not significant							
+Taonella	Taonella	0.69	0.06	Not significant							
+Acidisphaera	Acidisphaera	0.71	-0.05	Not significant							
+Dongia	Dongia	0.73	0.08	Not significant							
+Frankia	Frankia	0.74	-0.06	Not significant							
+Massilia	Massilia	0.75	0.09	Not significant							
+Actinomadura	Actinomadura	0.76	-0.08	Not significant							
+Magnetospirillum	Magnetospirillum	0.78	0.04	Not significant							
+Mesorhizobium	Mesorhizobium	0.82	-0.03	Not significant							
+Roseomonas	Roseomonas	0.84	0.02	Not significant							
+Haliangium	Haliangium	0.86	-0.01	Not significant							
+Actinomarinicola	Actinomarinicola	0.88	0.03	Not significant							
+Skermanella	Skermanella	0.71	-0.02	Not significant							
+Acidipila	Acidipila	0.73	0.01	Not significant							
+Bacillus	Bacillus	0.74	-0.03	Not significant							
+Caballeronia	Caballeronia	0.75	0.02	Not significant							
+Chelativorans	Chelativorans	0.76	-0.05	Not significant							
+Devosia	Devosia	0.78	0.06	Not significant							
+Rhodoplanes	Rhodoplanes	0.95	-0.04	Not significant							
+Fodinicola	Fodinicola	0.96	0.03	Not significant							
+Labilithrix	Labilithrix	0.97	-0.02	Not significant							
+Labrys	Labrys	0.98	0.01	Not significant							
+Occallatibacter	Occallatibacter	0.92	-0.06	Not significant							
+Terracidiphilus	Terracidiphilus	0.95	0.05	Not significant							
