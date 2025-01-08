@@ -12,7 +12,7 @@ The development of high-throughput sequencing has greatly promoted the developme
 
 You are the founder, join us now and contribute your wisdom!
 
-**创作者要求 (Requirements)**
+**创作者要求 (Creator requirements)**
 
 *   本领域的专业同行，专业包括且不限于微生物学、生物信息学、微生物组学，或应用培养组学、扩增子、宏基因组、宏转录组、宏病毒组、宏蛋白组、宏代谢组、宏表观组等技术研究人类、动植物、环境的相关研究人员(年级和职称不限)；
 *   Professional colleagues in this field, including but not limited to microbiology, bioinformatics, microbiome, or researchers who use culturomics, amplicon, metagenomics, macrotranscriptomics, macrovirome, macroproteomics, macrometabolomics, macroepigenetics and other technologies to study humans, animals, plants, and the environment (without restrictions on grade and title);
@@ -23,7 +23,7 @@ You are the founder, join us now and contribute your wisdom!
 *   对宏基因组编辑部提出的合理意见进行认真修改；
 *   Carefully revise the reasonable suggestions made by the Metagenome Editorial Department;
 
-**创作者福利（Benefits）**
+**创作者福利（Creator benefits）**
 
 *   创作者作为章节的作者之一；
 *   The creator is one of the authors of the chapter;
