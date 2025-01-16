@@ -1,0 +1,603 @@
+---
+title: "XGBoost Classifier Tutorial 极致梯度提升分类模型教程"
+author: "Defeng Bai(白德凤), Chuang Ma(马闯), Jiani Xun(荀佳妮)"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    df_print: paged
+    theme: cerulean
+    highlight: haddock
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      collapsed: no
+      smooth_scroll: yes
+    code_fold: show
+  word_document:
+    toc: yes
+    toc_depth: '3'
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = T, echo=T, comment="#>", message=F, warning=F,
+	fig.align="center", fig.width=5, fig.height=3, dpi=150)
+```
+
+
+
+The XGBoost Classifier scripts is referenced from MicrobiomeStatPlot [Inerst Reference below].
+
+If you use this script, please cited 如果你使用本代码，请引用：
+
+**Yong-Xin Liu**, Lei Chen, Tengfei Ma, Xiaofang Li, Maosheng Zheng, Xin Zhou, Liang Chen, Xubo Qian, Jiao Xi, Hongye Lu, Huiluo Cao, Xiaoya Ma, Bian Bian, Pengfan Zhang, Jiqiu Wu, Ren-You Gan, Baolei Jia, Linyang Sun, Zhicheng Ju, Yunyun Gao, **Tao Wen**, **Tong Chen**. 2023. EasyAmplicon: An easy-to-use, open-source, reproducible, and community-based pipeline for amplicon data analysis in microbiome research. **iMeta** 2(1): e83. https://doi.org/10.1002/imt2.83
+
+The online version of this tuturial can be found in https://github.com/YongxinLiu/MicrobiomeStatPlot
+
+
+**Authors**
+First draft(初稿)：Defeng Bai(白德凤)；Proofreading(校对)：Ma Chuang(马闯) and Xun Jiani(荀佳妮)；Text tutorial(文字教程)：Defeng Bai(白德凤)
+
+
+
+# Introduction简介
+
+XGBoost is short for eXtreme Gradient Boosting package.
+XGBoost 是 eXtreme Gradient Boosting 的缩写。
+
+It is an efficient and scalable implementation of gradient boosting framework by J. Friedman et al. (2000) and J. H. Friedman (2001). Two solvers are included:
+它是 J. Friedman 等人（2000 年）和 J. H. Friedman（2001 年）提出的梯度提升框架的高效且可扩展的实现。其中包括两个求解器：
+
+-linear model ; 线性模型
+-tree learning algorithm. 树学习算法
+It supports various objective functions, including regression, classification and ranking. The package is made to be extendible, so that users are also allowed to define their own objective functions easily.
+它支持各种目标函数，包括回归、分类和排序。该软件包具有可扩展性，因此用户也可以轻松定义自己的目标函数。
+
+It has been used to win several Kaggle competitions.
+它已被用于赢得多次 Kaggle 比赛。
+
+It has several features:
+它有几个特点：
+
+Speed: it can automatically do parallel computation on Windows and Linux, with OpenMP. It is generally over 10 times faster than the classical gbm.
+Input Type: it takes several types of input data:
+Dense Matrix: R’s dense matrix, i.e. matrix ;
+Sparse Matrix: R’s sparse matrix, i.e. Matrix::dgCMatrix ;
+Data File: local data files ;
+xgb.DMatrix: its own class (recommended).
+Sparsity: it accepts sparse input for both tree booster and linear booster, and is optimized for sparse input ;
+Customization: it supports customized objective functions and evaluation functions.
+
+速度：它可以在 Windows 和 Linux 上自动进行并行计算，使用 OpenMP。它通常比经典的 gbm 快 10 倍以上。
+输入类型：它接受几种类型的输入数据：
+密集矩阵：R 的密集矩阵，即矩阵；
+稀疏矩阵：R 的稀疏矩阵，即 Matrix::dgCMatrix；
+数据文件：本地数据文件；
+xgb.DMatrix：它自己的类（推荐）。
+稀疏性：它接受树增强器和线性增强器的稀疏输入，并针对稀疏输入进行了优化；
+自定义：它支持自定义目标函数和评估函数。
+
+
+
+关键字：微生物组数据分析、MicrobiomeStatPlot、极致梯度提升分类模型、R语言可视化
+
+Keywords: Microbiome analysis, MicrobiomeStatPlot, XGBoost Classifier , R visulization
+
+
+
+## 极致梯度提升分类模型案例 XGBoost Classifier Example
+
+这是来自于澳大利亚贝克心脏与糖尿病研究所Michael Inouye研究组2022年发表于Cell Metabolism上的一篇论文。论文的题目为：Early prediction of incident liver disease using conventional risk factors and gut-microbiome-augmented gradient boosting. https://doi.org/10.1016/j.cmet.2022.03.002
+
+This is a paper from Michael Inouye's research group at the Baker Heart and Diabetes Institute in Australia published in Cell Metabolism in 2022. The title of the paper is: Early prediction of incident liver disease using conventional risk factors and gut-microbiome-augmented gradient boosting. https://doi.org/10.1016/j.cmet.2022.03.002
+
+
+![](e1.Cell.Metabolism.01.jpg)
+
+Figure 3. Models of conventional risk factors and gut microbiome data improved the prediction of incident liver disease over conventional prediction models
+图 3. 传统风险因素和肠道微生物组数据模型比传统预测模型更能提高对肝病发病率的预测
+
+(A and B) Area under the ROC curve (AUROC) for gradient boosting models using species-level gut microbiome data together with conventional risk factors (blue) or a conventional risk factor model (red), predicting (A) incident any liver disease or (B) alcoholic liver disease. (C and D) Area under the precision-recall curve (AUPRC) for (C) any liver disease and (D) alcoholic liver disease. Error bars represent mean and IQR. Difference in performance between the microbiome-augmented model and the conventional risk factor model was tested using one-sided Wilcoxon-signed rank test. *p < 0.05; **p < 0.01. Horizontal dashed lines mark the mean performance of conventional model as a reference. The bolded ROC and precision-recall curves correspond to models with AUROC and AUPRC that are closest to the mean performance reference.
+
+(A 和 B) 使用物种水平肠道微生物组数据以及传统风险因素（蓝色）或传统风险因素模型（红色）的梯度增强模型的 ROC 曲线下面积 (AUROC)，预测 (A) 任何肝病的发生率或 (B) 酒精性肝病。 (C 和 D) (C) 任何肝病和 (D) 酒精性肝病的精确召回曲线下面积 (AUPRC)。误差线代表平均值和 IQR。使用单侧 Wilcoxon 符号秩检验测试微生物组增强模型和传统风险因素模型之间的性能差异。 *p < 0.05; **p < 0.01。水平虚线标记传统模型的平均性能作为参考。加粗的 ROC 和精确召回曲线对应于 AUROC 和 AUPRC 最接近平均性能参考的模型。
+
+
+**结果**
+
+Integrating gut microbiome and conventional risk factors
+整合肠道微生物组和传统风险因素
+
+Overall, the prediction performance of the microbiomeaugmented models achieved greater AUROC and AUPRC compared with that of the conventional prediction models (Wilcoxon p < 0.05). Prediction of LD (Figure 3A) using the species-level augmented model yielded an average AUROC of 0.834 (0.815–0.852), an AUROC increase of 0.066 over the conventional risk factor model (as above, average AUROC 0.768). For ALD, the species-level augmented model yielded an average AUROC of 0.956 (0.945–0.964), an AUROC increase of 0.081 over the conventional risk factor model (as above, average AUROC 0.875) (Figure 3B).
+总体而言，与传统预测模型相比，微生物增强模型的预测性能实现了更高的 AUROC 和 AUPRC（Wilcoxon p < 0.05）。使用物种级增强模型预测 LD（图 3A）得出的平均 AUROC 为 0.834（0.815–0.852），比传统风险因素模型（如上，平均 AUROC 0.768）增加了 0.066。对于 ALD，物种级增强模型得出的平均 AUROC 为 0.956（0.945–0.964），比传统风险因素模型（如上，平均 AUROC 0.875）增加了 0.081（图 3B）。
+
+With a baseline AUPRC value of 0.015 for LD, the species-level augmented model achieved an average AUPRC of 0.185 (0.156– 0.202), which was higher (Wilcoxon p < 0.05) than the average AUPRC of 0.158 (0.141–0.179) yielded by the conventional risk factor model (Figure 3C). For ALD with a baseline AUPRC of 0.006, the species-level augmented model yielded a significantly greater AUPRC than the conventional risk factor model (Wilcoxon p < 0.01; Figure 3D), with average AUPRCs of 0.304 (0.283–0.326) and 0.199 (0.133–0.265), respectively.
+对于 LD，基线 AUPRC 值为 0.015，物种级增强模型实现了 0.185（0.156– 0.202）的平均 AUPRC，高于（Wilcoxon p < 0.05）传统风险因素模型得出的平均 AUPRC 0.158（0.141–0.179）（图 3C）。对于基线 AUPRC 为 0.006 的 ALD，物种级增强模型得出的 AUPRC 显著高于传统风险因素模型（Wilcoxon p < 0.01；图 3D），平均 AUPRC 分别为 0.304（0.283–0.326）和 0.199（0.133–0.265）。
+
+
+
+## Packages installation软件包安装
+
+```{r}
+# 基于CRAN安装R包，检测没有则安装
+p_list = c("xgboost", "tidyverse", "data.table", "Matrix", "skimr",
+           "DataExplorer", "GGally", "caret", "pROC", "dplyr", "ggplot2",
+           "ggpubr", "ggprism", "rms", "vip", "plyr")
+for(p in p_list){if (!requireNamespace(p)){install.packages(p)}
+    library(p, character.only = TRUE, quietly = TRUE, warn.conflicts = FALSE)}
+
+# 加载R包 Load the package
+suppressWarnings(suppressMessages(library(xgboost)))
+suppressWarnings(suppressMessages(library(tidyverse)))
+suppressWarnings(suppressMessages(library(data.table)))
+suppressWarnings(suppressMessages(library(Matrix)))
+suppressWarnings(suppressMessages(library(skimr)))
+suppressWarnings(suppressMessages(library(DataExplorer)))
+suppressWarnings(suppressMessages(library(GGally)))
+suppressWarnings(suppressMessages(library(caret)))
+suppressWarnings(suppressMessages(library(pROC)))
+suppressWarnings(suppressMessages(library(dplyr)))
+suppressWarnings(suppressMessages(library(ggplot2)))
+suppressWarnings(suppressMessages(library(ggpubr)))
+suppressWarnings(suppressMessages(library(ggprism)))
+suppressWarnings(suppressMessages(library(rms)))
+suppressWarnings(suppressMessages(library(vip)))
+suppressWarnings(suppressMessages(library(plyr)))
+```
+
+
+# XGBoost Classifier Tutorial 极致梯度提升分类模型
+
+## XGBoost Classifier Using R Software XGBoost在R语言中的实现
+
+参考：https://mp.weixin.qq.com/s/I34u7D2dW0wLyrNx_UJIhQ
+
+
+```{r XGBoost Classifier, echo=TRUE}
+# 加载数据 Load data
+library(survival)
+data1 <- colon
+
+# 变量筛选
+data2 <- select(data1,3:14)
+
+# 剔除缺失样本
+data_d <- na.omit(data2)
+
+# 分类变量因子化
+for (i in c(2,4:6,9:12)) {  
+  data_d[,i] <- factor(data_d[,i])
+  }
+data_d$status <- as.factor(data_d$status)
+data <- data_d
+
+# 构建XGBoost模型，按照7/3划分训练集和验证集
+set.seed(666)
+train_index <- createDataPartition(y=data$status,p=0.7,list=F)
+train_data <- data[train_index, ]
+val_data <- data[-train_index,]
+
+# 分类变量转换为0/1，xgboost默认类别标签从0开始，减去1
+train_x <-  sparse.model.matrix(status ~ ., data = train_data)[,-8]
+train_y <-  as.numeric(train_data$status)-1
+# xgboost训练所需的输入数据结构DMatrix矩阵
+dtrain <- xgb.DMatrix(data = train_x, label = train_y)
+
+
+# 1.测试模型
+################################################################################
+# 训练集构建测试模型
+params0 <- list(objective = "binary:logistic",                 
+                booster="gbtree",                
+                eval_metric = "logloss",                 
+                eta = 0.3,                 
+                gamma=0,                
+                max_depth = 6,                
+                min_child_weight = 1,                 
+                subsample = 1,                 
+                colsample_bytree = 1)
+
+# 训练XGBoost初始模型
+set.seed(123)
+xgb_model0 <- xgb.train(data=dtrain,                        
+                        params = params0,                        
+                        nrounds = 100,                    
+                        verbose = 1)
+
+# 训练集模型评估
+predict_initial <- predict(xgb_model0,newdata =dtrain)
+range(predict_initial)
+# XGBoost概率大于0.5，则被分类为 1，否则为 0
+predict_initial <- ifelse(predict_initial > 0.5,1,0)
+# 计算准确率
+acc_initial <- mean(predict_initial == train_y)
+# 评价指标混淆矩阵
+train_matrix0 <- confusionMatrix(as.factor(predict_initial),                
+                                 train_data$status)
+################################################################################
+
+
+# 2.调整参数
+################################################################################
+set.seed(666)
+# 确定最佳迭代次数
+xgb_model_cv <- xgb.cv(data=dtrain,                       
+                       objective="binary:logistic",                       
+                       booster="gbtree",                      
+                       eval_metric = "logloss",                        
+                       eta=0.3,                       
+                       max_depth=6,                       
+                       min_child_weight=1,                       
+                       gamma=0,                       
+                       subsample=1,                       
+                       colsample_bytree=1,                       
+                       scale_pos_weight=1,                  
+                       nrounds=300,                       
+                       nfold=5,                       
+                       metrics=list("error","auc"),                       
+                       early_stopping_rounds=30)
+
+
+# 运行模型
+set.seed(666)
+xgb_model_cv.bst <- xgb.train(data=dtrain,                              
+                              objective="binary:logistic",                              
+                              booster="gbtree",                              
+                              eval_metric = "logloss",                               
+                              eta=0.3,                              
+                              max_depth=6,                              
+                              min_child_weight=1,                              
+                              gamma=0,                              
+                              subsample=1,                              
+                              colsample_bytree=1,                              
+                              scale_pos_weight=1,                          
+                              nrounds=238)
+# 最佳模型
+print(xgb_model_cv.bst)
+
+# 计算准确率
+predict_cv.bst <- predict(xgb_model_cv.bst,,newdata =dtrain)
+cv.fit <- ifelse(predict_cv.bst > 0.5,1,0)
+acc_cv <- mean(cv.fit == train_y)
+
+# 使用caret包调整参数,采用自适应重采样"adaptive_cv"缩短计算时间
+caret.Control <- trainControl(method = "adaptive_cv",                
+                              number = 4,                             
+                              repeats=4,                             
+                              verboseIter = FALSE,                             
+                              returnData = FALSE,                             
+                              selectionFunction="best",                             
+                              returnResamp = "final",                             
+                              search = "grid",                             
+                              seeds=set.seed(123))
+
+# 设置参数
+caret.grid <- expand.grid(nrounds = c(200,300), # 迭代轮数                         
+                          max_depth = c(5,6), # 最大树深度                   
+                          eta = c(0.1, 0.3), # 学习率                  
+                          gamma = c(0.1,0.5), # 树分裂所需的最小损失减少值                          
+                          colsample_bytree = c(0.8,1), # 特征子采样比例                     
+                          min_child_weight = c(1,3), # 叶子节点的最小权重                       
+                          subsample = c(0.8,1)) # 和样本子采样比例
+
+# 参数调优
+set.seed(666)
+xgb_model_caret <- train(status~.,data = train_data,                    
+                         method = "xgbTree",                    
+                         trControl = caret.Control,                    
+                         tuneGrid = caret.grid,                    
+                         verbose=FALSE,                    
+                         verbosity=0#消除xgboost警告                    
+                         )
+# 输出最优超参数
+# print(xgb_model_caret$bestTune)
+################################################################################
+
+
+# 3. 设置最佳参数运行模型
+################################################################################
+params.caret.bst <- list(objective = "binary:logistic",                
+                         booster = "gbtree",                
+                         eval_metric = "logloss",                
+                         max_depth = 6,                
+                         eta = 0.1,                
+                         gamma = 0,                
+                         colsample_bytree = 1,                
+                         min_child_weight = 1,                
+                         subsample = 0.8)
+
+# 运行模型
+set.seed(666)
+xgb_model_caret.bst <- xgb.train(data=dtrain,                        
+                                 params = params.caret.bst,                         
+                                 nrounds = 500)
+
+# 计算模型准确率
+predict_caret <- predict(xgb_model_caret.bst,,newdata =dtrain)
+caret.fit <- ifelse(predict_caret > 0.5,1,0)
+acc_caret <- mean(caret.fit == train_y)
+
+# 特征重要性
+importance <- xgb.importance(feature_names = colnames(dtrain),                              
+                             model = xgb_model_caret.bst)
+
+# 前10变量
+xgb.ggplot.importance(importance_matrix = importance,                      
+                      top_n = 10)
+################################################################################
+
+
+# 4. 训练集预测及ROC曲线
+################################################################################
+## 训练集模型预测
+predict_train <- predict(xgb_model_caret.bst, newdata = dtrain)
+predict_train <- as.factor(ifelse(predict_train >0.5,1,0))
+matrix_train <- table(train_data$status,predict_train)
+confusionMatrix_train <- confusionMatrix(data = predict_train,                                         
+                                         reference = train_data$status,                                         
+                                         positive = "1",  
+                                         mode="everything")
+
+## 训练集模型评价指标
+#print(confusionMatrix_train)
+
+## 绘制混淆矩阵
+confusion_matrix_df2 <- as.data.frame.matrix(confusionMatrix_train$table)
+colnames(confusion_matrix_df2) <- c("sensoring","terminal event")
+rownames(confusion_matrix_df2) <- c("sensoring","terminal event")
+draw_data2 <- round(confusion_matrix_df2 / rowSums(confusion_matrix_df2),2)
+draw_data2$real <- rownames(draw_data2)
+draw_data2 <- melt(draw_data2)
+
+## 训练集混淆矩阵热图
+p_confusion_train <- ggplot(draw_data2, aes(real,variable, fill = value)) +  
+  geom_tile() +  
+  geom_text(aes(label = scales::percent(value))) +  
+  scale_fill_gradient(low = "#94b0b2", high = "#ff8a44") +  
+  labs(x = "True", y = "Predicted", title = "Confusion matrix of train set") +  
+  theme_prism(border = T)+  theme(panel.border = element_blank(),        
+                                  axis.ticks.y = element_blank(),        
+                                  axis.ticks.x = element_blank(),        
+                                  legend.position="none")
+ggsave(paste("results/p_confusion_train",".pdf", sep=""), p_confusion_train, width=69 * 1.5, height=50 * 1.5, unit='mm')
+
+## 训练集ROC曲线
+train_predprob <- predict(xgb_model_caret.bst,newdata = dtrain,type="prob")
+train_roc <- roc(response = train_data$status, predictor = train_predprob)
+train_roc
+train_roc_best=coords(train_roc, "best",best.method = c("youden"),                       
+                      ret=c("threshold","sensitivity", "specificity"))
+train_roc_obj <- train_roc 
+train_roc_auc <- auc(train_roc_obj)
+train_roc_data <- data.frame(1-train_roc_obj$specificities, train_roc_obj$sensitivities)
+
+# get average value of AUROC and confidence intervals
+auc_train = round(train_roc$auc,3)
+train_roc_2 <- plot.roc(train_data$status, train_predprob,
+                   ci=TRUE, print.auc=TRUE)
+ci_low_train = round(train_roc_2$ci[1], 3)
+ci_high_train = round(train_roc_2$ci[3], 3)
+
+
+# calculate 95% confidence intervals
+roc.list <- list(train_roc_2)
+ci.list <- lapply(roc.list, ci.se, specificities = seq(0, 1, l = 25))
+ciobj02 <- ci.se(train_roc_2, 
+               specificities=seq(0, 1, 0.01)) 
+
+# confidence intervals
+ciobj3 <- as.data.frame(ciobj02)
+dat.ci.list <- lapply(ci.list, function(ciobj3)
+  data.frame(x = as.numeric(rownames(ciobj3)),
+             lower = ciobj3[, 1],
+             upper = ciobj3[, 3]))
+
+# plot
+p1_species_train <- ggroc(roc.list, legacy.axes = TRUE) + 
+  theme_bw()+
+  theme(panel.background = element_blank(),
+        panel.grid.major =element_blank(),
+        panel.grid.minor = element_blank(),
+        legend.position = "none") + coord_equal() + coord_fixed(ratio = 0.9)+
+  geom_abline(slope=1, intercept = 0, linetype = "dashed", alpha=0.5, color = "grey") +
+  geom_line(size = 0.8)+labs(x = "1 - Specificity", y = "Sensitivity")+
+  annotate("text", x = 0.77, y = 0.18, label = paste0("AUC = ", auc_train), size = 3)+
+  annotate("text", x = 0.77, y = 0.08, label = paste0("CI = ",  ci_low_train, "-", ci_high_train), size = 3)+
+  scale_color_manual(values=c("#46a9cb"))
+
+col.list = list("#46a9cb")
+# add confidence intervals
+for(i in 1:1) {
+  p1_species_train <- p1_species_train + geom_ribbon(
+    data = dat.ci.list[[i]],
+    aes(x = 1-x, ymin = lower, ymax = upper),
+    #fill = i + 1,
+    fill = col.list[[i]],
+    alpha = 0.3,
+    inherit.aes = F)
+}
+ggsave(paste("results/train_model_auroc",".pdf", sep=""), p1_species_train, width=109 * 1.5, height=60 * 1.5, unit='mm')
+#p1_species_train
+################################################################################
+
+
+# 5. 验证集预测及ROC曲线
+################################################################################
+## 应用于验证集
+val_x <-  sparse.model.matrix(status ~ ., data = val_data)[,-8]
+val_y <-  as.numeric(val_data$status)-1
+dval <- xgb.DMatrix(data = val_x, label = val_y)
+
+## 验证集预测概率
+predict_val <- predict(xgb_model_caret.bst,newdata = dval)
+predict_val <- as.factor(ifelse(predict_val >0.5,1,0))
+
+# #验证集预测结果
+matrix_val <- table(val_data$status,predict_val)
+
+## 验证集混淆矩阵
+confusionMatrix_val <- confusionMatrix(data = predict_val,                                       
+                                       reference = val_data$status,                                       
+                                       positive = "1",                                       
+                                       mode = "everything")
+#print(confusionMatrix_val)
+
+## 绘制验证集混淆矩阵
+confusion_matrix_df3 <- as.data.frame.matrix(confusionMatrix_val$table)
+colnames(confusion_matrix_df3) <- c("sensoring","terminal event")
+rownames(confusion_matrix_df3) <- c("sensoring","terminal event")
+draw_data3 <- round(confusion_matrix_df3 / rowSums(confusion_matrix_df3),2)
+draw_data3$real <- rownames(draw_data3)
+draw_data3 <- melt(draw_data3)
+
+## 绘制验证集混淆矩阵热图
+p_confuction_val <- ggplot(draw_data3, aes(real,variable, fill = value)) +  
+  geom_tile() +  
+  geom_text(aes(label = scales::percent(value))) +  
+  scale_fill_gradient(low = "#94b0b2", high = "#ff8a44") +  
+  labs(x = "True", y = "Predicted", title = "Confusion matrix of valid set") +  
+  theme_prism(border = T)+  theme(panel.border = element_blank(),        
+                                  axis.ticks.y = element_blank(),        
+                                  axis.ticks.x = element_blank(),        
+                                  legend.position="none")
+ggsave(paste("results/p_confuction_val",".pdf", sep=""), p_confuction_val, width=69 * 1.5, height=50 * 1.5, unit='mm')
+
+## 绘制验证集ROC曲线
+val_predprob <- predict(xgb_model_caret.bst,newdata = dval,type="prob")
+# AUC
+val_roc <- roc(response = val_data$status, predictor = val_predprob)
+#val_roc
+
+## 截断值
+val_roc_best=coords(val_roc, "best",best.method = c("youden"),                     
+                    ret=c("threshold","sensitivity", "specificity"))
+#val_roc_best
+
+## 计算验证集ROC曲线的参数
+val_roc_obj <- val_roc 
+val_roc_auc <- auc(val_roc_obj)
+
+## 将ROC对象转换为数据框
+val_roc_data <- data.frame(1-val_roc_obj$specificities, val_roc_obj$sensitivities)
+
+# get average value of AUROC and confidence intervals
+auc_test = round(val_roc$auc,3)
+val_roc_2 <- plot.roc(val_data$status, val_predprob,
+                   ci=TRUE, print.auc=TRUE)
+ci_low_test = round(val_roc_2$ci[1], 3)
+ci_high_test = round(val_roc_2$ci[3], 3)
+
+# calculate 95% confidence intervals
+roc.list <- list(val_roc_2)
+ci.list <- lapply(roc.list, ci.se, specificities = seq(0, 1, l = 25))
+ciobj02 <- ci.se(val_roc_2, 
+               specificities=seq(0, 1, 0.01)) 
+
+## confidence intervals
+ciobj3 <- as.data.frame(ciobj02)
+dat.ci.list <- lapply(ci.list, function(ciobj3)
+  data.frame(x = as.numeric(rownames(ciobj3)),
+             lower = ciobj3[, 1],
+             upper = ciobj3[, 3]))
+
+## plot
+p1_species_test <- ggroc(roc.list, legacy.axes = TRUE) + 
+  theme_bw()+
+  theme(panel.background = element_blank(),
+        panel.grid.major =element_blank(),
+        panel.grid.minor = element_blank(),
+        legend.position = "none") + coord_equal() + coord_fixed(ratio = 0.9)+
+  geom_abline(slope=1, intercept = 0, linetype = "dashed", alpha=0.5, color = "grey") + 
+  geom_line(size = 0.8)+labs(x = "1 - Specificity", y = "Sensitivity")+
+  annotate("text", x = 0.77, y = 0.18, label = paste0("AUC = ", auc_test), size = 3)+
+  annotate("text", x = 0.77, y = 0.08, label = paste0("CI = ",  ci_low_test, "-", ci_high_test), size = 3)+
+  scale_color_manual(values=c("#46a9cb"))
+
+col.list = list("#46a9cb")
+## add confidence intervals
+for(i in 1:1) {
+  p1_species_test <- p1_species_test + geom_ribbon(
+    data = dat.ci.list[[i]],
+    aes(x = 1-x, ymin = lower, ymax = upper),
+    #fill = i + 1,
+    fill = col.list[[i]],
+    alpha = 0.3,
+    inherit.aes = F)
+}
+ggsave(paste("results/validation_model_auroc",".pdf", sep=""), p1_species_test, width=109 * 1.5, height=60 * 1.5, unit='mm')
+#p1_species_test
+################################################################################
+
+
+# 6. 训练集与验证集ROC曲线叠加
+################################################################################
+roc.list01 <- list(train_roc_2, val_roc_2)
+ci.list01 <- lapply(roc.list01, ci.se, specificities = seq(0, 1, l = 25))
+ciobj01 <- ci.se(train_roc_2, 
+               specificities=seq(0, 1, 0.01))
+ciobj02 <- ci.se(val_roc_2,
+               specificities=seq(0, 1, 0.01))
+## confidence intervals
+ciobj3 <- as.data.frame(ciobj01, ciobj02)
+dat.ci.list <- lapply(ci.list01, function(ciobj3)
+  data.frame(x = as.numeric(rownames(ciobj3)),
+             lower = ciobj3[, 1],
+             upper = ciobj3[, 3]))
+## plot
+p_all_train_test <- ggroc(roc.list01, legacy.axes = TRUE) + 
+  theme_bw()+
+  theme(panel.background = element_blank(),
+        panel.grid.major =element_blank(),
+        panel.grid.minor = element_blank())+
+  geom_abline(slope=1, intercept = 0, linetype = "dashed", alpha=0.5, color = "grey") + coord_equal()+
+  theme(legend.position = c(0.70, 0.17))+coord_fixed(ratio = 0.9)+
+  geom_line(size = 0.6)+labs(x = "1 - Specificity", y = "Sensitivity")+
+  scale_color_manual(values=c("#d472b0","#5ebcc2","#879b56"),
+                     name= "",
+                      labels = c("Training set (AUC = 0.994 (CI = 0.991-0.996))", "Testing set (AUC = 0.908 (CI = 0.856-0.961))")
+                      )
+
+col.list = list("#d472b0","#5ebcc2","#879b56")
+# add confidence intervals
+for(i in 1:2) {
+  p_all_train_test <- p_all_train_test + geom_ribbon(
+    data = dat.ci.list[[i]],
+    aes(x = 1-x, ymin = lower, ymax = upper),
+    fill = col.list[[i]],
+    alpha = 0.2,
+    inherit.aes = F)
+}
+ggsave(paste("results/train_validation_model_auroc",".pdf", sep=""), p_all_train_test, width=75 * 1.5, height=60 * 1.5, unit='mm')
+#p_all_train_test
+```
+
+# Combo plots排版
+
+Combo plots to published-ready figure
+
+组合多个子图为发表格式
+
+```{r div_combo, fig.show='asis', fig.width=8, fig.height=7.5, dpi=72}
+library(cowplot)
+width = 89
+height = 59
+p0 = plot_grid(p_confusion_train, p_confuction_val, labels = c("A", "B"), ncol = 2)
+ggsave("results/XGBoost_model_results_combined.pdf", p0, width = width * 3, height = height * 2, units = "mm")
+```
+
+
+![](e1.Confusion.Matrix.01.jpg)
+
+
+![](e1.ROC.01.jpg)
+
+
+If used this script, please cited:
+使用此脚本，请引用下文：
+
+**Yong-Xin Liu**, Lei Chen, Tengfei Ma, Xiaofang Li, Maosheng Zheng, Xin Zhou, Liang Chen, Xubo Qian, Jiao Xi, Hongye Lu, Huiluo Cao, Xiaoya Ma, Bian Bian, Pengfan Zhang, Jiqiu Wu, Ren-You Gan, Baolei Jia, Linyang Sun, Zhicheng Ju, Yunyun Gao, **Tao Wen**, **Tong Chen**. 2023. EasyAmplicon: An easy-to-use, open-source, reproducible, and community-based pipeline for amplicon data analysis in microbiome research. **iMeta** 2: e83. https://doi.org/10.1002/imt2.83
+
+Copyright 2016-2024 Defeng Bai <baidefeng@caas.cn>, Chuang Ma <22720765@stu.ahau.edu.cn>, Jiani Xun <15231572937@163.com>, Yong-Xin Liu <liuyongxin@caas.cn>
+

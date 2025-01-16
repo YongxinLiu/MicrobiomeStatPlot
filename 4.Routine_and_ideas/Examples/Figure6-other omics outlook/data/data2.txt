@@ -1,0 +1,25 @@
+	Name	Group	Healthy01	Healthy02	Healthy03	Healthy04	Patients01	Patients02	Patients03	Patients04
+serotonin	serotonin	Metabolism	132.41	363.25	345.02	163.25	160.36	23.56	61.01	11.01
+N-acetyl-5-Aminosalicylic acid	N-acetyl-5-Aminosalicylic acid	Metabolism	63.16	42.4	106.16	32.4	23.36	136.63	110.61	20.61
+stearate	stearate	Metabolism	134.16	15.3	41.21	15.3	103.46	2.1	31.12	31.12
+5-HETE	5-HETE	Metabolism	115.56	52.31	23.04	22.31	11.3	42.61	21.41	21.41
+4-pyridoxate	4-pyridoxate	Metabolism	66.43	105.13	63.36	125.13	141.43	131.45	164.63	124.63
+7-Methyladenine	7-Methyladenine	Metabolism	14.23	46.13	20.21	46.13	10.53	30.2	10.24	10.24
+Pyridoxamine	Pyridoxamine	Metabolism	132.26	34	62.11	34	35.64	11.16	61.23	61.23
+3-hydroxydecanoate	3-hydroxydecanoate	Metabolism	31.15	42.13	31.12	41.13	151.62	330	324.64	314.64
+isolithocholate	isolithocholate	Metabolism	101.36	60.41	30.66	60.41	141.43	120.12	113.46	73.46
+2-aminoisobutyric acid	2-aminoisobutyric acid	Metabolism	124.63	113.21	21.63	111.21	102.66	31.1	105.63	95.63
+carnitine	carnitine	Metabolism	64.05	66.02	40.62	16.02	53.41	32.61	30.63	30.63
+Lithocholic acid	Lithocholic acid	Metabolism	125.65	321	305.11	321	304.61	161.03	105.33	95.33
+dimethylglycine	dimethylglycine	Metabolism	63.63	46.6	54.45	46.6	55.06	42.3	51.26	51.26
+eicosapentaenoate	eicosapentaenoate	Metabolism	36.13	31.65	30.51	31.65	34.61	34.34	43.64	33.64
+Pyrocatechol	Pyrocatechol	Metabolism	56.06	121.12	116.56	31.12	51.16	66.14	11.1	11.1
+Acetylcholine	Acetylcholine	Metabolism	16.31	52.34	55.15	52.34	23.12	34.13	53.34	43.34
+lithocholate	lithocholate	Metabolism	156.33	300.16	323.01	20.16	336.35	302.05	134.12	84.12
+isoallolithocholate	isoallolithocholate	Metabolism	20.03	122.16	44.61	32.16	14.51	116	66.31	66.31
+3-Hydroxymethylglutaric acid	3-Hydroxymethylglutaric acid	Metabolism	303.11	150.61	132.11	150.61	146.56	136.01	151.26	91.26
+N-Acetylglutamic acid	N-Acetylglutamic acid	Metabolism	16.3	110.42	63.26	20.42	105.62	11.16	156.11	96.11
+1-Methyladenosine	1-Methyladenosine	Metabolism	63.11	53.33	46.33	53.33	41.21	41.15	46.45	46.45
+Dehydrolithocholic acid	Dehydrolithocholic acid	Metabolism	66.26	56.65	31.03	26.65	35.16	66.56	40	40
+C5 carnitine	C5 carnitine	Metabolism	13.35	31.62	51.64	31.62	34.03	43.1	16.22	11.22
+N-alpha-acetylarginine	N-alpha-acetylarginine	Metabolism	45.66	31.11	31.03	11.11	32.54	112.63	60.31	50.31

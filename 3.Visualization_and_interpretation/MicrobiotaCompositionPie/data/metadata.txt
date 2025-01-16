@@ -1,0 +1,11 @@
+ID	SampleID	Group
+Sample1	Sample1	Group1
+Sample2	Sample2	Group1
+Sample3	Sample3	Group1
+Sample4	Sample4	Group1
+Sample5	Sample5	Group1
+Sample6	Sample6	Group1
+Sample7	Sample7	Group1
+Sample8	Sample8	Group1
+Sample9	Sample9	Group1
+Sample10	Sample10	Group1

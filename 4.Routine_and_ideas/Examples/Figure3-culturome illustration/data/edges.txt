@@ -1,0 +1,10 @@
+node1	node2	color	width	width2
+Bifidobacterium	Faecalibacterium	1.5	3	1
+Parabacteroides	Clostridium_IV	1.51	3	1
+Phocaeicola	Faecalibacterium	0.8	2.1	0.733333333
+Collinsella	Faecalibacterium	1.2	2.3	0.81
+Ruminococcus	Bifidobacterium	-0.91	3	1
+Ruminococcus	Collinsella	-1.2	2	0.666666667
+Bifidobacterium	Phocaeicola	-1.51	2.5	0.866666667
+Dorea	Faecalibacterium	0.4	1	0.333333333
+Roseburia	Collinsella	-0.4	0.4	0.133333333

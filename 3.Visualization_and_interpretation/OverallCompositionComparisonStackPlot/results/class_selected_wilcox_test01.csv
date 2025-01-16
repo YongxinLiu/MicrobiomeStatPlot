@@ -1,0 +1,3 @@
+"","var","estimate","statistic","p.value","conf.low","conf.high","method","alternative"
+"1","c__Dothideomycetes",-0.0688917540318165,45,0.739364350819459,-0.281292493605361,0.16268093553034,"Wilcoxon rank sum exact test","two.sided"
+"2","c__Eurotiomycetes",0.0892184292961042,59,0.52884886011821,-0.192269993976146,0.294870898346359,"Wilcoxon rank sum exact test","two.sided"

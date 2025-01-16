@@ -1,0 +1,465 @@
+---
+title: "Culturome analysis examples 培养组分析可视化案例"
+author: "Defeng Bai(白德凤)"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    df_print: paged
+    theme: cerulean
+    highlight: haddock
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      collapsed: no
+      smooth_scroll: yes
+    code_fold: show
+  word_document:
+    toc: yes
+    toc_depth: '3'
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Figure 3. An example of culturome illustration included in MicrobiomeStatPlots. 
+
+## 培养组数据可视化
+
+(A) The cumulative curve showed the relationship between the increased well numbers and cultivated ASV numbers.
+
+### 图A：稀疏曲线箱线图
+
+```{r boxplot1, echo = TRUE}
+library(readr)
+library(randomcoloR)
+library(ggplot2)
+
+datafile3 <- "data/isolate_rare_curve2.txt"
+rare_curve_data <- read_tsv(datafile3)
+rare_curve_data$`Well numbers` <- as.factor(rare_curve_data$`Well numbers`)
+
+#随机生成20种颜色，其实里面有重复的
+mypalette2 <- randomColor(count = 20) 
+#差异明显的20种
+mypalette2 <- distinctColorPalette(20)
+
+# # 也可以生成加变颜色
+# start_color <- "#f6916b"
+# end_color <- "#b8c25e"
+# # 创建离散渐变色调色板
+# discrete_palette <- colorRampPalette(c(start_color, end_color),
+#    space = "Lab", interpolate = "linear")
+# # 生成渐变色向量
+# num_colors <- 20 # 可以根据需要更改生成的颜色数量
+# colors <- discrete_palette(num_colors)
+# # 输出结果
+# print(colors)
+
+p3 <- ggplot(rare_curve_data,mapping=aes(x=rare_curve_data$`Well numbers`,y=rare_curve_data$`ASV number`))+
+  #stat_boxplot(geom='errorbar',width=0.3,lwd=0.5)+#添加误差棒
+  geom_boxplot(mapping=aes(fill=rare_curve_data$`Well numbers`), alpha=0.8)+
+  theme_classic()+
+  theme(legend.position = "none")+
+  labs(x="Well numbers", y="ASV number")+
+  scale_fill_manual(values = mypalette2)+
+  scale_color_manual(values = mypalette2)+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 8),
+        axis.text.y = element_text(size = 8))
+  #scale_fill_manual(values = colors)+
+  #scale_color_manual(values = colors)
+  #geom_jitter()#添加散点
+p3
+# Save plot
+ggsave(paste("results/rare_curve_plot031",".pdf", sep=""), p3, width=105 * 1.5, height=40 * 1.5, unit='mm')
+```
+
+
+(B) The read counts across different plates, with an average of 20000 reads per plate.
+
+### 图B：读数计数图
+
+```{r read_counts_plot, fig.show='asis', fig.width=4, fig.height=2.5}
+library(ggplot2)
+library(randomcoloR)
+library(readr)
+
+# 读取数据
+# Read data
+datafile <- "data/L1.txt.plate2.txt"
+data_df <- read_tsv(datafile)
+
+data_df$group = sub("Plate","", data_df$group)
+data_df$group <- as.numeric(data_df$group)
+data_df$group <- as.factor(data_df$group)
+
+#随机生成45种颜色，其实里面有重复的
+mypalette <- randomColor(count = 45) 
+#差异明显的45种
+mypalette <- distinctColorPalette(45) 
+
+# 也可以生成加变颜色
+# start_color <- "red"
+# end_color <- "green"
+# # 创建离散渐变色调色板
+# discrete_palette <- colorRampPalette(c(start_color, end_color), 
+#    space = "Lab", interpolate = "linear")
+# # 生成渐变色向量
+# num_colors <- 60 # 可以根据需要更改生成的颜色数量
+# colors <- discrete_palette(num_colors)
+# # 输出结果
+# print(colors)
+
+p1 <- ggplot(data_df, aes(x = group, y=Count, fill = group)) +
+  geom_bar(stat='identity') +
+  ylab("Read counts") + xlab("Plates") +
+  theme_classic() +
+  scale_fill_manual(values = mypalette)+
+  scale_color_manual(values = mypalette)+
+  theme(legend.position = "none")+
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, size = 8),
+        axis.text.y = element_text(size = 8))+
+  geom_hline(yintercept = 20474.38, colour='black', lwd=0.36, linetype="dashed")# +
+p1
+
+# Save plot
+ggsave(paste("results/read_counts_plot03",".pdf", sep=""), p1, width=105 * 1.5, height=80 * 1.5, unit='mm')
+
+```
+
+
+(C) The purity distribution of different wells.
+
+### 图C: 孔的纯度分布
+
+```{r barplot2, echo = TRUE}
+library(ggplot2)
+library(randomcoloR)
+
+# 读取数据
+# Read data
+datafile <- "data/isolate_DistributionPurityPer2.txt"
+data_df <- read_tsv(datafile)
+
+p4 <- ggplot(data_df, aes(x = reorder(gl, -Percentage), y=Percentage)) +
+  #geom_bar(stat='identity', fill = "#009ba3") +
+  geom_bar(stat='identity', fill = "#00c9b0") +
+  ylab("Percentage of wells (%)") + xlab("Purity (%)") +
+  theme_classic() +
+  theme(legend.position = "none")+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 8),
+        axis.text.y = element_text(size = 8))
+p4
+
+# Save plot
+ggsave(paste("results/purity_plot02",".pdf", sep=""), p4, width=105 * 1.5, height=80 * 1.5, unit='mm')
+```
+
+
+(D) Comparison for the read counts between negative and positive controls.
+
+### 图D 阴性对照和阳性对照序列计数比较
+
+```{r boxplot2, echo = TRUE}
+library(dplyr)
+
+# Source and edited from package amplicon
+boxplot2 <- function(alpha_div, metadata, index = "readssum", groupID = "group", levels = c(), outlier = FALSE){
+  p_list = c("ggplot2", "dplyr", "multcompView")
+    for (p in p_list) {
+        if (!requireNamespace(p)) {
+            install.packages(p)
+        }
+        suppressPackageStartupMessages(library(p, character.only = TRUE, 
+            quietly = TRUE, warn.conflicts = FALSE))
+    }
+  
+  # index = "readssum"
+  # groupID = "well2"
+  # levels = c("Positive", "Negative")
+  # metadata = metadata2
+  # alpha_div = alpha_div
+  idx = rownames(metadata) %in% rownames(alpha_div)
+  metadata = metadata[idx, , drop = F]
+  alpha_div = alpha_div
+  idx = rownames(metadata) %in% rownames(alpha_div)
+  metadata = metadata[idx, , drop = F]
+  alpha_div = alpha_div[rownames(metadata), ]
+  sampFile = as.data.frame(metadata[, groupID], row.names = row.names(metadata))
+  df = cbind(alpha_div[rownames(sampFile), index], sampFile)
+  colnames(df) = c(index, "group")
+  max = max(df[, c(index)])
+  min = min(df[, index])
+  x = df[, c("group", index)]
+  x = as.data.frame(x)
+  y = x %>% group_by(group) %>% summarise_(Max = paste("max(", index, ")", sep = ""))
+  y = as.data.frame(y)
+  rownames(y) = y$group
+  df$y = y[as.character(df$group), ]$Max + (max - min) * 0.05
+  levels(as.factor(df$group))
+  df = df %>%
+    mutate(group = ordered(df$group,levels=levels))
+  df$class = index
+  compaired = list(c(levels[1], levels[2]))
+  wt = wilcox.test(df[[index]] ~ df$group, alternative=c("two.sided"))
+  FDR = p.adjust(wt$p.value, method = "BH")
+  p1 = ggplot(df, aes(x = group, y = .data[[index]])) +
+    geom_jitter(aes(color=group),position = position_jitter(0.15), size = 2.3, alpha = 1) +
+    geom_boxplot(position=position_dodge(width =0.4),width=0.5, size = 0.4,
+               fill = "transparent", 
+               outlier.shape = NA,
+               linetype = "dashed", color = "black") +
+    stat_boxplot(aes(ymin=..lower..,ymax=..upper..,
+                   fill=group
+                   ),
+               color="black",
+               fill = "transparent",position=position_dodge(width =0.4),width=0.5, size = 0.4,outlier.shape = NA)+
+    stat_boxplot(geom = "errorbar",aes(ymin=..ymax..),
+               width=0.18,color="black",size = 0.4)+
+    stat_boxplot(geom = "errorbar",aes(ymax=..ymin..),
+               width=0.18,color="black",size = 0.4)+
+    labs(x = NULL, y = NULL, color = groupID) + 
+    scale_y_continuous(labels = label_number(accuracy = 1)) +
+    #scale_fill_manual(values = c("#74add1","#a60026"))+
+    #scale_color_manual(values = c("#74add1","#a60026"))+
+    scale_fill_manual(values = c("#9b7a31","#5ebcc2"))+
+    scale_color_manual(values = c("#9b7a31","#5ebcc2"))+
+    geom_signif(comparisons = compaired,
+              step_increase = 0.3,
+              map_signif_level = F,
+              test = wilcox.test,
+              color = "black",
+              size = 0.2,
+              textsize = 3
+              )+
+    theme_classic()+
+    theme(legend.position = "none")
+  p1
+}
+
+library(scales)
+library(ggsignif)
+
+datafile1 <- "data/fdr.txt.rawdata2.txt"
+alpha_div <- read_tsv(datafile1)
+alpha_div <- as.data.frame(alpha_div)
+rownames(alpha_div) <- alpha_div$Sample
+alpha_div <- as.data.frame(alpha_div)
+
+datafile2 <- "data/metadata_fdr2.txt"
+metadata2 <- read_tsv(datafile2)
+metadata2 <- as.data.frame(metadata2)
+rownames(metadata2) <- metadata2$Sample
+metadata2 <- as.data.frame(metadata2)
+
+p2 <- boxplot2(alpha_div, metadata2, index = "readssum", groupID = "well2", levels = c("Positive", "Negative"))
+p2
+
+# Save plot
+ggsave(paste("results/Positive_negative_controls_plot03",".pdf", sep=""), p2, width=45 * 1.5, height=80 * 1.5, unit='mm')
+
+```
+
+
+(E) The purity percentage of cultivated bacteria in a 96-well plate.
+
+### 图E: 96孔细胞培养板中培养细菌的孔的纯度示例
+
+
+```{r heatmap1, echo = TRUE}
+#library(pheatmap)
+library(ComplexHeatmap)
+
+# 读取数据
+# Read data
+datafile <- "data/purity_heatmap.txt"
+data_df <- read_tsv(datafile)
+data_df <- as.data.frame(data_df)
+rownames(data_df) <- data_df$name
+data_df <- data_df[, -1]
+
+pdf(file = "results/purity_heatmap.pdf", width=7, height=4.5)
+Heatmap(data_df, cluster_rows = F,cluster_columns = F,
+        col = colorRampPalette(colors = c("#5791c9", "white", "#d373af"))(100),
+        row_names_side = "left",
+        gap = unit(2, "mm"),
+        row_names_gp = gpar(fontsize = 9),
+        column_names_gp = gpar(fontsize = 10),
+        rect_gp = gpar(col = "white", lty = 1, lwd = 1),
+        cell_fun = function(j, i, x, y, width, height, fill) {
+                if (data_df[i, j]>=0) {
+                  grid.text(sprintf("%.0f", data_df[i, j]), x, y, gp = gpar(fontsize = 8))
+                } else {
+                  grid.text("", x, y)
+                }
+              },
+        heatmap_legend_param = list(at = seq(0, 100, by = 20), 
+                                    labels = seq(0, 100, by = 20), 
+                                    title = " ", 
+                                    legend_height = unit(10, "cm")))
+dev.off()
+
+```
+
+
+(F) Phylogenetic tree of 380 amplicon sequence variants (ASVs). The branch color showed different bacterial phylum. The outer circle shows the relative abundance of each isolated ASVs.
+
+### 图F: 显示培养细菌的分类分布和出现频率的分支图
+
+```{bash}
+#sed -i 's/\r//' metadata_culturome2.txt
+#sed -i 's/Male  /Male/' metadata_culturome2.txt
+#Rscript graphlan_plot53.r --input demo2/taxonomy2_culturome5.spf --design demo2/metadata_culturome2.txt --type heatmap --output demo2/Heat_results_culturome04
+```
+
+
+(G) An example for the correlation between the relative abundance and number of genome-wide single-nucleotide polymorphisms (SNPs) of significantly enriched species.
+
+### 图G: 气泡图展示菌种相对丰度和SNPs数量之间的关系
+
+```{r bubble plot, echo = TRUE}
+
+## R包加载
+# install.packages("ggplot2") # ggplot2包安装
+library(ggplot2) # ggplot2包加载
+library(ggrepel)
+library(RColorBrewer)
+
+## 数据构建
+#data<-mtcars
+# 使用R自带数据集
+
+## 绘图
+# ggplot(data = data,aes(x=mpg,y=disp,size=qsec,fill=qsec))+
+#   geom_point(shape=21,colour="black",alpha=0.4)+
+#  theme_bw()->p1
+# print(p1)
+
+## 绘图
+# ggplot(data = data,aes(x=mpg,y=disp,size=qsec,fill=qsec))+
+#   geom_point(shape=21,colour="black",alpha=0.8)+
+#   scale_fill_gradient(low = "#D0D0D0",high = "#ED111B")+
+#   theme_bw()->p2
+# print(p2)
+
+## 绘图
+# ggplot(data = data,aes(x=mpg,y=disp,size=qsec,fill=qsec))+
+#  geom_point(shape=21,colour="black",alpha=0.8)+
+#  scale_fill_gradient(low = "#D0D0D0",high = "#ED111B")+
+#  geom_text_repel(label=data$qsec,size=3)+
+#  theme_bw()->p3
+# print(p3)
+
+# SNP
+data <- read.table(file = "data/bubble_data.txt", sep = "\t", header = T, check.names = FALSE)
+## 绘图
+mid <- mean(data$Prop)
+breaklist <- seq(-1, 1, by = 0.001)
+red_blue <- rev(brewer.pal(n = 11, name = "RdBu"))
+col_red_blue <- colorRampPalette(red_blue)(length(breaklist))
+
+p4 <- ggplot(data = data,aes(x=RA,y=SNP,size=Num,color = Prop))+
+ geom_point(alpha=1, fill="black",stroke = 3)+
+  #scale_color_gradientn(colors = rainbow(5))+
+  scale_color_gradient2(midpoint = mid, low = '#005889', mid = 'white', high = '#c2605e', space = 'Lab')+
+ #scale_fill_gradient(low = "#6781b4",high = "#c2605e")+
+ #scale_color_gradientn(colours = col_red_blue, name = "Enrichment score") +
+  #scale_fill_gradient(low = "#819bcf",mid="white",high = "#ec8883")+
+ geom_text_repel(label=data$species,size=3)+
+   theme_bw()+
+  labs(x = "Relative abundance (log10)", y = "Number of genome-wide SNPs")+
+  theme(panel.background = element_blank(),
+    panel.grid = element_blank(),
+    #axis.text.x =element_blank(),
+    #axis.text.y = element_blank(),
+    #axis.title.x = element_blank(),
+    #axis.title.y = element_blank()
+    )
+p4
+ggsave(paste("results/bubble_plot02",".pdf", sep=""), p4, width=105 * 1.5, height=80 * 1.5, unit='mm')
+#print(p4)
+
+# sp3 <- ggplot(mtcars, aes(x=wt, y = mpg, color = mpg))+
+#  geom_point()
+# sp3
+# sp3+scale_color_gradientn(colors = rainbow(5))
+
+```
+
+
+(H) A network visualization of bacterial genera interactions, where red edges represent growth promotion and blue edges indicate inhibition. Edges widths depict interaction significance, while node size corresponds to the number of isolates, and node color reflects taxonomic families.
+
+### 图H: 菌属之间共培养相互作用网络图
+
+https://github.com/baidefeng/MicrobiomeStatPlot/tree/master/3.Visualization_and_interpretation/MicrobiotaInteractionNetwork
+
+```{r Microbiota Interaction Network, fig.show='asis', fig.width=4, fig.height=2.5}
+# 基于CRAN安装R包，检测没有则安装 Installing R packages based on CRAN and installing them if they are not detected
+p_list = c("tidyverse", "igraph",  "ggraph", "tidygraph", "reshape2", "ggplot2", 
+           "psych")
+for(p in p_list){if (!requireNamespace(p)){install.packages(p)}
+    library(p, character.only = TRUE, quietly = TRUE, warn.conflicts = FALSE)}
+
+# 加载R包 Loading R packages
+suppressWarnings(suppressMessages(library(tidyverse)))
+suppressWarnings(suppressMessages(library(igraph)))
+suppressWarnings(suppressMessages(library(ggraph)))
+suppressWarnings(suppressMessages(library(tidygraph)))
+suppressWarnings(suppressMessages(library(reshape2)))
+suppressWarnings(suppressMessages(library(ggplot2)))
+suppressWarnings(suppressMessages(library(psych)))
+
+# 导入数据
+# Load data
+nodes <- read.table(file = "data/nodes.txt", sep = "\t", header = T, check.names = FALSE)
+edges <- read.table(file = "data/edges.txt", sep = "\t", header = T, check.names = FALSE)
+
+net<-graph_from_data_frame(d=edges,vertices = nodes,directed = T)
+# ggraph(net)+
+#   geom_edge_link()+
+#   geom_node_point()
+# 
+#net<-graph_from_data_frame(d=edges,vertices = nodes,directed = F)
+# ggraph(net)+
+#   geom_edge_link(aes(edge_width=width2,edge_color=color))+
+#   geom_node_point(aes(size=Size,color=Group))+
+#   geom_node_text(aes(label=Name))
+
+pdf("results/network_group_circle8.pdf",family = "Times",width = 8,height = 6.5)
+ggraph(net, layout = "circle")+
+  geom_edge_link(aes(start_cap = label_rect(node1.name),
+  end_cap = label_rect(node2.name),edge_width=width, edge_color=color),
+ arrow = arrow(length = unit(2, 'mm')))+
+  geom_node_point(aes(size=Size,color=Group))+
+  geom_node_text(aes(label=Name))+
+  scale_size_area(max_size = 15)+
+  scale_edge_size_area(max_size = 0.2)+
+  scale_edge_size(range = c(-1,1))+
+  scale_edge_width(range = c(0,3))+
+  scale_edge_color_gradient2(low = "#5ebcc2",mid="white",high = "#945893")+
+  theme_minimal()+
+  theme(panel.background = element_blank(),
+    panel.grid = element_blank(),
+    axis.text.x =element_blank(),
+    axis.text.y = element_blank(),
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank())
+  #scale_edge_color_continuous(low = "#819bcf",high = "#ec8883")
+dev.off()
+```
+
+
+(I) An example of a single bacterial genome of Haemophilus influenzae.
+
+### 图I:单菌基因组圈图
+
+```{r circle, echo = TRUE}
+#1.Proksee
+
+#网址：https://proksee.ca/
+
+```

@@ -1,0 +1,13 @@
+species	SNP	RA	Prop	Num
+B. xylanisolvens	47	-2.8	20	10
+B. uniformis	23	-2	60	30
+P. distasonis	44	-2.6	40	20
+O. splanchnicus	110	-2.55	24	15
+A. rectalis	46	-2.3	30	35
+B. comes	88	-2.2	35	23
+B. longum	125	-1.8	45	28
+E. coli	145	-1.9	30	30
+B. obeum	148	-1.92	23	42
+P. dorei	170	-1.2	60	50
+B. fragilis	142	-1.5	21	13
+D. hominis	120	-1.7	37	36

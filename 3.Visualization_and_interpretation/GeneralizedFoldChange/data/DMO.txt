@@ -1,0 +1,21 @@
+ID	H2	H3	KO
+K00001	Xenobiotics biodegradation and metabolism	Drug metabolism - other enzymes [PATH:ko00983]	K00001
+K00002	Xenobiotics biodegradation and metabolism	Drug metabolism - other enzymes [PATH:ko00983]	K00002
+K00003	Xenobiotics biodegradation and metabolism	Drug metabolism - other enzymes [PATH:ko00983]	K00003
+K00004	Xenobiotics biodegradation and metabolism	Drug metabolism - other enzymes [PATH:ko00983]	K00004
+K00005	Xenobiotics biodegradation and metabolism	Drug metabolism - other enzymes [PATH:ko00983]	K00005
+K00006	Xenobiotics biodegradation and metabolism	Drug metabolism - other enzymes [PATH:ko00983]	K00006
+K00007	Xenobiotics biodegradation and metabolism	Drug metabolism - other enzymes [PATH:ko00983]	K00007
+K00008	Xenobiotics biodegradation and metabolism	Drug metabolism - other enzymes [PATH:ko00983]	K00008
+K00009	Xenobiotics biodegradation and metabolism	Drug metabolism - other enzymes [PATH:ko00983]	K00009
+K00010	Xenobiotics biodegradation and metabolism	Drug metabolism - other enzymes [PATH:ko00983]	K00010
+K00011	Xenobiotics biodegradation and metabolism	Drug metabolism - other enzymes [PATH:ko00983]	K00011
+K00012	Xenobiotics biodegradation and metabolism	Drug metabolism - other enzymes [PATH:ko00983]	K00012
+K00013	Xenobiotics biodegradation and metabolism	Drug metabolism - other enzymes [PATH:ko00983]	K00013
+K00014	Xenobiotics biodegradation and metabolism	Drug metabolism - other enzymes [PATH:ko00983]	K00014
+K00015	Xenobiotics biodegradation and metabolism	Drug metabolism - other enzymes [PATH:ko00983]	K00015
+K00016	Xenobiotics biodegradation and metabolism	Drug metabolism - other enzymes [PATH:ko00983]	K00016
+K00017	Xenobiotics biodegradation and metabolism	Drug metabolism - other enzymes [PATH:ko00983]	K00017
+K00018	Xenobiotics biodegradation and metabolism	Drug metabolism - other enzymes [PATH:ko00983]	K00018
+K00019	Xenobiotics biodegradation and metabolism	Drug metabolism - other enzymes [PATH:ko00983]	K00019
+K00020	Xenobiotics biodegradation and metabolism	Drug metabolism - other enzymes [PATH:ko00983]	K00020

@@ -1,0 +1,419 @@
+---
+title: "SparCC Network Analysis 稀疏相关性数据网络分析"
+author: "Defeng Bai(白德凤), Chuang Ma(马闯), Jiani Xun(荀佳妮)"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    df_print: paged
+    theme: cerulean
+    highlight: haddock
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      collapsed: no
+      smooth_scroll: yes
+    code_fold: show
+  word_document:
+    toc: yes
+    toc_depth: '3'
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = T, echo=T, comment="#>", message=F, warning=F,
+	fig.align="center", fig.width=5, fig.height=3, dpi=150)
+```
+
+
+
+The SparCC Network Analysis scripts is referenced from MicrobiomeStatPlot [Inerst Reference below].
+
+If you use this script, please cited 如果你使用本代码，请引用：
+
+**Yong-Xin Liu**, Lei Chen, Tengfei Ma, Xiaofang Li, Maosheng Zheng, Xin Zhou, Liang Chen, Xubo Qian, Jiao Xi, Hongye Lu, Huiluo Cao, Xiaoya Ma, Bian Bian, Pengfan Zhang, Jiqiu Wu, Ren-You Gan, Baolei Jia, Linyang Sun, Zhicheng Ju, Yunyun Gao, **Tao Wen**, **Tong Chen**. 2023. EasyAmplicon: An easy-to-use, open-source, reproducible, and community-based pipeline for amplicon data analysis in microbiome research. **iMeta** 2(1): e83. https://doi.org/10.1002/imt2.83
+
+The online version of this tuturial can be found in https://github.com/YongxinLiu/MicrobiomeStatPlot
+
+
+**Authors**
+First draft(初稿)：Defeng Bai(白德凤)；Proofreading(校对)：Ma Chuang(马闯) and Jiani Xun(荀佳妮)；Text tutorial(文字教程)：Defeng Bai(白德凤)
+
+
+# Introduction简介
+
+SparCC correlation network
+SparCC共丰度网络图
+
+SparCC(Sparse Correlations for Compositional data)是一种专门针对微生物组成数据中微生物群落间相互作用的高效分析方法。SparCC网络分析主要是用来探索微生物群落的共存模式，识别微生物物种之间的关联性，以及可能存在的共生关系。通过计算稀疏相关性，SparCC能够深入挖掘数据中的复杂关系，从而揭示微生物之间错综复杂的相互作用网络。
+
+参考：https://mp.weixin.qq.com/s/IeeB18UR-VFxAjMqbQKbQQ
+https://github.com/dlegor/SparCC/tree/master/SparCC
+
+
+
+关键字：微生物组数据分析、MicrobiomeStatPlot、稀疏相关性数据网络分析、R语言可视化
+
+Keywords: Microbiome analysis, MicrobiomeStatPlot, SparCC Network Analysis , R visulization
+
+
+
+## SparCC co-abundance network example SparCC共丰度网络图案例
+
+案例一
+Example 1
+
+这是中山大学肿瘤防治中心的贾卫华团队2024年发表于Nature Commnunications上的一篇论文用到的SparCC共丰度网络图。论文题目为：Microbes translocation from oral cavity to nasopharyngeal carcinoma in patients。
+
+![](e1.SparCCNetwork.01.jpg)
+Fig. 2 The co-occurrence network of nasopharyngeal microbiota in patients patients (d, N= 70) and controls (e, N=86). Only significant correlations were shown in the networks (SparCC, |r| >0.25 and P<0.05, twosided). Each node represented a microbial species, patients-enriched and controlenriched species were shown in pink and green, respectively. Each edge represented the correlation between paired species, and its width reflected the absolute value of the correlation coefficient. Co-inclusion associations were colored in red, whereas co-exclusion correlations were colored in blue.
+
+图 2 鼻咽部微生物群在鼻咽癌患者（d，N= 70）和对照组（e，N=86）中的共现网络。网络中仅显示显著相关性（SparCC，|r| >0.25 和 P<0.05，双侧）。每个节点代表一种微生物物种，鼻咽癌富集物种和对照组富集物种分别以粉色和绿色显示。每条边代表配对物种之间的相关性，其宽度反映相关系数的绝对值。共包含关联用红色表示，而共排斥关联用蓝色表示。
+
+
+**结果**
+
+We also observed the distinct patterns ofmicrobial co-occurrence networks between patients and control group (Fig. 2d, e and SupplementaryData 2, 3). In the patients group, all 15 patients-enriched species (pink cycles) were engaged in a positive subnetwork with 26 significant interactions. Among them, Prevotella intermedia, Fusobacterium nucleatum and Peptostreptococcus stomatis occupied thecoreofthe subnetwork with the strongest positive correlations (SparCC, R: 0.439–0.547, Fig. 2d and SupplementaryData 2). But this phenomenon was absent in the control group, where only twopatients-enriched species slightly connectedwith eachother (Fig. 2eand SupplementaryData3). Meanwhile, we noted the subnetwork, composed of commensals, was significantly negatively correlated with the subnetwork dominated by oral pathobionts in both groups. The above data suggested patientsenrichedmicrobes, especially oral pathobionts, were likely to co-occur and reshaped the nasopharyngeal ecology in patients patients.
+
+我们还观察到了 patients 组和对照组之间微生物共现网络的不同模式（图 2d、e 和补充数据 2、3）。在 patients 组中，所有 15 种 patients 富集物种（粉色循环）都参与了正向子网络，其中有 26 个显著相互作用。其中，Prevotella intermedia、Fusobacterium nucleatum 和 Peptostreptococcus stomatis 占据了子网络的核心，具有最强的正相关性（SparCC，R：0.439–0.547，图 2d 和补充数据 2）。但这种现象在对照组中不存在，其中只有两种 patients 富集物种彼此之间有轻微的联系（图 2e 和补充数据 3）。同时，我们注意到由共生菌组成的子网络与两组中以口腔致病菌为主的子网络呈显著负相关。以上数据表明鼻咽癌富集的微生物，特别是口腔致病菌，可能与鼻咽癌患者鼻咽部生态同时出现并重塑鼻咽部生态。
+
+
+案例二
+Example 2
+
+这是来自于上海交通大学陈浩彦课题组2023年发表于Cell Host & Microbe上的一篇论文用到的网络图。论文题目为：Multi-kingdom gut microbiota analyses define bacterial-fungal interplay and microbial markers of pan-cancer immunotherapy across cohorts。
+
+This is a network diagram used in a paper published in Cell Host & Microbe in 2023 by Chen Haoyan's research group at Shanghai Jiao Tong University. The title of the paper is: Multi-kingdom gut microbiota analyses define bacterial-fungal interplay and microbial markers of pan-cancer immunotherapy across cohorts.
+
+
+![](e1.SparCCNetwork.02.jpg)
+
+Figure 5. (B) Co-occurrence network of multi-kingdom markers in PD-1 blockade responders and non-responders. Nodes of bacteria were colored in green and fungiin yellow. Positive correlations were colored in red and negative in blue. Correlations were determined by SparCC. Only associations with correlation coefficients >0.25 were shown. See also Figure S5.
+
+图 5. (B) PD-1 阻断反应者和无反应者中多界标记物的共现网络。细菌节点用绿色表示，真菌节点用黄色表示。正相关用红色表示，负相关用蓝色表示。相关性由 SparCC 确定。仅显示相关系数 >0.25 的关联。另见图 S5。
+
+
+**结果**
+
+As bacteria were found to enhance the predictivity of fungi, we investigated whether there were any interactions between bacteria and fungi. We calculated the correlations between fungal and bacterial markers by SparCC to construct the multi-kingdom model. Responders and non-responders showed different cooccurrence networks of multi-kingdom associations, with much fewer significant correlations in non-responders. In responders, the fungus Schizosaccharomyces octosporus was at the hub of this network, showing negative correlations with seven bacteria, including Hungatella hathewayi, a bacterium previously shown to promote colorectal cancer (CRC) development, suggesting that Schizosaccharomyces octosporus might be a beneficial fungus. Besides, two bacteria, Akkermansia muciniphila had four negative correlations with fungi. No other inter-kingdom interaction was identified. In addition, the interactions among the fungal kingdom were far less frequent than among bacteria. In non-responders, although intra-kingdom interactions were detected, no inter-kingdom correlations were identified (Figure 5B). These data suggest that multi-kingdom interactions might also play a role in response to ICI.
+
+由于发现细菌可以增强真菌的预测性，我们研究了细菌和真菌之间是否存在相互作用。我们通过 SparCC 计算了真菌和细菌标记之间的相关性，以构建多界模型。响应者和非响应者显示出不同的多界关联共现网络，非响应者的显着相关性要少得多。在响应者中，真菌八孢裂殖酵母是这个网络的中心，与七种细菌呈负相关，包括 Hungatella hathewayi，一种先前被证明可促进结直肠癌 (CRC) 发展的细菌，这表明八孢裂殖酵母可能是一种有益真菌。此外，两种细菌 Akkermansia muciniphila 与真菌有四种负相关性。没有发现其他界间相互作用。此外，真菌界之间的相互作用远低于细菌之间的相互作用。在无反应者中，虽然检测到了界内相互作用，但没有发现界间相关性（图 5B）。这些数据表明，跨界相互作用也可能对 ICI 反应发挥作用。
+
+
+
+## Packages installation软件包安装
+
+```{r}
+# 基于CRAN安装R包，检测没有则安装
+p_list = c("reshape2","ggplot2","ggprism","dplyr","plyr","igraph",
+           "magrittr","tidyr","clusterProfiler")
+for(p in p_list){if (!requireNamespace(p)){install.packages(p)}
+    library(p, character.only = TRUE, quietly = TRUE, warn.conflicts = FALSE)}
+
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+#BiocManager::install("GOSemSim")
+
+# 加载R包 Load the package
+suppressWarnings(suppressMessages(library(reshape2)))
+suppressWarnings(suppressMessages(library(ggplot2)))
+suppressWarnings(suppressMessages(library(ggprism)))
+suppressWarnings(suppressMessages(library(dplyr)))
+suppressWarnings(suppressMessages(library(plyr)))
+suppressWarnings(suppressMessages(library(igraph)))
+suppressWarnings(suppressMessages(library(magrittr)))
+suppressWarnings(suppressMessages(library(clusterProfiler)))
+```
+
+
+
+## SparCC Co-abudance network using R software SparCC共丰度网络图实战
+
+### Filtering data for analysis 筛选数据用于分析
+
+```{r SparCC, attr.source='.numberLines', echo=TRUE, eval=F}
+# metadata 
+design <- read.table(file = "data/group.txt", sep = "\t", header = T, row.names=1)
+# Top 36
+df3 <- read.table(file = "data/species_data.txt", sep = "\t", header = T, check.names = FALSE)
+
+# sum of Species
+data<-aggregate(.~ Species,data=df3,sum)
+rownames(data) = data$Species
+data = data[, -1]
+
+# retain microbiota speices with prevalence > 5% and relative abundance > 1E-4
+# 1.prevalence > 5%
+zero_counts <- vector("integer", nrow(data))
+for (i in 1:nrow(data)) {
+  count <- 0
+  for (j in 1:ncol(data)) {
+    if (data[i, j] == 0) {
+      count <- count + 1
+    }
+  }
+  zero_counts[i] <- count
+}
+# output
+zero_count = as.data.frame(zero_counts)
+data2 = data
+data2$zero_counts = zero_count$zero_counts
+data2$all_counts = 20
+data2$sample_percent = round(1-data2$zero_counts/data2$all_counts, 6)
+data3 = data2 %>% filter(data2$sample_percent >= 0.05)
+data3 = data3[, -c(21, 22, 23)]
+
+# check data
+dim(data3)
+data3 = data3 * 100000
+
+OTU.table.filtered.colnames <- colnames(data3)
+OTU.table.filtered.SparCC <- cbind(rownames(data3), data3)
+colnames(OTU.table.filtered.SparCC) <- c("OTU_id", OTU.table.filtered.colnames)
+OTU.table.filtered.SparCC2 <- t(OTU.table.filtered.SparCC)
+OTU.table.filtered.SparCC2 <- OTU.table.filtered.SparCC2[-1,]
+OTU.table.filtered.SparCC2 <- as.data.frame(OTU.table.filtered.SparCC2)
+
+OTU.table.filtered.SparCC2$group <- rownames(OTU.table.filtered.SparCC2)
+OTU.table.filtered.SparCC2$group = as.character(OTU.table.filtered.SparCC2$group)
+OTU.table.filtered.SparCC2$group = sub("[0-9]","_", OTU.table.filtered.SparCC2$group)
+OTU.table.filtered.SparCC2$group = gsub("[0-9]","", OTU.table.filtered.SparCC2$group)
+OTU.table.filtered.SparCC2$group = gsub("Healthy","Control", OTU.table.filtered.SparCC2$group)
+otutab <- as.data.frame(t(OTU.table.filtered.SparCC2))
+
+# Select by manual set group
+# patients group
+if (TRUE){
+  sub_design = subset(design, Group %in% c("Patients")) 
+  sub_design$Group  = factor(sub_design$Group, levels=c("Patients"))
+}
+idx = rownames(sub_design) %in% colnames(otutab)
+sub_design_patients = sub_design[idx,]
+sub_otutab_patients = otutab[,rownames(sub_design_patients)]
+sub_otutab_patients = sub_otutab_patients[-37, ]
+sub_otutab_patients <- as.data.frame(sub_otutab_patients)
+write.table(sub_otutab_patients, file = "results/species_SparCC_p01.txt", row.names = T, sep = "\t", quote = T, col.names = T)
+
+# Healthy group
+if (TRUE){
+  sub_design = subset(design, Group %in% c("Control")) 
+  sub_design$Group  = factor(sub_design$Group, levels=c("Control"))
+}
+idx = rownames(sub_design) %in% colnames(otutab)
+sub_design_healthy = sub_design[idx,]
+sub_otutab_healthy = otutab[,rownames(sub_design_healthy)]
+sub_otutab_healthy = sub_otutab_healthy[-37, ]
+sub_otutab_healthy = as.data.frame(sub_otutab_healthy)
+write.table(sub_otutab_healthy, file = "results/species_SparCC_h01.txt", row.names = T, sep = "\t", quote = T, col.names = T)
+
+# OTU.table.filtered.SparCC <- OTU.table.filtered.SparCC[, -1]
+# We need to transpose the table
+# Patients group
+# write.table(sub_otutab_patients, file = "results/genus_SparCC_1.tsv", row.names = T, sep = "\t", quote = T, col.names = T)
+# write.table(sub_otutab_healthy, file = "results/genus_SparCC_2.tsv", row.names = T, sep = "\t", quote = T, col.names = T)
+```
+
+
+
+### SparCC matrix calculation SparCC矩阵计算
+
+Using FastSpar for SparCC correlation and p-value calculation. 使用FastSpar进行SparCC相关性和p值计算
+The input format for FastSpar is row name as species name and column name as sample name. FastSpar的输入格式为行名为物种名，列名为样本名
+
+FastSpar的代码可参考：https://github.com/scwatts/fastspar
+
+可以安装FastSpar进行分析，也可以用在线网站https://inap.denglab.org.cn/进行分析，推荐使用在线网站，简单易上手。
+You can install FastSPar for analysis, or you can use the online website https://inap.Denglab.org.cn/ to analyze it. It is recommended to use an online website, which is easy to get started.
+
+```{bash}
+#!/usr/bin/bash
+
+# install FastSpar
+#conda install -c bioconda -c conda-forge fastspar
+
+# Convert CSV file to TSV file
+#awk -F ',' 'BEGIN {OFS="\t"} {$1=$1}1' tests/data/SparCC_healthy_1.txt > tests/data/SparCC_healthy_1.tsv
+#awk -F ',' 'BEGIN {OFS="\t"} {$1=$1}1' tests/data/SparCC_patients_1.txt > tests/data/SparCC_patients_2.tsv
+
+# Control group
+# Correlation inference
+# test run
+#fastspar --otu_table tests/data/fake_data.tsv --correlation median_correlation.tsv --covariance median_covariance.tsv
+#fastspar --otu_table tests/data/SparCC_healthy_1.tsv --correlation median_correlation_HC.tsv --covariance median_covariance_HC.tsv
+
+# change iterations
+#fastspar --iterations 100 --exclude_iterations 20 --otu_table tests/data/fake_data.tsv --correlation median_correlation.tsv --covariance median_covariance.tsv
+#fastspar --iterations 100 --exclude_iterations 20 --otu_table tests/data/SparCC_healthy_1.tsvv --correlation median_correlation_HC.tsv --covariance median_covariance_HC.tsv
+# change thresholds
+#fastspar --threshold 0.1 --otu_table tests/data/fake_data.tsv --correlation median_correlation.tsv --covariance median_covariance.tsv
+#fastspar --iterations 100 --threads 10 --threshold 0.1 --otu_table tests/data/SparCC_healthy_1.tsv --correlation median_correlation_HC.tsv --covariance median_covariance_HC.tsv
+
+# combine
+#fastspar --iterations 100 --threads 3 --threshold 0.1 --otu_table tests/data/SparCC_healthy_1.tsv --correlation median_correlation_HC.tsv --covariance median_covariance_HC.tsv
+
+# Calculation of exact *p*-values
+# First we generate the 1000 bootstrap counts:
+# conda install -c intel mkl
+
+# mkdir bootstrap_counts_HC
+# fastspar_bootstrap --otu_table tests/data/SparCC_healthy_1.tsv --number 1000 --prefix bootstrap_counts_HC/HC_data
+
+# And then infer correlations for each bootstrap count (running in parallel with all processes available):
+# mkdir bootstrap_correlation
+# parallel fastspar --otu_table {} --correlation bootstrap_correlation/cor_{/} --covariance bootstrap_correlation/cov_{/} -i 5 ::: bootstrap_counts/*
+  
+# From these correlations, the *p*-values are then calculated:
+# fastspar_pvalues --otu_table tests/data/fake_data.tsv --correlation median_correlation.tsv --prefix bootstrap_correlation/cor_fake_data_ --permutations 1000 --outfile pvalues.tsv
+
+# add threads to accelerate
+# fastspar --otu_table tests/data/fake_data.txt --correlation median_correlation.tsv --covariance median_covariance.tsv --iterations 50 --threads 10
+
+# Alternative solutions
+# Using SparCC in iNAP online website for analysis, the website is doing really well
+# https://inap.denglab.org.cn/
+```
+
+
+
+### Visualization 可视化
+
+```{r SparCC visualization, fig.show='asis', fig.width=4, fig.height=2.5}
+# 导入经过FastSpar计算得到的r和p矩阵数据表
+# patients
+r.cor <- read.table("data/r.cor.txt", sep="\t", header=T, check.names=F,row.names = 1)
+p.cor <- read.table("data/p.cor.txt", sep="\t", header=T, check.names=F,row.names = 1)
+r.cor[p.cor>0.05] <- 0
+
+# Build network connection attributes and node attributes
+# Convert data to long format for merging and add connection properties
+r.cor$from = rownames(r.cor)
+p.cor$from = rownames(p.cor)
+p_value <-  p.cor %>%
+  gather(key = "to", value = "p", -from) %>%
+  data.frame() 
+p_value$FDR <- p.adjust(p_value$p,"BH")
+p_value <- p_value[, -3]
+
+cor.data<- r.cor %>%
+  gather(key = "to", value = "r", -from) %>%
+  data.frame() %>%
+  left_join(p_value, by=c("from","to"))
+cor.data <- as.data.frame(cor.data)
+cor.data <- cor.data[cor.data$FDR <= 0.1 & cor.data$from != cor.data$to, ]
+cor.data <- cor.data[abs(cor.data$r) >= 0.15 & cor.data$from != cor.data$to, ]
+cor.data <- cor.data %>%
+    plyr::mutate(
+      linecolor = ifelse(r > 0,"positive","negative"),
+      linesize = abs(r)
+    )
+
+# Set node properties
+vertices <- c(as.character(cor.data$from),as.character(cor.data$to)) %>%
+  as_tibble() %>%
+  group_by(value) %>%
+  clusterProfiler::summarise()
+colnames(vertices) <- "name"
+
+# Build graph data structure and add network basic attributes, save data
+# Building a graph data structure
+graph <- graph_from_data_frame(cor.data, vertices = vertices, directed = FALSE)
+E(graph)$weight <- abs(E(graph)$r)
+V(graph)$label <- V(graph)$name
+
+# 利用“louvain”算法进行进行聚类群划分
+# calculate community membership and modularity of networks
+patients.clusters <- cluster_louvain(graph)
+V(graph)$Cluster <- patients.clusters$membership
+
+# save data
+write_graph(graph, "results/patients01.graphml", format="graphml")
+
+# 可视化方式1：基于Gephi软件进行可视化 https://gephi.org/
+# Visualized in Gephi software
+# The same procedure for healthy group
+
+# healthy组和patients组相同
+# healthy.clusters <- cluster_louvain(healthy.igraph.s)
+# V(healthy.igraph.s)$Cluster <- healthy.clusters$membership
+
+# 可视化方式2：利用igraph进行可视化
+g <- graph
+# 准备网络图布局数据
+# Preparing network diagram layout data。
+layout1 <- layout_in_circle(g) 
+layout5 <- layout_with_graphopt(g)
+
+# 设置绘图颜色
+# Setting the drawing color
+color <- c("#879b56","#ce77ad","#5ea6c2")
+
+names(color) <- unique(V(g)$Cluster) 
+V(g)$point.col <- color[match(V(g)$Cluster,names(color))] 
+
+# 边颜色按照相关性正负设置
+# The edge color is set according to the positive or negative correlation
+E(g)$color <- ifelse(E(g)$linecolor == "positive","#ff878c","#5ea6c2")
+
+pdf("results/network_group_graphopt1.pdf",family = "Times",width = 10,height = 12)
+par(mar=c(5,2,1,2))
+plot.igraph(g, layout=layout5,
+     vertex.color=V(g)$point.col,
+     vertex.border=V(g)$point.col,
+     vertex.size=6,
+     vertex.frame.color="white",
+     vertex.label=g$name,
+     vertex.label.cex=0.8,
+     vertex.label.dist=0, 
+     vertex.label.degree = pi/2,
+     vertex.label.col="black",
+     edge.arrow.size=0.5,
+     edge.width=abs(E(g)$r)*15,
+     edge.curved = FALSE
+     )
+
+# 设置图例
+legend(
+  title = "Cluster",
+  list(x = min(layout1[,1])-0.05,
+       y = min(layout1[,2])-0.05), 
+  legend = c(unique(V(g)$Cluster)),
+  fill = color,
+  #pch=1
+)
+
+legend(
+  title = "|r-value|",
+  list(x = min(layout1[,1])+0.6,
+       y = min(layout1[,2])-0.05),
+  legend = c(0.2,0.4,0.6,0.8,1.0),
+  col = "black",
+  lty=1,
+  lwd=c(0.2,0.4,0.6,0.8,1.0)*4,
+)
+
+legend(
+  title = "Correlation (±)",
+  list(x = min(layout1[,1])+1.0,
+       y = min(layout1[,2])-0.05),
+  legend = c("positive","negative"),
+  col = c("#ff878c",rgb(0,147,0,maxColorValue = 255)),
+  lty=1,
+  lwd=1
+)
+dev.off()
+
+```
+
+
+![](e1.SparCCNetwork.03.jpg)
+
+
+If used this script, please cited:
+使用此脚本，请引用下文：
+
+**Yong-Xin Liu**, Lei Chen, Tengfei Ma, Xiaofang Li, Maosheng Zheng, Xin Zhou, Liang Chen, Xubo Qian, Jiao Xi, Hongye Lu, Huiluo Cao, Xiaoya Ma, Bian Bian, Pengfan Zhang, Jiqiu Wu, Ren-You Gan, Baolei Jia, Linyang Sun, Zhicheng Ju, Yunyun Gao, **Tao Wen**, **Tong Chen**. 2023. EasyAmplicon: An easy-to-use, open-source, reproducible, and community-based pipeline for amplicon data analysis in microbiome research. **iMeta** 2: e83. https://doi.org/10.1002/imt2.83
+
+Copyright 2016-2024 Defeng Bai <baidefeng@caas.cn>, Chuang Ma <22720765@stu.ahau.edu.cn>, Jiani Xun <15231572937@163.com>, Yong-Xin Liu <liuyongxin@caas.cn>
+

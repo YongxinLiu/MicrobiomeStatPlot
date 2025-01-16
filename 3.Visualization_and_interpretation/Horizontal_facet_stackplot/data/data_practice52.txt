@@ -1,0 +1,41 @@
+Species	Group	FUCCAT-PWY: fucose degradation	RHAMCAT-PWY: L-rhamnose degradation I	ARGININE-SYN4-PWY: L-ornithine de novo  biosynthesis	PWY-2941: L-lysine biosynthesis II	PWY-5838: superpathway of menaquinol-8 biosynthesis I	PWY-5367: petroselinate biosynthesis	PWY-5104: L-isoleucine biosynthesis IV	PWY-6527: stachyose degradation
+Unclassified	Metagenome	0.2	0.22	0	0.23	0	0	0.77	0.235
+Alistipes finegoldii	Metagenome	0	0	0	0.07	0	0	0	0
+Faecalibacterium prausnitzii	Metagenome	0	0.11	0	0	0	0	0	0.18
+Bacteroides thetaiotaomicron	Metagenome	0	0.01	0	0	0.25	0	0	0
+Streptococcus_sanguinis	Metagenome	0	0.12	0.1	0.16	0	0	0	0.1
+Bacteroides caccae	Metagenome	0	0.05	0.08	0	0	0.03	0	0
+Parabacteroides_goldsteinii	Metagenome	0	0	0.48	0	0	0.01	0	0
+Eubacterium_rectale	Metagenome	0	0	0.13	0	0	0	0.025	0
+Bacteroides eggerthii	Metagenome	0.43	0	0.05	0	0	0	0	0
+Bacteroides vulgatus	Metagenome	0	0	0	0.21	0.2	0	0	0
+Methanobrevibacter smithii	Metagenome	0	0	0	0.05	0	0	0	0
+Bacteroides massiliensis	Metagenome	0	0	0	0	0.06	0	0	0
+Bacteroides_salyersiae	Metagenome	0	0	0	0	0.28	0	0.022	0
+Clostridium_bartlettii	Metagenome	0	0	0	0	0.04	0	0	0.08
+Eubacterium rectale	Metagenome	0	0	0	0	0	0.61	0	0
+Roseburia intestinalis	Metagenome	0	0	0	0	0	0	0.12	0
+Erysipelotrichaceae_bacterium_6_1_45	Metagenome	0	0	0	0	0	0	0	0
+Coprococcus eutactus	Metagenome	0	0	0	0	0	0	0.03	0
+Bacteroides xylanisolvens	Metagenome	0	0	0	0	0	0	0	0.08
+Unclassified	Metatranscriptome	0.18	0.05	0	0.04	0.21	0	0.62	0.125
+Alistipes finegoldii	Metatranscriptome	0	0	0	0	0	0	0	0
+Faecalibacterium prausnitzii	Metatranscriptome	0	0	0	0	0	0	0	0
+Bacteroides thetaiotaomicron	Metatranscriptome	0	0.12	0.125	0	0	0	0	0
+Streptococcus_sanguinis	Metatranscriptome	0	0	0	0.27	0	0	0	0.13
+Bacteroides caccae	Metatranscriptome	0	0	0	0	0.12	0	0	0
+Parabacteroides_goldsteinii	Metatranscriptome	0	0	0	0	0	0	0	0
+Eubacterium_rectale	Metatranscriptome	0	0	0	0	0	0	0	0
+Bacteroides eggerthii	Metatranscriptome	0	0	0.07	0	0	0	0	0
+Bacteroides vulgatus	Metatranscriptome	0	0	0	0	0.3	0	0	0.39
+Methanobrevibacter smithii	Metatranscriptome	0	0.47	0	0	0	0	0.23	0
+Bacteroides massiliensis	Metatranscriptome	0	0	0.15	0	0	0	0	0
+Bacteroides_salyersiae	Metatranscriptome	0	0	0.2	0	0.35	0	0	0
+Clostridium_bartlettii	Metatranscriptome	0	0	0	0	0	0	0	0.16
+Eubacterium rectale	Metatranscriptome	0	0.05	0	0	0	0.35	0	0
+Roseburia intestinalis	Metatranscriptome	0	0	0	0	0	0	0.03	0
+Erysipelotrichaceae_bacterium_6_1_45	Metatranscriptome	0	0	0	0	0	0	0	0
+Coprococcus eutactus	Metatranscriptome	0	0	0	0	0	0	0	0
+Bacteroides xylanisolvens	Metatranscriptome	0	0.03	0.025	0.16	0	0	0	0.11
+Bacteroides finegoldii	Metatranscriptome	0	0	0	0	0	0	0	0
+Blautia_producta	Metatranscriptome	0	0	0	0	0.03	0	0	0

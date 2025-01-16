@@ -1,73 +1,109 @@
 [TOC]
 
-# MicrobiomeStatPlot 微生物组数据分析与可视化
+# MicrobiomeStatPlot-Microbiome data analysis and visualization&#x20;
 
-## 0.项目简介(Introduction)
+# MicrobiomeStatPlot-微生物组数据分析与可视化
+
+## 0.Introduction (项目简介)
+
+The development of high-throughput sequencing has greatly promoted the development of the microbiome/metagenomics field. The data analysis and interpretation of the microbiome requires multidisciplinary knowledge such as microbiology, bioinformatics, statistics, Shell and R language, metagenomics, etc. There is still a lack of systematic learning materials both in China and around the world. The purpose of establishing the "Metagenome" Public WeChat Account is to break the barriers to the analysis and interpretation of microbiome data and promote the development of this field. At present, with three years of accumulation, hundreds of tutorials on data analysis, visualization and scientific research experience in this field have been published. However, this field is developing rapidly, many tutorials need to be updated, and the knowledge and research fields of team members are limited. A wider range of peers need to join in to create an introductory encyclopedia of metagenomics. **Now we are comprehensively soliciting authors and reviewers of the chapter "Microbiome Data Analysis and Visualization Practice" from the global Chinese community**.
 
 高通量测序的发展极大地推动了微生物组/宏基因组领域的发展。微生物组的数据分析和解读需要微生物学、生物信息学、统计学、Shell和R语言、宏基因组学等多学科的知识，无论是中国还是世界范围内仍缺少系统的学习教材。宏基因组公众号成立的目的是打破微生物组数据分析解读的壁垒，推动本领域的发展。目前经常三年的积累，已发布数百篇本领域相关数据分析、可视化和科研经验的教程。但本领域发展迅速，很多教程需要更新，而且团队成员的知识和研究领域有限，需要更广泛的同行加入，打造宏基因组学入门百科全书，**现向全球华人圈全面征集《微生物组数据分析与可视化实战》章节编写的创作者和审稿人**。
 
+You are the founder, join us now and contribute your wisdom!
+
 创始人就是你，赶快加入贡献你的智慧吧！
 
-**创作者要求**
+**Creator requirements (创作者要求)**
 
+*   Professional colleagues in this field, including but not limited to microbiology, bioinformatics, microbiome, or researchers who use culturomics, amplicon, metagenomics, macrotranscriptomics, macrovirome, macroproteomics, macrometabolomics, macroepigenetics and other technologies to study humans, animals, plants, and the environment (without restrictions on grade and title);
 *   本领域的专业同行，专业包括且不限于微生物学、生物信息学、微生物组学，或应用培养组学、扩增子、宏基因组、宏转录组、宏病毒组、宏蛋白组、宏代谢组、宏表观组等技术研究人类、动植物、环境的相关研究人员(年级和职称不限)；
+*   Those who have the ability to collect and organize professional knowledge, and have experience in recording electronic notes and publishing articles are preferred;
 *   有专业知识搜集和整理的能力，有记录电子笔记、发表文章经历者的优先；
+*   Claim the chapters in the directory below, follow the reference template (the first few sample chapters will be released within a week), use Youdao Cloud Notes markdown format or Rmarkdown (free training after joining) to write a logically rigorous, reader-friendly, and repeatable tutorial;
 *   认领下方目录中章节，按照参考模板(一周内陆续发布前几节样章)，采用有道云笔记markdown格式或Rmarkdown(加入后有免费培训)编写逻辑严谨、考虑读者感受、可重复性强的教程；
+*   Carefully revise the reasonable suggestions made by the Metagenome Editorial Department;
 *   对宏基因组编辑部提出的合理意见进行认真修改；
 
-**创作者福利**
+**Creator benefits（创作者福利）**
 
+*   The creator is one of the authors of the chapter;
 *   创作者作为章节的作者之一；
+*   Get to know the core members of the metagenomics team, and trainee editors can get basic training in editing;
 *   **结识宏基因组核心团队成员**，见习编辑可获取编辑的基础培训；
+*   Publish three articles or more than 10,000 words to become a formal editor, and get the latest amplicon and metagenomic analysis process worth 10,000 yuan for free, or participate in training and conferences.
 *   发布文章三篇或过万字，可成为正式编辑，免费**获得价值万元的最新扩增子、宏基因组分析流程或参加培训、会议**的机会；
+*   Related tutorials and technical documents can be recommended for **publishing SCI papers**, see: ["JoVE Microbiome Special Issue Call for Papers, Write Methods, Shoot Video Tutorials, and Publish SCI"](https://mp.weixin.qq.com/s/Jc0zoOFm4reTWVJBBOBTQg)
 *   相关教程、技术文档可推荐**发表SCI论文**，详见：[《JoVE微生物组专刊征稿，写方法拍视频教程发SCI》](https://mp.weixin.qq.com/s/Jc0zoOFm4reTWVJBBOBTQg)
+*   Based on your contribution, you will get the right to publish papers and books by your team;
 *   根据贡献，获得团队**发表论文、出版图书的署名权**；
 
-**审稿人要求**
+**Reviewer requirements（审稿人要求）**
 
+*   **Professional reviewers**, who are recommended to have experience in publishing articles, will comprehensively revise the logic and language of the chapters in their areas of expertise and make suggestions for improvement\*\* (same as paper review);
 *   **专业审稿人**，建议有发表文章经历，对自己擅长领域**章节的逻辑、语言的全面修改和提出改进建议**(同论文审稿)；
+*   **Public reviewers**, who can make comments or suggestions on areas for improvement in articles published by the public account\*\*, can communicate by leaving a message below the article or contacting the public account administrator;
 *   **大众审稿人**，对公众号**发布文章中可改进地方提出意见或建议**，可通过文章下方留言、联系公众号管理员等方式沟通；
 
-**审稿人福利**
+**Reviewer benefits（审稿人福利）**
 
+*   Professional reviewers can join the editorial department and serve as responsible editors for reviewing articles, and obtain the right to sign their names and units in the responsible editor column;
 *   专业审稿人可进入编辑部，作为审核文章的责任编辑，获得责编栏姓名和单位的署名权；
+*   The names and affiliations of public reviewers may appear in the chapter acknowledgments;
 *   大众审稿人的姓名和单位可出现在章节的致谢部分；
+*   Holiday bonus for reviewers!
 *   审稿人节日福利红包！
 
-**联系宏基因组公众号**
+**Contact Metagenome WeChat Public Account (联系宏基因组公众号)**
+
+Creator and reviewer task registration: <https://kdocs.cn/l/c7CGfv9Xc>
 
 创作者和审稿人任务登记： <https://kdocs.cn/l/c7CGfv9Xc>
+
+Registration form for metagenome authors and reviewers.xlsx, use WeChat to log in to Kingsoft Document, register name, unit, research direction, title, specific division of labor in charge of chapters, etc.
 宏基因组创作者和审稿人登记表.xlsx，使用微信登陆金山文档，登记姓名、单位、研究方向、职称、负责章节具体分工等信息
+
+Contact: Defeng Bai / Yong-Xin Liu
 
 联系人：白德凤 / 刘永鑫
 
-微信：baidefeng1234win / meta-genomics
+WeChat (微信)：baidefeng1234win / meta-genomics
+
+There are many advertising and marketing personnel. When adding WeChat, please be sure to indicate your name, unit, position, and research direction. Otherwise, your friend request will not be accepted.
 
 广告营销人员较多，添加微信务必备注姓名-单位-职位-研究方向，否则无法通过好友申请
 
-邮箱：<baidefeng@caas.cn> / <liuyongxin@caas.cn>
+Email (邮箱)：<baidefeng@caas.cn> / <liuyongxin@caas.cn>
+
+At present, we have organized the catalog of basic knowledge, common analysis, and essential skills in this field. Some chapters have previously released resources and tutorials for reference. Authors who have chapters they are good at are welcome to claim the corresponding chapters for update or creation from scratch. If you think you have knowledge and methods that you are good at and important, please contact us to discuss the update of the catalog.
 
 目前整理本领域基础知识、常用分析、必备技能的目录。部分章节有前期发布的资源和教程供参考。有自己擅长章节的作者，欢迎认领相应章节进行更新或从头创作。如果你觉得有自己擅长而且重要的知识和方法，欢迎联系我们一起讨论目录的更新。
 
+The Chinese Encyclopedia of Metagenomics awaits your contribution!
+
 中文的宏基因组学百科全书期待你的贡献！
 
-**推荐序**
+**Recommendations (推荐序)**
+
+We will find experts and scholars with many years of experience in this field, such as Academician Zhu Yongguan, President Lan Canhui, Researcher Zhao Fangqing, Researcher Wang Jun, Researcher Chu Haiyan, Professor Wei Zhong, etc. to comment on this book.
 
 找在本领域积累多年的专家、学者，如朱永官院士、蓝灿辉总裁、赵方庆研究员、王军研究员、褚海燕研究员、韦中教授等对本书进行点评。
 
-**编者序**
+**Editor's Preface（编者序）**
 
 *   [编者序：初衷、计划、要求、优势、目标和展望](https://mp.weixin.qq.com/s/jduceryuQJgxUMnH2-bHPQ)
 
+What you can learn, an overview of technological developments in recent years and prospects.
+
 你能学到什么、近年来技术发展概述和展望。
 
-## 1.生物信息与微生物组(Bioinformatic and microbiome)
+## 1.Bioinformatic and microbiome (生物信息与微生物组)
 
-### 1.1 生物信息概述
+### 1.1 Overview of bioinformatics (生物信息概述)
 
 *   [刘永鑫：想学菌群生物信息分析-21分钟带你入门](https://mp.weixin.qq.com/s/13f9sEPY4pEE2dimbTjPvA)
 
-#### 1.1.1 实验设计和元数据
+#### 1.1.1 Study design and metadata (实验设计和元数据)
 
 *   [微生物组取样和DNA提取建议](http://mp.weixin.qq.com/s/L1XxsGDFt9wKk-4pSRwUUQ)
 *   [微生物常见20种培养基配方](https://mp.weixin.qq.com/s/IGicDQSn6ugh-COneiFGdg)
@@ -86,9 +122,9 @@
 *   [Microbiome：扩增子检测环境样本单细胞真核生物和寄生虫的新方法](https://mp.weixin.qq.com/s/TNnXQMxROCjup3YDKy4nbA)
 *   [Rob Knight: PCR不需要做三个平行再混合！](https://mp.weixin.qq.com/s/6Dxa_5UVnBJfZ7qDx3MKvQ)
 
-#### 1.1.2 分析的基本思路
+#### 1.1.2 Basic idea pf analysis (分析的基本思路)
 
-### 1.2 Shell和Linux
+### 1.2 Shell and Linux tutorials (Shell和Linux教程)
 
 *   [生信宝典-Linux入门教程](https://mp.weixin.qq.com/s/Dzi42v4dsz8Webjc_zB9Gw)
 
@@ -118,7 +154,7 @@
 
 *   [耗时很长的程序忘加nohup就运行了怎么办？](https://mp.weixin.qq.com/s/jZVh2bPIxFkdbcN76QU28g)
 
-### 1.3 R统计与绘图
+### 1.3 Statistics and plotting using R (R统计与绘图教程)
 
 *   [生信福典R语言学习教材](https://mp.weixin.qq.com/s/0bfnQzdVf-dPU-kSOBp37g)
 
@@ -126,7 +162,7 @@
 
 *   [一条命令绘制CNS配图-ggpubr](http://mp.weixin.qq.com/s/EvlnWBI5OZOudWd0cieGJg)
 
-#### 1.3.1 R语言基础
+#### 1.3.1 R language basics (R语言基础)
 
 *   [图之典—可视化图表的词典](https://mp.weixin.qq.com/s/oJn9_5IXrrhU9Lsfi3mXow)
 *   [编程模板-R语言脚本写作：最简单的统计与绘图，包安装、命令行参数解析、文件读取、表格和矢量图输出](https://mp.weixin.qq.com/s/G1B_cDHRzufgppu6S6_aQg)
@@ -147,7 +183,7 @@
 *   [8分解数据框split和查看对象str](https://mp.weixin.qq.com/s/MO220s7m9y8ixWBmRN6fBg)
 *   [9模拟—随机数、抽样、线性模型](https://mp.weixin.qq.com/s/6VrRjH4tx6VSqNIJ8qw7Kg)
 
-#### 1.3.2 ggplot2绘图基础
+#### 1.3.2 ggplot2 drawing basics (ggplot2绘图基础)
 
 *   [ggplot2高效实用指南 (可视化脚本、工具、套路、配色)](https://mp.weixin.qq.com/s/f0AUkeTry5oT4F-wm79wVg)
 *   ggplot2地理信息可视化 [上](https://mp.weixin.qq.com/s/OqO3IgW7qaEzih905xFglQ) [下](https://mp.weixin.qq.com/s/lqdfoiIAxkIU1YPqhopzVQ)
@@ -164,11 +200,11 @@
 *   [不需要懂得编程，但却可以使用ggplot2画出论文级别的图？esquisse](https://mp.weixin.qq.com/s/exxIC3r9IoHXkSLmd1Qz-Q)
 *   [ggplot版本的华夫饼图吧](https://mp.weixin.qq.com/s/1Ak9YN0Q1U3VsEJG9Nxb4A)
 
-#### 1.3.3 R语言绘图专辑
+#### 1.3.3 R language drawing album (R语言绘图专辑)
 
 *   [ggplot2版聚类物种丰度堆叠图](https://mp.weixin.qq.com/s/RdgodV3EMcFuC6--FVMHkw)
 
-#### 1.3.4 高级统计绘图
+#### 1.3.4 Advanced statistical graphics (高级统计绘图)
 
 *   [50个ggplot2可视化案例](https://mp.weixin.qq.com/s/Ke-tBqRAGEtNMgAlLBuq3g)
 *   [R语言大会：宏基因组数据分析和可视化套路总结](https://mp.weixin.qq.com/s/yIupS5_m34npRfy1iAak6A)
@@ -210,11 +246,13 @@
 *   [普鲁克分析（Procrustes Analysis）评估物种-环境/功能关联度的一个示例](https://mp.weixin.qq.com/s/pXnd4ZrFMF1zt9DARFGgQA)
 *   [R语言绘制带聚类树的堆叠柱形图](https://mp.weixin.qq.com/s/47UPAm3wI63rxWzO4dmJSw)
 
-### 1.4 Python数据处理和绘图
+### 1.4 Python data processing and plotting (Python数据处理和绘图)
 
 *   [Python学习极简教程](https://mp.weixin.qq.com/s/9BNrq8Lu7hjtO2BAKOIXOA)&#x20;
 
-### 1.5 微生物组概述
+### 1.5 Microbiome overview (微生物组概述)
+
+Development history: groping, initial exploration, establishing methods, and letting a hundred flowers bloom.
 
 发展史：摸索，初步探索，建立方法，百花齐放。
 
@@ -228,44 +266,46 @@
 *   [扩增子分析还聚OTU就真OUT了](http://mp.weixin.qq.com/s/D3qKT7mYEg52nCfQWF75wg)
 *   [主流非聚类方法dada2,deblur和unoise3介绍与比较](http://mp.weixin.qq.com/s/hU4AavhMQcebNhBtMUg1tw)
 
+Sequencing platform and data
+
 测序平台和数据
 
-*   学习全基因组测序数据分析 [1测序技术](https://mp.weixin.qq.com/s/UVMb8478xVGcX5sjjie72g) [2fasta\&fastq](https://mp.weixin.qq.com/s/mbNryd7D51OZVnbLgXQssQ)
+*   Learn about whole genome sequencing data analysis (学习全基因组测序数据分析) [1测序技术](https://mp.weixin.qq.com/s/UVMb8478xVGcX5sjjie72g) [2fasta\&fastq](https://mp.weixin.qq.com/s/mbNryd7D51OZVnbLgXQssQ)
 
-**常用研究手段**
+**Common research methods (常用研究手段**)
 
-#### 1.5.1 培养组
+#### 1.5.1 Culturome (培养组)
 
 *   [MPB：军科院杨瑞馥、毕玉晶等-​​培养组学方法优化(视频)](https://mp.weixin.qq.com/s/D5ZXFeGqUabDEZneTq3wvQ)
 *   [MPB：中科院微生物所蔡磊组-运用可培养组技术开展难培养真菌的分离和鉴定](https://mp.weixin.qq.com/s/iT0qJ4mOMQxaMzai6DgEEg)
 *   [NBT：人类肠道培养细菌的1520个基因组](https://mp.weixin.qq.com/s/K1nhlwkBDJOHdNL85Z5_lQ)
 *   [Nature Genetics：微生物基因组如何适应植物？(news & views)](https://mp.weixin.qq.com/s/rYyeVFp_ss9lITCytc9LUw)
 
-#### 1.5.2 扩增子16S
+#### 1.5.2 Amplicon 16S (扩增子16S)
 
 *   [扩增子16S分析专题研讨论会——背景介绍](https://mp.weixin.qq.com/s/MshuexPk3R6Fbp4A8mdnKQ)
 *   [01-背景介绍](https://mp.weixin.qq.com/s/NNc4t0htSwE2IQPxWCHbwA)
 *   [02-真菌引物选择](https://mp.weixin.qq.com/s/qesgLtXY3xP-1W-uMP-KmQ)
 
-#### 1.5.3 宏基因组
+#### 1.5.3 Metagenomics (宏基因组)
 
 *   [宏基因组基础知识梳理](http://mp.weixin.qq.com/s/d-cmrrnFlI8gOBQtKLHxWw)
 
-#### 1.5.4 其他宏组学
+#### 1.5.4 Other meta-omics (其他宏组学)
 
-**真菌组 18S/ITS**
+**Fungal 18S/ITS (真菌组 18S/ITS**)
 
 *   [FUNGuild：真菌功能注释](http://mp.weixin.qq.com/s/pO3VCMLwEFLlcEgMQsUjDg)
 
-**功能基因**
+**Functional genes (功能基因**)
 
 *   [功能基因多样性研究概述](https://mp.weixin.qq.com/s/hZKGAcUU9pf6j_zPtPfoAg)
 
-**代谢组**
+**Metabolome (代谢组**)
 
 *   [MetaboAnalyst 4.0，代谢组学研究利器的升级](https://mp.weixin.qq.com/s/SLqDgRYejriTczVyPggZjQ)
 
-**基因组**
+**Genome (基因组**)
 
 *   [一个细菌基因组完整分析脚本](https://mp.weixin.qq.com/s/TCZ8gr2ngoUOa8rYuDb_jw)
 
@@ -273,14 +313,18 @@
 
 *   基因组注释 [1重复序列](https://mp.weixin.qq.com/s/omWl0ZgYALyC9qudkRcU8A) [2非编码和编码基因](https://mp.weixin.qq.com/s/GsurCUMt7WSvfM6axCCEZg) [3功能注释Prokka](https://mp.weixin.qq.com/s/VSB1jJ4Jv1tnmQT_8Kq0MA)
 
-**转录组**
+**Transcriptome (转录组**)
+
+Sometimes the research also involves the study of gene expression of hosts and microorganisms. For more articles on transcriptomes and single cells, please follow the Bioinformatics Guide WeChat public account.
 
 有时研究也会涉及宿主、微生物的基因表达研究。更多转录组、单细胞的文章可关注生信宝典公众号。
 
 *   [Genevestigator: 查找基因在发表研究中的表达](https://mp.weixin.qq.com/s/mHBH-ooJ9vBpv0nvRFuF3A)
 *   [psRobot：植物小RNA分析系统](http://mp.weixin.qq.com/s/drpMN55hfbVwHbLYXC0oUw)
 
-## 2.微生物组分析流程(原始数据到特征表)(Microbiome analysis pipeline)
+## 2.Microbiome analysis pipelines 微生物组分析流程 (原始数据到特征表)
+
+Take stock of mainstream software. The advanced stage should be a free combination of various methods and steps, or even design and develop methods according to needs.
 
 盘点主流软件。高级阶段应该是各种方法步骤的自由组合，甚至是根据需要设计、开发方法。
 
@@ -288,16 +332,16 @@
 
 *   [Nature综述：手把手教你分析菌群数据](https://mp.weixin.qq.com/s/F8Anj9djawaFEUQKkdE1lg) [2020更新](https://mp.weixin.qq.com/s/OEFCmQh9T0HCEdDemL09IA)
 
-### 2.1 培养组
+### 2.1 Culturome (培养组)
 
 *   [MPB：军科院杨瑞馥、毕玉晶等-​​培养组学方法优化(视频)](https://mp.weixin.qq.com/s/D5ZXFeGqUabDEZneTq3wvQ)
 *   [MPB：中科院微生物所蔡磊组-运用可培养组技术开展难培养真菌的分离和鉴定](https://mp.weixin.qq.com/s/iT0qJ4mOMQxaMzai6DgEEg)
 *   [NBT：人类肠道培养细菌的1520个基因组](https://mp.weixin.qq.com/s/K1nhlwkBDJOHdNL85Z5_lQ)
 *   [Nature Genetics：微生物基因组如何适应植物？(news & views)](https://mp.weixin.qq.com/s/rYyeVFp_ss9lITCytc9LUw)
 
-### 2.2 扩增子
+### 2.2 Amplicon (扩增子)
 
-64, 33格式转换
+Format coversion (格式转换)
 
 *   [极速的FASTQ文件质控+过滤+校正fastp](http://mp.weixin.qq.com/s/u3U-AJW7oRYTx5h13c19UQ)
 
@@ -393,7 +437,7 @@
 *   [QIIME 2教程. 30名词Glossary(2023.5)](https://mp.weixin.qq.com/s/CNhXDZk_jCN2CbvAQjr72g)
 *   [QIIME 2教程. 31如何写方法和引用Citing(2023.5)](https://mp.weixin.qq.com/s/OGIPGBiIx3MlAGlcNOotjw)
 
-### 2.3 宏基因组
+### 2.3 Metagenomics (宏基因组)
 
 *   [数据的质量控制软件——fastQC](https://mp.weixin.qq.com/s/MMfierO-8H2MVRkJKGCOVQ)
 
@@ -415,7 +459,7 @@
 
 *   [3宏基因组定量、功能注释和高级分析代码](https://mp.weixin.qq.com/s/17TIqRGE9BOiTtPnHeIr3g)
 
-#### 2.3.1 有参分析Read-based
+#### 2.3.1 Read-based analysis (有参分析Read-based)
 
 *   MetaPhlAn2基于多标记基因的宏基因组物种组成定量 [文章解读](https://mp.weixin.qq.com/s/vG7GaAukdma6e1nuX_06Aw) [软件使用](https://mp.weixin.qq.com/s/hpJtU8I8OTPmwOeFh7R2VQ)
 
@@ -425,7 +469,7 @@
 
 *   [宏基因组注释和可视化神器MEGAN入门](https://mp.weixin.qq.com/s/DaigDeYd80tTJ2GkI9LHvA)
 
-#### 2.3.2 无参Assembly-based
+#### 2.3.2 Assemble-based analysis (无参Assembly-based)
 
 *   [1背景知识-Shell入门与本地blast实战](http://mp.weixin.qq.com/s/jASOBPzpwYCL-fWNUJJp8g)
 *   [2数据质控fastqc, Trimmomatic, MultiQC, khmer](http://mp.weixin.qq.com/s/3O01eNMe79J_kUTaJjP6ag)
@@ -442,7 +486,7 @@
 *   [9组装assembly和分箱bin结果可视化—Anvi'o](http://mp.weixin.qq.com/s/FesH_mCunpZLpKC2pIg1UQ)
 *   [10绘制圈图-Circos安装与使用](http://mp.weixin.qq.com/s/FJlKY3kU5Fm6bYkjtwRkEw)
 
-#### 2.3.3 功能注释数据库
+#### 2.3.3 Functional annotation database (功能注释数据库)
 
 *   [KEGG在线数据库使用攻略](http://mp.weixin.qq.com/s/C6uetbAv_Cj8s0jMgSfW7Q)
 *   [KEGG功能注释工具 KofamKOALA 安装与使用](https://mp.weixin.qq.com/s/efceZY7_CJ9TVAj6ayOoZQ)
@@ -454,7 +498,7 @@
 *   [Briefings in Bioinformatics：微生物基因组学和功能基因组学相关软件和数据库的研究进展](https://mp.weixin.qq.com/s/uEX4boAe_MayDCmVIwNu1A)
 *   [WebMGA：超快的基因组序列聚类注释在线工具](https://mp.weixin.qq.com/s/i1mL0jX9xZhoCyDTuzQsgA)
 
-#### 2.3.4 分箱专题
+#### 2.3.4 Binning (分箱专题)
 
 *   Microbiome：宏基因组分箱流程MetaWRAP [简介](https://mp.weixin.qq.com/s/_bqIPb_N3uFW9ppZeNtdKg) [安装和数据库部署](https://mp.weixin.qq.com/s/WrbKYybTCKab3AUcSzUWqg)  [实战和结果解读](https://mp.weixin.qq.com/s/Ecn4DOrhfUhz1HynbgQtnw)
 *   [NBT：宏基因组"读云"10X建库+雅典娜算法组装获得微生物高质量基因组](https://mp.weixin.qq.com/s/5HvUaXS1knTIRhIi4F0i6w)
@@ -462,13 +506,13 @@
 *   [一文读懂宏基因组binning](https://mp.weixin.qq.com/s/BHCs2Y97jXL-2kInlu49UA)
 *   [微生物基因组分类数据库GTDB和软件GTDB-Tk](https://mp.weixin.qq.com/s/pXOVbUb_FFk5kq-4y5N1Fg)
 
-### 2.4 认识特征表 Feature table
+### 2.4 Feature table (认识特征表)
 
 特征表是上游大数据分析的终点，是里程碑式的成果，同时也是下游分析的起始。
 
 *   [BIOM：生物观测矩阵(特征表)——微生物组数据通用数据格式](https://mp.weixin.qq.com/s/R1lDzm8eSBibhL8PkDSJJA)
 
-## 3.特征表的统计、可视化和解读(Visualization and interpretation)
+## 3.Visualization and interpretation (特征表的统计、可视化和解读)
 
 *   [扩增子图表解读-理解文章思路](https://mp.weixin.qq.com/s/GAdyQhGdIuj6J6Vstg0fyg)
 *   [扩增子分析流程-把握分析细节](https://mp.weixin.qq.com/s/y2blDiLYohJmzuyAMFU3ZA)
@@ -479,74 +523,76 @@
 *   [水稻微生物组时间序列分析](http://mp.weixin.qq.com/s/qxDBa-opLPecfISPi7qI3g) [1模式图与PCoA](https://mp.weixin.qq.com/s/6l6lC-DlwSlsivlD5eI4Qg)  [2a相关分析](https://mp.weixin.qq.com/s/31GlVfOXpq_Z07MLnWgtow) [2b散点图拟合](https://mp.weixin.qq.com/s/WUtV6XnzA4a6PNiROjrWEQ) [3冲击图](https://mp.weixin.qq.com/s/mJLtkLxbXklrRtFgRNodMA) [4随机森林回归](https://mp.weixin.qq.com/s/pyIoUs_YGuzLyc2gAet6BA)
 *   [微生物组统计和可视化——phyloseq入门](https://mp.weixin.qq.com/s/lDhHZ3CPYZgeQ3muTDJO2A)
 
-### 3.1 统计学基础
+### 3.1 Basic statistics (统计学基础)
 
 *   [P值背后那些事儿](http://mp.weixin.qq.com/s/lKkvJ7s8dshe7mvDOnl6_w)
 
-#### 3.1.1 正态性检验和方差齐性分析
+#### 3.1.1 Normality test and analysis of variance homogeneity (正态性检验和方差齐性分析)
 
-#### 3.1.2 t检验、方差分析、卡方检验使用注意事项
+#### 3.1.2 Notes on using t-test, ANOVA, and chi-square test (t检验、方差分析、卡方检验使用注意事项)
 
-#### 3.1.3 两组和多组秩和检验
+#### 3.1.3 Two-group and multiple-group rank sum test (两组和多组秩和检验)
 
-#### 3.1.4 多重比较的P值校正
+#### 3.1.4 P value correction for multiple comparisons (多重比较的P值校正)
 
-#### 3.1.5 物种数据标准化方法和注意事项
+#### 3.1.5 Species data standardization methods and considerations (物种数据标准化方法和注意事项)
 
-### 3.2 Alpha多样性
+### 3.2 Alpha diversity (Alpha多样性)
 
-#### 3.2.1 箱线图或柱状图
+#### 3.2.1 Box plots and bar plots (箱线图或柱状图)
 
-#### 3.2.2 稀释曲线
+#### 3.2.2 Rare curve (稀释曲线)
 
-#### 3.2.3 维恩图
+#### 3.2.3 Venn (维恩图)
+
+Variations of Venn diagrams, such as UpsetView, network diagrams, etc.
 
 维恩图的变形，如UpsetView，网络图等。
 
-### 3.3 Beta多样性
+### 3.3 Beta diversity (Beta多样性)
 
 *   [排序方法比较大全PCA、PCoA、NMDS、CCA](http://mp.weixin.qq.com/s/juMOVzZfdUD4w9M2l1Bh6g)
 *   [Adonis和ANOSIM方法组间整体差异评估原理](http://mp.weixin.qq.com/s/b2kjedvI-8hYSkTQxKUalA)
 *   [PCoA距离算法大全](https://mp.weixin.qq.com/s/SomOM-Dzz1SJ2pYAynsBRA)
 *   [环境因子关联分析—CCA还是RDA](http://mp.weixin.qq.com/s/8D4vlBIhyYg0ZHtsdGn_kA)
 
-#### 3.3.1 非限制性排序PCoA/NMDS
+#### 3.3.1 PCoA/NMDS (非限制性排序)
 
-1.  主成分分析PCA
-2.  主坐标分析PCoA
-3.  非度量多维尺度分析NMDS
-4.  对应分析CA
-5.  其他排序pls-da，opls-da，t-sne
+1.  PCA (主成分分析)
+2.  PCoA (主坐标分析)
+3.  NMDS (非度量多维尺度分析)
+4.  CA (对应分析)
+5.  pls-da，opls-da，t-sne (其他排序)
 
-#### 3.3.2 统计方法PERMANOVA
+#### 3.3.2 PERMANOVA (统计方法)
 
 1.  PERMANOVA
 2.  ANOSIM
 3.  MRPP
 
-#### 3.3.3 限制性排序
+#### 3.3.3 Constrained sorting (限制性排序)
 
-1.  限制性主坐标分析Constrinaed PCoA
-2.  冗余分析RDA
-3.  典范对应分析CCA
+1.  Constrained PCoA (限制性主坐标分析)
+2.  RDA (冗余分析)
+3.  CCA (典范对应分析)
 
 *   [Canoco5绘制漂亮的DCA或CCA图](https://mp.weixin.qq.com/s/aOlS6RKZTI0JJkLL7g7gaQ)
 
 1.  LDA
 
-### 3.4 物种组成
+### 3.4 Species composition (物种组成)
 
-#### 3.4.1 堆叠柱状图
+#### 3.4.1 Stacked bar plot (堆叠柱状图)
 
-#### 3.4.2 弦图
+#### 3.4.2 Chord plot (弦图)
 
-#### 3.4.3 树图/气泡图
+#### 3.4.3 Tree plot/Bubble plot (树图/气泡图)
 
-### 3.5 差异比较
+### 3.5 Differential analysis (差异比较)
 
-#### 3.5.1 t检验和秩和检验
+#### 3.5.1 t-test and rank-sum test (t检验和秩和检验)
 
-#### 3.5.2 负二项分布和计数型差异分析edgeR/DESeq2
+#### 3.5.2 Negative binomial distribution and count variance analysis (负二项分布和计数型差异分析) edgeR/DESeq2
 
 1.  什么是物种数据的过度离散现象和负二项分布
 2.  用edgeR包进行差异分析
@@ -554,32 +600,32 @@
 
 *   [二代测序数据统计分析中为什么是负二项分布？](https://mp.weixin.qq.com/s/Jbu54YgGoUrpZjhveF6GFw)
 
-#### 3.5.3 STAMP与扩展柱状图
+#### 3.5.3 STAMP and extended bar chart (STAMP与扩展柱状图)
 
 *   STAMP——微生物组间差异统计分析 [简明教程](http://mp.weixin.qq.com/s/f02mPAXCobPQijkIis-c2w) [中文帮助文档](https://mp.weixin.qq.com/s/uWU-F7jUuMskM7GXOrgILA)
 
-#### 3.5.4 LEfSe和Cladogram
+#### 3.5.4 LEfSe and Lcadogram (LEfSe和Cladogram)
 
 *   [LEfSe分析简介](http://mp.weixin.qq.com/s/5K8OTMee6CwDZz51YWJEDg)
     [简化美化LEfSe分析结果图](https://mp.weixin.qq.com/s/vnt7EacrJaeY01owbJ1ZQA)
 
-#### 3.5.5 其他常用差异分析方法
+#### 3.5.5 Other commonly used difference analysis methods (其他常用差异分析方法)
 
 1.  ANCOM分析
 2.  ALDEx2分析
 3.  songbird和DEICODE介绍
 4.  limma
 
-### 3.6 网络分析
+### 3.6 Network analysis (网络分析)
 
-#### 3.6.1 网络基础知识
+#### 3.6.1 Network basics (网络基础知识)
 
-#### 3.6.2 可视化入门
+#### 3.6.2 Visualization introduction (可视化入门)
 
-1.  按分类或模块着色网络
-2.  网络属性
-3.  全局属性
-4.  节点属性
+1.  Coloring networks by categories or modules (按分类或模块着色网络)
+2.  Network properties (网络属性)
+3.  Global properties (全局属性)
+4.  Nodes properties (节点属性)
 
 *   [网络图在R中的实现-igraph](https://mp.weixin.qq.com/s/Lh7HqhgFi0NAF9sLJZp4lg)
 *   [微生物网络构建：MENA, LSA, SparCC和CoNet](http://mp.weixin.qq.com/s/YPZar_aDmKE4W9s45NvhgQ)
@@ -587,122 +633,124 @@
 *   [Cytoscape: MCODE包实现网络模块化分析](https://mp.weixin.qq.com/s/jGHuP1ikCX0n3vKfS3VXPQ) [GIANT包分析网络的Z、P-score](https://mp.weixin.qq.com/s/Q79cpCRFvgWJNdUVAmvMxA) [制作带bar和pie节点的网络图](https://mp.weixin.qq.com/s/6sao9YEo-9kSwDi7o1SKWQ)
 *   [使用网络图展示Venn图集合及Cytoscape操作视频](https://mp.weixin.qq.com/s/PugsgGR_2qMkHYkoFkVTDQ)
 
-#### 3.6.3 可视化进阶
+#### 3.6.3 Advanced visualization (可视化进阶)
 
-1.  双网络比对
-2.  多网络时间序列
-3.  Gephi美化
+1.  Dual network comparison (双网络比对)
+2.  Multi-network time series (多网络时间序列)
+3.  Gephi beautification（Gephi美化）
 
 *   [Gephi轻松绘制超美网络图](https://mp.weixin.qq.com/s/TJHt4ilxb5bhp-aLO1pKTg)
 
-### 3.7 机器学习
+### 3.7 Machine learning (机器学习)
 
 *   [轻松看懂机器学习十大常用算法](http://mp.weixin.qq.com/s/sU__UxDDmhs-4pMGX-5rSQ)
 *   [一文读懂随机森林在微生态中的应用](http://mp.weixin.qq.com/s/58VAF03uO3nBPfp7eboqUA)
 *   [你想知道的ROC曲线](http://mp.weixin.qq.com/s/wRISqBabnFrtWD4TrCgBOg)
 
-#### 3.7.1 机器学习的常用算法
+#### 3.7.1 Common algorithms for machine learning (机器学习的常用算法)
 
-#### 3.7.2 随机森林分类
+#### 3.7.2 Random forest classification (随机森林分类)
 
 黄适：这个RandomForest package 非常慢，已经完全不适应大数据分析需求。推荐使用ranger <https://github.com/imbs-hl/ranger>
 
 1.  分类
 2.  分类评估-ROC曲线及DCA分析
 
-#### 3.7.3 随机森林回归
+#### 3.7.3 Random forest regression (随机森林回归)
 
 1.  回归
 2.  回归及效果评价
 
 #### 3.7.4 Adaboost/slime2
 
-#### 3.7.5 深度学习
+#### 3.7.5 Deep learning (深度学习)
 
-#### 3.7.6 来源追溯SourceTracker/FEAST
+#### 3.7.6 SourceTracker/FEAST (来源追溯)
 
 *   [Nature Methods：快速准确的微生物来源追溯工具FEAST](https://mp.weixin.qq.com/s/NL68sMIYL_vhBxGa91bFpg) [Phyloseq格式使用实战](https://mp.weixin.qq.com/s/hIBsK8OQii1eziK7pH2dwQ) [原版代码实战](https://mp.weixin.qq.com/s/xRkMpXeBr7EpeE-VIoPcQQ)
 *   [SourceTracker—微生物来源分析](https://mp.weixin.qq.com/s/18U5YmzEPpCBsZJBYxwCkw)
 
-#### 3.7.7 其他常用算法
+#### 3.7.7 Other commonly used algorithms (其他常用算法)
 
-1.  人工神经网络分类
-2.  支持向量机分类
-3.  逻辑回归（GLM）
+1.  Artificial neural network classification (人工神经网络分类)
+2.  Support vector machine classification (支持向量机分类)
+3.  Logistic regression (逻辑回归) (GLM)
 
-### 3.8 树形图
+### 3.8 Phylogenetic tree (树形)
 
 *   进化树 [一文读懂](https://mp.weixin.qq.com/s/GV8rU3FZdc8Y-x931k_yrQ)
 *   [iTOL美化](https://mp.weixin.qq.com/s/htW2nWJBCp555y27grrGRw) [进阶](https://mp.weixin.qq.com/s/ZATPWf47WBKl91gFEBzusg)
 *   [GraPhlAn进化树](https://mp.weixin.qq.com/s/pR7uKYxlXad9fBp7o-vkMA) [物种树Cladogram官方教程中文](https://mp.weixin.qq.com/s/Uw6PRf8_hPiJwZydXhI37Q) [重现Nature文章实战](https://mp.weixin.qq.com/s/xOtF_MzBShPC1niYul5KLw)
 *   [Evolview基础](http://mp.weixin.qq.com/s/eDXbvf7iW2WSjrkcX2odYA) [进阶](https://mp.weixin.qq.com/s/xxc9ObBdPYM10YCw0Ur6MQ)
 
-#### 3.8.1 进化树构建
+#### 3.8.1 Phylogenetic tree construction (进化树构建)
 
-1.  多序列比对
-2.  建树Fastree/RaxL
-3.  宏基因组中建树Phylophlan3
-4.  iTOL美化进化树
-5.  ggtree美化进化树
+1.  Multiple sequence alignment (多序列比对)
+2.  Fastree/RaxL (建树)
+3.  Phylophlan3 (宏基因组中建树)
+4.  iTOL (美化进化树)
+5.  ggtree (美化进化树)
 
-#### 3.8.2 分类树构建
+#### 3.8.2 Classification tree construction (分类树构建)
 
-1.  Graphlan与Cladogram
+1.  Graphlan and Cladogram (Graphlan与Cladogram)
 2.  Krona
 3.  Metacoder
 
 *   [Krona绘制物种或功能组成圈图](https://mp.weixin.qq.com/s/62CXHcz9ZisVsRgbUjTK8A)
 *   [microbiomeViz：绘制lefse结果中Cladogram](https://mp.weixin.qq.com/s/psGD9-AxgcCfclGhOKR1mQ)
 
-### 3.9 相关分析
+### 3.9 Correlation analysis (相关分析)
 
 *   [相关分析：Spearman、Kendall和Pearson](http://mp.weixin.qq.com/s/Nm9NEGG9gy-lEX34kyxFgQ)
 
-#### 3.9.1 特征与环境因子相关
+#### 3.9.1 Traits and environmental factors correlations (特征与环境因子相关)
 
-#### 3.9.2 特征间相关(同网络)
+#### 3.9.2 Correlation between features (特征间相关(同网络))
 
-#### 3.9.3 相关分析的可视化
+#### 3.9.3 Visualization of correlation analysis (相关分析的可视化)
 
-## 4. 文章套路总结(Routine and ideas)
+## 4. Routine and ideas (文章套路总结)
 
-### 4.1 扩增子
+### 4.1 Amplicon (扩增子)
 
 *   扩增子SCI套路 [1群落结构差异](http://mp.weixin.qq.com/s/tRc4PBS-PZh6ghxX1nlNcw) [2组间差异](http://mp.weixin.qq.com/s/yI1KlyluNyoPM0DE5LOAfg) [3总结](http://mp.weixin.qq.com/s/V4VCrJU4cSSpof2QDoDKNQ)
 
-### 4.2 宏基因组
+### 4.2 Metagenome (宏基因组)
 
-#### 4.2.1 参考基因集
+#### 4.2.1 Reference genomes (参考基因集)
 
-#### 4.2.2 碳水化合物
+#### 4.2.2 Carbohydrate (碳水化合物)
 
-#### 4.2.3 抗生素抗性
+#### 4.2.3 Antibiotic resistance (抗生素抗性)
 
-### 4.3 扩增子+宏基因组
+### 4.3 Amplicon and metagenome (扩增子+宏基因组)
 
-### 4.4 其他研究热点
+### 4.4 Other research hotspots (其他研究热点)
 
-*   人类：肠型、肥胖、二型糖尿病、IBD、早产、关联分析
-*   动物：无菌小鼠、牛瘤胃、食性、宿主和微生物共进化
-*   植物：根际、叶际、代谢物、氮利用、抗病
-*   环境：抗生素耐药、抗生素挖掘、极端环境、生命之树
+*   Human: enterotype, obesity, type 2 diabetes, IBD, preterm birth, association analysis (人类：肠型、肥胖、二型糖尿病、IBD、早产、关联分析)
+*   Animal: Germ-free mice, bovine rumen, diet, host-microbe coevolution (动物：无菌小鼠、牛瘤胃、食性、宿主和微生物共进化)
+*   Plant: rhizosphere, phyllosphere, metabolites, nitrogen utilization, disease resistance (植物：根际、叶际、代谢物、氮利用、抗病)
+*   Environment: Antibiotic Resistance, Antibiotic Mining, Extreme Environments, Tree of Life (环境：抗生素耐药、抗生素挖掘、极端环境、生命之树)
 
-## 5. 附录(Appendix)
+## 5. Appendix (附录)
 
-### 5.1 实验设计
+### 5.1 Study design (实验设计)
+
+Experimental protocol, sample metadata collection, sample naming conventions and examples.
 
 实验方案，样本元数据收集，样本名命名规则和示例。
 
-### 5.2 测序平台和测序技术
+### 5.2 Sequencing platform and technology (测序平台和测序技术)
 
-### 5.3 数据备份与发布
+### 5.3 Data backup and release (数据备份与发布)
 
 NCBI，GSA，EBI
 
 *   [原始数据极速上传NCBI SRA教程](https://mp.weixin.qq.com/s/ofL8OSgGvKpzVfuV7ZS_BA)
 *   [中国核酸数据库GSA数据提交指南](https://mp.weixin.qq.com/s/kppWmdMnXhfGIIyC6n7d_g) [扩增子16S实例](https://mp.weixin.qq.com/s/bOpfgcbpvDeHCgw0YzfkdQ) [宏基因组实例](https://mp.weixin.qq.com/s/ZbhVHRQj5kZVHMsvOyWr0w)
 
-### 5.4 图片排版和美化
+### 5.4 Image layout and beautification (图片排版和美化)
 
 *   [学术论文图表基本规范大全](http://mp.weixin.qq.com/s/SCT4oso_vI0UNIJZTaG95g)
 
@@ -718,7 +766,7 @@ NCBI，GSA，EBI
 
 *   [Graphpad绘图初学](https://mp.weixin.qq.com/s/3guW1z2D72b5KJx2arnKUg) [生物统计绘图进阶](https://mp.weixin.qq.com/s/UXp2y7t1JqJutynvdFa4wA)
 
-### 5.5 杂志点评
+### 5.5 Journal comments (杂志点评)
 
 CNS，Microbiome，ISME
 
@@ -726,9 +774,9 @@ CNS，Microbiome，ISME
 *   [想发高分论文的同学看过来，这里有10分的杂志和主编可以了解一下！](https://mp.weixin.qq.com/s/610Hi0_l8VURiHj3wq5ZNQ)
 *   [为何新刊物Microbiome影响因子这么高？主编Jacques Ravel教授来告诉你](https://mp.weixin.qq.com/s/yLz63cxZYJOB77pK9EyoJA)
 
-相关文章按杂志分类
+Related articles by magazine (相关文章按杂志分类)
 
-### 5.6 论文写作、投稿和文献整理
+### 5.6 Paper writing, submission and literature compilation (论文写作、投稿和文献整理)
 
 *   文献阅读 [1热心肠](https://mp.weixin.qq.com/s/S6bW6hiDdNsXBQlqCg3m0Q) [2GeenMedical文献下载](https://mp.weixin.qq.com/s/-_BbGw6b1HE5IAyFoE_VtA)
 
@@ -738,13 +786,17 @@ CNS，Microbiome，ISME
 
 *   [压缩PDF文件大小满足上传要求](https://mp.weixin.qq.com/s/1ccxIG5cLQdybcjprmoBcQ)
 
-### 5.7 机遇与挑战
+### 5.7 Opportunities and challenges (机遇与挑战)
+
+Current advantages, disadvantages and shortcomings, and future development directions.
 
 目前的优缺点和不足，未来的发展方向。
 
 *   [mSystems：鸟枪法宏基因组测序之外我们还能做什么](https://mp.weixin.qq.com/s/zbW2nFauyffRIxv-DzDh9A)
 
-### 5.8 三代测序
+### 5.8 Next-generation sequencing (三代测序)
+
+NBT's PacBio and ONT article introduction
 
 NBT的PacBio和ONT文章简介
 
@@ -757,15 +809,15 @@ NBT的PacBio和ONT文章简介
 *   [Medicine in Microecology：微生物所王军组发表Nanopore三代测序人类肠道病毒组的方法](https://mp.weixin.qq.com/s/Q0gQI_6IV3mazSN7MXyoxQ)
 *   [高分文章精选 | 纳米孔宏基因组测序的表现](https://mp.weixin.qq.com/s/EON-4cQSgbrz2rbE2mgGiQ)
 
-### 5.9 经验和资源推荐
+### 5.9 Experience and resource recommendations (经验和资源推荐)
 
-经验
+Experience (经验)
 
 *   [从博后到PI的十个建议](https://mp.weixin.qq.com/s/FVV5kP_kISlmIjhuvBPMHA)
 *   [如何优雅的提问](https://mp.weixin.qq.com/s/B8JO4GjvzZP5BUMoaKPrZw)
 *   [微生物组入门必读+宏基因组实操课程](http://mp.weixin.qq.com/s/sQyl5EctXFB95Oxg8YIasg)
 
-办工效率
+Work efficiency (办工效率)
 
 *   [公众号搜索方法大全](https://mp.weixin.qq.com/s/DmfFTE7G_oTUuKz-JLI7bQ)
 *   科研团队成长三部曲：[1云笔记](https://mp.weixin.qq.com/s/5ug2wEo5AmpksZui7yPUlQ) [2云协作](http://mp.weixin.qq.com/s/W5By9mZ5PI57_xFfZ_JXiw) [3公众号](http://mp.weixin.qq.com/s/hd0sdBDAMqMJsXQs0pIjUg)
@@ -773,12 +825,12 @@ NBT的PacBio和ONT文章简介
 *   [SCI论文投稿全程模板](https://mp.weixin.qq.com/s/naHAwkL6eEwgzQ6Q_Unigw)
 *   [玩转花式截图、录屏——FastStoneCapture使用指南](https://mp.weixin.qq.com/s/UJX7UNe8A5PxneWQUNO5ww)
 
-书籍专著
+Books and monographs (书籍专著)
 
 *   [价值130欧元的《微生物组分析Microbiome Analysis》2018版电子书](https://mp.weixin.qq.com/s/1OeYbdwKIAIvw5TdylRxVw)
 *   [价值1143元的《R语言统计分析微生物组数据》系列图书](https://mp.weixin.qq.com/s/_jEoEiaEGuT-6nnY7aOP1Q)
 
-国外教程
+Foreign tutorial (国外教程)
 
 *   [2016加拿大宏基因组分析教程](http://mp.weixin.qq.com/s/bcyvhFrNr6niqD13rQfZeg)
 *   [1简介-定义、方法和数据库](https://mp.weixin.qq.com/s/_MNGlNMA-Yqyzm-FVVH46g)
@@ -795,14 +847,16 @@ NBT的PacBio和ONT文章简介
 *   30余款宏基因组分析软件经验总结[上](https://mp.weixin.qq.com/s/kwq9XSCid2QXD_Ajar3PAw) [中](https://mp.weixin.qq.com/s/vlM2Z2wJjjKSAb4edk9tXQ) [下](https://mp.weixin.qq.com/s/PdIFSPgiUaM9NfT4LoqI4g)
 *   [微生物组学数据分析工具综述 | 16S+宏基因组＋宏病毒组＋宏转录组](https://mp.weixin.qq.com/s/xsL9GuLs7b3nRF8VeRtinQ)
 
-### 5.10 宏基因组精品文章(专题)
+### 5.10 Metagenomics featured articles (Special topic) (宏基因组精品文章) (专题)&#x20;
+
+Full text of the main references of this book
 
 本书主要参考文献全文解读
 
 *   [NBT封面：水稻NRT1.1B基因调控根系微生物组参与氮利用](https://mp.weixin.qq.com/s/YplXZjsOnadHkmyR9IlYAg)
 *   [手把手带你重现菌群封面文章图表](https://mp.weixin.qq.com/s/UNpXzOpknQcU_BN2hyEyGw)
 
-网站数据库
+Online database (网站数据库)
 
 *   微生物组网页工具MicrobiomeAnalyst——教你零基础开展微生物组数据分析和可视化 [Nature子刊：官网教程中文版、](https://mp.weixin.qq.com/s/GIaaJc5zY5_s0tgFb36BVQ) [实操教程、](https://mp.weixin.qq.com/s/p8NRRbaupAJYLy6M5OTXxg)  [NAR：原文解读](https://mp.weixin.qq.com/s/6gB57h6uLISSAbLUhMoFhw)
 *   [NAR：gcMeta——全球微生物组数据存储和标准化分析平台](https://mp.weixin.qq.com/s/Tu8oLxNDMPmeN7aPCFwudQ)
@@ -814,7 +868,7 @@ NBT的PacBio和ONT文章简介
 *   [NAR：UNITE真菌鉴定ITS数据库](https://mp.weixin.qq.com/s/5kGVPJLv35muVOxtMHOcbg)
 *   [curatedMD包挖掘宏基因组公共数据库](https://mp.weixin.qq.com/s/rMafTtb4dK2ko69gFye-ww)
 
-软件算法和流程
+Software algorithms and pipelines (软件算法和流程)
 
 *   [MIMOSA2： 基于微生物组和代谢组数据的整合分析](https://mp.weixin.qq.com/s/kdP66xPTXNM3fXFYC9r0VA)
 *   [Nature Protocols：整合宏基因组、代谢组和表型分析的的计算框架](https://mp.weixin.qq.com/s/hvlSQ-HI7JOdZ8_m2PKo5A)
@@ -822,30 +876,30 @@ NBT的PacBio和ONT文章简介
 *   [Nature Method ：Striped UniFrac算法分析微生物组大数据](https://mp.weixin.qq.com/s/EoIoW-dS883_GHo_nr1TNQ)
 *   [青岛能源所提出微生物组相似度新算法DMS](https://mp.weixin.qq.com/s/4X7lLKE1f1wDEZ9gHblD1w)
 
-方法评测
+Method evaluation (方法评测)
 
 *   [NBT：实验vs分析，谁对结果影响大](http://mp.weixin.qq.com/s/cL_IAoPFfmelKMPMgltrfA)
 *   [MER： 基于ITS区域marker扩增真菌群落的准确性](https://mp.weixin.qq.com/s/uAUt23hilNRG843-ILE32g)
 *   [Cell：20种宏基因组学物种分类工具大比拼](https://mp.weixin.qq.com/s/u9HhPLFmRaZfxLnYdtbr7g)
 
-培养组
+Culturome (培养组)
 
 *   [NC：16S序列预测培养基配方](http://mp.weixin.qq.com/s/YIrDqNvDX0XMazCGxhH1Lg)
 *   [再这么配培养基，你的细菌都被毒死了！](https://mp.weixin.qq.com/s/TIluH1ev1k_2zI9oP8dfLw)
 
-肠型
+Enterotype (肠型)
 
 *   [Nature子刊：肠道菌群如何划分肠型](http://mp.weixin.qq.com/s/K3t7BpJ3LZvi4RNf69cJeA)
 
-基金
+Funds (基金)
 
 *   [2019国自然微生物中标4个亿](https://mp.weixin.qq.com/s/Tn9Ld4mJVh14_GAH8Vc7cg)
 
-人物传记
+Biography (人物传记)
 
 *   [下次诺奖会是他吗？肠道微生物组开创者Jeffrey Gordon](https://mp.weixin.qq.com/s/8-JMa3a14LHoHkirgDQAUw)
 
-参考基因(组)集
+Reference genomes (参考基因(组)集)
 
 *   [Cell：Tara2.0基因表达的改变和群落的更替塑造了全球海洋宏转录组](https://mp.weixin.qq.com/s/TATZoQLdi-ddUugDU7-6JA)
 *   [Nature：基于宏基因组测序构建人类肠道微生物组参考基因集](https://mp.weixin.qq.com/s/KLMm62kD5uhpaE24b5P1Xg)
@@ -853,13 +907,13 @@ NBT的PacBio和ONT文章简介
 *   [NC：全球柑橘根际微生物组的结构和功能](https://mp.weixin.qq.com/s/urokvo4NUVfdZ-6cju5Zzw)
 *   [Cell子刊：人类微生物组参考基因集中的单体基因](https://mp.weixin.qq.com/s/HHxhvUUwMKRD_D7hClcDLg)
 
-病毒组
+Viromics (病毒组)
 
 *   [热点：3个故事概览突飞猛进的肠道病毒组研究](https://mp.weixin.qq.com/s/CAB9yL7mKDfZRyP7Q3QWOQ)
 *   [Nature：梁冠翔等发现肠道病毒组在新生儿体内分段寄生的模式](https://mp.weixin.qq.com/s/1zywkIU0r4u5hO1Wqx2eBw)
 *   [Cell子刊：人体肠道病毒组高度多样、稳定且个体特异](https://mp.weixin.qq.com/s/-EnXU144i7z4-iMolkxMmg)
 
-### 5.11 猜你喜欢
+### 5.11 You may also like (猜你喜欢)
 
 *   10000+: [菌群分析](https://mp.weixin.qq.com/s/F8Anj9djawaFEUQKkdE1lg)\
     [宝宝与猫狗](http://mp.weixin.qq.com/s/K3y3an-EaX8iaytmxdzHqA) [提DNA发Nature](http://mp.weixin.qq.com/s/lO5uiMjixJ6aYTjPX-IyaQ) [实验分析谁对结果影响大](http://mp.weixin.qq.com/s/cL_IAoPFfmelKMPMgltrfA)  [Cell微生物专刊](https://mp.weixin.qq.com/s/fN0gpD3bZJDXSp8x4ck-3Q) [肠道指挥大脑](https://mp.weixin.qq.com/s/pZO20VGl3Tf_OtFIbZ-zWw)
@@ -875,15 +929,17 @@ NBT的PacBio和ONT文章简介
 *   编程模板: [Shell](http://mp.weixin.qq.com/s/YevGR79NnBAF-xtrqL8gAA)  [R](http://mp.weixin.qq.com/s/OQiE882jM6pVwqTiIjyZ1Q) [Perl](http://mp.weixin.qq.com/s/u2ZmTo-z6cbN-L6KVLYNwg)
 *   生物科普: [肠道细菌](http://mp.weixin.qq.com/s/3T768LA6MWujF4yuzK4MKQ) [人体上的生命](http://mp.weixin.qq.com/s/_DUI6tOYTEq0Wu7K7iRTxw) [生命大跃进](http://mp.weixin.qq.com/s/O_0Il0G_v_aSwkUH_noZVA)  [细胞暗战](http://mp.weixin.qq.com/s/M35ebWAelDIK5Iqib06JzA) [人体奥秘](https://mp.weixin.qq.com/s/xlCdN8il1hcutkYK-42fAQ)
 
-## 写在后面
+## Write at the back (写在后面)
+
+To encourage readers to communicate and quickly solve scientific research difficulties, we have established a "Metagenomics" professional discussion group, which has more than 5,000 frontline researchers at home and abroad. To participate in the discussion and get professional answers, please share this article with your friends and scan the code to add the editor-in-chief to join the group. Be sure to note "name-unit-research direction-professional title/grade". To seek help with technical problems, first read ["How to Ask Elegant Questions"](http://mp.weixin.qq.com/s/H9gkepap0hy3NNskOkO44w) to learn how to solve problems. If you still have not solved the problem, discuss it in the group. Don't chat privately about the problem. Help your peers.
 
 为鼓励读者交流、快速解决科研困难，我们建立了“宏基因组”专业讨论群，目前己有国内外5000+ 一线科研人员加入。参与讨论，获得专业解答，欢迎分享此文至朋友圈，并扫码加主编好友带你入群，务必备注“姓名-单位-研究方向-职称/年级”。技术问题寻求帮助，首先阅读[《如何优雅的提问》](http://mp.weixin.qq.com/s/H9gkepap0hy3NNskOkO44w)学习解决问题思路，仍末解决群内讨论，问题不私聊，帮助同行。
-![image](http://210.75.224.110/markdown/life/yongxinliu.jpg)
+
+Learn about amplicon and metagenomic research ideas and analysis practices, and focus on "metagenomics"
 
 学习扩增子、宏基因组科研思路和分析实战，关注“宏基因组”
-![image](http://210.75.224.110/markdown/life/metagenome.jpg)
 
-![image](http://210.75.224.110/markdown/train/1809/201807.jpg)
+Click to read the original text and jump to the latest article directory <https://mp.weixin.qq.com/s/5jQspEvH5_4Xmart22gjMA>
 
 点击阅读原文，跳转最新文章目录阅读
-<https://mp.weixin.qq.com/s/5jQspEvH5_4Xmart22gjMA>
+

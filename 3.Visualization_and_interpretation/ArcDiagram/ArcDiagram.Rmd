@@ -192,7 +192,7 @@ p <- ggraph(mygraph, layout = "linear") +
   geom_node_point(aes(size = n, color = as.factor(grp), fill = grp), alpha = 0.8) +
   scale_size_continuous(range = c(1, 10)) +
   scale_color_manual(values = mycolor) +
-  geom_node_text(aes(label = name), angle = 65, hjust = 1, nudge_y = -0.5, size = 3) +
+  geom_node_text(aes(label = name), angle = 65, hjust = 1, nudge_y = -0.5, size = 1) +
   theme_void() +
   theme(
     legend.position = "none",

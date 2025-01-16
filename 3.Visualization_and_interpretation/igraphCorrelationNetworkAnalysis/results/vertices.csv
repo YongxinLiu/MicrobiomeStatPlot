@@ -1,0 +1,22 @@
+name,type,degree
+AK,Soil physi-chemical factors,9
+AP,Soil physi-chemical factors,7
+NH4,Soil physi-chemical factors,2
+NO3,Soil physi-chemical factors,3
+OM,Soil physi-chemical factors,6
+Wc,Soil physi-chemical factors,2
+pH,Soil physi-chemical factors,3
+Aspergillus terreus,Fungus,5
+Aspergillus ustus,Fungus,3
+Chaetomium globosum,Fungus,1
+Gymnascella hyalinospora,Fungus,8
+Penicillium chrysogenum,Fungus,2
+Pseudallescheria boydii,Fungus,8
+Bacillus asahii,bacteria,2
+Bacillus firmus,bacteria,3
+Bacillus megaterium,bacteria,2
+Bacillus pumilus,bacteria,3
+Bacillus subtilis,bacteria,2
+Bacillus thuringiensis,bacteria,8
+Candidimonas bauzanensis,bacteria,3
+Fictibacillus phosphorivorans,bacteria,2

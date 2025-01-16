@@ -1,0 +1,10 @@
+Group	Phylum01	Phylum02	Phylum03	Phylum04	Phylum05	Phylum06	Phylum07	Phylum08	Phylum09	Phylum10	Phylum11	Phylum12	Phylum13	Phylum14	Phylum15	Phylum16	Phylum17	Phylum18	Phylum19
+BGC type1	0	1	6	488	2	42	4	0	0	0	0	0	0	2	0	0	0	0	2
+BGC type2	0	0	221	404	6	2	6	0	0	0	2	0	0	2	0	0	0	0	0
+BGC type3	29	14	242	64	2	1	21	0	29	0	4	2	0	98	0	0	6	6	2
+BGC type4	4	26	21	249	1	2	96	0	6	0	2	0	2	21	0	2	0	0	6
+BGC type5	4	92	46	208	2	0	2	0	8	2	2	0	2	202	0	0	0	0	0
+BGC type6	24	12	61	8	0	0	22	0	0	1	0	0	2	44	0	0	0	0	22
+BGC type7	6	22	216	0	0	0	2	0	0	0	0	0	0	2	0	0	0	0	0
+BGC type8	0	1	4	6	0	0	41	2	2	0	0	0	0	202	2	0	0	0	6
+Others	10	290	264	290	2	6	69	0	16	2	20	20	2	129	2	0	6	8	4

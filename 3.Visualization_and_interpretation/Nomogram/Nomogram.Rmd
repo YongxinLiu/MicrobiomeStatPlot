@@ -1,0 +1,162 @@
+---
+title: "Nomogram tutorial 诺莫图教程"
+author: "Defeng Bai(白德凤), Chuang Ma(马闯), Jiani Xun(荀佳妮)"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    df_print: paged
+    theme: cerulean
+    highlight: haddock
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      collapsed: no
+      smooth_scroll: yes
+    code_fold: show
+  word_document:
+    toc: yes
+    toc_depth: '3'
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = T, echo=T, comment="#>", message=F, warning=F,
+	fig.align="center", fig.width=5, fig.height=3, dpi=150)
+```
+
+
+The Nomogram scripts is referenced from MicrobiomeStatPlot [Inerst Reference below].
+
+If you use this script, please cited 如果你使用本代码，请引用：
+
+**Yong-Xin Liu**, Lei Chen, Tengfei Ma, Xiaofang Li, Maosheng Zheng, Xin Zhou, Liang Chen, Xubo Qian, Jiao Xi, Hongye Lu, Huiluo Cao, Xiaoya Ma, Bian Bian, Pengfan Zhang, Jiqiu Wu, Ren-You Gan, Baolei Jia, Linyang Sun, Zhicheng Ju, Yunyun Gao, **Tao Wen**, **Tong Chen**. 2023. EasyAmplicon: An easy-to-use, open-source, reproducible, and community-based pipeline for amplicon data analysis in microbiome research. **iMeta** 2(1): e83. https://doi.org/10.1002/imt2.83
+
+The online version of this tuturial can be found in https://github.com/YongxinLiu/MicrobiomeStatPlot
+
+
+**Authors**
+First draft(初稿)：Defeng Bai(白德凤)；Proofreading(校对)：Ma Chuang(马闯) and Xun Jiani(荀佳妮)；Text tutorial(文字教程)：Defeng Bai(白德凤)
+
+
+# Introduction简介
+
+诺莫图 (Nomogram)又称为列线图(Alignment Diagram)，是建立在多因素回归分析的基础上的，主要用于多个预测指标整合到同一个平面上，以可视化地表达预测模型中各个变量之间的相互关系。通过使用带有刻度的线段，并按照一定的比例在同一坐标系上绘制这些线段，以直观地展示不同预测指标对结果的影响程度。通常我们需要先进行回归分析，获得多因素回归模型的结果，然后再使用列线图来呈现这些结果。
+
+The nomogram, also known as the alignment diagram, is based on multi-factor regression analysis and is mainly used to integrate multiple prediction indicators into the same plane to visually express the relationship between the variables in the prediction model. By using scaled segments and drawing these segments on the same coordinate system in a certain proportion, the influence of different prediction indicators on the results can be intuitively displayed. Usually we need to perform regression analysis first to obtain the results of the multi-factor regression model, and then use the nomogram to present these results.
+
+诺莫图的名称主要包括三类：
+1.预测模型中的变量名称：例如年龄、高血压等等，每一个变量对应的线段上都标注了刻度，代表了该变量的可取值范围，而线段的长度则反映了该因素对结局时间的贡献大小。
+2.得分，包括单项得分，即途中的point，表示每个变量在不同取值下的单项得分，以及总得分，即total point，表示所有变量去之后对应的单项分数加起来合计的总得分。
+3.预测概率
+
+The names of the nomograms mainly include three categories:
+1. The names of the variables in the prediction model: such as age, hypertension, etc. The line segment corresponding to each variable is marked with a scale, representing the range of values of the variable, and the length of the line segment reflects the contribution of the factor to the outcome time.
+2. Score, including single score, that is, the point in the middle, which represents the single score of each variable under different values, and the total score, that is, the total point, which represents the total score of the single score corresponding to all variables after all variables are removed.
+3. Prediction probability
+
+
+关键字：微生物组数据分析、MicrobiomeStatPlot、诺莫图、R语言可视化
+
+Keywords: Microbiome analysis, MicrobiomeStatPlot, Nomogram, R visulization
+
+
+
+## Nomogram Example 诺莫图案例
+
+这是来自于江苏省重症医学重点实验室重症医学科杨毅教授团队2021年发表于Lancet Digit Health上的一篇论文用到的Nomogram。论文题目为：A simple nomogram for predicting failure of non-invasive respiratory strategies in adults with COVID-19: a retrospective multicentre study. https://doi.org/10.1016/S2589-7500(20)30316-2
+
+This is the nomogram used in a paper published in Lancet Digit Health in 2021 by Professor Yang Yi's team from the Department of Critical Care Medicine of Jiangsu Provincial Key Laboratory of Critical Care Medicine. The title of the paper is: A simple nomogram for predicting failure of non-invasive respiratory strategies in adults with COVID-19: a retrospective multicentre study. https://doi.org/10.1016/S2589-7500(20)30316-2
+
+
+![](e1.Nomogram.01.jpg)
+
+Figure 1: Characteristics in the nomogram to predict probability of NIRS failure in patients with severe acute respiratory syndrome coronavirus 2 pneumonia
+图 1：预测严重急性呼吸综合征冠状病毒 2 型肺炎患者 NIRS 失败概率的列线图特征
+
+Patient prognostic values are located on the axis of each variable; a line is then drawn upwards at a 90° angle to determine the number of points for that particular variable. The sum of these numbers is located on the total score axis, and a line is drawn at a 90° angle downward to the NIRS failure risk axis to determine the likelihood of failure of non-invasive respiratory therapies. Alternatively, failure risk can be ascertained from the online calculator. 
+Vasopressor use was represented on the axis at an arbitrary value of 1 (no use=0). NIRS=non-invasive respiratory support.
+
+患者预后值位于每个变量的轴上；然后以 90° 角向上画一条线来确定该特定变量的点数。这些数字的总和位于总分轴上，并以 90° 角向下画一条线到 NIRS 失败风险轴，以确定非侵入性呼吸疗法失败的可能性。或者，可以通过在线计算器确定失败风险。
+血管加压药的使用在轴上以任意值 1 表示（未使用 = 0）。NIRS = 非侵入性呼吸支持。
+
+
+**结果**
+
+Based on the final multivariable model, a nomogram and an online calculator were generated by assigning a weighted score to each of the factors associated with NIRS failure (figure 1). 
+
+根据最终的多变量模型，通过为与 NIRS 失败相关的每个因素分配加权分数，生成了列线图和在线计算器（图 1）。
+
+
+## Packages installation软件包安装
+
+```{r}
+# 基于CRAN安装R包，检测没有则安装
+p_list = c("survival", "rms", "grid", "gridExtra")
+for(p in p_list){if (!requireNamespace(p)){install.packages(p)}
+    library(p, character.only = TRUE, quietly = TRUE, warn.conflicts = FALSE)}
+
+# 加载R包 Load the package
+suppressWarnings(suppressMessages(library(survival)))
+suppressWarnings(suppressMessages(library(rms)))
+suppressWarnings(suppressMessages(library(grid)))
+suppressWarnings(suppressMessages(library(gridExtra)))
+```
+
+
+
+# Nomogram 诺莫图
+
+## Nomogram using R software 诺莫图R语言实战
+
+参考：https://mp.weixin.qq.com/s/ZdTzE64fMnd_XeDukgDjqQ
+
+```{r Nomogram, include=TRUE}
+# Data preparation
+data(lung)
+dd <- datadist(lung)
+options(datadist = "dd")
+
+# Fit Cox proportional hazards model
+f <- cph(Surv(time, status) ~ age + sex + ph.karno, data = lung, x = TRUE, y = TRUE, surv = TRUE)
+
+# Define survival functions
+survival <- Survival(f)
+survival1 <- function(x) survival(365, x)
+survival2 <- function(x) survival(730, x)
+
+# Create nomogram
+nom <- nomogram(f,
+                 fun = list(survival1, survival2),
+                 fun.at = c(0.05, seq(0.1, 0.9, by = 0.05), 0.95),
+                 funlabel = c('1-Year Survival', '2-Year Survival'))
+
+# Save the plot to a PDF file
+pdf(file = "results/nomogram_plot.pdf", width = 12, height = 8, paper = "special")
+# Draw nomogram using grid graphics
+grid.newpage()  # Ensure a new page is created for plotting
+print(plot(nom, 
+           main = "Nomogram for 1-Year and 2-Year Survival Probability", 
+           sub = "Cox Proportional Hazards Model", 
+           cex.main = 1.5,  # Title size
+           cex.sub = 1.2,   # Subtitle size
+           cex.axis = 0.8,  # Axis label size
+           cex.lab = 0.8), 
+      newpage = FALSE)  # Ensure no new page is created
+
+# Close the PDF device
+dev.off()
+```
+
+![](e1.Nomogram.02.jpg)
+
+
+If used this script, please cited:
+使用此脚本，请引用下文：
+
+**Yong-Xin Liu**, Lei Chen, Tengfei Ma, Xiaofang Li, Maosheng Zheng, Xin Zhou, Liang Chen, Xubo Qian, Jiao Xi, Hongye Lu, Huiluo Cao, Xiaoya Ma, Bian Bian, Pengfan Zhang, Jiqiu Wu, Ren-You Gan, Baolei Jia, Linyang Sun, Zhicheng Ju, Yunyun Gao, **Tao Wen**, **Tong Chen**. 2023. EasyAmplicon: An easy-to-use, open-source, reproducible, and community-based pipeline for amplicon data analysis in microbiome research. **iMeta** 2: e83. https://doi.org/10.1002/imt2.83
+
+Copyright 2016-2024 Defeng Bai <baidefeng@caas.cn>, Chuang Ma <22720765@stu.ahau.edu.cn>, Jiani Xun <15231572937@163.com>, Yong-Xin Liu <liuyongxin@caas.cn>
+

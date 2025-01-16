@@ -1,0 +1,35 @@
+ID	Type
+aminoglycosides	Antibiotics
+beta_lactamases	Antibiotics
+fosfomycins	Antibiotics
+glycopeptides	Antibiotics
+macrolide_lincosamide_streptogramin	Antibiotics
+multiple_drug_resistance	Antibiotics
+peptide_antibiotic	Antibiotics
+phenicols	Antibiotics
+polymyxin	Antibiotics
+quinolone_antibacterials	Antibiotics
+rifampicin	Antibiotics
+sulfonamides	Antibiotics
+tetracyclines	Antibiotics
+trimethoprim	Antibiotics
+Biofilm	Disease-associated factors
+Cadaverine	Disease-associated factors
+Cytolysin	Disease-associated factors
+Hemolysin	Disease-associated factors
+Inerolysin	Disease-associated factors
+N-Acetylputrescine	Disease-associated factors
+Phospholipase C	Disease-associated factors
+Sialidase	Disease-associated factors
+Trimethylamine	Disease-associated factors
+Urease	Disease-associated factors
+Vaginolysin	Disease-associated factors
+acetate: acetyl-CoA to acetate	SCFAs
+butyrate production I	SCFAs
+butyrate production II	SCFAs
+butyrate: acetyl-CoA to crotonyl-CoA	SCFAs
+lactate production	SCFAs
+propionate production I	SCFAs
+propionate production II	SCFAs
+propionate production III	SCFAs
+succinate production	SCFAs

@@ -1,0 +1,5 @@
+Causal_effects	Total	error_bar	Factor	Set
+Observational analysis	0.11	0.06	1	A
+Oscillibacter triglyceride	0.07	0.06	2	A
+Oscillibacter BMI	0.055	0.06	3	A
+Oscillibacter WHR	0.04	0.06	4	A

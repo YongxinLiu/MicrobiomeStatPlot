@@ -1,0 +1,707 @@
+---
+title: "Other Omics outlook illustration 其它组学分析展望案例"
+author: "Defeng Bai(白德凤)"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    df_print: paged
+    theme: cerulean
+    highlight: haddock
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      collapsed: no
+      smooth_scroll: yes
+    code_fold: show
+  word_document:
+    toc: yes
+    toc_depth: '3'
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+Figure 6. Future outlook of MicrobiomeStatPlots.
+
+## 图6: MicrobiomeStatPlots未来展望
+
+(A) An example of the comparison of the metabolism results of metagenome and metatranscriptome. The stacked plot showed the relative contribution percentage of each species to each pathway.
+
+### A:宏基因组和宏转录组代谢结果比较
+
+```{r cars}
+# 基于CRAN安装R包，检测没有则安装 Installing R packages based on CRAN and installing them if they are not detected
+p_list = c("ggplot2", "ggprism", "tidyr", "dplyr")
+for(p in p_list){if (!requireNamespace(p)){install.packages(p)}
+    library(p, character.only = TRUE, quietly = TRUE, warn.conflicts = FALSE)}
+
+# 加载R包 Loading R packages
+suppressWarnings(suppressMessages(library(ggplot2)))
+suppressWarnings(suppressMessages(library(ggprism)))
+suppressWarnings(suppressMessages(library(tidyr)))
+suppressWarnings(suppressMessages(library(dplyr)))
+
+# 1.直接使用数据绘图
+# 加载数据
+df1 <- read.table(file = "data/data_practice5.txt", sep = "\t", header = TRUE, check.names = FALSE)
+
+# 绘制堆叠柱状图并增加facet标签
+p1 <- ggplot(df1, aes(x = Pathways, y = values2, fill = Species)) +
+  geom_col(width = 0.45, position = position_stack(vjust = 1)) +  # 堆叠柱状图
+  scale_fill_manual(values = c("#e5acd7",  "#00ceff", "#ff630d", "#35978b", "#d2da93", 
+                               "#5196d5", "#77aecd", "#ec8181", "#dfc6a5", "#e50719", 
+                               "#d27e43", "#8a4984", "#fe5094", "#8d342e", "#f94e54",
+                               "#ffad00", "#36999d", "#00fc8d", "#b64aa0", "#9b82e1","#edd064")) +  # 自定义颜色
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 100)) +  # y轴扩展和限制
+  scale_x_discrete(expand = c(0.1, 0.1)) +  # x轴扩展
+  coord_flip() +  # 横向堆叠柱状图
+  labs(x = "", y = "Relative abundance (%)", title = "") +  # 设置标签
+  theme_prism(base_fontface = "plain", base_family = "serif", base_size = 16, base_line_size = 0.8, axis_text_angle = 0) +  # 设置主题
+  theme_bw() +
+  theme(axis.title.y = element_text(face = "bold", size = 14, color = "black", family = "sans")) +  # y轴标题样式
+  facet_wrap(~Group, scales = "fixed", ncol = 2, labeller = labeller(group = label_value)) +  # 分面并共用y轴
+  theme(strip.text = element_text(face = "bold", size = 16, color = "black"))# 控制facet标签的样式
+
+# 输出图形
+# p1
+ggsave(filename = "results/Horizontal_facet_stackplot01.pdf", plot = p1, width = 12, height = 4)
+
+
+
+df1 <- read.table(file = "data/data_MAG_taxonomy.txt", sep = "\t", header = TRUE, check.names = FALSE)
+
+# 绘制堆叠柱状图并增加facet标签
+p1 <- ggplot(df1, aes(x = Species, y = values2, fill = Category)) +
+  geom_col(width = 0.75, position = position_stack(vjust = 1)) +  # 堆叠柱状图
+  scale_fill_manual(values = c("#77aecd", "#ec8181","#e5acd7",  "#00ceff", "#ff630d", "#35978b", "#d2da93", 
+                               "#5196d5", "#77aecd", "#ec8181", "#dfc6a5", "#e50719", 
+                               "#d27e43", "#8a4984", "#fe5094", "#8d342e", "#f94e54",
+                               "#ffad00", "#36999d", "#00fc8d", "#b64aa0", "#9b82e1","#edd064")) +  # 自定义颜色
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 150)) +  # y轴扩展和限制
+  #scale_x_discrete(expand = c(0.1, 0.1)) +  # x轴扩展
+  coord_flip() +  # 横向堆叠柱状图
+  labs(x = "", y = "Number of genomes", title = "") +  # 设置标签
+  theme_prism(base_fontface = "plain", base_family = "serif", base_size = 16, base_line_size = 0.8, axis_text_angle = 0) +  # 设置主题
+  theme_bw() +
+  theme(axis.title.y = element_text(face = "bold", size = 14, color = "black", family = "sans"),
+        panel.grid = element_blank()) +  # y轴标题样式
+  #facet_wrap(~Group, scales = "fixed", ncol = 2, labeller = labeller(group = label_value)) +  # 分面并共用y轴
+  theme(strip.text = element_text(face = "bold", size = 16, color = "black"))# 控制facet标签的样式
+
+# 输出图形
+# p1
+#ggsave(filename = "results/Horizontal_facet_stackplot01.pdf", plot = p1, width = 12, height = 4)
+ggsave(filename = "results/Horizontal_facet_stackplot01_MAG_culturome01.pdf", plot = p1, width = 7, height = 6)
+
+
+
+df1 <- read.table(file = "data/data_MAG_taxonomy.txt", sep = "\t", header = TRUE, check.names = FALSE)
+
+# 排序
+#level<-read.csv("data_yp/data2/levels_CLR_filter3.csv",header=TRUE,sep=",")
+level<-read.csv("data/MAG_levels.csv",header=TRUE,sep=",")
+list=level$levels
+list
+# Set order
+#data1$Species2 = factor(data1$Species, levels = unique(data1$Species))
+df1 = df1 %>%
+  mutate(Species = ordered(Species,
+                            levels=rev(list)
+                            ))
+
+
+# 绘制堆叠柱状图并增加facet标签
+p1 <- ggplot(df1, aes(x = Species, y = values2, fill = Category)) +
+  geom_col(width = 0.75, position = position_stack(vjust = 1)) +  # 堆叠柱状图
+  scale_fill_manual(values = c("#77aecd", "#ec8181","#e5acd7",  "#00ceff", "#ff630d", "#35978b", "#d2da93", 
+                               "#5196d5", "#77aecd", "#ec8181", "#dfc6a5", "#e50719", 
+                               "#d27e43", "#8a4984", "#fe5094", "#8d342e", "#f94e54",
+                               "#ffad00", "#36999d", "#00fc8d", "#b64aa0", "#9b82e1","#edd064")) +  # 自定义颜色
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 110)) +  # y轴扩展和限制
+  #scale_x_discrete(expand = c(0.1, 0.1)) +  # x轴扩展
+  coord_flip() +  # 横向堆叠柱状图
+  labs(x = "", y = "Number of genomes", title = "") +  # 设置标签
+  theme_prism(base_fontface = "plain", base_family = "serif", base_size = 16, base_line_size = 0.8, axis_text_angle = 0) +  # 设置主题
+  theme_bw() +
+  theme(axis.title.y = element_text(face = "bold", size = 14, color = "black", family = "sans"),
+        panel.grid = element_blank()) +  # y轴标题样式
+  #facet_wrap(~Group, scales = "fixed", ncol = 2, labeller = labeller(group = label_value)) +  # 分面并共用y轴
+  theme(strip.text = element_text(face = "bold", size = 16, color = "black"))# 控制facet标签的样式
+
+# 输出图形
+# p1
+#ggsave(filename = "results/Horizontal_facet_stackplot01.pdf", plot = p1, width = 12, height = 4)
+ggsave(filename = "results/Horizontal_facet_stackplot01_MAG01.pdf", plot = p1, width = 7, height = 6)
+
+
+
+df1 <- read.table(file = "data/data_culturome_taxonomy.txt", sep = "\t", header = TRUE, check.names = FALSE)
+
+# 排序
+#level<-read.csv("data_yp/data2/levels_CLR_filter3.csv",header=TRUE,sep=",")
+level<-read.csv("data/Culturome_levels.csv",header=TRUE,sep=",")
+list=level$levels
+list
+# Set order
+#data1$Species2 = factor(data1$Species, levels = unique(data1$Species))
+df1 = df1 %>%
+  mutate(Species = ordered(Species,
+                            levels=rev(list)
+                            ))
+
+
+# 绘制堆叠柱状图并增加facet标签
+p1 <- ggplot(df1, aes(x = Species, y = values2, fill = Category)) +
+  geom_col(width = 0.75, position = position_stack(vjust = 1)) +  # 堆叠柱状图
+  scale_fill_manual(values = c("#ec8181","#77aecd", "#ec8181","#e5acd7",  "#00ceff", "#ff630d", "#35978b", "#d2da93", 
+                               "#5196d5", "#77aecd", "#ec8181", "#dfc6a5", "#e50719", 
+                               "#d27e43", "#8a4984", "#fe5094", "#8d342e", "#f94e54",
+                               "#ffad00", "#36999d", "#00fc8d", "#b64aa0", "#9b82e1","#edd064")) +  # 自定义颜色
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 140)) +  # y轴扩展和限制
+  #scale_x_discrete(expand = c(0.1, 0.1)) +  # x轴扩展
+  coord_flip() +  # 横向堆叠柱状图
+  labs(x = "", y = "Number of genomes", title = "") +  # 设置标签
+  theme_prism(base_fontface = "plain", base_family = "serif", base_size = 16, base_line_size = 0.8, axis_text_angle = 0) +  # 设置主题
+  theme_bw() +
+  theme(axis.title.y = element_text(face = "bold", size = 14, color = "black", family = "sans"),
+        panel.grid = element_blank()) +  # y轴标题样式
+  #facet_wrap(~Group, scales = "fixed", ncol = 2, labeller = labeller(group = label_value)) +  # 分面并共用y轴
+  theme(strip.text = element_text(face = "bold", size = 16, color = "black"))# 控制facet标签的样式
+
+# 输出图形
+# p1
+#ggsave(filename = "results/Horizontal_facet_stackplot01.pdf", plot = p1, width = 12, height = 4)
+ggsave(filename = "results/Horizontal_facet_stackplot01_Culturome01.pdf", plot = p1, width = 7, height = 6)
+
+
+
+# 2.将宽数据转换为长数据绘图
+# 加载数据
+df <- read.table(file = "data/data_practice52.txt", sep = "\t", header = TRUE, check.names = FALSE)
+
+# 宽数据转换为长数据
+df_long <- df %>%
+  pivot_longer(cols = c("FUCCAT-PWY: fucose degradation", "RHAMCAT-PWY: L-rhamnose degradation I", "ARGININE-SYN4-PWY: L-ornithine de novo  biosynthesis", "PWY-2941: L-lysine biosynthesis II", "PWY-5838: superpathway of menaquinol-8 biosynthesis I", 
+                        "PWY-5367: petroselinate biosynthesis", "PWY-5104: L-isoleucine biosynthesis IV", "PWY-6527: stachyose degradation"),  # 指定要转换的所有列
+               names_to = "Pathways",  # 新列名
+               values_to = "values") %>%  # 存储数据的列名
+  mutate(values2 = values * 100)  # 计算 values2 列，百分比
+
+# 创建新的数据框
+df_long_final <- df_long %>%
+  select(Species = Species, Pathways, values, values2, Group)
+
+# 可以将数据保存为新的文件
+#write.table(df_long_final, file = "data/converted_data.txt", sep = "\t", row.names = FALSE, col.names = TRUE)
+
+# 绘制堆叠柱状图并增加facet标签
+p2 <- ggplot(df_long_final, aes(x = Pathways, y = values2, fill = Species)) +
+  geom_col(width = 0.75, position = position_stack(vjust = 1)) +  # 堆叠柱状图
+  scale_fill_manual(values = c("#e5acd7",  "#00ceff", "#ff630d", "#35978b", "#d2da93", 
+                               "#5196d5", "#77aecd", "#ec8181", "#dfc6a5", "#e50719", 
+                               "#d27e43", "#8a4984", "#fe5094", "#8d342e", "#f94e54",
+                               "#ffad00", "#36999d", "#00fc8d", "#b64aa0", "#9b82e1","#edd064")) +  # 自定义颜色
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 100)) +  # y轴扩展和限制
+  scale_x_discrete(expand = c(0.1, 0.1)) +  # x轴扩展
+  coord_flip() +  # 横向堆叠柱状图
+  labs(x = "", y = "Relative abundance (%)", title = "") +  # 设置标签
+  theme_prism(base_fontface = "plain", base_family = "serif", base_size = 16, base_line_size = 0.8, axis_text_angle = 0) +  # 设置主题
+  #theme_classic() +
+  theme_bw() +
+  theme(axis.title.y = element_text(face = "bold", size = 14, color = "black", family = "sans")) +  # y轴标题样式
+  facet_wrap(~Group, scales = "fixed", ncol = 2, labeller = labeller(group = label_value)) +  # 保持y轴相同
+  theme(strip.text = element_text(face = "bold", size = 16, color = "black"),  # 控制facet标签的样式
+        legend.position = "bottom") # 将图例放置在下方
+
+# 输出图形
+p2
+ggsave(filename = "results/Horizontal_facet_stackplot03.pdf", plot = p2, width = 10, height = 6.5)
+```
+
+
+(B) The comparison heatmap of metabolites volume between healthy and patient groups.
+
+### B: 代谢物组间比较差异热图
+
+https://github.com/baidefeng/MicrobiomeStatPlot/tree/master/3.Visualization_and_interpretation/HeatmapWithSignifanceMarks
+
+```{r metabolites heatmap, echo=TRUE}
+# Load packages
+library(pheatmap)
+
+# Load data
+data01 <- read.table(file = "data/data2.txt", sep = "\t", row.names = 1, header = TRUE, check.names = FALSE)
+
+#data <- data01[, c(3:8)]
+
+# 1.基础热图
+#pheatmap(data)
+
+# 2.设置颜色
+#pheatmap(data01[, c(3:10)], color = colorRampPalette(c('red', 'white', 'blue'))(100))
+
+# 3.设置单元格大小
+#pheatmap(data01[, c(3:10)], cellwidth = 18, cellheight = 18)
+
+# 4.设置聚类树的高度
+# 行
+#pheatmap(data01[, c(3:10)], treeheight_row = 100)
+# 列
+#pheatmap(data01[, c(3:10)], treeheight_col = 100)
+
+# 5.取消聚类
+# 行
+#pheatmap(data01[, c(3:10)], cluster_rows = FALSE)
+# 列
+#pheatmap(data01[, c(3:10)], cluster_cols = FALSE)
+
+# 6.依据聚类结果对热图进行分割
+#pheatmap(data01[, c(3:10)], cluster_rows = TRUE, cluster_cols = FALSE, cutree_rows = 3)
+
+# 7.添加样本分组信息
+annotation_col = data.frame(Group = factor(rep(c('Healthy','Patients'), c(4,4))), row.names = colnames(data01[, c(3:10)]), color = rep(c("#d6a319","#8771cd"), c(4,4)))
+
+annotation_col = data.frame(Group = factor(rep(c('Healthy','Patients'), c(4,4))), row.names = colnames(data01[, c(3:10)]))
+
+#annotation_col = data.frame(color = rep(c("#d6a319","#8771cd"), c(4,4)))
+
+#pheatmap(data01[, c(3:10)], cluster_rows = TRUE, cluster_cols = FALSE, cutree_rows = 3, annotation_col = annotation_col)
+
+pheatmap(data01[, c(3:10)], cluster_rows = TRUE, cluster_cols = FALSE, cutree_rows = 3, annotation_col = annotation_col,
+         cellwidth = 24, cellheight = 12,
+         color = colorRampPalette(c('#5e7fc2',"white", '#d05771'))(100), border_color = NA, filename = 'results/metabolism02.pdf')
+
+```
+
+
+(C) The variable influence on projection (VIP) score indicates the importance of each metabolite. Different colors represent different metabolite categories.
+
+### C:代谢物影响重要性评分棒棒糖图
+
+```{r Lollipop, echo=TRUE}
+# 加载必要的库
+library(ggplot2)
+library(dplyr)
+
+# 读取数据文件
+# 请替换为你的实际文件路径
+data <- read.table("data/metabolites.txt", header = TRUE, sep = "\t")
+
+# 检查数据结构
+head(data)
+
+# 按照 Group 和 VIP.score 对数据排序，VIP.score 从高到低
+data <- data %>%
+  arrange(Group, desc(VIP.score))
+
+# 为每个组的 Metabolites 按 VIP.score 从高到低排序
+data$Metabolites <- factor(data$Metabolites, levels = unique(data$Metabolites))
+
+# 创建棒棒糖图，交换x和y轴
+p <- ggplot(data, aes(y = VIP.score, x = Metabolites)) +
+  geom_segment(aes(xend = Metabolites, yend = 0), color = "grey") +  # 画线
+  geom_point(aes(color = Group), size = 4) +  # 画点，点的颜色按组来区分
+  coord_cartesian(ylim = c(0, max(data$VIP.score) * 1.1)) +  # 确保Y轴有适当的范围
+  theme_minimal() +  # 简洁主题
+  labs(x = "Metabolites", y = "VIP Score", title = "Lollipop chart") +
+  theme(axis.text.y = element_text(size = 10, color = "black"),
+        axis.title = element_text(size = 12),
+        plot.title = element_text(size = 14, hjust = 0.5),
+        legend.position = "bottom",
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +  # 设置x轴标签为竖直
+  scale_color_manual(values = c("Amino Acids" = "#6a67fe", "Glycerides" = "#EF7970", "Glycolysis" = "#D0DCAA",
+                                "HDL" = "#70A0AC", "IDL" = "lightblue", "Inflammation" = "#8CBDA7", 
+                                "KetoneBodies" = "#E2AE79", "LDL" = "yellow", "Others" = "grey", 
+                                "VLDL" =  "pink", "VLDL+IDL" = "#2CA02CB2"))
+p
+# 保存图表
+ggsave(filename="results/Lollipop_chart.pdf", plot=p, width=9, height=6)
+
+```
+
+
+(D) An example of the spearman correlation network of species and metabolites. The orange and blue colors indicate the positive and negative correlations, separately. The edges width shows the correlation strength.
+
+### D: Spearman相关网路
+
+```{r Spearman correlation, echo=TRUE}
+# 基于CRAN安装R包，检测没有则安装
+p_list = c("igraph","Hmisc","psych","dplyr","tidyr")
+for(p in p_list){if (!requireNamespace(p)){install.packages(p)}
+    library(p, character.only = TRUE, quietly = TRUE, warn.conflicts = FALSE)}
+
+# 加载R包 Load the package
+suppressWarnings(suppressMessages(library(igraph)))
+suppressWarnings(suppressMessages(library(Hmisc)))
+suppressWarnings(suppressMessages(library(psych)))
+suppressWarnings(suppressMessages(library(dplyr)))
+suppressWarnings(suppressMessages(library(tidyr)))
+
+# 载入数据
+# Load data
+mic <- read.table("data/Species_data.txt", sep="\t", header=T, check.names=F,row.names = 1)
+mic = apply(mic, 2, function(x) x/100)
+#gene <- read.table("data/KO_data.txt", sep="\t", header=T, check.names=F,row.names = 1)
+gene <- read.table("data/metabolism_data.txt", sep="\t", header=T, check.names=F,row.names = 1)
+group <- read.table("data/group.txt", sep="\t", header=T, check.names=F)
+
+mic <- as.data.frame(t(mic))
+mic$sample <- rownames(mic)
+gene <- as.data.frame(t(gene))
+gene$sample <- rownames(gene)
+df <- merge(mic, gene, by = "sample")
+rownames(df) <- df$sample
+df <- df[-1]
+head(df)
+
+# 计算相关性并以p>0.05作为筛选阈值进行数据处理
+data<-as.matrix(df)
+cor<- corr.test(data, method="spearman",adjust="BH")
+data.cor <- as.data.frame(cor$r)
+
+#r.cor<-data.frame(cor$r)[91:117,1:90]
+#p.cor<-data.frame(cor$p)[91:117,1:90]
+r.cor<-data.frame(cor$r)[91:119,1:90]
+p.cor<-data.frame(cor$p)[91:119,1:90]
+r.cor[p.cor>0.05] <- 0
+r.cor[abs(r.cor) < 0.3] <- 0
+
+# 构建网络连接属性及节点属性
+# 将数据转换为long format进行合并并添加连接属性
+r.cor$from = rownames(r.cor)
+p.cor$from = rownames(p.cor)
+p_value <-  p.cor %>%
+  gather(key = "to", value = "p", -from) %>%
+  data.frame() 
+#p_value$FDR <- p.adjust(p_value$p,"BH")
+p_value <- p_value[, -3]
+cor.data<- r.cor %>%
+  gather(key = "to", value = "r", -from) %>%
+  data.frame() %>%
+  left_join(p_value, by=c("from","to")) %>%
+  #diff$p.value <- p.adjust(diff$p.value,"BH")
+  #filter(FDR <= 1e-5, from != to) %>%
+  #filter(p <= 0.001, from != to) %>%
+  mutate(
+    linecolor = ifelse(r > 0,"positive","negative"),
+    linesize = abs(r)
+  )
+
+cor.data <- cor.data[abs(cor.data$r)>0.3, ]
+write.csv(cor.data, "results/Species_metabolism_all_correlations_0.2.csv")
+
+###设置节点属性
+vertices <- c(as.character(cor.data$from),as.character(cor.data$to)) %>%
+  as_tibble() %>%
+  group_by(value) %>%
+  summarise()
+colnames(vertices) <- "name"
+vertices <- vertices %>%
+  left_join(group,by="name")
+vertices$group <- factor(vertices$group, levels = c("Species","KO" ))
+vertices <- vertices %>%
+  arrange(group)
+
+#构建graph数据结构并添加网络基础属性、保存数据
+###构建graph数据结构
+graph <- graph_from_data_frame(cor.data, vertices = vertices, directed = FALSE )
+E(graph)$weight <- abs(E(graph)$r)
+V(graph)$label <- V(graph)$name
+###保存数据
+#write_graph(graph, "Healthy_180_net13_new0911.graphml", format="graphml")
+write_graph(graph, "results/Species_metabolism_0.2.graphml", format="graphml")
+
+
+# 可视化方式1：基于Gephi软件进行可视化 https://gephi.org/
+
+# 可视化方式2：利用igraph进行可视化
+g <- graph
+# 准备网络图布局数据
+# Preparing network diagram layout data。
+layout1 <- layout_in_circle(g)
+layout5 <- layout_with_graphopt(g)
+
+## 设置绘图颜色
+## Setting the drawing color
+color <- c("#879b56","#ce77ad")
+
+names(color) <- unique(V(g)$group) 
+V(g)$point.col <- color[match(V(g)$group,names(color))] 
+
+## 边颜色按照相关性正负设置
+## The edge color is set according to the positive or negative correlation
+#E(g)$color <- ifelse(E(g)$linecolor == "positive","#ff878c",rgb(0,147,0,maxColorValue = 255))
+E(g)$color <- ifelse(E(g)$linecolor == "positive","#ff878c","#5ea6c2")
+
+pdf("results/network_group_graphopt.pdf",family = "Times",width = 10,height = 12)
+par(mar=c(5,2,1,2))
+plot.igraph(g, layout=layout5,
+     vertex.color=V(g)$point.col,
+     vertex.border=V(g)$point.col,
+     vertex.size=6,
+     vertex.frame.color="white",
+     vertex.label=g$name,
+     vertex.label.cex=0.8,
+     vertex.label.dist=0, 
+     vertex.label.degree = pi/2,
+     vertex.label.col="black",
+     edge.arrow.size=0.5,
+     edge.width=abs(E(g)$r)*6,
+     )
+
+# 设置图例
+legend(
+  title = "group",
+  list(x = min(layout1[,1])-0.05,
+       y = min(layout1[,2])-0.05), 
+  legend = c(unique(V(g)$group)),
+  fill = color,
+  #pch=1
+)
+
+legend(
+  title = "|r-value|",
+  list(x = min(layout1[,1])+0.6,
+       y = min(layout1[,2])-0.05),
+  legend = c(0.2,0.4,0.6,0.8,1.0),
+  col = "black",
+  lty=1,
+  lwd=c(0.2,0.4,0.6,0.8,1.0)*4,
+)
+
+legend(
+  title = "Correlation (±)",
+  list(x = min(layout1[,1])+1.0,
+       y = min(layout1[,2])-0.05),
+  legend = c("positive","negative"),
+  col = c("#ff878c",rgb(0,147,0,maxColorValue = 255)),
+  lty=1,
+  lwd=1
+)
+dev.off()
+```
+
+
+(E) An example of the protein-protein interaction network and grouped in clusters.
+
+### E:蛋白-蛋白互作网络
+
+https://cn.string-db.org/cgi/help?sessionId=b97Kfhd8n5Yy
+
+```{r protein-protein interaction, echo=TRUE}
+
+#https://cn.string-db.org/cgi/help?sessionId=b97Kfhd8n5Yy
+
+```
+
+
+(F) An example of the phylogenetic tree of different viral operational taxonomic units (vOTUs) and additional features of different age groups (young, lineal family, older and centenarian).
+
+### F:系统发育树展示vOTUs分组比较
+
+```{r vOTUs, echo=TRUE}
+# 基于CRAN安装R包，检测没有则安装
+p_list = c("ggplot2", "vegan", "parallel", "ggtreeExtra", "ggtree", "treeio", "tidytree", "ggstar", "ggnewscale", "TDbook")
+for(p in p_list){if (!requireNamespace(p)){install.packages(p)}
+    library(p, character.only = TRUE, quietly = TRUE, warn.conflicts = FALSE)}
+
+# 加载R包 Load the package
+suppressWarnings(suppressMessages(library(ggplot2)))
+suppressWarnings(suppressMessages(library(vegan)))
+suppressWarnings(suppressMessages(library(parallel)))
+suppressWarnings(suppressMessages(library(ggtreeExtra)))
+suppressWarnings(suppressMessages(library(ggtree)))
+suppressWarnings(suppressMessages(library(treeio)))
+suppressWarnings(suppressMessages(library(tidytree)))
+suppressWarnings(suppressMessages(library(ggstar)))
+suppressWarnings(suppressMessages(library(ggnewscale)))
+suppressWarnings(suppressMessages(library(TDbook)))
+
+
+#library(ggtreeExtra)
+#library(ggtree)
+#library(treeio)
+#library(tidytree)
+#library(ggstar)
+#library(ggplot2)
+#library(ggnewscale)
+#library(TDbook)
+
+tree <- read.tree("data/vOTUs.treefile")
+#tree_tip_label <- as.data.frame(tree$tip.label)
+dat1 <- read.csv("data/iTOL_Novel_colored.csv", header = TRUE, sep = ",")
+dat1$label <- dat1$ID
+
+dat2 <- read.csv("data/iTOL_Novel_colored2.csv", header = TRUE, sep = ",")
+
+dat3 <- read.csv("data/iTOL_HostFamily_colored.csv", header = TRUE, sep = ",")
+
+dat4 <- read.csv("data/iTOL_Family_colored.csv", header = TRUE, sep = ",")
+
+dat5 <- read.csv("data/prevalenceL.csv", header = TRUE, sep = ",")
+
+dat6 <- read.csv("data/prevalenceC.csv", header = TRUE, sep = ",")
+
+dat7 <- read.csv("data/prevalenceY.csv", header = TRUE, sep = ",")
+
+dat8 <- read.csv("data/prevalenceE.csv", header = TRUE, sep = ",")
+
+tree2<-full_join(tree,dat1,by="label")
+
+# The circular layout tree.
+p <- ggtree(tree2, layout="fan", size=0.15, open.angle=180)
+
+# 将所有数据集的 prevalence 缩短一半
+dat6$prevalence <- dat6$prevalence * 0.5
+dat5$prevalence <- dat5$prevalence * 0.5
+dat7$prevalence <- dat7$prevalence * 0.5
+dat8$prevalence <- dat8$prevalence * 0.5
+
+#绘图
+pdf(file="results/Phylogenic_tree_half_plot03.pdf", width=12, height=12)
+ggtree(tree2,#文件
+       aes(color=Type),#支长颜色按照分组进行着色
+       layout="fan",#进化树类型
+       open.angle=90,#开口角度
+       linewidth=0.3,#分支线条粗细
+       show.legend = F)+
+# 添加比例尺
+geom_treescale(x=8, y=1, fontsize=4, linesize=0.3, width=1) + # 调整x, y控制比例尺位置
+  #geom_tiplab(aes(color = label %in% df_label),#设定标签颜色根据筛选条件突出显示特定标签
+  #            size=3.5,#字体大小
+  #            align = T,#使用虚线连接标签与分支
+  #            linetype = 3,linewidth = 0.4,offset = 12.5,show.legend = F)+
+  #scale_color_manual(values=c("black","#1aafd0","#6a67ce","#ffb900","#fc636b","#aeb6b8","#e53238"))+
+  scale_color_manual(values=c("red","black"))+
+  #添加注释信息-G
+  #new_scale_fill() +
+  geom_fruit(
+    data=dat2,
+    geom=geom_tile,
+    mapping=aes(y=ID, fill=Group),
+    #color="black",
+    width=0.4,
+    offset=0.05#,
+    #show.legend = FALSE
+    )+
+  scale_fill_manual(
+    #values=c("#4285f4", "#34a853", "#fbbc05","#ea4335"),
+    values=c("red","black")#,
+    #guides = "none"
+    #guide=guide_legend(keywidth=1, keyheight=1, order=2),
+    #name="vOTU description"
+    )+
+  new_scale_fill() +
+  geom_fruit(
+    data=dat3,
+    geom=geom_tile,
+    mapping=aes(y=ID, fill=HostFamily),
+    #color="grey10",
+    width=0.4,
+    offset=0.05#,
+    #show.legend = FALSE
+    )+
+  scale_fill_manual(
+    #values=c("#1F77B4B2", "#FF7F0EB2", "#2CA02CB2", "#EF7970", "#8B5A9B", "#167D85", "#73453F"),
+    #"black","#1aafd0","#6a67ce","#ffb900","#fc636b","#aeb6b8","#e53238","lightblue"
+    values=c("black","#1F77B4B2", "#FF7F0EB2", "#2CA02CB2", "#EF7970", "#8B5A9B", "#167D85", "#73453F"),
+    #values=c("red","black"),
+    guide=guide_legend(keywidth=1, keyheight=1, order=2),
+    name="Host taxonomy")+
+  new_scale_fill() +
+  geom_fruit(
+    data=dat4,
+    geom=geom_tile,
+    mapping=aes(y=ID, fill=Family),
+    #color="grey10",
+    width=0.4,
+    offset=0.05#,
+    #show.legend = FALSE
+    )+
+  scale_fill_manual(
+    #values=c("#4285f4", "#34a853", "#fbbc05","#ea4335"),
+    values=c("#faf0e6","#1aafd0","#6a67ce","#FFE501","#fc636b","#949494","#e53238","lightblue"),
+    #values=c("red","black"),
+    guide=guide_legend(keywidth=1, keyheight=1, order=2),
+    name="Viral family")+
+  new_scale_fill() +
+  
+  geom_fruit(
+    data=dat6,#数据
+    geom = geom_col,#绘图类型
+    mapping = aes(y=ID, x= prevalence, fill = Group),
+    offset = 0.03,
+    stage="identity",
+    #pwidth = 0.4,
+    width=0.6#,
+    #show.legend = FALSE
+    )+
+  scale_fill_manual(
+    #values=c("#4285f4", "#34a853", "#fbbc05","#ea4335"),
+    values=c("#EB746A","#ffb900","#fc636b","#aeb6b8","#e53238","lightblue"),
+    #values=c("red","black"),
+    guide=guide_legend(keywidth=1, keyheight=1, order=2),
+    name="Centenarian")+
+  new_scale_fill() +
+  
+  geom_fruit(
+    data=dat5,#数据
+    geom = geom_col,#绘图类型
+    mapping = aes(y=ID, x= prevalence, fill = Group),
+    offset = 0.03,
+    stage="identity",
+    #pwidth = 0.4,
+    width=0.6#,
+    #show.legend = FALSE
+    )+
+  scale_fill_manual(
+    #values=c("#4285f4", "#34a853", "#fbbc05","#ea4335"),
+    values=c("#1EB5B8","#6a67ce","#ffb900","#fc636b","#aeb6b8","#e53238","lightblue"),
+    #values=c("red","black"),
+    guide=guide_legend(keywidth=1, keyheight=1, order=2),
+    name="Lineal_family")+
+  new_scale_fill() +
+  
+  geom_fruit(
+    data=dat7,#数据
+    geom = geom_col,#绘图类型
+    mapping = aes(y=ID, x= prevalence, fill = Group),
+    offset = 0.03,
+    stage="identity",
+    #pwidth = 0.4,
+    width=0.6#,
+    #show.legend = FALSE
+    )+
+  scale_fill_manual(
+    #values=c("#4285f4", "#34a853", "#fbbc05","#ea4335"),
+    values=c("#A07DB7","#fc636b","#aeb6b8","#e53238","lightblue"),
+    #values=c("red","black"),
+    guide=guide_legend(keywidth=1, keyheight=1, order=2),
+    name="Youth")+
+  new_scale_fill() +
+  geom_fruit(
+    data=dat8,#数据
+    geom = geom_col,#绘图类型
+    mapping = aes(y=ID, x= prevalence, fill = Group),
+    offset = 0.03,
+    stage="identity",
+    #pwidth = 0.5,
+    width=0.6#,
+    #show.legend = FALSE
+    )+
+  scale_fill_manual(
+    #values=c("#4285f4", "#34a853", "#fbbc05","#ea4335"),
+    values=c("#7AA82C","#aeb6b8","#e53238","lightblue"),
+    #values=c("red","black"),
+    guide=guide_legend(keywidth=1, keyheight=1, order=2),
+    name="Older")
+
+dev.off()
+#ggsave(filename="results/Phylogenic_tree_half_plot01.pdf", plot=p1, width=6, height=8, useDingbats=FALSE, limitsize=FALSE)
+```
+
