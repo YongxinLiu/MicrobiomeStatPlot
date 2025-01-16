@@ -1,6 +1,6 @@
 [TOC]
 
-# Microbiome data analysis and visualization (MicrobiomeStatPlot 微生物组数据分析与可视化)
+# MicrobiomeStatPlot-Microbiome data analysis and visualization (MicrobiomeStatPlot-微生物组数据分析与可视化)
 
 ## 0.Introduction (项目简介)
 
