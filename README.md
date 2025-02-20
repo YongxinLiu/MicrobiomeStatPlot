@@ -943,3 +943,5 @@ Click to read the original text and jump to the latest article directory <https:
 
 点击阅读原文，跳转最新文章目录阅读
 
+## Citation (引用)
+Bai, Defeng, Chuang Ma, Jiani Xun, Hao Luo, Haifei Yang, Hujie Lyu, Zhihao Zhu, Anran Gai, Salsabeel Yousuf, Kai Peng, Shanshan Xu, Yunyun Gao, Yao Wang, **Yong-Xin Liu**. 2025. “MicrobiomeStatPlots: Microbiome Statistics Plotting Gallery for Meta‐omics and Bioinformatics.” iMeta 4: e70002. https://doi.org/10.1002/imt2.70002
