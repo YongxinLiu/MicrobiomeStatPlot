@@ -4,6 +4,9 @@
 
 # MicrobiomeStatPlot-微生物组数据分析与可视化
 
+Using the scripts, please cited the following paper. 使用本项目脚本，请引用如下文章。
+Bai, Defeng, Chuang Ma, Jiani Xun, Hao Luo, Haifei Yang, Hujie Lyu, Zhihao Zhu, Anran Gai, Salsabeel Yousuf, Kai Peng, Shanshan Xu, Yunyun Gao, Yao Wang, **Yong-Xin Liu**. 2025. “MicrobiomeStatPlots: Microbiome Statistics Plotting Gallery for Meta‐omics and Bioinformatics.” iMeta 4: e70002. https://doi.org/10.1002/imt2.70002
+
 ## 0.Introduction (项目简介)
 
 The development of high-throughput sequencing has greatly promoted the development of the microbiome/metagenomics field. The data analysis and interpretation of the microbiome requires multidisciplinary knowledge such as microbiology, bioinformatics, statistics, Shell and R language, metagenomics, etc. There is still a lack of systematic learning materials both in China and around the world. The purpose of establishing the "Metagenome" Public WeChat Account is to break the barriers to the analysis and interpretation of microbiome data and promote the development of this field. At present, with three years of accumulation, hundreds of tutorials on data analysis, visualization and scientific research experience in this field have been published. However, this field is developing rapidly, many tutorials need to be updated, and the knowledge and research fields of team members are limited. A wider range of peers need to join in to create an introductory encyclopedia of metagenomics. **Now we are comprehensively soliciting authors and reviewers of the chapter "Microbiome Data Analysis and Visualization Practice" from the global Chinese community**.
