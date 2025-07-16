@@ -33,9 +33,9 @@ The Hierarchical All-against-All association analysis scripts is referenced from
 
 If you use this script, please cited 如果你使用本代码，请引用：
 
-**Yong-Xin Liu**, Lei Chen, Tengfei Ma, Xiaofang Li, Maosheng Zheng, Xin Zhou, Liang Chen, Xubo Qian, Jiao Xi, Hongye Lu, Huiluo Cao, Xiaoya Ma, Bian Bian, Pengfan Zhang, Jiqiu Wu, Ren-You Gan, Baolei Jia, Linyang Sun, Zhicheng Ju, Yunyun Gao, **Tao Wen**, **Tong Chen**. 2023. EasyAmplicon: An easy-to-use, open-source, reproducible, and community-based pipeline for amplicon data analysis in microbiome research. **iMeta** 2(1): e83. https://doi.org/10.1002/imt2.83
+Defeng Bai, Chuang Ma, Jiani Xun, Hao Luo, Haifei Yang, Hujie Lyu, et al. 2025. "MicrobiomeStatPlots: Microbiome statistics plotting gallery for meta-omics and bioinformatics." iMeta 4: e70002. https://doi.org/10.1002/imt2.70002
 
-The online version of this tuturial can be found in https://github.com/YongxinLiu/MicrobiomeStatPlot
+The video tuturial (视频教程): https://www.bilibili.com/video/BV1BGuqzGE5M/
 
 
 **Authors**
